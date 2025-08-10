@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
             headerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             minimizeBtn = new Guna.UI2.WinForms.Guna2Button();
@@ -63,14 +63,14 @@
             headerPanel.Controls.Add(exitBtn);
             headerPanel.Controls.Add(formIcon);
             headerPanel.Controls.Add(formTitle);
-            headerPanel.CustomizableEdges = customizableEdges15;
+            headerPanel.CustomizableEdges = customizableEdges7;
             headerPanel.FillColor = Color.FromArgb(192, 192, 255);
             headerPanel.FillColor2 = Color.FromArgb(128, 128, 255);
             headerPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            headerPanel.Location = new Point(0, 0);
+            headerPanel.Location = new Point(-1, -1);
             headerPanel.Name = "headerPanel";
-            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            headerPanel.Size = new Size(950, 45);
+            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            headerPanel.Size = new Size(951, 45);
             headerPanel.TabIndex = 0;
             // 
             // minimizeBtn
@@ -78,7 +78,7 @@
             minimizeBtn.BackColor = Color.Transparent;
             minimizeBtn.BorderColor = Color.Transparent;
             minimizeBtn.BorderRadius = 8;
-            minimizeBtn.CustomizableEdges = customizableEdges9;
+            minimizeBtn.CustomizableEdges = customizableEdges1;
             minimizeBtn.DisabledState.BorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -88,9 +88,9 @@
             minimizeBtn.ForeColor = Color.Transparent;
             minimizeBtn.Image = Properties.Resources.WindowMinimize;
             minimizeBtn.ImageSize = new Size(32, 32);
-            minimizeBtn.Location = new Point(88, 3);
+            minimizeBtn.Location = new Point(88, 6);
             minimizeBtn.Name = "minimizeBtn";
-            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
             minimizeBtn.Size = new Size(32, 32);
             minimizeBtn.TabIndex = 4;
             minimizeBtn.Click += MinimizeBtn_Click;
@@ -100,7 +100,7 @@
             maximizeBtn.BackColor = Color.Transparent;
             maximizeBtn.BorderColor = Color.Transparent;
             maximizeBtn.BorderRadius = 8;
-            maximizeBtn.CustomizableEdges = customizableEdges11;
+            maximizeBtn.CustomizableEdges = customizableEdges3;
             maximizeBtn.DisabledState.BorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -110,9 +110,9 @@
             maximizeBtn.ForeColor = Color.Transparent;
             maximizeBtn.Image = Properties.Resources.Fullscreen;
             maximizeBtn.ImageSize = new Size(32, 32);
-            maximizeBtn.Location = new Point(50, 3);
+            maximizeBtn.Location = new Point(50, 6);
             maximizeBtn.Name = "maximizeBtn";
-            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
             maximizeBtn.Size = new Size(32, 32);
             maximizeBtn.TabIndex = 3;
             maximizeBtn.Click += MaximizeBtn_Click;
@@ -122,7 +122,7 @@
             exitBtn.BackColor = Color.Transparent;
             exitBtn.BorderColor = Color.Transparent;
             exitBtn.BorderRadius = 8;
-            exitBtn.CustomizableEdges = customizableEdges13;
+            exitBtn.CustomizableEdges = customizableEdges5;
             exitBtn.DisabledState.BorderColor = Color.DarkGray;
             exitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             exitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -132,9 +132,9 @@
             exitBtn.ForeColor = Color.Transparent;
             exitBtn.Image = Properties.Resources.ExitToApp;
             exitBtn.ImageSize = new Size(32, 32);
-            exitBtn.Location = new Point(12, 3);
+            exitBtn.Location = new Point(12, 6);
             exitBtn.Name = "exitBtn";
-            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges6;
             exitBtn.Size = new Size(32, 32);
             exitBtn.TabIndex = 2;
             exitBtn.Click += ExitBtn_Click;
@@ -144,7 +144,7 @@
             formIcon.BackColor = Color.Transparent;
             formIcon.ForeColor = Color.Transparent;
             formIcon.Image = Properties.Resources.Icon32;
-            formIcon.Location = new Point(906, 6);
+            formIcon.Location = new Point(905, 6);
             formIcon.Name = "formIcon";
             formIcon.Size = new Size(32, 32);
             formIcon.TabIndex = 1;
@@ -154,7 +154,7 @@
             formTitle.AutoSize = true;
             formTitle.BackColor = Color.Transparent;
             formTitle.Font = new Font("Times New Roman", 21.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            formTitle.Location = new Point(734, 7);
+            formTitle.Location = new Point(733, 7);
             formTitle.Name = "formTitle";
             formTitle.Size = new Size(162, 32);
             formTitle.TabIndex = 0;
