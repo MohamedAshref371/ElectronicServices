@@ -127,8 +127,8 @@
   <data name="FullscreenExit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FullscreenExit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Icon32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icon32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Icon64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icon64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="WindowMinimize" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WindowMinimize.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

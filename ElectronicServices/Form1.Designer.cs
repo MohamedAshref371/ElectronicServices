@@ -42,9 +42,10 @@
             minimizeBtn = new Guna.UI2.WinForms.Guna2Button();
             maximizeBtn = new Guna.UI2.WinForms.Guna2Button();
             exitBtn = new Guna.UI2.WinForms.Guna2Button();
-            formIcon = new Label();
             formTitle = new Label();
+            formIcon = new PictureBox();
             headerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)formIcon).BeginInit();
             SuspendLayout();
             // 
             // guna2BorderlessForm1
@@ -58,10 +59,10 @@
             // headerPanel
             // 
             headerPanel.BorderRadius = 10;
+            headerPanel.Controls.Add(formIcon);
             headerPanel.Controls.Add(minimizeBtn);
             headerPanel.Controls.Add(maximizeBtn);
             headerPanel.Controls.Add(exitBtn);
-            headerPanel.Controls.Add(formIcon);
             headerPanel.Controls.Add(formTitle);
             headerPanel.CustomizableEdges = customizableEdges7;
             headerPanel.FillColor = Color.FromArgb(192, 192, 255);
@@ -139,16 +140,6 @@
             exitBtn.TabIndex = 2;
             exitBtn.Click += ExitBtn_Click;
             // 
-            // formIcon
-            // 
-            formIcon.BackColor = Color.Transparent;
-            formIcon.ForeColor = Color.Transparent;
-            formIcon.Image = Properties.Resources.Icon32;
-            formIcon.Location = new Point(905, 6);
-            formIcon.Name = "formIcon";
-            formIcon.Size = new Size(32, 32);
-            formIcon.TabIndex = 1;
-            // 
             // formTitle
             // 
             formTitle.AutoSize = true;
@@ -159,6 +150,17 @@
             formTitle.Size = new Size(162, 32);
             formTitle.TabIndex = 0;
             formTitle.Text = "الفتح للخدمـــات";
+            // 
+            // formIcon
+            // 
+            formIcon.BackColor = Color.Transparent;
+            formIcon.BackgroundImage = Properties.Resources.Icon64;
+            formIcon.BackgroundImageLayout = ImageLayout.Zoom;
+            formIcon.Location = new Point(904, 7);
+            formIcon.Name = "formIcon";
+            formIcon.Size = new Size(32, 32);
+            formIcon.TabIndex = 1;
+            formIcon.TabStop = false;
             // 
             // Form1
             // 
@@ -171,6 +173,7 @@
             Text = "Form1";
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)formIcon).EndInit();
             ResumeLayout(false);
         }
 
@@ -179,9 +182,9 @@
         private Guna.UI2.WinForms.Guna2BorderlessForm guna2BorderlessForm1;
         private Guna.UI2.WinForms.Guna2GradientPanel headerPanel;
         private Label formTitle;
-        private Label formIcon;
         private Guna.UI2.WinForms.Guna2Button exitBtn;
         private Guna.UI2.WinForms.Guna2Button maximizeBtn;
         private Guna.UI2.WinForms.Guna2Button minimizeBtn;
+        private PictureBox formIcon;
     }
 }

@@ -93,9 +93,9 @@ namespace ElectronicServices.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Icon32 {
+        internal static System.Drawing.Bitmap Icon64 {
             get {
-                object obj = ResourceManager.GetObject("Icon32", resourceCulture);
+                object obj = ResourceManager.GetObject("Icon64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

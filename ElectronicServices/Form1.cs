@@ -43,6 +43,14 @@ namespace ElectronicServices
                 fs = new FormSize(SizeX, SizeY, NewSizeX, NewSizeY);
                 fs.SetControls(Controls);
             }
+
+            if (WindowState != FormWindowState.Minimized)
+            {
+                int minSize = Math.Min(minimizeBtn.Width, minimizeBtn.Height);
+                minimizeBtn.ImageSize = new Size(minSize, minSize);
+                maximizeBtn.ImageSize = new Size(minSize, minSize);
+                exitBtn.ImageSize = new Size(minSize, minSize);
+            }
         }
 
         private void MinimizeBtn_Click(object sender, EventArgs e)
