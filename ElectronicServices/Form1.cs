@@ -19,6 +19,38 @@ namespace ElectronicServices
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Timer timer = new() { Interval = 10 };
+
+            timer.Tick += (s, e1) =>
+            {
+                timer.Stop();
+
+                if (Control.MouseButtons == MouseButtons.None)
+                    this.Opacity = 1.0;
+            };
+
+
+            MouseEventHandler meh = (s, e1) =>
+            {
+                if (WindowState != FormWindowState.Maximized && e1.Button == MouseButtons.Left)
+                {
+                    this.Opacity = 0.9;
+                    ReleaseCapture();
+                    SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+
+                    timer.Start();
+                }
+            };
+
+            headerPanel.MouseDown += meh; ;
+            formIcon.MouseDown += meh;
+            formTitle.MouseDown += meh;
+            phoneNumber.MouseDown += meh;
+
+        }
+
         private void ExitBtn_Click(object sender, EventArgs e)
         {
             Close();
@@ -58,5 +90,7 @@ namespace ElectronicServices
         {
             WindowState = FormWindowState.Minimized;
         }
+
+
     }
 }
