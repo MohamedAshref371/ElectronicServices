@@ -47,9 +47,10 @@ namespace ElectronicServices
             if (WindowState != FormWindowState.Minimized)
             {
                 int minSize = Math.Min(minimizeBtn.Width, minimizeBtn.Height);
-                minimizeBtn.ImageSize = new Size(minSize, minSize);
-                maximizeBtn.ImageSize = new Size(minSize, minSize);
-                exitBtn.ImageSize = new Size(minSize, minSize);
+                Size newSize = new(minSize, minSize);
+                minimizeBtn.ImageSize = newSize;
+                maximizeBtn.ImageSize = newSize;
+                exitBtn.ImageSize = newSize;
             }
         }
 

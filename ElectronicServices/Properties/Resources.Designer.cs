@@ -63,6 +63,16 @@ namespace ElectronicServices.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Colors64 {
+            get {
+                object obj = ResourceManager.GetObject("Colors64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ExitToApp {
             get {
                 object obj = ResourceManager.GetObject("ExitToApp", resourceCulture);
@@ -96,6 +106,26 @@ namespace ElectronicServices.Properties {
         internal static System.Drawing.Bitmap Icon64 {
             get {
                 object obj = ResourceManager.GetObject("Icon64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo {
+            get {
+                object obj = ResourceManager.GetObject("Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap QrCode {
+            get {
+                object obj = ResourceManager.GetObject("QrCode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
