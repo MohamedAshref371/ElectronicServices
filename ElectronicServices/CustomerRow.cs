@@ -18,6 +18,15 @@ namespace ElectronicServices
             InitializeComponent();
         }
 
+        public CustomerRow(CustomerRowData data)
+        {
+            InitializeComponent();
+            codeLabel.Text = data.Code.ToString();
+            nameLabel.Text = data.Name;
+            payLabel.Text = data.Pay.ToString("N2");
+            takeLabel.Text = data.Take.ToString("N2");
+            resultLabel.Text = data.Balance.ToString("N2");
+        }
 
         #region Border Radius
         private readonly int borderRadius = 20;

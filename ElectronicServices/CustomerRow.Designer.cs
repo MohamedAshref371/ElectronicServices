@@ -28,76 +28,76 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            codeLabel = new Label();
+            nameLabel = new Label();
+            payLabel = new Label();
+            takeLabel = new Label();
+            resultLabel = new Label();
             customerTransactionsBtn = new Guna.UI2.WinForms.Guna2Button();
             SuspendLayout();
             // 
-            // label1
+            // codeLabel
             // 
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(817, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 40);
-            label1.TabIndex = 0;
-            label1.Text = "الكود";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            codeLabel.BackColor = Color.Transparent;
+            codeLabel.Font = new Font("Segoe UI", 12F);
+            codeLabel.Location = new Point(817, 0);
+            codeLabel.Name = "codeLabel";
+            codeLabel.Size = new Size(80, 40);
+            codeLabel.TabIndex = 0;
+            codeLabel.Text = "الكود";
+            codeLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // nameLabel
             // 
-            label2.BackColor = Color.Transparent;
-            label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(397, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(414, 40);
-            label2.TabIndex = 1;
-            label2.Text = "اسم العميل";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
+            nameLabel.BackColor = Color.Transparent;
+            nameLabel.Font = new Font("Segoe UI", 12F);
+            nameLabel.Location = new Point(397, 0);
+            nameLabel.Name = "nameLabel";
+            nameLabel.Size = new Size(414, 40);
+            nameLabel.TabIndex = 1;
+            nameLabel.Text = "اسم العميل";
+            nameLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // payLabel
             // 
-            label3.BackColor = Color.Transparent;
-            label3.Font = new Font("Segoe UI", 12F);
-            label3.Location = new Point(291, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 40);
-            label3.TabIndex = 2;
-            label3.Text = "دفع";
-            label3.TextAlign = ContentAlignment.MiddleCenter;
+            payLabel.BackColor = Color.Transparent;
+            payLabel.Font = new Font("Segoe UI", 12F);
+            payLabel.Location = new Point(291, 0);
+            payLabel.Name = "payLabel";
+            payLabel.Size = new Size(100, 40);
+            payLabel.TabIndex = 2;
+            payLabel.Text = "دفع";
+            payLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // takeLabel
             // 
-            label4.BackColor = Color.Transparent;
-            label4.Font = new Font("Segoe UI", 12F);
-            label4.Location = new Point(185, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(100, 40);
-            label4.TabIndex = 3;
-            label4.Text = "أخذ";
-            label4.TextAlign = ContentAlignment.MiddleCenter;
+            takeLabel.BackColor = Color.Transparent;
+            takeLabel.Font = new Font("Segoe UI", 12F);
+            takeLabel.Location = new Point(185, 0);
+            takeLabel.Name = "takeLabel";
+            takeLabel.Size = new Size(100, 40);
+            takeLabel.TabIndex = 3;
+            takeLabel.Text = "أخذ";
+            takeLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label5
+            // resultLabel
             // 
-            label5.BackColor = Color.Transparent;
-            label5.Font = new Font("Segoe UI", 12F);
-            label5.Location = new Point(49, 0);
-            label5.Name = "label5";
-            label5.Size = new Size(130, 40);
-            label5.TabIndex = 4;
-            label5.Text = "الرصيد";
-            label5.TextAlign = ContentAlignment.MiddleCenter;
+            resultLabel.BackColor = Color.Transparent;
+            resultLabel.Font = new Font("Segoe UI", 12F);
+            resultLabel.Location = new Point(49, 0);
+            resultLabel.Name = "resultLabel";
+            resultLabel.Size = new Size(130, 40);
+            resultLabel.TabIndex = 4;
+            resultLabel.Text = "الرصيد";
+            resultLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // customerTransactionsBtn
             // 
             customerTransactionsBtn.BackColor = Color.Transparent;
             customerTransactionsBtn.BorderRadius = 15;
-            customerTransactionsBtn.CustomizableEdges = customizableEdges1;
+            customerTransactionsBtn.CustomizableEdges = customizableEdges3;
             customerTransactionsBtn.DisabledState.BorderColor = Color.DarkGray;
             customerTransactionsBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             customerTransactionsBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -109,7 +109,7 @@
             customerTransactionsBtn.ImageSize = new Size(40, 40);
             customerTransactionsBtn.Location = new Point(3, 0);
             customerTransactionsBtn.Name = "customerTransactionsBtn";
-            customerTransactionsBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            customerTransactionsBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
             customerTransactionsBtn.Size = new Size(40, 40);
             customerTransactionsBtn.TabIndex = 5;
             // 
@@ -117,13 +117,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(200, 255, 255, 255);
+            BackColor = Color.FromArgb(50, 255, 255, 255);
             Controls.Add(customerTransactionsBtn);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(resultLabel);
+            Controls.Add(takeLabel);
+            Controls.Add(payLabel);
+            Controls.Add(nameLabel);
+            Controls.Add(codeLabel);
             Name = "CustomerRow";
             Size = new Size(900, 40);
             ResumeLayout(false);
@@ -131,11 +131,11 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
+        private Label codeLabel;
+        private Label nameLabel;
+        private Label payLabel;
+        private Label takeLabel;
+        private Label resultLabel;
         private Guna.UI2.WinForms.Guna2Button customerTransactionsBtn;
     }
 }

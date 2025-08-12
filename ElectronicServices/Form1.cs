@@ -49,6 +49,42 @@ namespace ElectronicServices
             formTitle.MouseDown += meh;
             phoneNumber.MouseDown += meh;
 
+            var cust = new CustomerRow();
+            cust.Location = new Point(cust.Location.X + 20, cust.Location.Y + 3);
+            customersPanel.Controls.Add(cust);
+
+             cust = new CustomerRow(new CustomerRowData
+            {
+                Code = 1,
+                Name = "куэс 1",
+                Pay = 1000.00m,
+                Take = 500.00m,
+                Balance = 500.00m
+            });
+            cust.Location = new Point(cust.Location.X+20, cust.Location.Y + 45 * 1 + 3);
+            customersPanel.Controls.Add(cust);
+
+            cust = new CustomerRow(new CustomerRowData
+            {
+                Code = 2,
+                Name = "куэс 2",
+                Pay = 2000.00m,
+                Take = 1500.00m,
+                Balance = 500.00m
+            });
+            cust.Location = new Point(cust.Location.X +20, cust.Location.Y + 45 * 2 + 3);
+            customersPanel.Controls.Add(cust);
+
+            cust = new CustomerRow(new CustomerRowData
+            {
+                Code = 3,
+                Name = "куэс 3",
+                Pay = 3000.00m,
+                Take = 2500.00m,
+                Balance = 500.00m
+            });
+            cust.Location = new Point(cust.Location.X+20, cust.Location.Y + 45 * 3 + 3);
+            customersPanel.Controls.Add(cust);
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
