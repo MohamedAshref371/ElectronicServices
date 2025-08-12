@@ -68,7 +68,7 @@
             label3.Name = "label3";
             label3.Size = new Size(100, 40);
             label3.TabIndex = 2;
-            label3.Text = "دفع (له)";
+            label3.Text = "دفع";
             label3.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label4
@@ -79,7 +79,7 @@
             label4.Name = "label4";
             label4.Size = new Size(100, 40);
             label4.TabIndex = 3;
-            label4.Text = "أخذ (عليه)";
+            label4.Text = "أخذ";
             label4.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label5
@@ -90,7 +90,7 @@
             label5.Name = "label5";
             label5.Size = new Size(130, 40);
             label5.TabIndex = 4;
-            label5.Text = "النتيجة";
+            label5.Text = "الرصيد";
             label5.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // customerTransactionsBtn
@@ -105,6 +105,7 @@
             customerTransactionsBtn.FillColor = Color.Transparent;
             customerTransactionsBtn.Font = new Font("Segoe UI", 9F);
             customerTransactionsBtn.ForeColor = Color.White;
+            customerTransactionsBtn.Image = Properties.Resources.board;
             customerTransactionsBtn.ImageSize = new Size(40, 40);
             customerTransactionsBtn.Location = new Point(3, 0);
             customerTransactionsBtn.Name = "customerTransactionsBtn";
