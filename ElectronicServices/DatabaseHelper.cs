@@ -48,7 +48,7 @@ namespace ElectronicServices
             {
                 conn.Open();
                 command.CommandText = "CREATE TABLE metadata (version INTEGER PRIMARY KEY, create_date INTEGER, comment TEXT);" +
-                                      "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, code INTEGER UNIQUE NOT NULL, name TEXT NOT NULL );" +
+                                      "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL );" +
                                       "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date TEXT NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id) );" +
                                       "CREATE TABLE wallets ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
                                       "CREATE TABLE wallet_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL );" +

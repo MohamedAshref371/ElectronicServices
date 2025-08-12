@@ -53,6 +53,9 @@ namespace ElectronicServices
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
+            //string f = "C:\\Users\\Mohamed\\Pictures\\logo.png";
+            //string f1 = "C:\\Users\\Mohamed\\Pictures\\logo2.png";
+            //TintPng(new Bitmap(f), Color.Orange).Save(f1);
             Close();
         }
 
@@ -92,5 +95,36 @@ namespace ElectronicServices
         }
 
 
+
+        public static Bitmap TintPng(Bitmap original, Color tintColor)
+        {
+            Bitmap tinted = new Bitmap(original.Width, original.Height);
+            for (int y = 0; y < original.Height; y++)
+            {
+                for (int x = 0; x < original.Width; x++)
+                {
+                    Color pixel = original.GetPixel(x, y);
+                    if (pixel.A > 0) // ›ﬁÿ ·Ê «·»ﬂ”· „‘ ‘›«›
+                    {
+                        tinted.SetPixel(x, y, Color.FromArgb(pixel.A, tintColor.R, tintColor.G, tintColor.B));
+                    }
+                    else
+                    {
+                        tinted.SetPixel(x, y, Color.Transparent);
+                    }
+                }
+            }
+            return tinted;
+        }
+
+        private void CustomersBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TransactionsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
