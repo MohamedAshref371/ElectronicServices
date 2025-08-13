@@ -140,6 +140,30 @@ namespace ElectronicServices
             }
         }
 
+        public static int GetTransactionNextId()
+        {
+            if (!success) return -1;
+            try
+            {
+                conn.Open();
+                command.CommandText = "SELECT MAX(id) FROM transactions;";
+                reader = command.ExecuteReader();
+                if (!reader.Read()) return -1;
+                if (reader.IsDBNull(0)) return 1;
+                return reader.GetInt32(0) + 1;
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return -1;
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
+        }
+
         public static CustomerRowData[] GetCustomers(string name = "")
         {
             if (name != "") name = $"WHERE c.name LIKE '%{name}%'";
@@ -147,6 +171,11 @@ namespace ElectronicServices
             return SelectMultiRows(sql, GetCustomerData);
         }
 
+        public static string[] GetCustomersNames()
+        {
+            string sql = $"SELECT name FROM customers";
+            return SelectMultiRows(sql, () => reader.GetString(0));
+        }
 
         private static CustomerRowData GetCustomerData()
         {

@@ -60,6 +60,9 @@ namespace ElectronicServices
             TransactionRow trans = new();
             trans.Location = new Point(trans.Location.X + 25, 5);
             transactionsPanel.Controls.Add(trans);
+            addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
+            customersComboBox.Items.Add("«Œ — „‰ «·ﬁ«∆„…");
+            customersComboBox.Items.AddRange(DatabaseHelper.GetCustomersNames());
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -192,5 +195,14 @@ namespace ElectronicServices
             }
         }
 
+        private void AddTransactionBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TransSearchBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
