@@ -474,7 +474,6 @@
             takeAmount.Size = new Size(127, 36);
             takeAmount.TabIndex = 17;
             takeAmount.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
-            takeAmount.Visible = false;
             // 
             // payAmount
             // 
@@ -490,7 +489,6 @@
             payAmount.ShadowDecoration.CustomizableEdges = customizableEdges22;
             payAmount.Size = new Size(127, 36);
             payAmount.TabIndex = 16;
-            payAmount.Visible = false;
             // 
             // customersComboBox
             // 

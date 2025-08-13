@@ -134,12 +134,16 @@ namespace ElectronicServices
 
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
+            transactionsPanel.Visible = false;
+            addTransactionsPanel.Visible = false;
             customersPanel.Visible = true;
             addCustomersPanel.Visible = true;
         }
 
         private void TransactionsBtn_Click(object sender, EventArgs e)
         {
+            customersPanel.Visible = false;
+            addCustomersPanel.Visible = false;
             transactionsPanel.Visible = true;
             addTransactionsPanel.Visible = true;
         }
