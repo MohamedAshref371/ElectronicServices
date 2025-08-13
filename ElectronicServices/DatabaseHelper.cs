@@ -50,7 +50,7 @@ namespace ElectronicServices
                 conn.Open();
                 command.CommandText = "CREATE TABLE metadata (version INTEGER PRIMARY KEY, create_date INTEGER, comment TEXT);" +
                                       "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
-                                      "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date TEXT NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id) );" +
+                                      "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date INTEGER NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id) );" +
                                       "CREATE TABLE wallets ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
                                       "CREATE TABLE wallet_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL );" +
                                       "CREATE TABLE wallet_closure_details ( id INTEGER PRIMARY KEY AUTOINCREMENT, closure_id INTEGER NOT NULL, wallet_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(closure_id) REFERENCES wallet_closures(id), FOREIGN KEY(wallet_id) REFERENCES wallets(id) );" +
@@ -94,9 +94,6 @@ namespace ElectronicServices
                 conn.Close();
             }
         }
-
-        public static bool AddCustomer(string name) 
-            => ExecuteNonQuery($"INSERT INTO customers (name) VALUES ('{name}')") >= 0;
         
         public static int GetCustomerNextId()
         {
@@ -187,6 +184,15 @@ namespace ElectronicServices
                 conn.Close();
             }
         }
+
+        public static bool AddCustomer(string name)
+            => ExecuteNonQuery($"INSERT INTO customers (name) VALUES ('{name}')") >= 0;
+
+        public static bool AddTransaction(TransactionRowData data)
+            => ExecuteNonQuery($"INSERT INTO transactions (customer_id, date, credit, debit, note) VALUES ({data.Code}, {data.Date.Ticks}, {data.Pay}, {data.Take}, '{data.Note}')") >= 0;
+
+        public static bool EditTransaction(int id, float pay, float take)
+            => ExecuteNonQuery($"UPDATE transactions SET credit = {pay}, debit = {take} WHERE id = {id}") >= 0;
 
         private static int ExecuteNonQuery(string sql)
         {

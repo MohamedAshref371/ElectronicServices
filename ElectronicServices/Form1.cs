@@ -50,13 +50,16 @@ namespace ElectronicServices
             phoneNumber.MouseDown += meh;
 
 
-            customersPanel.Controls.Clear();
-            var cust = new CustomerRow();
+            CustomerRow cust = new();
             cust.Location = new Point(cust.Location.X + 25, 5);
             customersPanel.Controls.Add(cust);
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
             customerCode.Text = customerCode.Tag.ToString();
             customerName.Text = string.Empty;
+
+            TransactionRow trans = new();
+            trans.Location = new Point(trans.Location.X + 25, 5);
+            transactionsPanel.Controls.Add(trans);
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -133,7 +136,8 @@ namespace ElectronicServices
 
         private void TransactionsBtn_Click(object sender, EventArgs e)
         {
-
+            transactionsPanel.Visible = true;
+            addTransactionsPanel.Visible = true;
         }
 
         private void AddCustomerBtn_Click(object sender, EventArgs e)

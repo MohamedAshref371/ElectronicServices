@@ -73,6 +73,16 @@ namespace ElectronicServices.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap check_mark_button {
+            get {
+                object obj = ResourceManager.GetObject("check-mark-button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Colors64 {
             get {
                 object obj = ResourceManager.GetObject("Colors64", resourceCulture);
@@ -176,6 +186,16 @@ namespace ElectronicServices.Properties {
         internal static System.Drawing.Bitmap QrCode {
             get {
                 object obj = ResourceManager.GetObject("QrCode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search {
+            get {
+                object obj = ResourceManager.GetObject("search", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

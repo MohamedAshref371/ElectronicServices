@@ -17,6 +17,7 @@ namespace ElectronicServices
         {
             InitializeComponent();
             customerTransactionsBtn.Visible = false;
+            deleteCustomerBtn.Visible = false;
         }
 
         public CustomerRow(CustomerRowData data)
