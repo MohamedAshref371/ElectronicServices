@@ -52,6 +52,10 @@ namespace ElectronicServices
                 result = "صفر";
         }
 
+
+        private void InfoBtn_Click(object sender, EventArgs e)
+            => MessageBox.Show($"الرصيد : {result}\nملاحظات : {data.Note}");
+
         private void EditBtn_Click(object sender, EventArgs e)
         {
             if (payLabel.Visible)
@@ -83,8 +87,15 @@ namespace ElectronicServices
             }
         }
 
-        private void InfoBtn_Click(object sender, EventArgs e)
-            => MessageBox.Show($"الرصيد : {result}\nملاحظات : {data.Note}");
+        private void CustomerBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteCustomerBtn_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
         #region Border Radius
@@ -108,6 +119,6 @@ namespace ElectronicServices
         }
         #endregion
 
-        
+
     }
 }

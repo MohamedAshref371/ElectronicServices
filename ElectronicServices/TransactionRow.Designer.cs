@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             deleteCustomerBtn = new Guna.UI2.WinForms.Guna2Button();
             customerBtn = new Guna.UI2.WinForms.Guna2Button();
             dateLabel = new Label();
@@ -58,7 +58,7 @@
             // 
             deleteCustomerBtn.BackColor = Color.Transparent;
             deleteCustomerBtn.BorderRadius = 15;
-            deleteCustomerBtn.CustomizableEdges = customizableEdges13;
+            deleteCustomerBtn.CustomizableEdges = customizableEdges1;
             deleteCustomerBtn.DisabledState.BorderColor = Color.DarkGray;
             deleteCustomerBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             deleteCustomerBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -70,15 +70,16 @@
             deleteCustomerBtn.ImageSize = new Size(40, 40);
             deleteCustomerBtn.Location = new Point(3, 0);
             deleteCustomerBtn.Name = "deleteCustomerBtn";
-            deleteCustomerBtn.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            deleteCustomerBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
             deleteCustomerBtn.Size = new Size(40, 40);
             deleteCustomerBtn.TabIndex = 12;
+            deleteCustomerBtn.Click += DeleteCustomerBtn_Click;
             // 
             // customerBtn
             // 
             customerBtn.BackColor = Color.Transparent;
             customerBtn.BorderRadius = 15;
-            customerBtn.CustomizableEdges = customizableEdges15;
+            customerBtn.CustomizableEdges = customizableEdges3;
             customerBtn.DisabledState.BorderColor = Color.DarkGray;
             customerBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             customerBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -90,9 +91,10 @@
             customerBtn.ImageSize = new Size(40, 40);
             customerBtn.Location = new Point(49, 0);
             customerBtn.Name = "customerBtn";
-            customerBtn.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            customerBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
             customerBtn.Size = new Size(40, 40);
             customerBtn.TabIndex = 11;
+            customerBtn.Click += CustomerBtn_Click;
             // 
             // dateLabel
             // 
@@ -142,7 +144,7 @@
             // 
             editBtn.BackColor = Color.Transparent;
             editBtn.BorderRadius = 15;
-            editBtn.CustomizableEdges = customizableEdges17;
+            editBtn.CustomizableEdges = customizableEdges5;
             editBtn.DisabledState.BorderColor = Color.DarkGray;
             editBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             editBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -154,7 +156,7 @@
             editBtn.ImageSize = new Size(40, 40);
             editBtn.Location = new Point(95, 0);
             editBtn.Name = "editBtn";
-            editBtn.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            editBtn.ShadowDecoration.CustomizableEdges = customizableEdges6;
             editBtn.Size = new Size(40, 40);
             editBtn.TabIndex = 13;
             editBtn.Click += EditBtn_Click;
@@ -163,7 +165,7 @@
             // 
             infoBtn.BackColor = Color.Transparent;
             infoBtn.BorderRadius = 15;
-            infoBtn.CustomizableEdges = customizableEdges19;
+            infoBtn.CustomizableEdges = customizableEdges7;
             infoBtn.DisabledState.BorderColor = Color.DarkGray;
             infoBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             infoBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -175,7 +177,7 @@
             infoBtn.ImageSize = new Size(40, 40);
             infoBtn.Location = new Point(141, 0);
             infoBtn.Name = "infoBtn";
-            infoBtn.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            infoBtn.ShadowDecoration.CustomizableEdges = customizableEdges8;
             infoBtn.Size = new Size(40, 40);
             infoBtn.TabIndex = 14;
             infoBtn.Click += InfoBtn_Click;
@@ -185,13 +187,13 @@
             payEdit.BackColor = Color.Transparent;
             payEdit.BorderColor = Color.Silver;
             payEdit.BorderRadius = 10;
-            payEdit.CustomizableEdges = customizableEdges21;
+            payEdit.CustomizableEdges = customizableEdges9;
             payEdit.DecimalPlaces = 2;
             payEdit.Font = new Font("Segoe UI", 12F);
             payEdit.Location = new Point(429, 2);
             payEdit.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             payEdit.Name = "payEdit";
-            payEdit.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            payEdit.ShadowDecoration.CustomizableEdges = customizableEdges10;
             payEdit.Size = new Size(100, 36);
             payEdit.TabIndex = 15;
             payEdit.Visible = false;
@@ -201,13 +203,13 @@
             takeEdit.BackColor = Color.Transparent;
             takeEdit.BorderColor = Color.Silver;
             takeEdit.BorderRadius = 10;
-            takeEdit.CustomizableEdges = customizableEdges23;
+            takeEdit.CustomizableEdges = customizableEdges11;
             takeEdit.DecimalPlaces = 2;
             takeEdit.Font = new Font("Segoe UI", 12F);
             takeEdit.Location = new Point(323, 2);
             takeEdit.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             takeEdit.Name = "takeEdit";
-            takeEdit.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            takeEdit.ShadowDecoration.CustomizableEdges = customizableEdges12;
             takeEdit.Size = new Size(100, 36);
             takeEdit.TabIndex = 16;
             takeEdit.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
