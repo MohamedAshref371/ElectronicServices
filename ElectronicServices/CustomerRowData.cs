@@ -10,8 +10,8 @@ namespace ElectronicServices
     {
         public int Code { get; set; }
         public string Name { get; set; }
-        public decimal Pay { get; set; }
-        public decimal Take { get; set; }
-        public decimal Balance { get; set; }
+        public float Pay { get; set; }
+        public float Take { get; set; }
+        public float Balance { get; set; }
     }
 }

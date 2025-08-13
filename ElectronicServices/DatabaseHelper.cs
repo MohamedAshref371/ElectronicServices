@@ -48,7 +48,7 @@ namespace ElectronicServices
             {
                 conn.Open();
                 command.CommandText = "CREATE TABLE metadata (version INTEGER PRIMARY KEY, create_date INTEGER, comment TEXT);" +
-                                      "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL );" +
+                                      "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
                                       "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date TEXT NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id) );" +
                                       "CREATE TABLE wallets ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
                                       "CREATE TABLE wallet_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL );" +
@@ -90,6 +90,54 @@ namespace ElectronicServices
             finally
             {
                 reader?.Close();
+                conn.Close();
+            }
+        }
+
+        public static bool AddCustomer(string name) 
+            => ExecuteNonQuery($"INSERT INTO customers (name) VALUES ('{name}')") >= 0;
+        
+        public static int GetCustomerNextId()
+        {
+            if (!success) return -1;
+            try
+            {
+                conn.Open();
+                command.CommandText = "SELECT MAX(id) FROM customers;";
+                reader = command.ExecuteReader();
+                if (!reader.Read()) return -1;
+                if (reader.IsDBNull(0)) return 1; // If no customers exist, return 1
+                return reader.GetInt32(0) + 1;
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return -1;
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
+        }
+        public static bool SearchWithExactCustomerName(string name)
+        {
+            if (!success) return false;
+            try
+            {
+                conn.Open();
+                command.CommandText = $"SELECT * FROM customers WHERE name = '{name}'";
+                reader = command.ExecuteReader();
+                return reader.HasRows;
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return false;
+            }
+            finally
+            {
+                reader.Close();
                 conn.Close();
             }
         }

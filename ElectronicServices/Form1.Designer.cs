@@ -66,8 +66,8 @@
             mainPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             customersPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             addCustomersPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            guna2GradientButton1 = new Guna.UI2.WinForms.Guna2GradientButton();
-            guna2TextBox1 = new Guna.UI2.WinForms.Guna2TextBox();
+            addCustomerBtn = new Guna.UI2.WinForms.Guna2GradientButton();
+            customerName = new Guna.UI2.WinForms.Guna2TextBox();
             label1 = new Label();
             customerCode = new Label();
             customerCodeLabel = new Label();
@@ -253,8 +253,8 @@
             addCustomersPanel.BorderColor = Color.Silver;
             addCustomersPanel.BorderRadius = 10;
             addCustomersPanel.BorderThickness = 1;
-            addCustomersPanel.Controls.Add(guna2GradientButton1);
-            addCustomersPanel.Controls.Add(guna2TextBox1);
+            addCustomersPanel.Controls.Add(addCustomerBtn);
+            addCustomersPanel.Controls.Add(customerName);
             addCustomersPanel.Controls.Add(label1);
             addCustomersPanel.Controls.Add(customerCode);
             addCustomersPanel.Controls.Add(customerCodeLabel);
@@ -268,51 +268,52 @@
             addCustomersPanel.Size = new Size(951, 96);
             addCustomersPanel.TabIndex = 3;
             // 
-            // guna2GradientButton1
+            // addCustomerBtn
             // 
-            guna2GradientButton1.BorderColor = Color.Silver;
-            guna2GradientButton1.BorderRadius = 10;
-            guna2GradientButton1.BorderThickness = 1;
-            guna2GradientButton1.CustomizableEdges = customizableEdges11;
-            guna2GradientButton1.DisabledState.BorderColor = Color.DarkGray;
-            guna2GradientButton1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2GradientButton1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2GradientButton1.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            guna2GradientButton1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2GradientButton1.FillColor = Color.FromArgb(224, 224, 224);
-            guna2GradientButton1.FillColor2 = Color.Silver;
-            guna2GradientButton1.Font = new Font("Segoe UI", 15F);
-            guna2GradientButton1.ForeColor = Color.Black;
-            guna2GradientButton1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            guna2GradientButton1.Location = new Point(263, 8);
-            guna2GradientButton1.Name = "guna2GradientButton1";
-            guna2GradientButton1.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            guna2GradientButton1.Size = new Size(114, 35);
-            guna2GradientButton1.TabIndex = 4;
-            guna2GradientButton1.Text = "إضافة";
+            addCustomerBtn.BorderColor = Color.Silver;
+            addCustomerBtn.BorderRadius = 10;
+            addCustomerBtn.BorderThickness = 1;
+            addCustomerBtn.CustomizableEdges = customizableEdges11;
+            addCustomerBtn.DisabledState.BorderColor = Color.DarkGray;
+            addCustomerBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            addCustomerBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            addCustomerBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            addCustomerBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            addCustomerBtn.FillColor = Color.FromArgb(224, 224, 224);
+            addCustomerBtn.FillColor2 = Color.Silver;
+            addCustomerBtn.Font = new Font("Segoe UI", 15F);
+            addCustomerBtn.ForeColor = Color.Black;
+            addCustomerBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            addCustomerBtn.Location = new Point(263, 8);
+            addCustomerBtn.Name = "addCustomerBtn";
+            addCustomerBtn.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            addCustomerBtn.Size = new Size(114, 35);
+            addCustomerBtn.TabIndex = 4;
+            addCustomerBtn.Text = "إضافة";
+            addCustomerBtn.Click += AddCustomerBtn_Click;
             // 
-            // guna2TextBox1
+            // customerName
             // 
-            guna2TextBox1.BorderRadius = 8;
-            guna2TextBox1.CustomizableEdges = customizableEdges13;
-            guna2TextBox1.DefaultText = "محمد أشرف سيد محمد علي";
-            guna2TextBox1.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox1.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox1.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox1.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Font = new Font("Segoe UI", 12F);
-            guna2TextBox1.ForeColor = Color.Black;
-            guna2TextBox1.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox1.Location = new Point(384, 5);
-            guna2TextBox1.Margin = new Padding(4);
-            guna2TextBox1.Name = "guna2TextBox1";
-            guna2TextBox1.PlaceholderText = "";
-            guna2TextBox1.RightToLeft = RightToLeft.Yes;
-            guna2TextBox1.SelectedText = "";
-            guna2TextBox1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2TextBox1.Size = new Size(251, 40);
-            guna2TextBox1.TabIndex = 3;
+            customerName.BorderRadius = 8;
+            customerName.CustomizableEdges = customizableEdges13;
+            customerName.DefaultText = "محمد أشرف سيد محمد علي";
+            customerName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            customerName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            customerName.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            customerName.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            customerName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            customerName.Font = new Font("Segoe UI", 12F);
+            customerName.ForeColor = Color.Black;
+            customerName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            customerName.Location = new Point(384, 5);
+            customerName.Margin = new Padding(4);
+            customerName.Name = "customerName";
+            customerName.PlaceholderText = "";
+            customerName.RightToLeft = RightToLeft.Yes;
+            customerName.SelectedText = "";
+            customerName.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            customerName.Size = new Size(251, 40);
+            customerName.TabIndex = 3;
             // 
             // label1
             // 
@@ -492,8 +493,8 @@
         private Label customerCodeLabel;
         private Label label1;
         private Label customerCode;
-        private Guna.UI2.WinForms.Guna2GradientButton guna2GradientButton1;
-        private Guna.UI2.WinForms.Guna2TextBox guna2TextBox1;
+        private Guna.UI2.WinForms.Guna2GradientButton addCustomerBtn;
+        private Guna.UI2.WinForms.Guna2TextBox customerName;
         private Guna.UI2.WinForms.Guna2GradientPanel customersPanel;
     }
 }
