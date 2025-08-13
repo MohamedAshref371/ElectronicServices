@@ -219,7 +219,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(200, 255, 255, 255);
+            BackColor = Color.FromArgb(50, 255, 255, 255);
             Controls.Add(takeEdit);
             Controls.Add(payEdit);
             Controls.Add(infoBtn);

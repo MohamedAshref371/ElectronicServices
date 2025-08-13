@@ -218,7 +218,7 @@ namespace ElectronicServices
             => ExecuteNonQuery($"INSERT INTO customers (name) VALUES ('{name}')") >= 0;
 
         public static bool AddTransaction(TransactionRowData data)
-            => ExecuteNonQuery($"INSERT INTO transactions (customer_id, date, credit, debit, note) VALUES ({data.Code}, {data.Date.Ticks}, {data.Pay}, {data.Take}, '{data.Note}')") >= 0;
+            => ExecuteNonQuery($"INSERT INTO transactions (customer_id, date, credit, debit, note) VALUES ({data.CustomerId}, {data.Date.Ticks}, {data.Pay}, {data.Take}, '{data.Note}')") >= 0;
 
         public static bool EditTransaction(int id, float pay, float take)
             => ExecuteNonQuery($"UPDATE transactions SET credit = {pay}, debit = {take} WHERE id = {id}") >= 0;
