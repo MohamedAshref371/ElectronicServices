@@ -26,7 +26,19 @@ namespace ElectronicServices
             nameLabel.Text = data.Name;
             payLabel.Text = data.Pay.ToString("N2");
             takeLabel.Text = data.Take.ToString("N2");
-            resultLabel.Text = data.Balance.ToString("N2");
+
+            if (data.Pay > data.Take)
+            {
+                resultLabel.Text = "له ";
+                resultLabel.Text += (data.Pay - data.Take).ToString("N2");
+            }
+            else if (data.Take > data.Pay)
+            {
+                resultLabel.Text = "عليه ";
+                resultLabel.Text += (data.Take - data.Pay).ToString("N2");
+            }
+            else
+                resultLabel.Text = "صفر";
         }
 
         #region Border Radius

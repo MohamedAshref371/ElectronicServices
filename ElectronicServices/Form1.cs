@@ -49,9 +49,7 @@ namespace ElectronicServices
             formTitle.MouseDown += meh;
             phoneNumber.MouseDown += meh;
 
-            var cust = new CustomerRow();
-            cust.Location = new Point(cust.Location.X + 25, cust.Location.Y + 5);
-            customersPanel.Controls.Add(cust);
+
 
             // cust = new CustomerRow(new CustomerRowData
             //{
@@ -155,13 +153,16 @@ namespace ElectronicServices
 
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
-            addCustomersPanel.Visible = true;
+            customersPanel.Controls.Clear();
+            var cust = new CustomerRow();
+            cust.Location = new Point(cust.Location.X + 25, 5);
+            customersPanel.Controls.Add(cust);
             customersPanel.Visible = true;
 
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
             customerCode.Text = customerCode.Tag.ToString();
             customerName.Text = string.Empty;
-
+            addCustomersPanel.Visible = true;
         }
 
         private void TransactionsBtn_Click(object sender, EventArgs e)
@@ -194,7 +195,6 @@ namespace ElectronicServices
                 Name = custName,
                 Pay = 0f,
                 Take = 0f,
-                Balance = 0f
             });
             cust.Location = new Point(cust.Location.X + 25, (cust.Size.Height + 3) * count + 5);
             customersPanel.Controls.Add(cust);
@@ -202,8 +202,26 @@ namespace ElectronicServices
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
             customerCode.Text = customerCode.Tag.ToString();
             customerName.Text = string.Empty;
-            
 
+
+        }
+
+        private void CustomerSearchBtn_Click(object sender, EventArgs e)
+        {
+            CustomerRowData[] customers = DatabaseHelper.GetCustomers(customerName.Text.Trim() == "" ? "" : customerName.Text);
+
+            customersPanel.Controls.Clear();
+            var cust = new CustomerRow();
+            cust.Location = new Point(cust.Location.X + 25, 5);
+            customersPanel.Controls.Add(cust);
+
+            CustomerRow row;
+            for (int i = 0; i < customers.Length; i++)
+            {
+                row = new(customers[i]);
+                row.Location = new Point(row.Location.X + 25, (row.Size.Height + 3) * (i + 1) + 5);
+                customersPanel.Controls.Add(row);
+            }
         }
     }
 }

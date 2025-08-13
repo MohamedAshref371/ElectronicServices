@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace ElectronicServices
@@ -141,6 +142,26 @@ namespace ElectronicServices
                 conn.Close();
             }
         }
+
+        public static CustomerRowData[] GetCustomers(string name = "")
+        {
+            if (name != "") name = $"WHERE c.name LIKE '%{name}%'";
+            string sql = $"SELECT c.id, c.name, COALESCE(SUM(t.credit), 0) AS Pay, COALESCE(SUM(t.debit), 0) AS Take FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id {name} GROUP BY c.id, c.name";
+            return SelectMultiRows(sql, GetCustomerData);
+        }
+
+
+        private static CustomerRowData GetCustomerData()
+        {
+            return new CustomerRowData
+            {
+                Code = reader.GetInt32(0),
+                Name = reader.GetString(1),
+                Pay = reader.GetFloat(2),
+                Take = reader.GetFloat(3),
+            };
+        }
+
 
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
         {
