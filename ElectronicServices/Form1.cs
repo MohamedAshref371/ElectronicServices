@@ -50,39 +50,13 @@ namespace ElectronicServices
             phoneNumber.MouseDown += meh;
 
 
-
-            // cust = new CustomerRow(new CustomerRowData
-            //{
-            //    Code = 1,
-            //    Name = "куэс 1",
-            //    Pay = 1000.00m,
-            //    Take = 500.00m,
-            //    Balance = 500.00m
-            //});
-            //cust.Location = new Point(cust.Location.X+25, cust.Location.Y + 45 * 1 + 9);
-            //customersPanel.Controls.Add(cust);
-
-            //cust = new CustomerRow(new CustomerRowData
-            //{
-            //    Code = 2,
-            //    Name = "куэс 2",
-            //    Pay = 2000.00m,
-            //    Take = 1500.00m,
-            //    Balance = 500.00m
-            //});
-            //cust.Location = new Point(cust.Location.X +25, cust.Location.Y + 45 * 2 + 12);
-            //customersPanel.Controls.Add(cust);
-
-            //cust = new CustomerRow(new CustomerRowData
-            //{
-            //    Code = 3,
-            //    Name = "куэс 3",
-            //    Pay = 3000.00m,
-            //    Take = 2500.00m,
-            //    Balance = 500.00m
-            //});
-            //cust.Location = new Point(cust.Location.X+20, cust.Location.Y + 45 * 3 + 15);
-            //customersPanel.Controls.Add(cust);
+            customersPanel.Controls.Clear();
+            var cust = new CustomerRow();
+            cust.Location = new Point(cust.Location.X + 25, 5);
+            customersPanel.Controls.Add(cust);
+            customerCode.Tag = DatabaseHelper.GetCustomerNextId();
+            customerCode.Text = customerCode.Tag.ToString();
+            customerName.Text = string.Empty;
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -153,15 +127,7 @@ namespace ElectronicServices
 
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
-            customersPanel.Controls.Clear();
-            var cust = new CustomerRow();
-            cust.Location = new Point(cust.Location.X + 25, 5);
-            customersPanel.Controls.Add(cust);
             customersPanel.Visible = true;
-
-            customerCode.Tag = DatabaseHelper.GetCustomerNextId();
-            customerCode.Text = customerCode.Tag.ToString();
-            customerName.Text = string.Empty;
             addCustomersPanel.Visible = true;
         }
 
@@ -202,8 +168,6 @@ namespace ElectronicServices
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
             customerCode.Text = customerCode.Tag.ToString();
             customerName.Text = string.Empty;
-
-
         }
 
         private void CustomerSearchBtn_Click(object sender, EventArgs e)
@@ -223,5 +187,6 @@ namespace ElectronicServices
                 customersPanel.Controls.Add(row);
             }
         }
+
     }
 }

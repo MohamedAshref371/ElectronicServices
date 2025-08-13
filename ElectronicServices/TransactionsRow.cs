@@ -11,44 +11,11 @@ using System.Windows.Forms;
 
 namespace ElectronicServices
 {
-    public partial class CustomerRow : UserControl
+    public partial class TransactionsRow : UserControl
     {
-        public CustomerRow()
+        public TransactionsRow()
         {
             InitializeComponent();
-            customerTransactionsBtn.Visible = false;
-        }
-
-        public CustomerRow(CustomerRowData data)
-        {
-            InitializeComponent();
-            codeLabel.Text = data.Code.ToString();
-            nameLabel.Text = data.Name;
-            payLabel.Text = data.Pay.ToString("N2");
-            takeLabel.Text = data.Take.ToString("N2");
-
-            if (data.Pay > data.Take)
-            {
-                resultLabel.Text = "له ";
-                resultLabel.Text += (data.Pay - data.Take).ToString("N2");
-            }
-            else if (data.Take > data.Pay)
-            {
-                resultLabel.Text = "عليه ";
-                resultLabel.Text += (data.Take - data.Pay).ToString("N2");
-            }
-            else
-                resultLabel.Text = "صفر";
-        }
-
-        private void CustomerTransactionsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DeleteCustomerBtn_Click(object sender, EventArgs e)
-        {
-
         }
 
         #region Border Radius
@@ -71,6 +38,5 @@ namespace ElectronicServices
             this.Region = new Region(GetRoundedPath());
         }
         #endregion
-
     }
 }
