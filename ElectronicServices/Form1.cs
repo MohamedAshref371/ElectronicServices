@@ -63,6 +63,7 @@ namespace ElectronicServices
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             customersComboBox.Items.Add("«Œ — „‰ «·ﬁ«∆„…");
             customersComboBox.Items.AddRange(DatabaseHelper.GetCustomersNames());
+            customersComboBox.SelectedIndex = 0;
             transDate.Value = DateTime.Now;
         }
 
@@ -169,7 +170,7 @@ namespace ElectronicServices
             int count = customersPanel.Controls.Count;
             CustomerRow cust = new(new CustomerRowData
             {
-                Code = (int)customerCode.Tag,
+                Id = (int)customerCode.Tag,
                 Name = custName,
                 Pay = 0f,
                 Take = 0f,
@@ -242,6 +243,8 @@ namespace ElectronicServices
 
         private void TransSearchBtn_Click(object sender, EventArgs e)
         {
+            TransactionRowData[] transactions = DatabaseHelper.GetTransactions(customersComboBox.SelectedIndex);
+            
             
         }
     }

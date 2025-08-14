@@ -171,6 +171,14 @@ namespace ElectronicServices
             return SelectMultiRows(sql, GetCustomerData);
         }
 
+        public static TransactionRowData[] GetTransactions(int id)
+        {
+            string cond = "";
+            if (id != 0) cond = $"WHERE t.customer_id = {id}";
+            string sql = $"SELECT ";
+            return SelectMultiRows(sql, GetTransactionData);
+        }
+
         public static string[] GetCustomersNames()
         {
             string sql = $"SELECT name FROM customers";
@@ -181,13 +189,26 @@ namespace ElectronicServices
         {
             return new CustomerRowData
             {
-                Code = reader.GetInt32(0),
+                Id = reader.GetInt32(0),
                 Name = reader.GetString(1),
                 Pay = reader.GetFloat(2),
                 Take = reader.GetFloat(3),
             };
         }
 
+        private static TransactionRowData GetTransactionData()
+        {
+            return new TransactionRowData
+            {
+                Id = reader.GetInt32(0),
+                CustomerId = reader.GetInt32(1),
+                Name = reader.GetString(2),
+                Date = new DateTime(reader.GetInt64(3)),
+                Pay = reader.GetFloat(4),
+                Take = reader.GetFloat(5),
+                Note = reader.GetString(6)
+            };
+        }
 
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
         {
@@ -222,6 +243,9 @@ namespace ElectronicServices
 
         public static bool EditTransaction(int id, float pay, float take)
             => ExecuteNonQuery($"UPDATE transactions SET credit = {pay}, debit = {take} WHERE id = {id}") >= 0;
+
+        public static bool DeleteTransaction(int id)
+            => ExecuteNonQuery($"DELETE FROM transactions WHERE id = {id}") >= 0;
 
         private static int ExecuteNonQuery(string sql)
         {

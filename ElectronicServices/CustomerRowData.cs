@@ -3,7 +3,7 @@ namespace ElectronicServices
 {
     public class CustomerRowData
     {
-        public int Code;
+        public int Id;
         public string Name;
         public float Pay;
         public float Take;

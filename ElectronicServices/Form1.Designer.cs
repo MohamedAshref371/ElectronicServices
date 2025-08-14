@@ -359,7 +359,7 @@
             transNote.PlaceholderText = "";
             transNote.SelectedText = "";
             transNote.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            transNote.Size = new Size(296, 36);
+            transNote.Size = new Size(310, 36);
             transNote.TabIndex = 25;
             // 
             // noteLabel

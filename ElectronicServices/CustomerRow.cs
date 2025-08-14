@@ -23,7 +23,7 @@ namespace ElectronicServices
         public CustomerRow(CustomerRowData data)
         {
             InitializeComponent();
-            codeLabel.Text = data.Code.ToString();
+            codeLabel.Text = data.Id.ToString();
             nameLabel.Text = data.Name;
             payLabel.Text = data.Pay.ToString("N2");
             takeLabel.Text = data.Take.ToString("N2");

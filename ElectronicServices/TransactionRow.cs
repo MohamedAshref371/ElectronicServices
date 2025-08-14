@@ -94,7 +94,17 @@ namespace ElectronicServices
 
         private void DeleteCustomerBtn_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("هل أنت متأكد من حذف هذه المعاملة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
 
+            if (!DatabaseHelper.DeleteTransaction(data.Id))
+            {
+                MessageBox.Show("حدث خطأ أثناء حذف المعاملة. يرجى المحاولة مرة أخرى.");
+                return;
+            }
+
+            this.Enabled = false;
+            //this.Dispose();
         }
 
 
