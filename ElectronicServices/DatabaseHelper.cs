@@ -174,8 +174,8 @@ namespace ElectronicServices
         public static TransactionRowData[] GetTransactions(int id)
         {
             string cond = "";
-            if (id != 0) cond = $"WHERE t.customer_id = {id}";
-            string sql = $"SELECT ";
+            if (id >= 1) cond = $"WHERE t.customer_id = {id}";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date";
             return SelectMultiRows(sql, GetTransactionData);
         }
 
@@ -203,7 +203,7 @@ namespace ElectronicServices
                 Id = reader.GetInt32(0),
                 CustomerId = reader.GetInt32(1),
                 Name = reader.GetString(2),
-                Date = new DateTime(reader.GetInt64(3)),
+                Date = new DateTime(Convert.ToInt64(reader[3])),
                 Pay = reader.GetFloat(4),
                 Take = reader.GetFloat(5),
                 Note = reader.GetString(6)

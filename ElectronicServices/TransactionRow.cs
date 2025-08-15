@@ -54,7 +54,7 @@ namespace ElectronicServices
 
 
         private void InfoBtn_Click(object sender, EventArgs e)
-            => MessageBox.Show($"الرصيد : {result}\nملاحظات : {data.Note}");
+            => MessageBox.Show($"نتيجة الفرق : {result}\nملاحظات : {data.Note}");
 
         private void EditBtn_Click(object sender, EventArgs e)
         {

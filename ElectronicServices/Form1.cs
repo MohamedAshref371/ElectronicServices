@@ -188,11 +188,10 @@ namespace ElectronicServices
             CustomerRowData[] customers = DatabaseHelper.GetCustomers(customerName.Text.Trim() == "" ? "" : customerName.Text);
 
             customersPanel.Controls.Clear();
-            var cust = new CustomerRow();
-            cust.Location = new Point(cust.Location.X + 15, 5);
-            customersPanel.Controls.Add(cust);
+            CustomerRow row = new();
+            row.Location = new Point(row.Location.X + 15, 5);
+            customersPanel.Controls.Add(row);
 
-            CustomerRow row;
             for (int i = 0; i < customers.Length; i++)
             {
                 row = new(customers[i]);
@@ -244,8 +243,18 @@ namespace ElectronicServices
         private void TransSearchBtn_Click(object sender, EventArgs e)
         {
             TransactionRowData[] transactions = DatabaseHelper.GetTransactions(customersComboBox.SelectedIndex);
-            
-            
+
+            transactionsPanel.Controls.Clear();
+            TransactionRow row = new();
+            row.Location = new Point(row.Location.X + 15, 5);
+            transactionsPanel.Controls.Add(row);
+
+            for (int i = 0; i < transactions.Length; i++)
+            {
+                row = new(transactions[i]);
+                row.Location = new Point(row.Location.X + 15, (row.Size.Height + 3) * (i + 1) + 5);
+                transactionsPanel.Controls.Add(row);
+            }
         }
     }
 }
