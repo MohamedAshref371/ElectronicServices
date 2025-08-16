@@ -179,7 +179,7 @@ namespace ElectronicServices
 
         public static KeyValuePair<int, string>[] GetCustomersNames()
         {
-            string sql = $"SELECT id, name FROM customers";
+            string sql = $"SELECT id, name FROM customers ORDER BY name";
             return SelectMultiRows(sql, () => new KeyValuePair<int, string>(reader.GetInt32(0), reader.GetString(1)) );
         }
 

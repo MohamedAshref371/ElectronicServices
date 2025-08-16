@@ -64,11 +64,7 @@ namespace ElectronicServices
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             customersComboBox.DisplayMember = "Value";
             customersComboBox.ValueMember = "Key";
-            customersComboBox.Items.Add(new KeyValuePair<int, string>(0, "«Œ — „‰ «·ﬁ«∆„…"));
-            var customers = DatabaseHelper.GetCustomersNames();
-            foreach (var customer in customers)
-                customersComboBox.Items.Add(customer);
-            customersComboBox.SelectedIndex = 0;
+            AfterAddCustomer();
             transDate.Value = DateTime.Now;
         }
 
@@ -192,6 +188,17 @@ namespace ElectronicServices
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
             customerCode.Text = customerCode.Tag.ToString();
             customerName.Text = string.Empty;
+            AfterAddCustomer();
+        }
+
+        private void AfterAddCustomer()
+        {
+            customersComboBox.Items.Clear();
+            customersComboBox.Items.Add(new KeyValuePair<int, string>(0, "«Œ — „‰ «·ﬁ«∆„…"));
+            var customers = DatabaseHelper.GetCustomersNames();
+            foreach (var customer in customers)
+                customersComboBox.Items.Add(customer);
+            customersComboBox.SelectedIndex = 0;
         }
 
         private void CustomerSearchBtn_Click(object sender, EventArgs e)
@@ -253,7 +260,8 @@ namespace ElectronicServices
 
         private void TransSearchBtn_Click(object sender, EventArgs e)
         {
-            TransactionRowData[] transactions = DatabaseHelper.GetTransactions(customersComboBox.SelectedIndex);
+            int custId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key;
+            TransactionRowData[] transactions = DatabaseHelper.GetTransactions(custId);
 
             transactionsPanel.Controls.Clear();
             TransactionRow row = new();
