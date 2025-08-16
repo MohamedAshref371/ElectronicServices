@@ -227,7 +227,7 @@ namespace ElectronicServices
             TransactionRowData data = new()
             {
                 Id = (int)addTransactionsPanel.Tag,
-                CustomerId = (int)customersComboBox.SelectedValue,
+                CustomerId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key,
                 Name = customersComboBox.Text,
                 Date = transDate.Value,
                 Pay = (float)payAmount.Value,
