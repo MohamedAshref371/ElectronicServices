@@ -61,8 +61,12 @@ namespace ElectronicServices
             trans.Location = new Point(trans.Location.X + 15, 5);
             transactionsPanel.Controls.Add(trans);
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
-            customersComboBox.Items.Add("«Œ — „‰ «·ﬁ«∆„…");
-            customersComboBox.Items.AddRange(DatabaseHelper.GetCustomersNames());
+            customersComboBox.DisplayMember = "Value";
+            customersComboBox.ValueMember = "Key";
+            customersComboBox.Items.Add(new KeyValuePair<int, string>(0, "«Œ — „‰ «·ﬁ«∆„…"));
+            var customers = DatabaseHelper.GetCustomersNames();
+            foreach (var customer in customers)
+                customersComboBox.Items.Add(customer);
             customersComboBox.SelectedIndex = 0;
             transDate.Value = DateTime.Now;
         }
@@ -112,26 +116,26 @@ namespace ElectronicServices
 
 
 
-        public static Bitmap TintPng(Bitmap original, Color tintColor)
-        {
-            Bitmap tinted = new Bitmap(original.Width, original.Height);
-            for (int y = 0; y < original.Height; y++)
-            {
-                for (int x = 0; x < original.Width; x++)
-                {
-                    Color pixel = original.GetPixel(x, y);
-                    if (pixel.A > 0) // ›ﬁÿ ·Ê «·»ﬂ”· „‘ ‘›«›
-                    {
-                        tinted.SetPixel(x, y, Color.FromArgb(pixel.A, tintColor.R, tintColor.G, tintColor.B));
-                    }
-                    else
-                    {
-                        tinted.SetPixel(x, y, Color.Transparent);
-                    }
-                }
-            }
-            return tinted;
-        }
+        //public static Bitmap TintPng(Bitmap original, Color tintColor)
+        //{
+        //    Bitmap tinted = new Bitmap(original.Width, original.Height);
+        //    for (int y = 0; y < original.Height; y++)
+        //    {
+        //        for (int x = 0; x < original.Width; x++)
+        //        {
+        //            Color pixel = original.GetPixel(x, y);
+        //            if (pixel.A > 0) // ›ﬁÿ ·Ê «·»ﬂ”· „‘ ‘›«›
+        //            {
+        //                tinted.SetPixel(x, y, Color.FromArgb(pixel.A, tintColor.R, tintColor.G, tintColor.B));
+        //            }
+        //            else
+        //            {
+        //                tinted.SetPixel(x, y, Color.Transparent);
+        //            }
+        //        }
+        //    }
+        //    return tinted;
+        //}
 
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
@@ -161,7 +165,7 @@ namespace ElectronicServices
                 MessageBox.Show("ÕœÀ Œÿ√ √À‰«¡ ﬁ—«¡… «·»Ì«‰« ", "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (res == 0)
+            if (res >= 1)
             {
                 MessageBox.Show("·ﬁœ  „  ≈÷«›… Â–« «·⁄„Ì· „‰ ﬁ»·", "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -223,7 +227,7 @@ namespace ElectronicServices
             TransactionRowData data = new()
             {
                 Id = (int)addTransactionsPanel.Tag,
-                CustomerId = customersComboBox.SelectedIndex,
+                CustomerId = (int)customersComboBox.SelectedValue,
                 Name = customersComboBox.Text,
                 Date = transDate.Value,
                 Pay = (float)payAmount.Value,

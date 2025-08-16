@@ -96,28 +96,8 @@ namespace ElectronicServices
         }
         
         public static int GetCustomerNextId()
-        {
-            if (!success) return -1;
-            try
-            {
-                conn.Open();
-                command.CommandText = "SELECT MAX(id) FROM customers;";
-                reader = command.ExecuteReader();
-                if (!reader.Read()) return -1;
-                if (reader.IsDBNull(0)) return 1; // If no customers exist, return 1
-                return reader.GetInt32(0) + 1;
-            }
-            catch (Exception ex)
-            {
-                Program.LogError(ex, true);
-                return -1;
-            }
-            finally
-            {
-                reader.Close();
-                conn.Close();
-            }
-        }
+            => GetTableNextId("customers");
+
         public static int SearchWithExactCustomerName(string name)
         {
             if (!success) return -1;
@@ -142,28 +122,7 @@ namespace ElectronicServices
         }
 
         public static int GetTransactionNextId()
-        {
-            if (!success) return -1;
-            try
-            {
-                conn.Open();
-                command.CommandText = "SELECT MAX(id) FROM transactions;";
-                reader = command.ExecuteReader();
-                if (!reader.Read()) return -1;
-                if (reader.IsDBNull(0)) return 1;
-                return reader.GetInt32(0) + 1;
-            }
-            catch (Exception ex)
-            {
-                Program.LogError(ex, true);
-                return -1;
-            }
-            finally
-            {
-                reader.Close();
-                conn.Close();
-            }
-        }
+            => GetTableNextId("transactions");
 
         public static CustomerRowData[] GetCustomers(string name = "")
         {
@@ -202,10 +161,34 @@ namespace ElectronicServices
             }
         }
 
-        public static string[] GetCustomersNames()
+        private static int GetTableNextId(string table)
         {
-            string sql = $"SELECT name FROM customers";
-            return SelectMultiRows(sql, () => reader.GetString(0));
+            if (!success) return -1;
+            try
+            {
+                conn.Open();
+                command.CommandText = $"SELECT seq FROM sqlite_sequence WHERE name = '{table}'";
+                reader = command.ExecuteReader();
+                if (!reader.Read()) return -1;
+                if (reader.IsDBNull(0)) return 1;
+                return reader.GetInt32(0) + 1;
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return -1;
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
+        }
+
+        public static KeyValuePair<int, string>[] GetCustomersNames()
+        {
+            string sql = $"SELECT id, name FROM customers";
+            return SelectMultiRows(sql, () => new KeyValuePair<int, string>(reader.GetInt32(0), reader.GetString(1)) );
         }
 
         private static CustomerRowData GetCustomerData()
@@ -262,7 +245,7 @@ namespace ElectronicServices
             => ExecuteNonQuery($"INSERT INTO customers (name) VALUES ('{name}')") >= 0;
 
         public static bool EditCustomer(int id, string name)
-            => ExecuteNonQuery($"UPDATE customers name = '{name}' WHERE id = {id}") >= 0;
+            => ExecuteNonQuery($"UPDATE customers SET name = '{name}' WHERE id = {id}") >= 0;
 
         public static bool ResetCustomer(int id)
             => ExecuteNonQuery($"DELETE FROM transactions WHERE customer_id = {id}") >= 0;

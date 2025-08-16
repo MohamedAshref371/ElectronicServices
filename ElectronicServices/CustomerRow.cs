@@ -75,7 +75,7 @@ namespace ElectronicServices
                     MessageBox.Show("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (res == 0)
+                if (res >= 1)
                 {
                     MessageBox.Show("هذا العميل موجود بالفعل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
