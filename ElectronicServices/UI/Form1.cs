@@ -275,5 +275,19 @@ namespace ElectronicServices
                 transactionsPanel.Controls.Add(row);
             }
         }
+
+        public void CustomerBtnClickInTransactionRow(string custName)
+        {
+            CustomersBtn_Click(null, null);
+            customerName.Text = custName;
+            CustomerSearchBtn_Click(null, null);
+        }
+
+        public void CustomerTransactionsBtnInCustomerRow(int custId)
+        {
+            TransactionsBtn_Click(null, null);
+            customersComboBox.SelectedItem = customersComboBox.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(c => c.Key == custId);
+            TransSearchBtn_Click(null, null);
+        }
     }
 }

@@ -88,10 +88,8 @@ namespace ElectronicServices
         }
 
         private void CustomerBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
+            => Program.Form.CustomerBtnClickInTransactionRow(data.Name);
+        
         private void DeleteTransactionBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("هل أنت متأكد من حذف هذه المعاملة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
