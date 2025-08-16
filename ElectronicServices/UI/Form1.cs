@@ -64,7 +64,7 @@ namespace ElectronicServices
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             customersComboBox.DisplayMember = "Value";
             customersComboBox.ValueMember = "Key";
-            AfterAddCustomer();
+            UpdateCustomersComboBox();
             transDate.Value = DateTime.Now;
         }
 
@@ -188,10 +188,10 @@ namespace ElectronicServices
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
             customerCode.Text = customerCode.Tag.ToString();
             customerName.Text = string.Empty;
-            AfterAddCustomer();
+            UpdateCustomersComboBox();
         }
 
-        private void AfterAddCustomer()
+        private void UpdateCustomersComboBox()
         {
             customersComboBox.Items.Clear();
             customersComboBox.Items.Add(new KeyValuePair<int, string>(0, "«Œ — „‰ «·ﬁ«∆„…"));
