@@ -16,7 +16,7 @@ namespace ElectronicServices
         public TransactionRow()
         {
             InitializeComponent();
-            deleteCustomerBtn.Visible = false;
+            deleteTransactionBtn.Visible = false;
             customerBtn.Visible = false;
             editBtn.Visible = false;
             infoBtn.Visible = false;
@@ -92,7 +92,7 @@ namespace ElectronicServices
 
         }
 
-        private void DeleteCustomerBtn_Click(object sender, EventArgs e)
+        private void DeleteTransactionBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("هل أنت متأكد من حذف هذه المعاملة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
                 return;

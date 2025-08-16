@@ -118,20 +118,21 @@ namespace ElectronicServices
                 conn.Close();
             }
         }
-        public static bool SearchWithExactCustomerName(string name)
+        public static int SearchWithExactCustomerName(string name)
         {
-            if (!success) return false;
+            if (!success) return -1;
             try
             {
                 conn.Open();
-                command.CommandText = $"SELECT * FROM customers WHERE name = '{name}'";
+                command.CommandText = $"SELECT id FROM customers WHERE name = '{name}'";
                 reader = command.ExecuteReader();
-                return reader.HasRows;
+                if (!reader.Read()) return 0;
+                return reader.GetInt32(0);
             }
             catch (Exception ex)
             {
                 Program.LogError(ex, true);
-                return false;
+                return -1;
             }
             finally
             {
@@ -171,12 +172,34 @@ namespace ElectronicServices
             return SelectMultiRows(sql, GetCustomerData);
         }
 
-        public static TransactionRowData[] GetTransactions(int id)
+        public static TransactionRowData[] GetTransactions(int custId)
         {
             string cond = "";
-            if (id >= 1) cond = $"WHERE t.customer_id = {id}";
+            if (custId >= 1) cond = $"WHERE t.customer_id = {custId}";
             string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date";
             return SelectMultiRows(sql, GetTransactionData);
+        }
+
+        public static int IsThereTransactions(int custId)
+        {
+            if (!success) return -1;
+            try
+            {
+                conn.Open();
+                command.CommandText = $"SELECT 1 FROM transactions WHERE customer_id = {custId} LIMIT 1";
+                reader = command.ExecuteReader();;
+                return reader.HasRows ? 1 : 0;
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return -1;
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
         }
 
         public static string[] GetCustomersNames()
@@ -237,6 +260,15 @@ namespace ElectronicServices
 
         public static bool AddCustomer(string name)
             => ExecuteNonQuery($"INSERT INTO customers (name) VALUES ('{name}')") >= 0;
+
+        public static bool EditCustomer(int id, string name)
+            => ExecuteNonQuery($"UPDATE customers name = '{name}' WHERE id = {id}") >= 0;
+
+        public static bool ResetCustomer(int id)
+            => ExecuteNonQuery($"DELETE FROM transactions WHERE customer_id = {id}") >= 0;
+
+        public static bool DeleteCustomer(int id)
+            => ExecuteNonQuery($"DELETE FROM customers WHERE id = {id}") >= 0;
 
         public static bool AddTransaction(TransactionRowData data)
             => ExecuteNonQuery($"INSERT INTO transactions (customer_id, date, credit, debit, note) VALUES ({data.CustomerId}, {data.Date.Ticks}, {data.Pay}, {data.Take}, '{data.Note}')") >= 0;

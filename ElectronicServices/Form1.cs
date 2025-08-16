@@ -155,7 +155,13 @@ namespace ElectronicServices
 
             if (custName == "") return;
 
-            if (DatabaseHelper.SearchWithExactCustomerName(custName))
+            int res = DatabaseHelper.SearchWithExactCustomerName(custName);
+            if (res < 0)
+            {
+                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÞÑÇÁÉ ÇáÈíÇäÇÊ", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (res == 0)
             {
                 MessageBox.Show("áÞÏ ÊãÊ ÅÖÇÝÉ åÐÇ ÇáÚãíá ãä ÞÈá", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -163,7 +169,7 @@ namespace ElectronicServices
 
             if (!DatabaseHelper.AddCustomer(custName))
             {
-                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÅÖÇÝÉ ÇáÚãíá.\nÇáÑÌÇÁ ÇáãÍÇæáÉ ãÑÉ ÃÎÑì", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÅÖÇÝÉ ÇáÚãíá\nÇáÑÌÇÁ ÇáãÍÇæáÉ ãÑÉ ÃÎÑì", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
