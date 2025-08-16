@@ -19,6 +19,7 @@ namespace ElectronicServices
             InitializeComponent();
             customerTransactionsBtn.Visible = false;
             editBtn.Visible = false;
+            deleteCustomerBtn.Visible = false;
         }
 
         private int id;
