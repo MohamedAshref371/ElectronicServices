@@ -161,7 +161,7 @@ namespace ElectronicServices
             int res = DatabaseHelper.SearchWithExactCustomerName(custName);
             if (res < 0)
             {
-                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÞÑÇÁÉ ÇáÈíÇäÇÊ", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÞÑÇÁÉ ÇáÈíÇäÇÊ", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (res >= 1)

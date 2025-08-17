@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using System.Xml.Linq;
 
 namespace ElectronicServices
 {
@@ -229,6 +230,29 @@ namespace ElectronicServices
                 Text = (string)reader["text"],
                 Count = reader.GetInt32(1),
             };
+        }
+
+        public static float? GetTransactionBefore(int id, int customerId)
+        {
+            if (!success) return null;
+            try
+            {
+                conn.Open();
+                command.CommandText = $"SELECT SUM(credit - debit) FROM transactions WHERE customer_id = {customerId} AND id < {id}";
+                reader = command.ExecuteReader();
+                if (!reader.Read()) return 0f;
+                return reader.IsDBNull(0) ? 0f : reader.GetFloat(0);
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return null;
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
         }
 
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)

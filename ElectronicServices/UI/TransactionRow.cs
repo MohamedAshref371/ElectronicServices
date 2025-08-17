@@ -29,6 +29,7 @@ namespace ElectronicServices
             this.data = data;
             nameLabel.Text = data.Name;
             dateLabel.Text = data.Date.ToString("yyyy-MM-dd");
+            if (data.Note != "") data.Note = "\nملاحظات : " + data.Note;
             SetTransactionRowData(data);
         }
 
@@ -52,9 +53,41 @@ namespace ElectronicServices
                 result = "صفر";
         }
 
+        private void InfoBtn_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                float? before = DatabaseHelper.GetTransactionBefore(data.Id, data.CustomerId);
+                if (before is null)
+                    MessageBox.Show("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    string text;
+                    if (before < 0f)
+                        text = "عليه " + ((float)-before).ToString("N2");
+                    else if (before > 0f)
+                        text = "له " + ((float)before).ToString("N2");
+                    else
+                        text = "صفر";
 
-        private void InfoBtn_Click(object sender, EventArgs e)
-            => MessageBox.Show($"نتيجة الفرق : {result}\nملاحظات : {data.Note}");
+                    float after = (float)before + data.Pay - data.Take;
+
+                    string text2;
+                    if (after < 0f)
+                        text2 = "عليه " + ((float)-after).ToString("N2");
+                    else if (after > 0f)
+                        text2 = "له " + ((float)after).ToString("N2");
+                    else
+                        text2 = "صفر";
+
+                    MessageBox.Show($"الرصيد قبل المعاملة : {text}\nالرصيد بعد المعاملة : {text2}", "معلومات المعاملة", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    
+                }
+            }
+            else if (e.Button == MouseButtons.Left)
+                MessageBox.Show($"نتيجة فرق المعاملة : {result}\n{data.Note}", "ملاحظات", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         private void EditBtn_Click(object sender, EventArgs e)
         {
@@ -78,7 +111,7 @@ namespace ElectronicServices
 
                 if (!DatabaseHelper.EditTransaction(data.Id, (float)payEdit.Value, (float)takeEdit.Value))
                 {
-                    MessageBox.Show("حدث خطأ أثناء حفظ البيانات. يرجى المحاولة مرة أخرى.");
+                    MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 data.Pay = (float)payEdit.Value;
@@ -89,7 +122,7 @@ namespace ElectronicServices
 
         private void CustomerBtn_Click(object sender, EventArgs e)
             => Program.Form.CustomerBtnClickInTransactionRow(data.Name);
-        
+
         private void DeleteTransactionBtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("هل أنت متأكد من حذف هذه المعاملة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
@@ -97,7 +130,7 @@ namespace ElectronicServices
 
             if (!DatabaseHelper.DeleteTransaction(data.Id))
             {
-                MessageBox.Show("حدث خطأ أثناء حذف المعاملة. يرجى المحاولة مرة أخرى.");
+                MessageBox.Show("حدث خطأ أثناء حذف المعاملة\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -126,7 +159,6 @@ namespace ElectronicServices
             this.Region = new Region(GetRoundedPath());
         }
         #endregion
-
 
     }
 }
