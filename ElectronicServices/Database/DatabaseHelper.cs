@@ -126,8 +126,24 @@ namespace ElectronicServices
 
         public static TransactionRowData[] GetTransactions(int custId)
         {
-            string cond = "";
-            if (custId >= 1) cond = $"WHERE t.customer_id = {custId}";
+            string cond = custId >= 1 ? $"WHERE customer_id = {custId}" : "";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date";
+            return SelectMultiRows(sql, GetTransactionData);
+        }
+
+        public static TransactionRowData[] GetTransactions(int custId, string date, int method)
+        {
+            string dt = method switch
+            {
+                6 => "%Y-%m-%d",
+                7 => "%Y-%m",
+                _ => "%Y"
+            };
+            string cond = custId >= 1 ? $"WHERE customer_id = {custId}" : "";
+            if (cond == "") cond = "WHERE ";
+            else cond += " AND";
+            cond += $" strftime('{dt}', (date - 621355968000000000) / 10000000, 'unixepoch') = '{date}'";
+
             string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date";
             return SelectMultiRows(sql, GetTransactionData);
         }
@@ -219,6 +235,21 @@ namespace ElectronicServices
         public static FieldData[] TransFieldSearch()
         {
             string sql = $"SELECT c.name AS text, COUNT(t.customer_id) AS count FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id GROUP BY c.name ORDER BY text";
+
+            return SelectMultiRows(sql, GetFieldData);
+        }
+
+        public static FieldData[] TransFieldSearch(int custId, int method)
+        {
+            string dt = method switch
+            {
+                6 => "%Y-%m-%d",
+                7 => "%Y-%m",
+                _ => "%Y"
+            };
+            string cond = custId >= 1 ? $"WHERE customer_id = {custId}" : "";
+
+            string sql = $"SELECT strftime('{dt}', (date - 621355968000000000) / 10000000, 'unixepoch') AS text, COUNT(*) AS count FROM transactions {cond} GROUP BY text ORDER BY text";
 
             return SelectMultiRows(sql, GetFieldData);
         }

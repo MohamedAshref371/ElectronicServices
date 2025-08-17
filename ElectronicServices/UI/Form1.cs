@@ -1,5 +1,6 @@
 
 using Guna.UI2.WinForms;
+using System.Transactions;
 
 namespace ElectronicServices
 {
@@ -265,6 +266,11 @@ namespace ElectronicServices
             int custId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key;
             TransactionRowData[] transactions = DatabaseHelper.GetTransactions(custId);
 
+            AddTransactionsRows(transactions);
+        }
+
+        private void AddTransactionsRows(TransactionRowData[] transactions)
+        {
             transactionsPanel.Controls.Clear();
             TransactionRow row = new();
             row.Location = new Point(row.Location.X + 15, 5);
@@ -307,14 +313,28 @@ namespace ElectronicServices
 
         private void CustomersComboBox_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F1)
+            int key = (int)e.KeyCode - 111;
+            FieldData[] data;
+            ListViewDialog lvd;
+            if (key == 1)
             {
-                FieldData[] data = DatabaseHelper.TransFieldSearch();
+                data = DatabaseHelper.TransFieldSearch();
                 if (data is null) return;
-                ListViewDialog lvd = new("«”„ «·⁄„Ì·", data);
+                lvd = new("«”„ «·⁄„Ì·", data);
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
                 customersComboBox.SelectedItem = customersComboBox.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(c => c.Value == data[lvd.SelectedIndex].Text);
+            }
+            else if (key >= 6 && key <= 8)
+            {
+                int custId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key;
+                data = DatabaseHelper.TransFieldSearch(custId, key);
+                if (data is null) return;
+                lvd = new(" «—ÌŒ «·„⁄«„·…", data);
+                if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
+
+                TransactionRowData[] transactions = DatabaseHelper.GetTransactions(custId, data[lvd.SelectedIndex].Text, key);
+                AddTransactionsRows(transactions);
             }
         }
     }
