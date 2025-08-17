@@ -509,6 +509,7 @@
             customersComboBox.ShadowDecoration.CustomizableEdges = customizableEdges24;
             customersComboBox.Size = new Size(239, 36);
             customersComboBox.TabIndex = 0;
+            customersComboBox.KeyUp += CustomersComboBox_KeyUp;
             // 
             // customersPanel
             // 
@@ -618,6 +619,7 @@
             customerName.ShadowDecoration.CustomizableEdges = customizableEdges34;
             customerName.Size = new Size(251, 40);
             customerName.TabIndex = 3;
+            customerName.KeyUp += CustomerName_KeyUp;
             // 
             // customerNameLabel
             // 

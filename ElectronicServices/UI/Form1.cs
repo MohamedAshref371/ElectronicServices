@@ -1,4 +1,6 @@
 
+using Guna.UI2.WinForms;
+
 namespace ElectronicServices
 {
     public partial class Form1 : Form
@@ -288,6 +290,32 @@ namespace ElectronicServices
             TransactionsBtn_Click(null, null);
             customersComboBox.SelectedItem = customersComboBox.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(c => c.Key == custId);
             TransSearchBtn_Click(null, null);
+        }
+
+        private void CustomerName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                FieldData[] data = DatabaseHelper.FieldSearch();
+                if (data is null) return;
+                ListViewDialog lvd = new("«”„ «·⁄„Ì·", data);
+                if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
+
+                customerName.Text = data[lvd.SelectedIndex].Text;
+            }
+        }
+
+        private void CustomersComboBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                FieldData[] data = DatabaseHelper.FieldSearch();
+                if (data is null) return;
+                ListViewDialog lvd = new("«”„ «·⁄„Ì·", data);
+                if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
+
+                customersComboBox.SelectedItem = customersComboBox.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(c => c.Value == data[lvd.SelectedIndex].Text);
+            }
         }
     }
 }

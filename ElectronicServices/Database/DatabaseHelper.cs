@@ -208,6 +208,22 @@ namespace ElectronicServices
             };
         }
 
+        public static FieldData[] FieldSearch()
+        {
+            string sql = $"SELECT name AS text, COUNT(name) AS count FROM customers GROUP BY name ORDER BY text";
+
+            return SelectMultiRows(sql, GetFieldData);
+        }
+
+        private static FieldData GetFieldData()
+        {
+            return new FieldData
+            {
+                Text = (string)reader["text"],
+                Count = reader.GetInt32(1),
+            };
+        }
+
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
         {
             if (!success) return [];
