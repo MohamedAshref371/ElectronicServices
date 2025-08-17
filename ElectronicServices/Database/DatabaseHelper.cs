@@ -208,9 +208,16 @@ namespace ElectronicServices
             };
         }
 
-        public static FieldData[] FieldSearch()
+        public static FieldData[] CustomerFieldSearch()
         {
             string sql = $"SELECT name AS text, COUNT(name) AS count FROM customers GROUP BY name ORDER BY text";
+
+            return SelectMultiRows(sql, GetFieldData);
+        }
+
+        public static FieldData[] TransFieldSearch()
+        {
+            string sql = $"SELECT c.name AS text, COUNT(t.customer_id) AS count FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id GROUP BY c.name ORDER BY text";
 
             return SelectMultiRows(sql, GetFieldData);
         }

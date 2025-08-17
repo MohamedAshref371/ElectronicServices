@@ -296,7 +296,7 @@ namespace ElectronicServices
         {
             if (e.KeyCode == Keys.F1)
             {
-                FieldData[] data = DatabaseHelper.FieldSearch();
+                FieldData[] data = DatabaseHelper.CustomerFieldSearch();
                 if (data is null) return;
                 ListViewDialog lvd = new("«”„ «·⁄„Ì·", data);
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
@@ -309,7 +309,7 @@ namespace ElectronicServices
         {
             if (e.KeyCode == Keys.F1)
             {
-                FieldData[] data = DatabaseHelper.FieldSearch();
+                FieldData[] data = DatabaseHelper.TransFieldSearch();
                 if (data is null) return;
                 ListViewDialog lvd = new("«”„ «·⁄„Ì·", data);
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
