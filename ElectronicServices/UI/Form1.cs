@@ -55,14 +55,14 @@ namespace ElectronicServices
 
 
             CustomerRow cust = new();
-            cust.Location = new Point(cust.Location.X + 15, 5);
+            cust.Location = new Point(cust.Location.X + rowPadding, 5);
             customersPanel.Controls.Add(cust);
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
             customerCode.Text = customerCode.Tag.ToString();
             customerName.Text = string.Empty;
 
             TransactionRow trans = new();
-            trans.Location = new Point(trans.Location.X + 15, 5);
+            trans.Location = new Point(trans.Location.X + rowPadding, 5);
             transactionsPanel.Controls.Add(trans);
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             customersComboBox.DisplayMember = "Value";
@@ -70,6 +70,7 @@ namespace ElectronicServices
             UpdateCustomersComboBox();
             transDate.Value = DateTime.Now;
         }
+        int rowPadding = 7;
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
@@ -185,7 +186,7 @@ namespace ElectronicServices
                 Pay = 0f,
                 Take = 0f,
             });
-            cust.Location = new Point(cust.Location.X + 15, (cust.Size.Height + 3) * count + 5);
+            cust.Location = new Point(cust.Location.X + rowPadding, (cust.Size.Height + 3) * count + 5);
             customersPanel.Controls.Add(cust);
 
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
@@ -210,13 +211,13 @@ namespace ElectronicServices
 
             customersPanel.Controls.Clear();
             CustomerRow row = new();
-            row.Location = new Point(row.Location.X + 15, 5);
+            row.Location = new Point(row.Location.X + rowPadding, 5);
             customersPanel.Controls.Add(row);
 
             for (int i = 0; i < customers.Length; i++)
             {
                 row = new(customers[i]);
-                row.Location = new Point(row.Location.X + 15, (row.Size.Height + 3) * (i + 1) + 5);
+                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
                 customersPanel.Controls.Add(row);
             }
         }
@@ -254,7 +255,7 @@ namespace ElectronicServices
 
             int count = transactionsPanel.Controls.Count;
             TransactionRow row = new(data);
-            row.Location = new Point(row.Location.X + 15, (row.Size.Height + 3) * count + 5);
+            row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * count + 5);
             transactionsPanel.Controls.Add(row);
 
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
@@ -273,13 +274,13 @@ namespace ElectronicServices
         {
             transactionsPanel.Controls.Clear();
             TransactionRow row = new();
-            row.Location = new Point(row.Location.X + 15, 5);
+            row.Location = new Point(row.Location.X + rowPadding, 5);
             transactionsPanel.Controls.Add(row);
 
             for (int i = 0; i < transactions.Length; i++)
             {
                 row = new(transactions[i]);
-                row.Location = new Point(row.Location.X + 15, (row.Size.Height + 3) * (i + 1) + 5);
+                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
                 transactionsPanel.Controls.Add(row);
             }
         }

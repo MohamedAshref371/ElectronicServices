@@ -275,6 +275,7 @@
             // 
             // transactionsPanel
             // 
+            transactionsPanel.AutoScroll = true;
             transactionsPanel.BorderColor = Color.Silver;
             transactionsPanel.BorderRadius = 10;
             transactionsPanel.BorderThickness = 1;
@@ -513,6 +514,7 @@
             // 
             // customersPanel
             // 
+            customersPanel.AutoScroll = true;
             customersPanel.BorderColor = Color.Silver;
             customersPanel.BorderRadius = 10;
             customersPanel.BorderThickness = 1;
