@@ -338,5 +338,13 @@ namespace ElectronicServices
                 AddTransactionsRows(transactions);
             }
         }
+
+        private void MainBtn_Click(object sender, EventArgs e)
+        {
+            customersPanel.Visible = false;
+            addCustomersPanel.Visible = false;
+            transactionsPanel.Visible = false;
+            addTransactionsPanel.Visible = false;
+        }
     }
 }

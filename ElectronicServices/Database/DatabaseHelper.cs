@@ -41,14 +41,15 @@ namespace ElectronicServices
             try
             {
                 conn.Open();
-                command.CommandText = "CREATE TABLE metadata (version INTEGER PRIMARY KEY, create_date INTEGER, comment TEXT);" +
-                                      "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
-                                      "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date INTEGER NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id) );" +
-                                      "CREATE TABLE wallets ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
-                                      "CREATE TABLE wallet_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL );" +
-                                      "CREATE TABLE wallet_closure_details ( id INTEGER PRIMARY KEY AUTOINCREMENT, closure_id INTEGER NOT NULL, wallet_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(closure_id) REFERENCES wallet_closures(id), FOREIGN KEY(wallet_id) REFERENCES wallets(id) );" +
-                                      "CREATE TABLE daily_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, total_cash REAL NOT NULL, total_wallets REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL );" +
-                                      $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 'https://github.com/MohamedAshref371');";
+                command.CommandText = "CREATE TABLE metadata (version INTEGER PRIMARY KEY, create_date INTEGER, credit REAL NOT NULL, debit REAL NOT NULL, comment TEXT);" +
+                                      "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL );" +
+                                      "CREATE TABLE payapp ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL);" +
+                                      "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date INTEGER NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, credit_payapp INTEGER NOT NULL, debit_payapp INTEGER NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id), FOREIGN KEY(credit_payapp) REFERENCES payapp(id), FOREIGN KEY(debit_payapp) REFERENCES payapp(id) );" +
+                                      "CREATE TABLE payapp_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL );" +
+                                      "CREATE TABLE payapp_closure_details ( id INTEGER PRIMARY KEY AUTOINCREMENT, closure_id INTEGER NOT NULL, payapp_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(closure_id) REFERENCES payapp_closures(id), FOREIGN KEY(payapp_id) REFERENCES payapp(id) );" +
+                                      "CREATE TABLE daily_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, total_wallets REAL NOT NULL, total_cash REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL );" +
+                                      "INSERT INTO payapp VALUES (0, 'نقدا', 0, 0);" +
+                                      $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 0, 0, 'https://github.com/MohamedAshref371');";
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -71,7 +72,8 @@ namespace ElectronicServices
                 Version = reader.GetInt32(0);
                 if (Version != classVersion) return;
                 CreateDate = new DateTime(reader.GetInt64(1));
-                Comment = reader.GetString(2);
+
+                Comment = reader.GetString(4);
                 reader.Close();
 
                 success = true;
@@ -120,7 +122,8 @@ namespace ElectronicServices
         public static CustomerRowData[] GetCustomers(string name = "")
         {
             if (name != "") name = $"WHERE c.name LIKE '%{name}%'";
-            string sql = $"SELECT c.id, c.name, COALESCE(SUM(t.credit), 0) AS Pay, COALESCE(SUM(t.debit), 0) AS Take FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id {name} GROUP BY c.id, c.name";
+            string sql = $"SELECT c.id, c.name, credit, debit FROM customers";
+            //$"SELECT c.id, c.name, COALESCE(SUM(t.credit), 0) AS Pay, COALESCE(SUM(t.debit), 0) AS Take FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id {name} GROUP BY c.id, c.name";
             return SelectMultiRows(sql, GetCustomerData);
         }
 
