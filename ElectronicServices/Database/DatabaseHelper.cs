@@ -323,7 +323,7 @@ namespace ElectronicServices
             try
             {
                 conn.Open();
-                command.CommandText = $"SELECT SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_debit FROM transactions;";
+                command.CommandText = $"SELECT SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_debit FROM transactions;";
                 reader = command.ExecuteReader();
                 if (!reader.Read()) return [0f, 0f];
                 return [reader.IsDBNull(0) ? 0f : reader.GetFloat(0), reader.IsDBNull(1) ? 0f : reader.GetFloat(1)];
