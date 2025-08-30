@@ -483,6 +483,7 @@
             dateLabel.Size = new Size(61, 21);
             dateLabel.TabIndex = 23;
             dateLabel.Text = "التاريخ : ";
+            dateLabel.DoubleClick += DateLabel_DoubleClick;
             // 
             // transDate
             // 

@@ -433,5 +433,10 @@ namespace ElectronicServices
             UpdateCreditAndDept();
         }
 
+        private void DateLabel_DoubleClick(object sender, EventArgs e)
+        {
+            transDate.Value = DateTime.Now;
+        }
+
     }
 }
