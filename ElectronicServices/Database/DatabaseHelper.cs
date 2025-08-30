@@ -203,7 +203,7 @@ namespace ElectronicServices
                 conn.Open();
                 command.CommandText = $"SELECT seq FROM sqlite_sequence WHERE name = '{table}'";
                 reader = command.ExecuteReader();
-                if (!reader.Read()) return -1;
+                if (!reader.Read()) return 1;
                 if (reader.IsDBNull(0)) return 1;
                 return reader.GetInt32(0) + 1;
             }
