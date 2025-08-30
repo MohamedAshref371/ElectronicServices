@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>5433969.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +25,10 @@
     <None Remove="Resources\QrCode.png" />
     <None Remove="Resources\search.png" />
     <None Remove="Resources\WindowMinimize.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="5433969.ico" />
   </ItemGroup>
 
   <ItemGroup>
