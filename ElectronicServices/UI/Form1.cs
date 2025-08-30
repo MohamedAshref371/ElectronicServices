@@ -1,3 +1,4 @@
+using ClosedXML.Excel;
 
 namespace ElectronicServices
 {
@@ -471,30 +472,25 @@ namespace ElectronicServices
                 annualCollection.Checked = true;
         }
 
-        private void excelBtn_Click(object sender, EventArgs e)
+        private void Last5Units_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void Last3Units_CheckedChanged(object sender, EventArgs e)
-        {
-            if (last3Units.Checked)
+            if (last5Units.Checked)
             {
                 allUnits.Checked = false;
                 customDate.Checked = false;
             }
             else if (!allUnits.Checked && !customDate.Checked)
-                last3Units.Checked = true;
+                last5Units.Checked = true;
         }
 
         private void AllUnits_CheckedChanged(object sender, EventArgs e)
         {
             if (allUnits.Checked)
             {
-                last3Units.Checked = false;
+                last5Units.Checked = false;
                 customDate.Checked = false;
             }
-            else if (!last3Units.Checked && !customDate.Checked)
+            else if (!last5Units.Checked && !customDate.Checked)
                 allUnits.Checked = true;
         }
 
@@ -502,11 +498,68 @@ namespace ElectronicServices
         {
             if (customDate.Checked)
             {
-                last3Units.Checked = false;
+                last5Units.Checked = false;
                 allUnits.Checked = false;
             }
-            else if (!last3Units.Checked && !allUnits.Checked)
+            else if (!last5Units.Checked && !allUnits.Checked)
                 customDate.Checked = true;
         }
+
+        private void ExcelBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ExtractExcelBtn_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("ClosedXML.dll"))
+            {
+                MessageBox.Show("„ﬂ »«  «·«Ìﬂ”· €Ì— „ÊÃÊœ…");
+                return;
+            }
+            if (saveExcelFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            ExtractExcel(saveExcelFileDialog.FileName);
+        }
+
+        public static void ExtractExcel(string path)
+        {
+            using XLWorkbook workbook = new();
+            workbook.RightToLeft = true;
+            IXLWorksheet[] sheets =
+            [
+                workbook.Worksheets.Add("Daily inventory"),
+                workbook.Worksheets.Add("Electronic payments"),
+            ];
+
+            string[] payapps = DatabaseHelper.GetPayappsNames(true);
+            char c = (char)('A' + payapps.Length + 1);
+            if (c > 'Z') c = 'Z';
+            sheets[1].Range($"A1:{c}1").Merge().Value = "„œ›Ê⁄«  «·ﬂ ‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹—Ê‰Ì…";
+            sheets[1].Row(1).Height = 36;
+            sheets[1].Cell("A1").Style.Font.Bold = true;
+            sheets[1].Cell("A1").Style.Font.FontName = "Calibri";
+            sheets[1].Cell("A1").Style.Font.FontSize = 24;
+            sheets[1].Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            sheets[1].Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+
+            sheets[1].Column(1).Width = 20;
+            sheets[1].Cell(2, 1).Value = "«· «—ÌŒ";
+            sheets[1].Cell(2, 1).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+
+            for (int i = 0; i < payapps.Length; i++)
+            {
+                sheets[1].Column(i + 2).Width = 20;
+                sheets[1].Cell(2, i + 2).Value = payapps[i];
+                sheets[1].Cell(2, i + 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+            }
+
+            sheets[1].Column(payapps.Length + 2).Width = 20;
+            sheets[1].Cell(2, payapps.Length + 2).Value = "«·„Ã„Ê⁄";
+            sheets[1].Cell(2, payapps.Length + 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+
+
+        }
+
     }
 }

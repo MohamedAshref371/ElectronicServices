@@ -44,9 +44,6 @@ namespace ElectronicServices
                                       "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
                                       "CREATE TABLE payapp ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
                                       "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date INTEGER NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, credit_payapp INTEGER NOT NULL, debit_payapp INTEGER NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id), FOREIGN KEY(credit_payapp) REFERENCES payapp(id), FOREIGN KEY(debit_payapp) REFERENCES payapp(id) );" +
-                                      "CREATE TABLE payapp_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL );" +
-                                      "CREATE TABLE payapp_closure_details ( id INTEGER PRIMARY KEY AUTOINCREMENT, closure_id INTEGER NOT NULL, payapp_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(closure_id) REFERENCES payapp_closures(id), FOREIGN KEY(payapp_id) REFERENCES payapp(id) );" +
-                                      "CREATE TABLE daily_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, total_wallets REAL NOT NULL, total_cash REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL );" +
                                       "INSERT INTO payapp VALUES (-1, '');" +
                                       "INSERT INTO payapp VALUES (0, 'نقدا');" +
                                       $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 'https://github.com/MohamedAshref371');";
@@ -224,10 +221,28 @@ namespace ElectronicServices
             return SelectMultiRows(sql, () => new KeyValuePair<int, string>(reader.GetInt32(0), reader.GetString(1)) );
         }
 
-        public static string[] GetPayappsNames()
+        public static string[] GetPayappsNames(bool withoutCash = false)
         {
-            string sql = $"SELECT name FROM payapp WHERE id >= 0";
+            string sql = $"SELECT name FROM payapp WHERE id >{(withoutCash ? "" : "=")} 0";
             return SelectMultiRows(sql, () => reader.GetString(0));
+        }
+
+        public static long[] GetTransactionsDate(bool last5Rows = true)
+        {
+            string sql;
+            if (last5Rows)
+                sql = "SELECT * FROM ( SELECT date FROM transactions ORDER BY id DESC LIMIT 5 ) ORDER BY id ASC";
+            else
+                sql = "SELECT date FROM transactions ORDER BY id ASC";
+
+            return SelectMultiRows(sql, () => reader.GetInt64(0));
+        }
+
+        public static float GetPayappDateField(int payapp, long date)
+        {
+            string sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = {payapp} THEN credit ELSE 0 END + CASE WHEN debit_payapp = {payapp} THEN debit ELSE 0 END ), 0 ) AS total_value FROM transactions WHERE date = {date}";
+
+            return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
         }
 
         private static CustomerRowData GetCustomerData()
