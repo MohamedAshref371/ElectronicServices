@@ -1,7 +1,4 @@
 
-using Guna.UI2.WinForms;
-using System.Transactions;
-
 namespace ElectronicServices
 {
     public partial class Form1 : Form
@@ -117,8 +114,6 @@ namespace ElectronicServices
         {
             WindowState = FormWindowState.Minimized;
         }
-
-
 
         //public static Bitmap TintPng(Bitmap original, Color tintColor)
         //{

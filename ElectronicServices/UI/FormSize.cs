@@ -1,4 +1,6 @@
-﻿class FormSize(int oldSizeX, int oldSizeY, int newSizeX, int newSizeY)
+﻿namespace ElectronicServices;
+
+class FormSize(int oldSizeX, int oldSizeY, int newSizeX, int newSizeY)
 {
     private readonly double xDiv = newSizeX / (double)oldSizeX,
                             yDiv = newSizeY / (double)oldSizeY;
@@ -16,7 +18,7 @@
         for (int i = 0; i < controls.Count; i++)
         {
             SetControl(controls[i]);
-            if (controls[i] is Panel /*|| controls[i] is StudentSearchRow || controls[i] is StudentGradeRow || controls[i] is StudentRankRow*/)
+            if (controls[i] is Panel || controls[i] is CustomerRow || controls[i] is TransactionRow)
                 SetControls(controls[i].Controls);
         }
     }
