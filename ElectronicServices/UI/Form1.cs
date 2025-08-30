@@ -438,5 +438,75 @@ namespace ElectronicServices
             transDate.Value = DateTime.Now;
         }
 
+        private void DailyCollection_CheckedChanged(object sender, EventArgs e)
+        {
+            if (dailyCollection.Checked)
+            {
+                monthlyCollection.Checked = false;
+                annualCollection.Checked = false;
+            }
+            else if (!monthlyCollection.Checked && !annualCollection.Checked)
+                dailyCollection.Checked = true;
+        }
+
+        private void MonthlyCollection_CheckedChanged(object sender, EventArgs e)
+        {
+            if (monthlyCollection.Checked)
+            {
+                dailyCollection.Checked = false;
+                annualCollection.Checked = false;
+            }
+            else if (!dailyCollection.Checked && !annualCollection.Checked)
+                monthlyCollection.Checked = true;
+        }
+
+        private void AnnualCollection_CheckedChanged(object sender, EventArgs e)
+        {
+            if (annualCollection.Checked)
+            {
+                dailyCollection.Checked = false;
+                monthlyCollection.Checked = false;
+            }
+            else if (!dailyCollection.Checked && !monthlyCollection.Checked)
+                annualCollection.Checked = true;
+        }
+
+        private void excelBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Last3Units_CheckedChanged(object sender, EventArgs e)
+        {
+            if (last3Units.Checked)
+            {
+                allUnits.Checked = false;
+                customDate.Checked = false;
+            }
+            else if (!allUnits.Checked && !customDate.Checked)
+                last3Units.Checked = true;
+        }
+
+        private void AllUnits_CheckedChanged(object sender, EventArgs e)
+        {
+            if (allUnits.Checked)
+            {
+                last3Units.Checked = false;
+                customDate.Checked = false;
+            }
+            else if (!last3Units.Checked && !customDate.Checked)
+                allUnits.Checked = true;
+        }
+
+        private void CustomDate_CheckedChanged(object sender, EventArgs e)
+        {
+            if (customDate.Checked)
+            {
+                last3Units.Checked = false;
+                allUnits.Checked = false;
+            }
+            else if (!last3Units.Checked && !allUnits.Checked)
+                customDate.Checked = true;
+        }
     }
 }
