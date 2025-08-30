@@ -100,6 +100,7 @@
             exitBtn = new Guna.UI2.WinForms.Guna2Button();
             formTitle = new Label();
             mainPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
+            label5 = new Label();
             transactionsPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             addTransactionsPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             takeWith = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -144,6 +145,7 @@
             mainBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             excelBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             transactionsBtn = new Guna.UI2.WinForms.Guna2GradientButton();
+            guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)phoneNumber).BeginInit();
             ((System.ComponentModel.ISupportInitialize)formIcon).BeginInit();
@@ -293,6 +295,8 @@
             mainPanel.BorderColor = Color.Silver;
             mainPanel.BorderRadius = 10;
             mainPanel.BorderThickness = 1;
+            mainPanel.Controls.Add(guna2CheckBox1);
+            mainPanel.Controls.Add(label5);
             mainPanel.Controls.Add(transactionsPanel);
             mainPanel.Controls.Add(addTransactionsPanel);
             mainPanel.Controls.Add(customersPanel);
@@ -316,6 +320,17 @@
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 16F);
+            label5.Location = new Point(719, 38);
+            label5.Name = "label5";
+            label5.RightToLeft = RightToLeft.Yes;
+            label5.Size = new Size(206, 30);
+            label5.TabIndex = 37;
+            label5.Text = "التقفيل والجرد اليومي";
+            // 
             // transactionsPanel
             // 
             transactionsPanel.AutoScroll = true;
@@ -326,7 +341,7 @@
             transactionsPanel.FillColor = Color.AntiqueWhite;
             transactionsPanel.FillColor2 = Color.Linen;
             transactionsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            transactionsPanel.Location = new Point(-1, 96);
+            transactionsPanel.Location = new Point(-1000, 96);
             transactionsPanel.Name = "transactionsPanel";
             transactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges12;
             transactionsPanel.Size = new Size(951, 510);
@@ -357,7 +372,7 @@
             addTransactionsPanel.FillColor = Color.FromArgb(255, 192, 255);
             addTransactionsPanel.FillColor2 = Color.FromArgb(255, 128, 255);
             addTransactionsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addTransactionsPanel.Location = new Point(-1, 0);
+            addTransactionsPanel.Location = new Point(-1000, 0);
             addTransactionsPanel.Name = "addTransactionsPanel";
             addTransactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges32;
             addTransactionsPanel.Size = new Size(951, 96);
@@ -623,7 +638,7 @@
             customersPanel.FillColor = Color.FromArgb(128, 192, 128);
             customersPanel.FillColor2 = Color.FromArgb(192, 255, 192);
             customersPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            customersPanel.Location = new Point(-1, 96);
+            customersPanel.Location = new Point(-1000, 96);
             customersPanel.Name = "customersPanel";
             customersPanel.ShadowDecoration.CustomizableEdges = customizableEdges34;
             customersPanel.Size = new Size(951, 508);
@@ -650,7 +665,7 @@
             addCustomersPanel.FillColor = Color.LightCyan;
             addCustomersPanel.FillColor2 = Color.Azure;
             addCustomersPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addCustomersPanel.Location = new Point(-1, 0);
+            addCustomersPanel.Location = new Point(-1000, 0);
             addCustomersPanel.Name = "addCustomersPanel";
             addCustomersPanel.ShadowDecoration.CustomizableEdges = customizableEdges46;
             addCustomersPanel.Size = new Size(951, 96);
@@ -1078,6 +1093,28 @@
             transactionsBtn.Text = "المعاملات";
             transactionsBtn.Click += TransactionsBtn_Click;
             // 
+            // guna2CheckBox1
+            // 
+            guna2CheckBox1.Animated = true;
+            guna2CheckBox1.AutoSize = true;
+            guna2CheckBox1.Checked = true;
+            guna2CheckBox1.CheckedState.BorderColor = Color.Silver;
+            guna2CheckBox1.CheckedState.BorderRadius = 3;
+            guna2CheckBox1.CheckedState.BorderThickness = 1;
+            guna2CheckBox1.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            guna2CheckBox1.CheckState = CheckState.Checked;
+            guna2CheckBox1.Font = new Font("Segoe UI", 12F);
+            guna2CheckBox1.Location = new Point(623, 91);
+            guna2CheckBox1.Name = "guna2CheckBox1";
+            guna2CheckBox1.RightToLeft = RightToLeft.Yes;
+            guna2CheckBox1.Size = new Size(64, 25);
+            guna2CheckBox1.TabIndex = 38;
+            guna2CheckBox1.Text = "يومي";
+            guna2CheckBox1.UncheckedState.BorderColor = Color.Silver;
+            guna2CheckBox1.UncheckedState.BorderRadius = 3;
+            guna2CheckBox1.UncheckedState.BorderThickness = 1;
+            guna2CheckBox1.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1164,5 +1201,7 @@
         private Label label3;
         private Label initValLabel;
         private Guna.UI2.WinForms.Guna2GradientButton updateCreditDepitBtn;
+        private Label label5;
+        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox1;
     }
 }
