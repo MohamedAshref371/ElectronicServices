@@ -227,7 +227,7 @@ namespace ElectronicServices
 
         public static string[] GetPayappsNames()
         {
-            string sql = $"SELECT name FROM payapp";
+            string sql = $"SELECT name FROM payapp WHERE id >= 0";
             return SelectMultiRows(sql, () => reader.GetString(0));
         }
 
