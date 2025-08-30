@@ -39,8 +39,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges60 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges53 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges54 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges51 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges52 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -81,6 +79,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges48 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges49 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges50 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges51 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges52 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -100,7 +100,6 @@
             exitBtn = new Guna.UI2.WinForms.Guna2Button();
             formTitle = new Label();
             mainPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            updateCreditDepitBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             transactionsPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             addTransactionsPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             takeWith = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -139,6 +138,7 @@
             payappLabel = new Label();
             debitLabel = new Label();
             creditLabel = new Label();
+            updateCreditDepitBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             customersBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             footerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             mainBtn = new Guna.UI2.WinForms.Guna2GradientButton();
@@ -315,30 +315,6 @@
             mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges54;
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
-            // 
-            // updateCreditDepitBtn
-            // 
-            updateCreditDepitBtn.BorderColor = Color.Silver;
-            updateCreditDepitBtn.BorderRadius = 10;
-            updateCreditDepitBtn.BorderThickness = 1;
-            updateCreditDepitBtn.CustomizableEdges = customizableEdges51;
-            updateCreditDepitBtn.DisabledState.BorderColor = Color.DarkGray;
-            updateCreditDepitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            updateCreditDepitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            updateCreditDepitBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            updateCreditDepitBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            updateCreditDepitBtn.FillColor = Color.FromArgb(224, 224, 224);
-            updateCreditDepitBtn.FillColor2 = Color.Silver;
-            updateCreditDepitBtn.Font = new Font("Segoe UI", 15F);
-            updateCreditDepitBtn.ForeColor = Color.Black;
-            updateCreditDepitBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            updateCreditDepitBtn.Location = new Point(246, 543);
-            updateCreditDepitBtn.Name = "updateCreditDepitBtn";
-            updateCreditDepitBtn.ShadowDecoration.CustomizableEdges = customizableEdges52;
-            updateCreditDepitBtn.Size = new Size(114, 40);
-            updateCreditDepitBtn.TabIndex = 36;
-            updateCreditDepitBtn.Text = "تحديث";
-            updateCreditDepitBtn.Click += UpdateCreditDepitBtn_Click;
             // 
             // transactionsPanel
             // 
@@ -961,6 +937,30 @@
             creditLabel.Size = new Size(50, 30);
             creditLabel.TabIndex = 31;
             creditLabel.Text = "لنا : ";
+            // 
+            // updateCreditDepitBtn
+            // 
+            updateCreditDepitBtn.BorderColor = Color.Silver;
+            updateCreditDepitBtn.BorderRadius = 10;
+            updateCreditDepitBtn.BorderThickness = 1;
+            updateCreditDepitBtn.CustomizableEdges = customizableEdges51;
+            updateCreditDepitBtn.DisabledState.BorderColor = Color.DarkGray;
+            updateCreditDepitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            updateCreditDepitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            updateCreditDepitBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            updateCreditDepitBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            updateCreditDepitBtn.FillColor = Color.FromArgb(224, 224, 224);
+            updateCreditDepitBtn.FillColor2 = Color.Silver;
+            updateCreditDepitBtn.Font = new Font("Segoe UI", 15F);
+            updateCreditDepitBtn.ForeColor = Color.Black;
+            updateCreditDepitBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            updateCreditDepitBtn.Location = new Point(246, 543);
+            updateCreditDepitBtn.Name = "updateCreditDepitBtn";
+            updateCreditDepitBtn.ShadowDecoration.CustomizableEdges = customizableEdges52;
+            updateCreditDepitBtn.Size = new Size(114, 40);
+            updateCreditDepitBtn.TabIndex = 36;
+            updateCreditDepitBtn.Text = "تحديث";
+            updateCreditDepitBtn.Click += UpdateCreditDepitBtn_Click;
             // 
             // customersBtn
             // 
