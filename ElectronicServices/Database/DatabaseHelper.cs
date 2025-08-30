@@ -41,15 +41,16 @@ namespace ElectronicServices
             try
             {
                 conn.Open();
-                command.CommandText = "CREATE TABLE metadata (version INTEGER PRIMARY KEY, create_date INTEGER, credit REAL NOT NULL, debit REAL NOT NULL, comment TEXT);" +
-                                      "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL );" +
-                                      "CREATE TABLE payapp ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL);" +
+                command.CommandText = "CREATE TABLE metadata (version INTEGER PRIMARY KEY, create_date INTEGER, comment TEXT);" +
+                                      "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
+                                      "CREATE TABLE payapp ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
                                       "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date INTEGER NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, credit_payapp INTEGER NOT NULL, debit_payapp INTEGER NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id), FOREIGN KEY(credit_payapp) REFERENCES payapp(id), FOREIGN KEY(debit_payapp) REFERENCES payapp(id) );" +
                                       "CREATE TABLE payapp_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL );" +
                                       "CREATE TABLE payapp_closure_details ( id INTEGER PRIMARY KEY AUTOINCREMENT, closure_id INTEGER NOT NULL, payapp_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(closure_id) REFERENCES payapp_closures(id), FOREIGN KEY(payapp_id) REFERENCES payapp(id) );" +
                                       "CREATE TABLE daily_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, total_wallets REAL NOT NULL, total_cash REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL );" +
-                                      "INSERT INTO payapp VALUES (0, 'نقدا', 0, 0);" +
-                                      $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 0, 0, 'https://github.com/MohamedAshref371');";
+                                      "INSERT INTO payapp VALUES (-1, '');" +
+                                      "INSERT INTO payapp VALUES (0, 'نقدا');" +
+                                      $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 'https://github.com/MohamedAshref371');";
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -72,8 +73,7 @@ namespace ElectronicServices
                 Version = reader.GetInt32(0);
                 if (Version != classVersion) return;
                 CreateDate = new DateTime(reader.GetInt64(1));
-
-                Comment = reader.GetString(4);
+                Comment = reader.GetString(2);
                 reader.Close();
 
                 success = true;
@@ -116,14 +116,36 @@ namespace ElectronicServices
             }
         }
 
+        public static int SearchWithExactPayappName(string name)
+        {
+            if (!success) return -1;
+            try
+            {
+                conn.Open();
+                command.CommandText = $"SELECT id FROM payapp WHERE name = '{name}'";
+                reader = command.ExecuteReader();
+                if (!reader.Read()) return 0;
+                return reader.GetInt32(0);
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return -1;
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
+        }
+
         public static int GetTransactionNextId()
             => GetTableNextId("transactions");
 
         public static CustomerRowData[] GetCustomers(string name = "")
         {
             if (name != "") name = $"WHERE c.name LIKE '%{name}%'";
-            string sql = $"SELECT c.id, c.name, credit, debit FROM customers";
-            //$"SELECT c.id, c.name, COALESCE(SUM(t.credit), 0) AS Pay, COALESCE(SUM(t.debit), 0) AS Take FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id {name} GROUP BY c.id, c.name";
+            string sql = $"SELECT c.id, c.name, COALESCE(SUM(t.credit), 0) AS Pay, COALESCE(SUM(t.debit), 0) AS Take FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id {name} GROUP BY c.id, c.name";
             return SelectMultiRows(sql, GetCustomerData);
         }
 
@@ -201,6 +223,12 @@ namespace ElectronicServices
         {
             string sql = $"SELECT id, name FROM customers ORDER BY name";
             return SelectMultiRows(sql, () => new KeyValuePair<int, string>(reader.GetInt32(0), reader.GetString(1)) );
+        }
+
+        public static string[] GetPayappsNames()
+        {
+            string sql = $"SELECT name FROM payapp";
+            return SelectMultiRows(sql, () => reader.GetString(0));
         }
 
         private static CustomerRowData GetCustomerData()
@@ -289,6 +317,29 @@ namespace ElectronicServices
             }
         }
 
+        public static float[] GetCreditAndDept()
+        {
+            if (!success) return [0f, 0f];
+            try
+            {
+                conn.Open();
+                command.CommandText = $"SELECT SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_debit FROM transactions;";
+                reader = command.ExecuteReader();
+                if (!reader.Read()) return [0f, 0f];
+                return [reader.IsDBNull(0) ? 0f : reader.GetFloat(0), reader.IsDBNull(1) ? 0f : reader.GetFloat(1)];
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return [0f, 0f];
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
+        }
+
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
         {
             if (!success) return [];
@@ -317,6 +368,9 @@ namespace ElectronicServices
         public static bool AddCustomer(string name)
             => ExecuteNonQuery($"INSERT INTO customers (name) VALUES ('{name}')") >= 0;
 
+        public static bool AddPayapp(string name)
+            => ExecuteNonQuery($"INSERT INTO payapp (name) VALUES ('{name}')") >= 0;
+
         public static bool EditCustomer(int id, string name)
             => ExecuteNonQuery($"UPDATE customers SET name = '{name}' WHERE id = {id}") >= 0;
 
@@ -327,7 +381,7 @@ namespace ElectronicServices
             => ExecuteNonQuery($"DELETE FROM customers WHERE id = {id}") >= 0;
 
         public static bool AddTransaction(TransactionRowData data)
-            => ExecuteNonQuery($"INSERT INTO transactions (customer_id, date, credit, debit, note) VALUES ({data.CustomerId}, {data.Date.Ticks}, {data.Pay}, {data.Take}, '{data.Note}')") >= 0;
+            => ExecuteNonQuery($"INSERT INTO transactions (customer_id, date, credit, debit, credit_payapp, debit_payapp, note) VALUES ({data.CustomerId}, {data.Date.Ticks}, {data.Pay}, {data.Take}, {data.PayWith}, {data.TakeWith}, '{data.Note}')") >= 0;
 
         public static bool EditTransaction(int id, float pay, float take)
             => ExecuteNonQuery($"UPDATE transactions SET credit = {pay}, debit = {take} WHERE id = {id}") >= 0;

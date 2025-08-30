@@ -69,6 +69,9 @@ namespace ElectronicServices
             customersComboBox.ValueMember = "Key";
             UpdateCustomersComboBox();
             transDate.Value = DateTime.Now;
+
+            UpdatePayappComboBox();
+            UpdateCreditAndDept();
         }
         int rowPadding = 7;
 
@@ -140,18 +143,18 @@ namespace ElectronicServices
 
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
-            transactionsPanel.Visible = false;
-            addTransactionsPanel.Visible = false;
             customersPanel.Visible = true;
             addCustomersPanel.Visible = true;
+            transactionsPanel.Visible = false;
+            addTransactionsPanel.Visible = false;
         }
 
         private void TransactionsBtn_Click(object sender, EventArgs e)
         {
-            customersPanel.Visible = false;
-            addCustomersPanel.Visible = false;
             transactionsPanel.Visible = true;
             addTransactionsPanel.Visible = true;
+            customersPanel.Visible = false;
+            addCustomersPanel.Visible = false;
         }
 
         private void AddCustomerBtn_Click(object sender, EventArgs e)
@@ -183,16 +186,37 @@ namespace ElectronicServices
             {
                 Id = (int)customerCode.Tag,
                 Name = custName,
-                Pay = 0f,
-                Take = 0f,
+                Pay = (float)custCreditAmount.Value,
+                Take = (float)custDebitAmount.Value,
             });
             cust.Location = new Point(cust.Location.X + rowPadding, (cust.Size.Height + 3) * count + 5);
             customersPanel.Controls.Add(cust);
+            UpdateCustomersComboBox();
 
+            if (custCreditAmount.Value > 0 || custDebitAmount.Value > 0)
+            {
+                TransactionRowData data = new()
+                {
+                    CustomerId = (int)customerCode.Tag,
+                    Date = DateTime.Now,
+                    Pay = (float)custCreditAmount.Value,
+                    Take = (float)custDebitAmount.Value,
+                    PayWith = -1,
+                    TakeWith = -1,
+                    Note = "",
+                };
+
+                if (!DatabaseHelper.AddTransaction(data))
+                    MessageBox.Show("ÕœÀ Œÿ√ «À‰«¡ ≈÷«›… «·ﬁÌ„ «·«» œ«∆Ì… ··⁄„Ì·", "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
+            }
+
+            custCreditAmount.Value = 0;
+            custDebitAmount.Value = 0;
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
             customerCode.Text = customerCode.Tag.ToString();
             customerName.Text = string.Empty;
-            UpdateCustomersComboBox();
         }
 
         private void UpdateCustomersComboBox()
@@ -203,6 +227,13 @@ namespace ElectronicServices
             foreach (var customer in customers)
                 customersComboBox.Items.Add(customer);
             customersComboBox.SelectedIndex = 0;
+        }
+
+        private void UpdateCreditAndDept()
+        {
+            float[] company = DatabaseHelper.GetCreditAndDept();
+            creditAmount.Text = company[0].ToString("N2");
+            debitAmount.Text = company[1].ToString("N2");
         }
 
         private void CustomerSearchBtn_Click(object sender, EventArgs e)
@@ -244,6 +275,8 @@ namespace ElectronicServices
                 Date = transDate.Value,
                 Pay = (float)payAmount.Value,
                 Take = (float)takeAmount.Value,
+                PayWith = payWith.Enabled ? payWith.SelectedIndex : -1,
+                TakeWith = takeWith.Enabled ? takeWith.SelectedIndex : -1,
                 Note = transNote.Text.Trim(),
             };
 
@@ -260,6 +293,7 @@ namespace ElectronicServices
 
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             payAmount.Value = 0; takeAmount.Value = 0;
+            // transDate.Value = DateTime.Now;
         }
 
         private void TransSearchBtn_Click(object sender, EventArgs e)
@@ -346,5 +380,63 @@ namespace ElectronicServices
             transactionsPanel.Visible = false;
             addTransactionsPanel.Visible = false;
         }
+
+        private void AddPayappBtn_Click(object sender, EventArgs e)
+        {
+            string payappName = payApp.Text.Trim();
+
+            if (payappName == "") return;
+
+            int res = DatabaseHelper.SearchWithExactPayappName(payappName);
+            if (res < 0)
+            {
+                MessageBox.Show("ÕœÀ Œÿ√ √À‰«¡ ﬁ—«¡… «·»Ì«‰« ", "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (res >= 1)
+            {
+                MessageBox.Show("·ﬁœ  „  ≈÷«›…  ÿ»Ìﬁ «·œ›⁄ Â–« „‰ ﬁ»·", "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!DatabaseHelper.AddPayapp(payappName))
+            {
+                MessageBox.Show("ÕœÀ Œÿ√ √À‰«¡ ≈÷«›…  ÿ»Ìﬁ «·œ›⁄\n«·—Ã«¡ «·„Õ«Ê·… „—… √Œ—Ï", "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            payApp.Text = "";
+            UpdatePayappComboBox();
+        }
+
+        private void UpdatePayappComboBox()
+        {
+            payWith.Items.Clear();
+            takeWith.Items.Clear();
+            var payApps = DatabaseHelper.GetPayappsNames();
+            foreach (var payApp in payApps)
+            {
+                payWith.Items.Add(payApp);
+                takeWith.Items.Add(payApp);
+            }
+            payWith.SelectedIndex = 0;
+            takeWith.SelectedIndex = 0;
+        }
+
+        private void PayAmount_ValueChanged(object sender, EventArgs e)
+        {
+            payWith.Enabled = payAmount.Value > 0;
+        }
+
+        private void TakeAmount_ValueChanged(object sender, EventArgs e)
+        {
+            takeWith.Enabled = takeAmount.Value > 0;
+        }
+
+        private void UpdateCreditDepitBtn_Click(object sender, EventArgs e)
+        {
+            UpdateCreditAndDept();
+        }
+
     }
 }
