@@ -1,4 +1,5 @@
 using ClosedXML.Excel;
+using Guna.UI2.WinForms;
 
 namespace ElectronicServices
 {
@@ -194,7 +195,7 @@ namespace ElectronicServices
                 TransactionRowData data = new()
                 {
                     CustomerId = (int)customerCode.Tag,
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.ToStandardString(),
                     Pay = (float)custCreditAmount.Value,
                     Take = (float)custDebitAmount.Value,
                     PayWith = -1,
@@ -268,7 +269,7 @@ namespace ElectronicServices
                 Id = (int)addTransactionsPanel.Tag,
                 CustomerId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key,
                 Name = customersComboBox.Text,
-                Date = transDate.Value,
+                Date = transDate.Value.ToStandardString(),
                 Pay = (float)payAmount.Value,
                 Take = (float)takeAmount.Value,
                 PayWith = payWith.Enabled ? payWith.SelectedIndex : -1,
@@ -439,78 +440,7 @@ namespace ElectronicServices
             transDate.Value = DateTime.Now;
         }
 
-        private void DailyCollection_CheckedChanged(object sender, EventArgs e)
-        {
-            if (dailyCollection.Checked)
-            {
-                monthlyCollection.Checked = false;
-                annualCollection.Checked = false;
-            }
-            else if (!monthlyCollection.Checked && !annualCollection.Checked)
-                dailyCollection.Checked = true;
-        }
-
-        private void MonthlyCollection_CheckedChanged(object sender, EventArgs e)
-        {
-            if (monthlyCollection.Checked)
-            {
-                dailyCollection.Checked = false;
-                annualCollection.Checked = false;
-            }
-            else if (!dailyCollection.Checked && !annualCollection.Checked)
-                monthlyCollection.Checked = true;
-        }
-
-        private void AnnualCollection_CheckedChanged(object sender, EventArgs e)
-        {
-            if (annualCollection.Checked)
-            {
-                dailyCollection.Checked = false;
-                monthlyCollection.Checked = false;
-            }
-            else if (!dailyCollection.Checked && !monthlyCollection.Checked)
-                annualCollection.Checked = true;
-        }
-
-        private void Last5Units_CheckedChanged(object sender, EventArgs e)
-        {
-            if (last5Units.Checked)
-            {
-                allUnits.Checked = false;
-                customDate.Checked = false;
-            }
-            else if (!allUnits.Checked && !customDate.Checked)
-                last5Units.Checked = true;
-        }
-
-        private void AllUnits_CheckedChanged(object sender, EventArgs e)
-        {
-            if (allUnits.Checked)
-            {
-                last5Units.Checked = false;
-                customDate.Checked = false;
-            }
-            else if (!last5Units.Checked && !customDate.Checked)
-                allUnits.Checked = true;
-        }
-
-        private void CustomDate_CheckedChanged(object sender, EventArgs e)
-        {
-            if (customDate.Checked)
-            {
-                last5Units.Checked = false;
-                allUnits.Checked = false;
-            }
-            else if (!last5Units.Checked && !allUnits.Checked)
-                customDate.Checked = true;
-        }
-
         private void ExcelBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ExtractExcelBtn_Click(object sender, EventArgs e)
         {
             if (!File.Exists("ClosedXML.dll"))
             {
@@ -522,43 +452,63 @@ namespace ElectronicServices
             ExtractExcel(saveExcelFileDialog.FileName);
         }
 
-        public static void ExtractExcel(string path)
+        public void ExtractExcel(string path)
         {
             using XLWorkbook workbook = new();
             workbook.RightToLeft = true;
-            IXLWorksheet[] sheets =
-            [
-                workbook.Worksheets.Add("Daily inventory"),
-                workbook.Worksheets.Add("Electronic payments"),
-            ];
+            IXLWorksheet sheet =  workbook.Worksheets.Add("Daily inventory");
 
             string[] payapps = DatabaseHelper.GetPayappsNames(true);
             char c = (char)('A' + payapps.Length + 1);
             if (c > 'Z') c = 'Z';
-            sheets[1].Range($"A1:{c}1").Merge().Value = "„œ›Ê⁄«  «·ﬂ ‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹—Ê‰Ì…";
-            sheets[1].Row(1).Height = 36;
-            sheets[1].Cell("A1").Style.Font.Bold = true;
-            sheets[1].Cell("A1").Style.Font.FontName = "Calibri";
-            sheets[1].Cell("A1").Style.Font.FontSize = 24;
-            sheets[1].Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
-            sheets[1].Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            sheet.Range($"A1:{c}1").Merge().Value = "„œ›Ê⁄«  «·ﬂ ‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹—Ê‰Ì…";
+            sheet.Row(1).Height = 36;
+            sheet.Cell("A1").Style.Font.Bold = true;
+            sheet.Cell("A1").Style.Font.FontName = "Calibri";
+            sheet.Cell("A1").Style.Font.FontSize = 24;
+            sheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            sheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
 
-            sheets[1].Column(1).Width = 20;
-            sheets[1].Cell(2, 1).Value = "«· «—ÌŒ";
-            sheets[1].Cell(2, 1).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+            sheet.Column(1).Width = 12.5;
+            sheet.Cell(2, 1).Value = "«· «—ÌŒ";
+            sheet.Cell(2, 1).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
 
             for (int i = 0; i < payapps.Length; i++)
             {
-                sheets[1].Column(i + 2).Width = 20;
-                sheets[1].Cell(2, i + 2).Value = payapps[i];
-                sheets[1].Cell(2, i + 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+                sheet.Column(i + 2).Width = 12;
+                sheet.Cell(2, i + 2).Value = payapps[i];
+                sheet.Cell(2, i + 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
             }
 
-            sheets[1].Column(payapps.Length + 2).Width = 20;
-            sheets[1].Cell(2, payapps.Length + 2).Value = "«·„Ã„Ê⁄";
-            sheets[1].Cell(2, payapps.Length + 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+            sheet.Column(payapps.Length + 2).Width = 12;
+            sheet.Cell(2, payapps.Length + 2).Value = "«·„Ã„Ê⁄";
+            sheet.Cell(2, payapps.Length + 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+
+            string date = excelDate.Value.ToStandardString();
+            sheet.Cell(3, 1).Value = date;
+
+            float sum = 0, val;
+            for (int i = 0; i < payapps.Length; i++)
+            {
+                val = DatabaseHelper.GetPayappDateField(i + 1, date);
+                sheet.Cell(3, i + 2).Value = val;
+                sum += val;
+            }
+            sheet.Cell(3, payapps.Length + 2).Value = sum;
 
 
+
+
+
+            try
+            {
+                workbook.SaveAs(path);
+                MessageBox.Show(" „ «” Œ—«Ã «·»Ì«‰«  »‰Ã«Õ");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ÕœÀ Œÿ√ √À‰«¡ Õ›Ÿ «·„·›\n" + ex.Message, "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
     }

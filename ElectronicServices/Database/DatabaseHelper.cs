@@ -43,7 +43,7 @@ namespace ElectronicServices
                 command.CommandText = "CREATE TABLE metadata (version INTEGER PRIMARY KEY, create_date INTEGER, comment TEXT);" +
                                       "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
                                       "CREATE TABLE payapp ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
-                                      "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date INTEGER NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, credit_payapp INTEGER NOT NULL, debit_payapp INTEGER NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id), FOREIGN KEY(credit_payapp) REFERENCES payapp(id), FOREIGN KEY(debit_payapp) REFERENCES payapp(id) );" +
+                                      "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date TEXT NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, credit_payapp INTEGER NOT NULL, debit_payapp INTEGER NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id), FOREIGN KEY(credit_payapp) REFERENCES payapp(id), FOREIGN KEY(debit_payapp) REFERENCES payapp(id) );" +
                                       "INSERT INTO payapp VALUES (-1, '');" +
                                       "INSERT INTO payapp VALUES (0, 'نقدا');" +
                                       $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 'https://github.com/MohamedAshref371');";
@@ -163,7 +163,7 @@ namespace ElectronicServices
             string cond = custId >= 1 ? $"WHERE customer_id = {custId}" : "";
             if (cond == "") cond = "WHERE ";
             else cond += " AND";
-            cond += $" strftime('{dt}', (date - 621355968000000000) / 10000000, 'unixepoch') = '{date}'";
+            cond += $" strftime('{dt}', date) = '{date}'";
 
             string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date";
             return SelectMultiRows(sql, GetTransactionData);
@@ -227,7 +227,7 @@ namespace ElectronicServices
             return SelectMultiRows(sql, () => reader.GetString(0));
         }
 
-        public static long[] GetTransactionsDate(bool last5Rows = true)
+        public static string[] GetTransactionsDate(bool last5Rows = true)
         {
             string sql;
             if (last5Rows)
@@ -235,12 +235,12 @@ namespace ElectronicServices
             else
                 sql = "SELECT date FROM transactions ORDER BY id ASC";
 
-            return SelectMultiRows(sql, () => reader.GetInt64(0));
+            return SelectMultiRows(sql, () => reader.GetString(0));
         }
 
-        public static float GetPayappDateField(int payapp, long date)
+        public static float GetPayappDateField(int payapp, string date)
         {
-            string sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = {payapp} THEN credit ELSE 0 END + CASE WHEN debit_payapp = {payapp} THEN debit ELSE 0 END ), 0 ) AS total_value FROM transactions WHERE date = {date}";
+            string sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = {payapp} THEN credit ELSE 0 END + CASE WHEN debit_payapp = {payapp} THEN debit ELSE 0 END ), 0 ) AS total_value FROM transactions WHERE date = '{date}'";
 
             return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
         }
@@ -263,7 +263,7 @@ namespace ElectronicServices
                 Id = reader.GetInt32(0),
                 CustomerId = reader.GetInt32(1),
                 Name = reader.GetString(2),
-                Date = new DateTime(Convert.ToInt64(reader[3])),
+                Date = reader.GetString(3),
                 Pay = reader.GetFloat(4),
                 Take = reader.GetFloat(5),
                 Note = reader.GetString(6)
@@ -294,7 +294,7 @@ namespace ElectronicServices
             };
             string cond = custId >= 1 ? $"WHERE customer_id = {custId}" : "";
 
-            string sql = $"SELECT strftime('{dt}', (date - 621355968000000000) / 10000000, 'unixepoch') AS text, COUNT(*) AS count FROM transactions {cond} GROUP BY text ORDER BY text";
+            string sql = $"SELECT strftime('{dt}', date) AS text, COUNT(*) AS count FROM transactions {cond} GROUP BY text ORDER BY text";
 
             return SelectMultiRows(sql, GetFieldData);
         }
@@ -396,7 +396,7 @@ namespace ElectronicServices
             => ExecuteNonQuery($"DELETE FROM customers WHERE id = {id}") >= 0;
 
         public static bool AddTransaction(TransactionRowData data)
-            => ExecuteNonQuery($"INSERT INTO transactions (customer_id, date, credit, debit, credit_payapp, debit_payapp, note) VALUES ({data.CustomerId}, {data.Date.Ticks}, {data.Pay}, {data.Take}, {data.PayWith}, {data.TakeWith}, '{data.Note}')") >= 0;
+            => ExecuteNonQuery($"INSERT INTO transactions (customer_id, date, credit, debit, credit_payapp, debit_payapp, note) VALUES ({data.CustomerId}, '{data.Date}', {data.Pay}, {data.Take}, {data.PayWith}, {data.TakeWith}, '{data.Note}')") >= 0;
 
         public static bool EditTransaction(int id, float pay, float take)
             => ExecuteNonQuery($"UPDATE transactions SET credit = {pay}, debit = {take} WHERE id = {id}") >= 0;

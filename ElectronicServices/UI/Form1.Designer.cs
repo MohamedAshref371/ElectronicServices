@@ -37,14 +37,14 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges68 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges69 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges70 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges117 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges118 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges119 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges120 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges73 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges74 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges93 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges94 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges75 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges76 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges95 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges96 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges77 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges78 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges79 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -61,12 +61,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges90 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges91 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges92 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges93 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges94 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges95 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges96 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges107 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges108 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges97 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges98 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges109 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges110 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges99 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges100 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges101 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -75,20 +75,20 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges104 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges105 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges106 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges107 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges108 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges109 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges110 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges111 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges112 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges113 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges114 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges115 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges116 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges119 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges120 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges127 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges128 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges117 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges118 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges121 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges122 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges127 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges128 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges123 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges124 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges125 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -102,16 +102,6 @@
             exitBtn = new Guna.UI2.WinForms.Guna2Button();
             formTitle = new Label();
             mainPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            extractExcelBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            label5 = new Label();
-            customDate = new Guna.UI2.WinForms.Guna2CheckBox();
-            allUnits = new Guna.UI2.WinForms.Guna2CheckBox();
-            last5Units = new Guna.UI2.WinForms.Guna2CheckBox();
-            collectionLabel = new Label();
-            annualCollection = new Guna.UI2.WinForms.Guna2CheckBox();
-            monthlyCollection = new Guna.UI2.WinForms.Guna2CheckBox();
-            dailyCollection = new Guna.UI2.WinForms.Guna2CheckBox();
-            inventoryTitle = new Label();
             transactionsPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             addTransactionsPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             takeWith = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -151,10 +141,12 @@
             debitLabel = new Label();
             creditLabel = new Label();
             updateCreditDepitBtn = new Guna.UI2.WinForms.Guna2GradientButton();
+            inventoryTitle = new Label();
+            excelDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            excelBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             customersBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             footerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             mainBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            excelBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             transactionsBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             saveExcelFileDialog = new SaveFileDialog();
             headerPanel.SuspendLayout();
@@ -306,16 +298,6 @@
             mainPanel.BorderColor = Color.Silver;
             mainPanel.BorderRadius = 10;
             mainPanel.BorderThickness = 1;
-            mainPanel.Controls.Add(extractExcelBtn);
-            mainPanel.Controls.Add(label5);
-            mainPanel.Controls.Add(customDate);
-            mainPanel.Controls.Add(allUnits);
-            mainPanel.Controls.Add(last5Units);
-            mainPanel.Controls.Add(collectionLabel);
-            mainPanel.Controls.Add(annualCollection);
-            mainPanel.Controls.Add(monthlyCollection);
-            mainPanel.Controls.Add(dailyCollection);
-            mainPanel.Controls.Add(inventoryTitle);
             mainPanel.Controls.Add(transactionsPanel);
             mainPanel.Controls.Add(addTransactionsPanel);
             mainPanel.Controls.Add(customersPanel);
@@ -329,202 +311,18 @@
             mainPanel.Controls.Add(debitLabel);
             mainPanel.Controls.Add(creditLabel);
             mainPanel.Controls.Add(updateCreditDepitBtn);
-            mainPanel.CustomizableEdges = customizableEdges117;
+            mainPanel.Controls.Add(inventoryTitle);
+            mainPanel.Controls.Add(excelDate);
+            mainPanel.Controls.Add(excelBtn);
+            mainPanel.CustomizableEdges = customizableEdges119;
             mainPanel.FillColor = Color.FromArgb(255, 192, 192);
             mainPanel.FillColor2 = Color.FromArgb(255, 224, 192);
             mainPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             mainPanel.Location = new Point(-1, 47);
             mainPanel.Name = "mainPanel";
-            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges118;
+            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges120;
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
-            // 
-            // extractExcelBtn
-            // 
-            extractExcelBtn.BorderRadius = 10;
-            extractExcelBtn.BorderThickness = 1;
-            extractExcelBtn.CustomizableEdges = customizableEdges73;
-            extractExcelBtn.DisabledState.BorderColor = Color.DarkGray;
-            extractExcelBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            extractExcelBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            extractExcelBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            extractExcelBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            extractExcelBtn.FillColor = Color.FromArgb(75, 200, 75);
-            extractExcelBtn.FillColor2 = Color.FromArgb(75, 150, 75);
-            extractExcelBtn.Font = new Font("Segoe UI", 15F);
-            extractExcelBtn.ForeColor = Color.White;
-            extractExcelBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            extractExcelBtn.Location = new Point(443, 260);
-            extractExcelBtn.Name = "extractExcelBtn";
-            extractExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges74;
-            extractExcelBtn.Size = new Size(178, 43);
-            extractExcelBtn.TabIndex = 7;
-            extractExcelBtn.Text = "إستخراج إكسل";
-            extractExcelBtn.Click += ExtractExcelBtn_Click;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 14F);
-            label5.Location = new Point(715, 182);
-            label5.Name = "label5";
-            label5.RightToLeft = RightToLeft.Yes;
-            label5.Size = new Size(75, 25);
-            label5.TabIndex = 45;
-            label5.Text = "التاريخ : ";
-            // 
-            // customDate
-            // 
-            customDate.Animated = true;
-            customDate.AutoSize = true;
-            customDate.CheckedState.BorderColor = Color.Silver;
-            customDate.CheckedState.BorderRadius = 3;
-            customDate.CheckedState.BorderThickness = 1;
-            customDate.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            customDate.Enabled = false;
-            customDate.Font = new Font("Segoe UI", 12F);
-            customDate.Location = new Point(359, 182);
-            customDate.Name = "customDate";
-            customDate.RightToLeft = RightToLeft.Yes;
-            customDate.Size = new Size(84, 25);
-            customDate.TabIndex = 44;
-            customDate.Text = "مخصص";
-            customDate.UncheckedState.BorderColor = Color.Silver;
-            customDate.UncheckedState.BorderRadius = 3;
-            customDate.UncheckedState.BorderThickness = 1;
-            customDate.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            customDate.CheckedChanged += CustomDate_CheckedChanged;
-            // 
-            // allUnits
-            // 
-            allUnits.Animated = true;
-            allUnits.AutoSize = true;
-            allUnits.CheckedState.BorderColor = Color.Silver;
-            allUnits.CheckedState.BorderRadius = 3;
-            allUnits.CheckedState.BorderThickness = 1;
-            allUnits.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            allUnits.Font = new Font("Segoe UI", 12F);
-            allUnits.Location = new Point(464, 182);
-            allUnits.Name = "allUnits";
-            allUnits.RightToLeft = RightToLeft.Yes;
-            allUnits.Size = new Size(105, 25);
-            allUnits.TabIndex = 43;
-            allUnits.Text = "كل الوحدات";
-            allUnits.UncheckedState.BorderColor = Color.Silver;
-            allUnits.UncheckedState.BorderRadius = 3;
-            allUnits.UncheckedState.BorderThickness = 1;
-            allUnits.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            allUnits.CheckedChanged += AllUnits_CheckedChanged;
-            // 
-            // last5Units
-            // 
-            last5Units.Animated = true;
-            last5Units.AutoSize = true;
-            last5Units.Checked = true;
-            last5Units.CheckedState.BorderColor = Color.Silver;
-            last5Units.CheckedState.BorderRadius = 3;
-            last5Units.CheckedState.BorderThickness = 1;
-            last5Units.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            last5Units.CheckState = CheckState.Checked;
-            last5Units.Font = new Font("Segoe UI", 12F);
-            last5Units.Location = new Point(584, 182);
-            last5Units.Name = "last5Units";
-            last5Units.RightToLeft = RightToLeft.Yes;
-            last5Units.Size = new Size(110, 25);
-            last5Units.TabIndex = 42;
-            last5Units.Text = "آخر 5 وحدات";
-            last5Units.UncheckedState.BorderColor = Color.Silver;
-            last5Units.UncheckedState.BorderRadius = 3;
-            last5Units.UncheckedState.BorderThickness = 1;
-            last5Units.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            last5Units.CheckedChanged += Last5Units_CheckedChanged;
-            // 
-            // collectionLabel
-            // 
-            collectionLabel.AutoSize = true;
-            collectionLabel.Font = new Font("Segoe UI", 14F);
-            collectionLabel.Location = new Point(719, 102);
-            collectionLabel.Name = "collectionLabel";
-            collectionLabel.RightToLeft = RightToLeft.Yes;
-            collectionLabel.Size = new Size(71, 25);
-            collectionLabel.TabIndex = 41;
-            collectionLabel.Text = "تجميع : ";
-            // 
-            // annualCollection
-            // 
-            annualCollection.Animated = true;
-            annualCollection.AutoSize = true;
-            annualCollection.CheckedState.BorderColor = Color.Silver;
-            annualCollection.CheckedState.BorderRadius = 3;
-            annualCollection.CheckedState.BorderThickness = 1;
-            annualCollection.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            annualCollection.Font = new Font("Segoe UI", 12F);
-            annualCollection.Location = new Point(376, 102);
-            annualCollection.Name = "annualCollection";
-            annualCollection.RightToLeft = RightToLeft.Yes;
-            annualCollection.Size = new Size(67, 25);
-            annualCollection.TabIndex = 40;
-            annualCollection.Text = "سنوي";
-            annualCollection.UncheckedState.BorderColor = Color.Silver;
-            annualCollection.UncheckedState.BorderRadius = 3;
-            annualCollection.UncheckedState.BorderThickness = 1;
-            annualCollection.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            annualCollection.CheckedChanged += AnnualCollection_CheckedChanged;
-            // 
-            // monthlyCollection
-            // 
-            monthlyCollection.Animated = true;
-            monthlyCollection.AutoSize = true;
-            monthlyCollection.CheckedState.BorderColor = Color.Silver;
-            monthlyCollection.CheckedState.BorderRadius = 3;
-            monthlyCollection.CheckedState.BorderThickness = 1;
-            monthlyCollection.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            monthlyCollection.Font = new Font("Segoe UI", 12F);
-            monthlyCollection.Location = new Point(501, 102);
-            monthlyCollection.Name = "monthlyCollection";
-            monthlyCollection.RightToLeft = RightToLeft.Yes;
-            monthlyCollection.Size = new Size(68, 25);
-            monthlyCollection.TabIndex = 39;
-            monthlyCollection.Text = "شهري";
-            monthlyCollection.UncheckedState.BorderColor = Color.Silver;
-            monthlyCollection.UncheckedState.BorderRadius = 3;
-            monthlyCollection.UncheckedState.BorderThickness = 1;
-            monthlyCollection.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            monthlyCollection.CheckedChanged += MonthlyCollection_CheckedChanged;
-            // 
-            // dailyCollection
-            // 
-            dailyCollection.Animated = true;
-            dailyCollection.AutoSize = true;
-            dailyCollection.Checked = true;
-            dailyCollection.CheckedState.BorderColor = Color.Silver;
-            dailyCollection.CheckedState.BorderRadius = 3;
-            dailyCollection.CheckedState.BorderThickness = 1;
-            dailyCollection.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
-            dailyCollection.CheckState = CheckState.Checked;
-            dailyCollection.Font = new Font("Segoe UI", 12F);
-            dailyCollection.Location = new Point(630, 102);
-            dailyCollection.Name = "dailyCollection";
-            dailyCollection.RightToLeft = RightToLeft.Yes;
-            dailyCollection.Size = new Size(64, 25);
-            dailyCollection.TabIndex = 38;
-            dailyCollection.Text = "يومي";
-            dailyCollection.UncheckedState.BorderColor = Color.Silver;
-            dailyCollection.UncheckedState.BorderRadius = 3;
-            dailyCollection.UncheckedState.BorderThickness = 1;
-            dailyCollection.UncheckedState.FillColor = Color.FromArgb(125, 137, 149);
-            dailyCollection.CheckedChanged += DailyCollection_CheckedChanged;
-            // 
-            // inventoryTitle
-            // 
-            inventoryTitle.AutoSize = true;
-            inventoryTitle.Font = new Font("Segoe UI", 16F);
-            inventoryTitle.Location = new Point(719, 38);
-            inventoryTitle.Name = "inventoryTitle";
-            inventoryTitle.RightToLeft = RightToLeft.Yes;
-            inventoryTitle.Size = new Size(206, 30);
-            inventoryTitle.TabIndex = 37;
-            inventoryTitle.Text = "التقفيل والجرد اليومي";
             // 
             // transactionsPanel
             // 
@@ -532,13 +330,13 @@
             transactionsPanel.BorderColor = Color.Silver;
             transactionsPanel.BorderRadius = 10;
             transactionsPanel.BorderThickness = 1;
-            transactionsPanel.CustomizableEdges = customizableEdges75;
+            transactionsPanel.CustomizableEdges = customizableEdges73;
             transactionsPanel.FillColor = Color.AntiqueWhite;
             transactionsPanel.FillColor2 = Color.Linen;
             transactionsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            transactionsPanel.Location = new Point(-1000, 96);
+            transactionsPanel.Location = new Point(-1, 96);
             transactionsPanel.Name = "transactionsPanel";
-            transactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges76;
+            transactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges74;
             transactionsPanel.Size = new Size(951, 510);
             transactionsPanel.TabIndex = 6;
             transactionsPanel.Visible = false;
@@ -563,13 +361,13 @@
             addTransactionsPanel.Controls.Add(takeAmount);
             addTransactionsPanel.Controls.Add(payAmount);
             addTransactionsPanel.Controls.Add(customersComboBox);
-            addTransactionsPanel.CustomizableEdges = customizableEdges95;
+            addTransactionsPanel.CustomizableEdges = customizableEdges93;
             addTransactionsPanel.FillColor = Color.FromArgb(255, 192, 255);
             addTransactionsPanel.FillColor2 = Color.FromArgb(255, 128, 255);
             addTransactionsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addTransactionsPanel.Location = new Point(-1000, 0);
+            addTransactionsPanel.Location = new Point(-1, 0);
             addTransactionsPanel.Name = "addTransactionsPanel";
-            addTransactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges96;
+            addTransactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges94;
             addTransactionsPanel.Size = new Size(951, 96);
             addTransactionsPanel.TabIndex = 5;
             addTransactionsPanel.Visible = false;
@@ -578,7 +376,7 @@
             // 
             takeWith.BackColor = Color.Transparent;
             takeWith.BorderRadius = 10;
-            takeWith.CustomizableEdges = customizableEdges77;
+            takeWith.CustomizableEdges = customizableEdges75;
             takeWith.DrawMode = DrawMode.OwnerDrawFixed;
             takeWith.DropDownStyle = ComboBoxStyle.DropDownList;
             takeWith.Enabled = false;
@@ -590,7 +388,7 @@
             takeWith.Location = new Point(297, 51);
             takeWith.Name = "takeWith";
             takeWith.RightToLeft = RightToLeft.Yes;
-            takeWith.ShadowDecoration.CustomizableEdges = customizableEdges78;
+            takeWith.ShadowDecoration.CustomizableEdges = customizableEdges76;
             takeWith.Size = new Size(137, 36);
             takeWith.TabIndex = 30;
             // 
@@ -598,7 +396,7 @@
             // 
             payWith.BackColor = Color.Transparent;
             payWith.BorderRadius = 10;
-            payWith.CustomizableEdges = customizableEdges79;
+            payWith.CustomizableEdges = customizableEdges77;
             payWith.DrawMode = DrawMode.OwnerDrawFixed;
             payWith.DropDownStyle = ComboBoxStyle.DropDownList;
             payWith.Enabled = false;
@@ -610,7 +408,7 @@
             payWith.Location = new Point(297, 9);
             payWith.Name = "payWith";
             payWith.RightToLeft = RightToLeft.Yes;
-            payWith.ShadowDecoration.CustomizableEdges = customizableEdges80;
+            payWith.ShadowDecoration.CustomizableEdges = customizableEdges78;
             payWith.Size = new Size(137, 36);
             payWith.TabIndex = 29;
             // 
@@ -641,7 +439,7 @@
             transSearchBtn.BorderColor = Color.Silver;
             transSearchBtn.BorderRadius = 10;
             transSearchBtn.BorderThickness = 1;
-            transSearchBtn.CustomizableEdges = customizableEdges81;
+            transSearchBtn.CustomizableEdges = customizableEdges79;
             transSearchBtn.DisabledState.BorderColor = Color.DarkGray;
             transSearchBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             transSearchBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -654,7 +452,7 @@
             transSearchBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             transSearchBtn.Location = new Point(13, 54);
             transSearchBtn.Name = "transSearchBtn";
-            transSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges82;
+            transSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges80;
             transSearchBtn.Size = new Size(125, 35);
             transSearchBtn.TabIndex = 26;
             transSearchBtn.Text = "بحث";
@@ -663,7 +461,7 @@
             // transNote
             // 
             transNote.BorderRadius = 10;
-            transNote.CustomizableEdges = customizableEdges83;
+            transNote.CustomizableEdges = customizableEdges81;
             transNote.DefaultText = "";
             transNote.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             transNote.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -679,7 +477,7 @@
             transNote.PlaceholderText = "ملاحظة";
             transNote.RightToLeft = RightToLeft.Yes;
             transNote.SelectedText = "";
-            transNote.ShadowDecoration.CustomizableEdges = customizableEdges84;
+            transNote.ShadowDecoration.CustomizableEdges = customizableEdges82;
             transNote.Size = new Size(147, 36);
             transNote.TabIndex = 25;
             // 
@@ -700,7 +498,7 @@
             transDate.BorderRadius = 10;
             transDate.BorderThickness = 1;
             transDate.Checked = true;
-            transDate.CustomizableEdges = customizableEdges85;
+            transDate.CustomizableEdges = customizableEdges83;
             transDate.FillColor = Color.FromArgb(255, 192, 192);
             transDate.Font = new Font("Segoe UI", 9F);
             transDate.Format = DateTimePickerFormat.Long;
@@ -708,7 +506,7 @@
             transDate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             transDate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             transDate.Name = "transDate";
-            transDate.ShadowDecoration.CustomizableEdges = customizableEdges86;
+            transDate.ShadowDecoration.CustomizableEdges = customizableEdges84;
             transDate.Size = new Size(228, 36);
             transDate.TabIndex = 22;
             transDate.Value = new DateTime(2025, 8, 13, 18, 30, 18, 694);
@@ -751,7 +549,7 @@
             addTransactionBtn.BorderColor = Color.Silver;
             addTransactionBtn.BorderRadius = 10;
             addTransactionBtn.BorderThickness = 1;
-            addTransactionBtn.CustomizableEdges = customizableEdges87;
+            addTransactionBtn.CustomizableEdges = customizableEdges85;
             addTransactionBtn.DisabledState.BorderColor = Color.DarkGray;
             addTransactionBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             addTransactionBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -764,7 +562,7 @@
             addTransactionBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addTransactionBtn.Location = new Point(13, 10);
             addTransactionBtn.Name = "addTransactionBtn";
-            addTransactionBtn.ShadowDecoration.CustomizableEdges = customizableEdges88;
+            addTransactionBtn.ShadowDecoration.CustomizableEdges = customizableEdges86;
             addTransactionBtn.Size = new Size(125, 35);
             addTransactionBtn.TabIndex = 18;
             addTransactionBtn.Text = "إضافة";
@@ -775,13 +573,13 @@
             takeAmount.BackColor = Color.Transparent;
             takeAmount.BorderColor = Color.Silver;
             takeAmount.BorderRadius = 10;
-            takeAmount.CustomizableEdges = customizableEdges89;
+            takeAmount.CustomizableEdges = customizableEdges87;
             takeAmount.DecimalPlaces = 2;
             takeAmount.Font = new Font("Segoe UI", 12F);
             takeAmount.Location = new Point(464, 51);
             takeAmount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             takeAmount.Name = "takeAmount";
-            takeAmount.ShadowDecoration.CustomizableEdges = customizableEdges90;
+            takeAmount.ShadowDecoration.CustomizableEdges = customizableEdges88;
             takeAmount.Size = new Size(120, 36);
             takeAmount.TabIndex = 17;
             takeAmount.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
@@ -792,13 +590,13 @@
             payAmount.BackColor = Color.Transparent;
             payAmount.BorderColor = Color.Silver;
             payAmount.BorderRadius = 10;
-            payAmount.CustomizableEdges = customizableEdges91;
+            payAmount.CustomizableEdges = customizableEdges89;
             payAmount.DecimalPlaces = 2;
             payAmount.Font = new Font("Segoe UI", 12F);
             payAmount.Location = new Point(464, 9);
             payAmount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             payAmount.Name = "payAmount";
-            payAmount.ShadowDecoration.CustomizableEdges = customizableEdges92;
+            payAmount.ShadowDecoration.CustomizableEdges = customizableEdges90;
             payAmount.Size = new Size(120, 36);
             payAmount.TabIndex = 16;
             payAmount.ValueChanged += PayAmount_ValueChanged;
@@ -807,7 +605,7 @@
             // 
             customersComboBox.BackColor = Color.Transparent;
             customersComboBox.BorderRadius = 10;
-            customersComboBox.CustomizableEdges = customizableEdges93;
+            customersComboBox.CustomizableEdges = customizableEdges91;
             customersComboBox.DrawMode = DrawMode.OwnerDrawFixed;
             customersComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             customersComboBox.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -818,7 +616,7 @@
             customersComboBox.Location = new Point(642, 9);
             customersComboBox.Name = "customersComboBox";
             customersComboBox.RightToLeft = RightToLeft.Yes;
-            customersComboBox.ShadowDecoration.CustomizableEdges = customizableEdges94;
+            customersComboBox.ShadowDecoration.CustomizableEdges = customizableEdges92;
             customersComboBox.Size = new Size(228, 36);
             customersComboBox.TabIndex = 0;
             customersComboBox.KeyUp += CustomersComboBox_KeyUp;
@@ -829,13 +627,13 @@
             customersPanel.BorderColor = Color.Silver;
             customersPanel.BorderRadius = 10;
             customersPanel.BorderThickness = 1;
-            customersPanel.CustomizableEdges = customizableEdges97;
+            customersPanel.CustomizableEdges = customizableEdges95;
             customersPanel.FillColor = Color.FromArgb(128, 192, 128);
             customersPanel.FillColor2 = Color.FromArgb(192, 255, 192);
             customersPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            customersPanel.Location = new Point(-1000, 96);
+            customersPanel.Location = new Point(-1, 96);
             customersPanel.Name = "customersPanel";
-            customersPanel.ShadowDecoration.CustomizableEdges = customizableEdges98;
+            customersPanel.ShadowDecoration.CustomizableEdges = customizableEdges96;
             customersPanel.Size = new Size(951, 508);
             customersPanel.TabIndex = 4;
             customersPanel.Visible = false;
@@ -856,13 +654,13 @@
             addCustomersPanel.Controls.Add(customerNameLabel);
             addCustomersPanel.Controls.Add(customerCode);
             addCustomersPanel.Controls.Add(customerCodeLabel);
-            addCustomersPanel.CustomizableEdges = customizableEdges109;
+            addCustomersPanel.CustomizableEdges = customizableEdges107;
             addCustomersPanel.FillColor = Color.LightCyan;
             addCustomersPanel.FillColor2 = Color.Azure;
             addCustomersPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addCustomersPanel.Location = new Point(-1000, 0);
+            addCustomersPanel.Location = new Point(-1, 0);
             addCustomersPanel.Name = "addCustomersPanel";
-            addCustomersPanel.ShadowDecoration.CustomizableEdges = customizableEdges110;
+            addCustomersPanel.ShadowDecoration.CustomizableEdges = customizableEdges108;
             addCustomersPanel.Size = new Size(951, 96);
             addCustomersPanel.TabIndex = 3;
             addCustomersPanel.Visible = false;
@@ -883,13 +681,13 @@
             custDebitAmount.BackColor = Color.Transparent;
             custDebitAmount.BorderColor = Color.Silver;
             custDebitAmount.BorderRadius = 10;
-            custDebitAmount.CustomizableEdges = customizableEdges99;
+            custDebitAmount.CustomizableEdges = customizableEdges97;
             custDebitAmount.DecimalPlaces = 2;
             custDebitAmount.Font = new Font("Segoe UI", 12F);
             custDebitAmount.Location = new Point(345, 52);
             custDebitAmount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             custDebitAmount.Name = "custDebitAmount";
-            custDebitAmount.ShadowDecoration.CustomizableEdges = customizableEdges100;
+            custDebitAmount.ShadowDecoration.CustomizableEdges = customizableEdges98;
             custDebitAmount.Size = new Size(120, 36);
             custDebitAmount.TabIndex = 19;
             custDebitAmount.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
@@ -899,13 +697,13 @@
             custCreditAmount.BackColor = Color.Transparent;
             custCreditAmount.BorderColor = Color.Silver;
             custCreditAmount.BorderRadius = 10;
-            custCreditAmount.CustomizableEdges = customizableEdges101;
+            custCreditAmount.CustomizableEdges = customizableEdges99;
             custCreditAmount.DecimalPlaces = 2;
             custCreditAmount.Font = new Font("Segoe UI", 12F);
             custCreditAmount.Location = new Point(594, 52);
             custCreditAmount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             custCreditAmount.Name = "custCreditAmount";
-            custCreditAmount.ShadowDecoration.CustomizableEdges = customizableEdges102;
+            custCreditAmount.ShadowDecoration.CustomizableEdges = customizableEdges100;
             custCreditAmount.Size = new Size(120, 36);
             custCreditAmount.TabIndex = 18;
             // 
@@ -936,7 +734,7 @@
             customerSearchBtn.BorderColor = Color.Silver;
             customerSearchBtn.BorderRadius = 10;
             customerSearchBtn.BorderThickness = 1;
-            customerSearchBtn.CustomizableEdges = customizableEdges103;
+            customerSearchBtn.CustomizableEdges = customizableEdges101;
             customerSearchBtn.DisabledState.BorderColor = Color.DarkGray;
             customerSearchBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             customerSearchBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -949,7 +747,7 @@
             customerSearchBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             customerSearchBtn.Location = new Point(24, 32);
             customerSearchBtn.Name = "customerSearchBtn";
-            customerSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges104;
+            customerSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges102;
             customerSearchBtn.Size = new Size(114, 35);
             customerSearchBtn.TabIndex = 5;
             customerSearchBtn.Text = "بحث";
@@ -960,7 +758,7 @@
             addCustomerBtn.BorderColor = Color.Silver;
             addCustomerBtn.BorderRadius = 10;
             addCustomerBtn.BorderThickness = 1;
-            addCustomerBtn.CustomizableEdges = customizableEdges105;
+            addCustomerBtn.CustomizableEdges = customizableEdges103;
             addCustomerBtn.DisabledState.BorderColor = Color.DarkGray;
             addCustomerBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             addCustomerBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -973,7 +771,7 @@
             addCustomerBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addCustomerBtn.Location = new Point(169, 32);
             addCustomerBtn.Name = "addCustomerBtn";
-            addCustomerBtn.ShadowDecoration.CustomizableEdges = customizableEdges106;
+            addCustomerBtn.ShadowDecoration.CustomizableEdges = customizableEdges104;
             addCustomerBtn.Size = new Size(114, 35);
             addCustomerBtn.TabIndex = 4;
             addCustomerBtn.Text = "إضافة";
@@ -982,7 +780,7 @@
             // customerName
             // 
             customerName.BorderRadius = 8;
-            customerName.CustomizableEdges = customizableEdges107;
+            customerName.CustomizableEdges = customizableEdges105;
             customerName.DefaultText = "محمد أشرف سيد محمد علي";
             customerName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             customerName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -998,7 +796,7 @@
             customerName.PlaceholderText = "";
             customerName.RightToLeft = RightToLeft.Yes;
             customerName.SelectedText = "";
-            customerName.ShadowDecoration.CustomizableEdges = customizableEdges108;
+            customerName.ShadowDecoration.CustomizableEdges = customizableEdges106;
             customerName.Size = new Size(251, 40);
             customerName.TabIndex = 3;
             customerName.KeyUp += CustomerName_KeyUp;
@@ -1041,16 +839,16 @@
             pictureBox1.BackgroundImage = Properties.Resources.QrCode;
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            pictureBox1.Location = new Point(23, 440);
+            pictureBox1.Location = new Point(22, 392);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(150, 150);
+            pictureBox1.Size = new Size(200, 200);
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
             // 
             // debitAmount
             // 
             debitAmount.Font = new Font("Segoe UI", 16F);
-            debitAmount.Location = new Point(382, 550);
+            debitAmount.Location = new Point(413, 293);
             debitAmount.Name = "debitAmount";
             debitAmount.RightToLeft = RightToLeft.Yes;
             debitAmount.Size = new Size(125, 30);
@@ -1061,7 +859,7 @@
             // creditAmount
             // 
             creditAmount.Font = new Font("Segoe UI", 16F);
-            creditAmount.Location = new Point(662, 550);
+            creditAmount.Location = new Point(693, 293);
             creditAmount.Name = "creditAmount";
             creditAmount.RightToLeft = RightToLeft.Yes;
             creditAmount.Size = new Size(125, 30);
@@ -1074,7 +872,7 @@
             addPayappBtn.BorderColor = Color.Silver;
             addPayappBtn.BorderRadius = 10;
             addPayappBtn.BorderThickness = 1;
-            addPayappBtn.CustomizableEdges = customizableEdges111;
+            addPayappBtn.CustomizableEdges = customizableEdges109;
             addPayappBtn.DisabledState.BorderColor = Color.DarkGray;
             addPayappBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             addPayappBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1085,9 +883,9 @@
             addPayappBtn.Font = new Font("Segoe UI", 15F);
             addPayappBtn.ForeColor = Color.Black;
             addPayappBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addPayappBtn.Location = new Point(246, 476);
+            addPayappBtn.Location = new Point(277, 204);
             addPayappBtn.Name = "addPayappBtn";
-            addPayappBtn.ShadowDecoration.CustomizableEdges = customizableEdges112;
+            addPayappBtn.ShadowDecoration.CustomizableEdges = customizableEdges110;
             addPayappBtn.Size = new Size(114, 40);
             addPayappBtn.TabIndex = 6;
             addPayappBtn.Text = "إضافة";
@@ -1096,7 +894,7 @@
             // payApp
             // 
             payApp.BorderRadius = 8;
-            payApp.CustomizableEdges = customizableEdges113;
+            payApp.CustomizableEdges = customizableEdges111;
             payApp.DefaultText = "";
             payApp.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             payApp.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -1106,13 +904,13 @@
             payApp.Font = new Font("Segoe UI", 12F);
             payApp.ForeColor = Color.Black;
             payApp.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            payApp.Location = new Point(376, 476);
+            payApp.Location = new Point(407, 204);
             payApp.Margin = new Padding(4);
             payApp.Name = "payApp";
             payApp.PlaceholderText = "مثال: انستا باي";
             payApp.RightToLeft = RightToLeft.Yes;
             payApp.SelectedText = "";
-            payApp.ShadowDecoration.CustomizableEdges = customizableEdges114;
+            payApp.ShadowDecoration.CustomizableEdges = customizableEdges112;
             payApp.Size = new Size(225, 40);
             payApp.TabIndex = 6;
             // 
@@ -1120,7 +918,7 @@
             // 
             payappLabel.AutoSize = true;
             payappLabel.Font = new Font("Segoe UI", 14F);
-            payappLabel.Location = new Point(608, 483);
+            payappLabel.Location = new Point(639, 211);
             payappLabel.Name = "payappLabel";
             payappLabel.RightToLeft = RightToLeft.Yes;
             payappLabel.Size = new Size(239, 25);
@@ -1131,7 +929,7 @@
             // 
             debitLabel.AutoSize = true;
             debitLabel.Font = new Font("Segoe UI", 16F);
-            debitLabel.Location = new Point(513, 550);
+            debitLabel.Location = new Point(544, 293);
             debitLabel.Name = "debitLabel";
             debitLabel.RightToLeft = RightToLeft.Yes;
             debitLabel.Size = new Size(70, 30);
@@ -1142,7 +940,7 @@
             // 
             creditLabel.AutoSize = true;
             creditLabel.Font = new Font("Segoe UI", 16F);
-            creditLabel.Location = new Point(793, 550);
+            creditLabel.Location = new Point(824, 293);
             creditLabel.Name = "creditLabel";
             creditLabel.RightToLeft = RightToLeft.Yes;
             creditLabel.Size = new Size(50, 30);
@@ -1154,7 +952,7 @@
             updateCreditDepitBtn.BorderColor = Color.Silver;
             updateCreditDepitBtn.BorderRadius = 10;
             updateCreditDepitBtn.BorderThickness = 1;
-            updateCreditDepitBtn.CustomizableEdges = customizableEdges115;
+            updateCreditDepitBtn.CustomizableEdges = customizableEdges113;
             updateCreditDepitBtn.DisabledState.BorderColor = Color.DarkGray;
             updateCreditDepitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             updateCreditDepitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1165,20 +963,72 @@
             updateCreditDepitBtn.Font = new Font("Segoe UI", 15F);
             updateCreditDepitBtn.ForeColor = Color.Black;
             updateCreditDepitBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            updateCreditDepitBtn.Location = new Point(246, 543);
+            updateCreditDepitBtn.Location = new Point(277, 286);
             updateCreditDepitBtn.Name = "updateCreditDepitBtn";
-            updateCreditDepitBtn.ShadowDecoration.CustomizableEdges = customizableEdges116;
+            updateCreditDepitBtn.ShadowDecoration.CustomizableEdges = customizableEdges114;
             updateCreditDepitBtn.Size = new Size(114, 40);
             updateCreditDepitBtn.TabIndex = 36;
             updateCreditDepitBtn.Text = "تحديث";
             updateCreditDepitBtn.Click += UpdateCreditDepitBtn_Click;
+            // 
+            // inventoryTitle
+            // 
+            inventoryTitle.AutoSize = true;
+            inventoryTitle.Font = new Font("Segoe UI", 16F);
+            inventoryTitle.Location = new Point(651, 115);
+            inventoryTitle.Name = "inventoryTitle";
+            inventoryTitle.RightToLeft = RightToLeft.Yes;
+            inventoryTitle.Size = new Size(223, 30);
+            inventoryTitle.TabIndex = 37;
+            inventoryTitle.Text = "التقفيل والجرد اليومي : ";
+            // 
+            // excelDate
+            // 
+            excelDate.BorderRadius = 7;
+            excelDate.BorderThickness = 1;
+            excelDate.Checked = true;
+            excelDate.CustomizableEdges = customizableEdges115;
+            excelDate.FillColor = Color.FromArgb(192, 255, 192);
+            excelDate.Font = new Font("Segoe UI", 9F);
+            excelDate.Format = DateTimePickerFormat.Long;
+            excelDate.Location = new Point(407, 108);
+            excelDate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
+            excelDate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
+            excelDate.Name = "excelDate";
+            excelDate.ShadowDecoration.CustomizableEdges = customizableEdges116;
+            excelDate.Size = new Size(225, 42);
+            excelDate.TabIndex = 7;
+            excelDate.Value = new DateTime(2025, 8, 31, 10, 19, 11, 901);
+            // 
+            // excelBtn
+            // 
+            excelBtn.BorderRadius = 10;
+            excelBtn.BorderThickness = 1;
+            excelBtn.CustomizableEdges = customizableEdges117;
+            excelBtn.DisabledState.BorderColor = Color.DarkGray;
+            excelBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            excelBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            excelBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            excelBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            excelBtn.FillColor = Color.FromArgb(75, 200, 75);
+            excelBtn.FillColor2 = Color.FromArgb(75, 150, 75);
+            excelBtn.Font = new Font("Segoe UI", 15F);
+            excelBtn.ForeColor = Color.Black;
+            excelBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            excelBtn.Location = new Point(277, 107);
+            excelBtn.Name = "excelBtn";
+            excelBtn.ShadowDecoration.CustomizableEdges = customizableEdges118;
+            excelBtn.Size = new Size(114, 43);
+            excelBtn.TabIndex = 5;
+            excelBtn.Text = "إكسل";
+            excelBtn.Click += ExcelBtn_Click;
             // 
             // customersBtn
             // 
             customersBtn.BorderColor = Color.Silver;
             customersBtn.BorderRadius = 10;
             customersBtn.BorderThickness = 1;
-            customersBtn.CustomizableEdges = customizableEdges119;
+            customersBtn.CustomizableEdges = customizableEdges121;
             customersBtn.DisabledState.BorderColor = Color.DarkGray;
             customersBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             customersBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1189,9 +1039,9 @@
             customersBtn.Font = new Font("Segoe UI", 15F);
             customersBtn.ForeColor = Color.Black;
             customersBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            customersBtn.Location = new Point(691, 5);
+            customersBtn.Location = new Point(629, 5);
             customersBtn.Name = "customersBtn";
-            customersBtn.ShadowDecoration.CustomizableEdges = customizableEdges120;
+            customersBtn.ShadowDecoration.CustomizableEdges = customizableEdges122;
             customersBtn.Size = new Size(114, 35);
             customersBtn.TabIndex = 3;
             customersBtn.Text = "العملاء";
@@ -1204,7 +1054,6 @@
             footerPanel.BorderRadius = 10;
             footerPanel.BorderThickness = 1;
             footerPanel.Controls.Add(mainBtn);
-            footerPanel.Controls.Add(excelBtn);
             footerPanel.Controls.Add(transactionsBtn);
             footerPanel.Controls.Add(customersBtn);
             footerPanel.CustomizableEdges = customizableEdges127;
@@ -1222,7 +1071,7 @@
             mainBtn.BorderColor = Color.Silver;
             mainBtn.BorderRadius = 10;
             mainBtn.BorderThickness = 1;
-            mainBtn.CustomizableEdges = customizableEdges121;
+            mainBtn.CustomizableEdges = customizableEdges123;
             mainBtn.DisabledState.BorderColor = Color.DarkGray;
             mainBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             mainBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1235,35 +1084,11 @@
             mainBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             mainBtn.Location = new Point(825, 5);
             mainBtn.Name = "mainBtn";
-            mainBtn.ShadowDecoration.CustomizableEdges = customizableEdges122;
+            mainBtn.ShadowDecoration.CustomizableEdges = customizableEdges124;
             mainBtn.Size = new Size(114, 35);
             mainBtn.TabIndex = 6;
             mainBtn.Text = "الرئيسية";
             mainBtn.Click += MainBtn_Click;
-            // 
-            // excelBtn
-            // 
-            excelBtn.BorderColor = Color.Silver;
-            excelBtn.BorderRadius = 10;
-            excelBtn.BorderThickness = 1;
-            excelBtn.CustomizableEdges = customizableEdges123;
-            excelBtn.DisabledState.BorderColor = Color.DarkGray;
-            excelBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            excelBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            excelBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            excelBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            excelBtn.FillColor = Color.FromArgb(75, 200, 75);
-            excelBtn.FillColor2 = Color.FromArgb(75, 150, 75);
-            excelBtn.Font = new Font("Segoe UI", 15F);
-            excelBtn.ForeColor = Color.Black;
-            excelBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            excelBtn.Location = new Point(13, 5);
-            excelBtn.Name = "excelBtn";
-            excelBtn.ShadowDecoration.CustomizableEdges = customizableEdges124;
-            excelBtn.Size = new Size(107, 35);
-            excelBtn.TabIndex = 5;
-            excelBtn.Text = "إكسل";
-            excelBtn.Click += ExcelBtn_Click;
             // 
             // transactionsBtn
             // 
@@ -1281,7 +1106,7 @@
             transactionsBtn.Font = new Font("Segoe UI", 15F);
             transactionsBtn.ForeColor = Color.Black;
             transactionsBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            transactionsBtn.Location = new Point(554, 5);
+            transactionsBtn.Location = new Point(471, 5);
             transactionsBtn.Name = "transactionsBtn";
             transactionsBtn.ShadowDecoration.CustomizableEdges = customizableEdges126;
             transactionsBtn.Size = new Size(125, 35);
@@ -1379,16 +1204,8 @@
         private Label label3;
         private Label initValLabel;
         private Guna.UI2.WinForms.Guna2GradientButton updateCreditDepitBtn;
-        private Label inventoryTitle;
-        private Guna.UI2.WinForms.Guna2CheckBox dailyCollection;
-        private Label collectionLabel;
-        private Guna.UI2.WinForms.Guna2CheckBox annualCollection;
-        private Guna.UI2.WinForms.Guna2CheckBox monthlyCollection;
-        private Label label5;
-        private Guna.UI2.WinForms.Guna2CheckBox customDate;
-        private Guna.UI2.WinForms.Guna2CheckBox allUnits;
-        private Guna.UI2.WinForms.Guna2CheckBox last5Units;
-        private Guna.UI2.WinForms.Guna2GradientButton extractExcelBtn;
         private SaveFileDialog saveExcelFileDialog;
+        private Guna.UI2.WinForms.Guna2DateTimePicker excelDate;
+        private Label inventoryTitle;
     }
 }

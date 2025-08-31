@@ -19,7 +19,7 @@ namespace ElectronicServices
             InitializeComponent();
             this.data = data;
             nameLabel.Text = data.Name;
-            dateLabel.Text = data.Date.ToString("yyyy-MM-dd");
+            dateLabel.Text = data.Date;
             if (data.Note != "") data.Note = "\nملاحظات : " + data.Note;
             SetTransactionRowData(data);
         }
