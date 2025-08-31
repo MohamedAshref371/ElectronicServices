@@ -247,7 +247,7 @@ namespace ElectronicServices
 
         public static float GetCerditCashField(string date)
         {
-            string sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = 0 THEN credit ELSE 0 END, 0 ) FROM transactions WHERE date = '{date}'";
+            string sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = 0 THEN credit ELSE 0 END ), 0 ) FROM transactions WHERE date = '{date}'";
 
             return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
         }
@@ -376,7 +376,7 @@ namespace ElectronicServices
             {
                 conn.Open();
                 command.CommandText = "SELECT SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_debit FROM " +
-                                        $"( SELECT COALESCE(SUM(credit), 0) AS credit, COALESCE(SUM(debit), 0) AS debit FROM transactions WHERE date = {date} GROUP BY customer_id )";
+                                        $"( SELECT COALESCE(SUM(credit), 0) AS credit, COALESCE(SUM(debit), 0) AS debit FROM transactions WHERE date = '{date}' GROUP BY customer_id )";
                 reader = command.ExecuteReader();
                 if (!reader.Read()) return [0f, 0f];
                 return [reader.IsDBNull(0) ? 0f : reader.GetFloat(0), reader.IsDBNull(1) ? 0f : reader.GetFloat(1)];
