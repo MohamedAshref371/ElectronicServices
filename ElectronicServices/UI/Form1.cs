@@ -179,7 +179,7 @@ namespace ElectronicServices
                 return;
             }
 
-            int count = customersPanel.Controls.Count;
+            int count = customersPanel.Controls.Count, bottom;
             CustomerRow cust = new(new CustomerRowData
             {
                 Id = (int)customerCode.Tag,
@@ -187,7 +187,14 @@ namespace ElectronicServices
                 Pay = (float)custCreditAmount.Value,
                 Take = (float)custDebitAmount.Value,
             });
-            cust.Location = new Point(cust.Location.X + rowPadding, (cust.Size.Height + 3) * count + 5);
+            if (count > 0)
+                bottom = customersPanel.Controls[count - 1].Bottom + 3;
+            else 
+                bottom = 5;
+
+            cust.Location = new Point(cust.Location.X + rowPadding, bottom);
+            fs?.SetControl(cust);
+            fs?.SetControls(cust.Controls);
             customersPanel.Controls.Add(cust);
             UpdateCustomersComboBox();
 
@@ -209,7 +216,7 @@ namespace ElectronicServices
 
                 addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             }
-
+            
             custCreditAmount.Value = 0;
             custDebitAmount.Value = 0;
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
@@ -247,6 +254,8 @@ namespace ElectronicServices
             {
                 row = new(customers[i]);
                 row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
+                fs?.SetControl(row);
+                fs?.SetControls(row.Controls);
                 customersPanel.Controls.Add(row);
             }
         }
@@ -284,9 +293,14 @@ namespace ElectronicServices
                 return;
             }
 
-            int count = transactionsPanel.Controls.Count;
+            int count = transactionsPanel.Controls.Count, bottom;
+            if (count > 0)
+                bottom = customersPanel.Controls[count - 1].Bottom + 3;
+            else
+                bottom = 5;
+
             TransactionRow row = new(data);
-            row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * count + 5);
+            row.Location = new Point(row.Location.X + rowPadding, bottom);
             transactionsPanel.Controls.Add(row);
 
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();

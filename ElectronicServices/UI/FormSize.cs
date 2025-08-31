@@ -1,4 +1,6 @@
-﻿namespace ElectronicServices;
+﻿using Guna.UI2.WinForms;
+
+namespace ElectronicServices;
 
 class FormSize(int oldSizeX, int oldSizeY, int newSizeX, int newSizeY)
 {
@@ -17,7 +19,10 @@ class FormSize(int oldSizeX, int oldSizeY, int newSizeX, int newSizeY)
     {
         for (int i = 0; i < controls.Count; i++)
         {
-            SetControl(controls[i]);
+            if (controls[i] is Guna2TextBox)
+                SetControl(controls[i], false);
+            else
+                SetControl(controls[i]);
             if (controls[i] is Panel || controls[i] is CustomerRow || controls[i] is TransactionRow)
                 SetControls(controls[i].Controls);
         }

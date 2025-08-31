@@ -180,6 +180,7 @@
             infoBtn.ShadowDecoration.CustomizableEdges = customizableEdges8;
             infoBtn.Size = new Size(40, 40);
             infoBtn.TabIndex = 14;
+            infoBtn.SizeChanged += InfoBtn_SizeChanged;
             infoBtn.MouseUp += InfoBtn_MouseUp;
             // 
             // payEdit

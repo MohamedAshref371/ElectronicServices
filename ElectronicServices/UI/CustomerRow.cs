@@ -16,7 +16,7 @@ namespace ElectronicServices
         public CustomerRow(CustomerRowData data)
         {
             InitializeComponent();
-           this.id = data.Id;
+            this.id = data.Id;
             codeLabel.Text = data.Id.ToString();
             nameLabel.Text = data.Name;
             payLabel.Text = data.Pay.ToString("N2");
@@ -137,5 +137,14 @@ namespace ElectronicServices
         }
         #endregion
 
+        private void CustomerTransactionsBtn_SizeChanged(object sender, EventArgs e)
+        {
+            int minSize = Math.Min(customerTransactionsBtn.Width, customerTransactionsBtn.Height);
+            Size newSize = new(minSize, minSize);
+
+            customerTransactionsBtn.ImageSize = newSize;
+            editBtn.ImageSize = newSize;
+            deleteCustomerBtn.ImageSize = newSize;
+        }
     }
 }

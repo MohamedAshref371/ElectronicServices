@@ -73,7 +73,7 @@ namespace ElectronicServices
 
                     MessageBox.Show($"الرصيد قبل المعاملة : {text}\nالرصيد بعد المعاملة : {text2}", "معلومات المعاملة", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    
+
                 }
             }
             else if (e.Button == MouseButtons.Left)
@@ -151,5 +151,15 @@ namespace ElectronicServices
         }
         #endregion
 
+        private void InfoBtn_SizeChanged(object sender, EventArgs e)
+        {
+            int minSize = Math.Min(infoBtn.Width, infoBtn.Height);
+            Size newSize = new(minSize, minSize);
+
+            infoBtn.ImageSize = newSize;
+            editBtn.ImageSize = newSize;
+            customerBtn.ImageSize = newSize;
+            deleteTransactionBtn.ImageSize = newSize;
+        }
     }
 }

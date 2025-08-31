@@ -121,6 +121,7 @@
             customerTransactionsBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
             customerTransactionsBtn.Size = new Size(40, 40);
             customerTransactionsBtn.TabIndex = 5;
+            customerTransactionsBtn.SizeChanged += CustomerTransactionsBtn_SizeChanged;
             customerTransactionsBtn.Click += CustomerTransactionsBtn_Click;
             // 
             // editBtn
