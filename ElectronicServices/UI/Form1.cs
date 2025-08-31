@@ -497,21 +497,34 @@ namespace ElectronicServices
             sheet.Cell(3, payapps.Length + 2).Value = sum;
 
 
-            float credit = DatabaseHelper.GetCerditCashField(date), debit = DatabaseHelper.GetDebitCashField(date);
+            float cashCredit = DatabaseHelper.GetCerditCashField(date), cashDebit = DatabaseHelper.GetDebitCashField(date);
             sheet.Cell(6, 1).Value = "«· «—ÌŒ";
             sheet.Cell(7, 1).Value = date;
 
             sheet.Cell(6, 2).Value = "«” ·«„ ‰ﬁœÌ";
             sheet.Cell(6, 3).Value = " ”·Ì„ ‰ﬁœÌ";
-            sheet.Cell(7, 2).Value = credit;
-            sheet.Cell(7, 3).Value = debit;
+            sheet.Cell(7, 2).Value = cashCredit;
+            sheet.Cell(7, 3).Value = cashDebit;
 
             sheet.Cell(6, 4).Value = "«·„Ã„Ê⁄";
             sheet.Cell(6, 5).Value = "«·›—ﬁ";
-            sheet.Cell(7, 4).Value = credit + debit;
-            sheet.Cell(7, 5).Value = credit - debit;
+            sheet.Cell(7, 4).Value = cashCredit + cashDebit;
+            sheet.Cell(7, 5).Value = cashCredit - cashDebit;
 
 
+            float[] creditDebit = DatabaseHelper.GetCreditAndDept(date);
+            sheet.Cell(10, 1).Value = "«· «—ÌŒ";
+            sheet.Cell(11, 1).Value = date;
+
+            sheet.Cell(10, 2).Value = "·‰«";
+            sheet.Cell(10, 3).Value = "⁄·Ì‰«";
+            sheet.Cell(11, 2).Value = creditDebit[0];
+            sheet.Cell(11, 3).Value = creditDebit[1];
+
+            sheet.Cell(10, 4).Value = "«·„Ã„Ê⁄";
+            sheet.Cell(10, 5).Value = "«·›—ﬁ";
+            sheet.Cell(11, 4).Value = creditDebit[0] + creditDebit[1];
+            sheet.Cell(11, 5).Value = creditDebit[0] - creditDebit[1];
 
 
             try

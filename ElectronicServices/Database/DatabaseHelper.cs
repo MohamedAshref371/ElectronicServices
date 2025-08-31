@@ -351,8 +351,32 @@ namespace ElectronicServices
             try
             {
                 conn.Open();
-                command.CommandText = $"SELECT SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_debit FROM " +
-                                        $"( SELECT COALESCE(SUM(t.credit), 0) AS credit, COALESCE(SUM(t.debit), 0) AS debit FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id GROUP BY c.id )";
+                command.CommandText = "SELECT SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_debit FROM " +
+                                        "( SELECT COALESCE(SUM(credit), 0) AS credit, COALESCE(SUM(debit), 0) AS debit FROM transactions GROUP BY customer_id )";
+                reader = command.ExecuteReader();
+                if (!reader.Read()) return [0f, 0f];
+                return [reader.IsDBNull(0) ? 0f : reader.GetFloat(0), reader.IsDBNull(1) ? 0f : reader.GetFloat(1)];
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return [0f, 0f];
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
+        }
+
+        public static float[] GetCreditAndDept(string date)
+        {
+            if (!success) return [0f, 0f];
+            try
+            {
+                conn.Open();
+                command.CommandText = "SELECT SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_debit FROM " +
+                                        $"( SELECT COALESCE(SUM(credit), 0) AS credit, COALESCE(SUM(debit), 0) AS debit FROM transactions WHERE date = {date} GROUP BY customer_id )";
                 reader = command.ExecuteReader();
                 if (!reader.Read()) return [0f, 0f];
                 return [reader.IsDBNull(0) ? 0f : reader.GetFloat(0), reader.IsDBNull(1) ? 0f : reader.GetFloat(1)];
