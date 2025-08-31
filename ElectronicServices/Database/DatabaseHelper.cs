@@ -245,6 +245,20 @@ namespace ElectronicServices
             return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
         }
 
+        public static float GetCerditCashField(string date)
+        {
+            string sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = 0 THEN credit ELSE 0 END, 0 ) FROM transactions WHERE date = '{date}'";
+
+            return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
+        }
+
+        public static float GetDebitCashField(string date)
+        {
+            string sql = $"SELECT COALESCE( SUM( CASE WHEN debit_payapp = 0 THEN debit ELSE 0 END ), 0 ) FROM transactions WHERE date = '{date}'";
+
+            return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
+        }
+
         private static CustomerRowData GetCustomerData()
         {
             return new CustomerRowData

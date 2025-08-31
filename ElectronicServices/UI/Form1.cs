@@ -497,6 +497,20 @@ namespace ElectronicServices
             sheet.Cell(3, payapps.Length + 2).Value = sum;
 
 
+            float credit = DatabaseHelper.GetCerditCashField(date), debit = DatabaseHelper.GetDebitCashField(date);
+            sheet.Cell(6, 1).Value = "«· «—ÌŒ";
+            sheet.Cell(7, 1).Value = date;
+
+            sheet.Cell(6, 2).Value = "«” ·«„ ‰ﬁœÌ";
+            sheet.Cell(6, 3).Value = " ”·Ì„ ‰ﬁœÌ";
+            sheet.Cell(7, 2).Value = credit;
+            sheet.Cell(7, 3).Value = debit;
+
+            sheet.Cell(6, 4).Value = "«·„Ã„Ê⁄";
+            sheet.Cell(6, 5).Value = "«·›—ﬁ";
+            sheet.Cell(7, 4).Value = credit + debit;
+            sheet.Cell(7, 5).Value = credit - debit;
+
 
 
 
