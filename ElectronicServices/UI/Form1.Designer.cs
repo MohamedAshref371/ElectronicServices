@@ -1042,7 +1042,7 @@
             customersBtn.Font = new Font("Segoe UI", 15F);
             customersBtn.ForeColor = Color.Black;
             customersBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            customersBtn.Location = new Point(629, 5);
+            customersBtn.Location = new Point(500, 5);
             customersBtn.Name = "customersBtn";
             customersBtn.ShadowDecoration.CustomizableEdges = customizableEdges6;
             customersBtn.Size = new Size(114, 35);
@@ -1085,7 +1085,7 @@
             mainBtn.Font = new Font("Segoe UI", 15F);
             mainBtn.ForeColor = Color.Black;
             mainBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            mainBtn.Location = new Point(825, 5);
+            mainBtn.Location = new Point(760, 5);
             mainBtn.Name = "mainBtn";
             mainBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
             mainBtn.Size = new Size(114, 35);
@@ -1109,7 +1109,7 @@
             transactionsBtn.Font = new Font("Segoe UI", 15F);
             transactionsBtn.ForeColor = Color.Black;
             transactionsBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            transactionsBtn.Location = new Point(471, 5);
+            transactionsBtn.Location = new Point(342, 5);
             transactionsBtn.Name = "transactionsBtn";
             transactionsBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
             transactionsBtn.Size = new Size(125, 35);
