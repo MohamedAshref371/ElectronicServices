@@ -295,7 +295,7 @@ namespace ElectronicServices
 
             int count = transactionsPanel.Controls.Count, bottom;
             if (count > 0)
-                bottom = customersPanel.Controls[count - 1].Bottom + 3;
+                bottom = transactionsPanel.Controls[count - 1].Bottom + 3;
             else
                 bottom = 5;
 
