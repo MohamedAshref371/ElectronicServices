@@ -188,13 +188,14 @@ namespace ElectronicServices
                 Take = (float)custDebitAmount.Value,
             });
             if (count > 0)
-                bottom = customersPanel.Controls[count - 1].Bottom + 3;
+                bottom = customersPanel.Controls[count - 1].Bottom;
             else 
-                bottom = 5;
+                bottom = 2;
 
-            cust.Location = new Point(cust.Location.X + rowPadding, bottom);
+            cust.Location = new Point(cust.Location.X + rowPadding, 0);
             fs?.SetControl(cust);
             fs?.SetControls(cust.Controls);
+            cust.Location = new Point(cust.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
             customersPanel.Controls.Add(cust);
             UpdateCustomersComboBox();
 
@@ -248,6 +249,8 @@ namespace ElectronicServices
             customersPanel.Controls.Clear();
             CustomerRow row = new();
             row.Location = new Point(row.Location.X + rowPadding, 5);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
             customersPanel.Controls.Add(row);
 
             for (int i = 0; i < customers.Length; i++)
@@ -295,12 +298,15 @@ namespace ElectronicServices
 
             int count = transactionsPanel.Controls.Count, bottom;
             if (count > 0)
-                bottom = transactionsPanel.Controls[count - 1].Bottom + 3;
+                bottom = transactionsPanel.Controls[count - 1].Bottom;
             else
-                bottom = 5;
+                bottom = 2;
 
             TransactionRow row = new(data);
-            row.Location = new Point(row.Location.X + rowPadding, bottom);
+            row.Location = new Point(row.Location.X + rowPadding, 0);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
+            row.Location = new Point(row.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
             transactionsPanel.Controls.Add(row);
 
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
@@ -321,12 +327,16 @@ namespace ElectronicServices
             transactionsPanel.Controls.Clear();
             TransactionRow row = new();
             row.Location = new Point(row.Location.X + rowPadding, 5);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
             transactionsPanel.Controls.Add(row);
 
             for (int i = 0; i < transactions.Length; i++)
             {
                 row = new(transactions[i]);
                 row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
+                fs?.SetControl(row);
+                fs?.SetControls(row.Controls);
                 transactionsPanel.Controls.Add(row);
             }
         }

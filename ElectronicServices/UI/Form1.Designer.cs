@@ -350,19 +350,19 @@
             addTransactionsPanel.BorderThickness = 1;
             addTransactionsPanel.Controls.Add(takeWith);
             addTransactionsPanel.Controls.Add(payWith);
-            addTransactionsPanel.Controls.Add(label2);
-            addTransactionsPanel.Controls.Add(label1);
             addTransactionsPanel.Controls.Add(transSearchBtn);
             addTransactionsPanel.Controls.Add(transNote);
-            addTransactionsPanel.Controls.Add(dateLabel);
             addTransactionsPanel.Controls.Add(transDate);
-            addTransactionsPanel.Controls.Add(takeLabel);
-            addTransactionsPanel.Controls.Add(payLabel);
-            addTransactionsPanel.Controls.Add(customerLabel);
             addTransactionsPanel.Controls.Add(addTransactionBtn);
             addTransactionsPanel.Controls.Add(takeAmount);
             addTransactionsPanel.Controls.Add(payAmount);
             addTransactionsPanel.Controls.Add(customersComboBox);
+            addTransactionsPanel.Controls.Add(takeLabel);
+            addTransactionsPanel.Controls.Add(payLabel);
+            addTransactionsPanel.Controls.Add(label2);
+            addTransactionsPanel.Controls.Add(label1);
+            addTransactionsPanel.Controls.Add(dateLabel);
+            addTransactionsPanel.Controls.Add(customerLabel);
             addTransactionsPanel.CustomizableEdges = customizableEdges29;
             addTransactionsPanel.FillColor = Color.FromArgb(255, 192, 255);
             addTransactionsPanel.FillColor2 = Color.FromArgb(255, 128, 255);
@@ -981,9 +981,9 @@
             inventoryTitle.Location = new Point(651, 115);
             inventoryTitle.Name = "inventoryTitle";
             inventoryTitle.RightToLeft = RightToLeft.Yes;
-            inventoryTitle.Size = new Size(223, 30);
+            inventoryTitle.Size = new Size(142, 30);
             inventoryTitle.TabIndex = 37;
-            inventoryTitle.Text = "التقفيل والجرد اليومي : ";
+            inventoryTitle.Text = "ملخص اليوم : ";
             // 
             // excelDate
             // 
