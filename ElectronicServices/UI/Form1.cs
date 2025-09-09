@@ -189,7 +189,7 @@ namespace ElectronicServices
             });
             if (count > 0)
                 bottom = customersPanel.Controls[count - 1].Bottom;
-            else 
+            else
                 bottom = 2;
 
             cust.Location = new Point(cust.Location.X + rowPadding, 0);
@@ -217,7 +217,7 @@ namespace ElectronicServices
 
                 addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             }
-            
+
             custCreditAmount.Value = 0;
             custDebitAmount.Value = 0;
             customerCode.Tag = DatabaseHelper.GetCustomerNextId();
@@ -481,7 +481,7 @@ namespace ElectronicServices
         {
             using XLWorkbook workbook = new();
             workbook.RightToLeft = true;
-            IXLWorksheet sheet =  workbook.Worksheets.Add("Daily inventory");
+            IXLWorksheet sheet = workbook.Worksheets.Add("Daily inventory");
 
             string[] payapps = DatabaseHelper.GetPayappsNames(true);
             char c = (char)('A' + payapps.Length + 1);
@@ -573,5 +573,9 @@ namespace ElectronicServices
             }
         }
 
+        private void ElecPayBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
