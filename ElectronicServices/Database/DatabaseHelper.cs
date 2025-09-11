@@ -402,8 +402,11 @@ namespace ElectronicServices
         public static float[] GetPayappClosure(string date)
             => SelectMultiRows($"SELECT balance FROM payapp_closures WHERE date = '{date}' ORDER BY payapp_id", () => reader.GetFloat(0));
 
-        public static float GetSumPrevPayappClosure(string date)
-            => SelectMultiRows($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = (SELECT MAX(date) FROM payapp_closures WHERE date < '{date}')", () => reader.GetFloat(0))[0];
+        public static float? GetSumPrevPayappClosure(string date)
+        {
+            float[] vals = SelectMultiRows($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = (SELECT MAX(date) FROM payapp_closures WHERE date < '{date}')", () => reader.GetFloat(0));
+            return vals.Length == 0 ? null : vals[0];
+        }
 
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
         {

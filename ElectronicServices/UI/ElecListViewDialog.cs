@@ -34,18 +34,19 @@ namespace ElectronicServices
             item.SubItems.Add("0");
             listView1.Items.Add(item);
 
-            ListViewItem item2 = new("الفرق بين اليوم السابق") { BackColor = Color.FromArgb(220, 255, 220) };
-            item2.SubItems.Add("0");
-            listView1.Items.Add(item2);
+            diff = new("الفرق بين اليوم السابق") { BackColor = Color.FromArgb(220, 220, 220) };
+            diff.SubItems.Add("0");
+            listView1.Items.Add(diff);
 
             listView1.ItemSelectionChanged += (s, e) =>
             {
-                if ((e.Item == item || e.Item == item2) && e.IsSelected)
+                if ((e.Item == item || e.Item == diff) && e.IsSelected)
                     e.Item.Selected = false;
             };
 
             DatePicker_ValueChanged(this, EventArgs.Empty);
         }
+        ListViewItem diff;
 
         private void ListView1_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -81,7 +82,22 @@ namespace ElectronicServices
             float total = values.Sum();
             listView1.Items[payappsLength].SubItems[1].Text = total.ToString();
 
-            float prevTotal = DatabaseHelper.GetSumPrevPayappClosure(date);
+            float? prevTotal = DatabaseHelper.GetSumPrevPayappClosure(date);
+
+            if (prevTotal == null)
+            {
+                diff.BackColor = Color.FromArgb(220, 220, 220);
+                listView1.Items[payappsLength + 1].SubItems[1].Text = "لا يوجد";
+                return;
+            }
+
+            if (total - prevTotal < 0)
+                diff.BackColor = Color.FromArgb(255, 220, 220);
+            else if (total - prevTotal > 0)
+                diff.BackColor = Color.FromArgb(220, 220, 255);
+            else
+                diff.BackColor = Color.FromArgb(220, 220, 220);
+
             listView1.Items[payappsLength + 1].SubItems[1].Text = (total - prevTotal).ToString();
         }
 
