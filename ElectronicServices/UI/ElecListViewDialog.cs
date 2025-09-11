@@ -107,7 +107,7 @@ namespace ElectronicServices
 
             for (int i = 0; i < payappsLength; i++)
             {
-                int.TryParse(listView1.Items[i].SubItems[1].Text, out int val);
+                float.TryParse(listView1.Items[i].SubItems[1].Text, out float val);
                 DatabaseHelper.SetPayappClosure(date, i + 1, val);
             }
 
