@@ -482,21 +482,19 @@ namespace ElectronicServices
             using XLWorkbook workbook = new();
             workbook.RightToLeft = true;
             IXLWorksheet sheet = workbook.Worksheets.Add("Daily inventory");
+            string date = excelDate.Value.ToStandardString();
 
             string[] payapps = DatabaseHelper.GetPayappsNames(true);
             char c = (char)('A' + payapps.Length + 1);
             if (c > 'Z') c = 'Z';
-            sheet.Range($"A1:{c}1").Merge().Value = "„œ›Ê⁄«  «·ﬂ ‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹—Ê‰Ì…";
-            sheet.Row(1).Height = 36;
+            sheet.Range($"A1:{c}1").Merge().Value = "„·Œ’ ÌÊ„     " + date;
+            sheet.Row(1).Height = 30;
             sheet.Cell("A1").Style.Font.Bold = true;
-            sheet.Cell("A1").Style.Font.FontName = "Calibri";
-            sheet.Cell("A1").Style.Font.FontSize = 24;
+            sheet.Cell("A1").Style.Font.FontSize = 18;
             sheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             sheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
 
             sheet.Column(1).Width = 12.5;
-            sheet.Cell(2, 1).Value = "«· «—ÌŒ";
-            sheet.Cell(2, 1).Style.Fill.BackgroundColor = XLColor.LightBlue;
 
             for (int i = 0; i < payapps.Length; i++)
             {
@@ -509,57 +507,61 @@ namespace ElectronicServices
             sheet.Cell(2, payapps.Length + 2).Value = "«·„Ã„Ê⁄";
             sheet.Cell(2, payapps.Length + 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
 
-            string date = excelDate.Value.ToStandardString();
-            sheet.Cell(3, 1).Value = date;
+            sheet.Cell(3, 1).Value = "œ›⁄";
+            sheet.Cell(4, 1).Value = "√Œ–";
+            sheet.Cell(5, 1).Value = "«·„Ã„Ê⁄";
 
-            float sum = 0, val;
+            float sum = 0, sum2 = 0, val, val2;
             for (int i = 0; i < payapps.Length; i++)
             {
-                val = DatabaseHelper.GetPayappDateField(i + 1, date);
+                val = DatabaseHelper.GetPayappDateField(i + 1, date, pay: true);
                 sheet.Cell(3, i + 2).Value = val;
                 sum += val;
+
+                val2 = DatabaseHelper.GetPayappDateField(i + 1, date, pay: false);
+                sheet.Cell(4, i + 2).Value = val2;
+                sum2 += val2;
+
+                sheet.Cell(5, i + 2).Value = val + val2;
             }
             sheet.Cell(3, payapps.Length + 2).Value = sum;
+            sheet.Cell(4, payapps.Length + 2).Value = sum2;
+            sheet.Cell(5, payapps.Length + 2).Value = sum + sum2;
 
 
             float cashCredit = DatabaseHelper.GetCerditCashField(date), cashDebit = DatabaseHelper.GetDebitCashField(date);
-            sheet.Cell(6, 1).Value = "«· «—ÌŒ";
-            sheet.Cell(6, 1).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(7, 1).Value = date;
+            sheet.Cell(8, 1).Value = "";
 
-            sheet.Cell(6, 2).Value = "«” ·«„ ‰ﬁœÌ";
-            sheet.Cell(6, 3).Value = " ”·Ì„ ‰ﬁœÌ";
-            sheet.Cell(6, 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
-            sheet.Cell(6, 3).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(7, 2).Value = cashCredit;
-            sheet.Cell(7, 3).Value = cashDebit;
+            sheet.Cell(8, 2).Value = "«” ·«„ ‰ﬁœÌ";
+            sheet.Cell(8, 3).Value = " ”·Ì„ ‰ﬁœÌ";
+            sheet.Cell(8, 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
+            sheet.Cell(8, 3).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+            sheet.Cell(9, 2).Value = cashCredit;
+            sheet.Cell(9, 3).Value = cashDebit;
 
-            sheet.Cell(6, 4).Value = "«·„Ã„Ê⁄";
-            sheet.Cell(6, 5).Value = "«·›—ﬁ";
-            sheet.Cell(6, 4).Style.Fill.BackgroundColor = XLColor.LightBlue;
-            sheet.Cell(6, 5).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(7, 4).Value = cashCredit + cashDebit;
-            sheet.Cell(7, 5).Value = cashCredit - cashDebit;
+            sheet.Cell(8, 4).Value = "«·„Ã„Ê⁄";
+            sheet.Cell(8, 5).Value = "«·›—ﬁ";
+            sheet.Cell(8, 4).Style.Fill.BackgroundColor = XLColor.LightBlue;
+            sheet.Cell(8, 5).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+            sheet.Cell(9, 4).Value = cashCredit + cashDebit;
+            sheet.Cell(9, 5).Value = cashCredit - cashDebit;
 
 
             float[] creditDebit = DatabaseHelper.GetCreditAndDept(date);
-            sheet.Cell(10, 1).Value = "«· «—ÌŒ";
-            sheet.Cell(10, 1).Style.Fill.BackgroundColor = XLColor.LightBlue;
-            sheet.Cell(11, 1).Value = date;
 
-            sheet.Cell(10, 2).Value = "·‰«";
-            sheet.Cell(10, 3).Value = "⁄·Ì‰«";
-            sheet.Cell(10, 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(10, 3).Style.Fill.BackgroundColor = XLColor.LightBlue;
-            sheet.Cell(11, 2).Value = creditDebit[0];
-            sheet.Cell(11, 3).Value = creditDebit[1];
+            sheet.Cell(12, 2).Value = "·‰«";
+            sheet.Cell(12, 3).Value = "⁄·Ì‰«";
+            sheet.Cell(12, 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+            sheet.Cell(12, 3).Style.Fill.BackgroundColor = XLColor.LightBlue;
+            sheet.Cell(13, 2).Value = creditDebit[0];
+            sheet.Cell(13, 3).Value = creditDebit[1];
 
-            sheet.Cell(10, 4).Value = "«·„Ã„Ê⁄";
-            sheet.Cell(10, 5).Value = "«·›—ﬁ";
-            sheet.Cell(10, 4).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(10, 5).Style.Fill.BackgroundColor = XLColor.LightBlue;
-            sheet.Cell(11, 4).Value = creditDebit[0] + creditDebit[1];
-            sheet.Cell(11, 5).Value = creditDebit[0] - creditDebit[1];
+            sheet.Cell(12, 4).Value = "«·„Ã„Ê⁄";
+            sheet.Cell(12, 5).Value = "«·›—ﬁ";
+            sheet.Cell(12, 4).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
+            sheet.Cell(12, 5).Style.Fill.BackgroundColor = XLColor.LightBlue;
+            sheet.Cell(13, 4).Value = creditDebit[0] + creditDebit[1];
+            sheet.Cell(13, 5).Value = creditDebit[0] - creditDebit[1];
 
 
             try
@@ -575,7 +577,8 @@ namespace ElectronicServices
 
         private void ElecPayBtn_Click(object sender, EventArgs e)
         {
-
+            ElecListViewDialog elvd = new();
+            elvd.ShowDialog();
         }
     }
 }

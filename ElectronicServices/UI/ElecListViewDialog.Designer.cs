@@ -32,62 +32,67 @@
             listView1 = new ListView();
             dateLabel = new Label();
             datePicker = new DateTimePicker();
-            button1 = new Button();
+            saveDataBtn = new Button();
             SuspendLayout();
             // 
             // listView1
             // 
             listView1.BackColor = Color.Ivory;
-            listView1.Font = new Font("Tahoma", 12F);
+            listView1.Font = new Font("Tahoma", 15.6F);
             listView1.ForeColor = Color.Black;
             listView1.FullRowSelect = true;
             listView1.GridLines = true;
             listView1.HeaderStyle = ColumnHeaderStyle.Nonclickable;
-            listView1.Location = new Point(0, 38);
+            listView1.Location = new Point(0, 49);
             listView1.MultiSelect = false;
             listView1.Name = "listView1";
             listView1.RightToLeft = RightToLeft.Yes;
             listView1.RightToLeftLayout = true;
-            listView1.Size = new Size(400, 462);
+            listView1.Size = new Size(520, 601);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
+            listView1.KeyPress += ListView1_KeyPress;
             // 
             // dateLabel
             // 
             dateLabel.AutoSize = true;
-            dateLabel.Font = new Font("Tahoma", 12F);
-            dateLabel.Location = new Point(350, 9);
+            dateLabel.Font = new Font("Tahoma", 15.6F);
+            dateLabel.Location = new Point(422, 13);
             dateLabel.Name = "dateLabel";
-            dateLabel.Size = new Size(50, 19);
+            dateLabel.RightToLeft = RightToLeft.Yes;
+            dateLabel.Size = new Size(86, 25);
             dateLabel.TabIndex = 2;
-            dateLabel.Text = "التاريخ";
+            dateLabel.Text = "التاريخ : ";
             // 
             // datePicker
             // 
             datePicker.CustomFormat = "  yyyy - MM MMMM - dd";
+            datePicker.Font = new Font("Segoe UI", 11.7F);
             datePicker.Format = DateTimePickerFormat.Custom;
-            datePicker.Location = new Point(156, 7);
+            datePicker.Location = new Point(172, 12);
             datePicker.Name = "datePicker";
-            datePicker.Size = new Size(188, 23);
+            datePicker.Size = new Size(244, 28);
             datePicker.TabIndex = 3;
-            datePicker.Value = new DateTime(2025, 9, 9, 15, 46, 0, 0);
+            datePicker.Value = new DateTime(2025, 9, 11, 15, 46, 0, 0);
             // 
-            // button1
+            // saveDataBtn
             // 
-            button1.Location = new Point(12, 7);
-            button1.Name = "button1";
-            button1.Size = new Size(93, 26);
-            button1.TabIndex = 4;
-            button1.Text = "إعتمد القيم";
-            button1.UseVisualStyleBackColor = true;
+            saveDataBtn.Font = new Font("Segoe UI", 11.7F);
+            saveDataBtn.Location = new Point(12, 7);
+            saveDataBtn.Name = "saveDataBtn";
+            saveDataBtn.Size = new Size(121, 36);
+            saveDataBtn.TabIndex = 4;
+            saveDataBtn.Text = "إعتمد القيم";
+            saveDataBtn.UseVisualStyleBackColor = true;
+            saveDataBtn.Click += SaveDataBtn_Click;
             // 
             // ElecListViewDialog
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(400, 500);
-            Controls.Add(button1);
+            ClientSize = new Size(520, 650);
+            Controls.Add(saveDataBtn);
             Controls.Add(datePicker);
             Controls.Add(dateLabel);
             Controls.Add(listView1);
@@ -97,7 +102,7 @@
             MinimizeBox = false;
             Name = "ElecListViewDialog";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "مساعد الحقول";
+            Text = "المدفوعات الإلكترونية";
             ResumeLayout(false);
             PerformLayout();
 
@@ -108,6 +113,6 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label dateLabel;
         private DateTimePicker datePicker;
-        private Button button1;
+        private Button saveDataBtn;
     }
 }

@@ -44,8 +44,8 @@ namespace ElectronicServices
                                       "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
                                       "CREATE TABLE payapp ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
                                       "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date TEXT NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, credit_payapp INTEGER NOT NULL, debit_payapp INTEGER NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id), FOREIGN KEY(credit_payapp) REFERENCES payapp(id), FOREIGN KEY(debit_payapp) REFERENCES payapp(id) );" +
-                                      "CREATE TABLE payapp_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, payapp_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(payapp_id) REFERENCES payapp(id) );" +
-                                      "CREATE TABLE daily_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, total_wallets REAL NOT NULL, total_cash REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL );" +
+                                      "CREATE TABLE payapp_closures (date TEXT NOT NULL, payapp_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(payapp_id) REFERENCES payapp(id), PRIMARY KEY (date, payapp_id) );" +
+                                      "CREATE TABLE daily_closures ( date TEXT NOT NULL PRIMARY KEY AUTOINCREMENT, total_wallets REAL NOT NULL, total_cash REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL );" +
                                       "INSERT INTO payapp VALUES (-1, '');" +
                                       "INSERT INTO payapp VALUES (0, 'نقدا');" +
                                       $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 'https://github.com/MohamedAshref371');";
@@ -240,9 +240,13 @@ namespace ElectronicServices
             return SelectMultiRows(sql, () => reader.GetString(0));
         }
 
-        public static float GetPayappDateField(int payapp, string date)
+        public static float GetPayappDateField(int payapp, string date, bool pay)
         {
-            string sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = {payapp} THEN credit ELSE 0 END + CASE WHEN debit_payapp = {payapp} THEN debit ELSE 0 END ), 0 ) AS total_value FROM transactions WHERE date = '{date}'";
+            string sql; 
+            if (pay)
+                sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = {payapp} THEN credit ELSE 0 END ), 0 ) FROM transactions WHERE date = '{date}'";
+            else // take
+                sql = $"SELECT COALESCE( SUM( CASE WHEN debit_payapp = {payapp} THEN debit ELSE 0 END ), 0 ) FROM transactions WHERE date = '{date}'";
 
             return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
         }
@@ -395,6 +399,12 @@ namespace ElectronicServices
             }
         }
 
+        public static float[] GetPayappClosure(string date)
+            => SelectMultiRows($"SELECT balance FROM payapp_closures WHERE date = '{date}' ORDER BY payapp_id", () => reader.GetFloat(0));
+
+        public static float GetSumPrevPayappClosure(string date)
+            => SelectMultiRows($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = (SELECT MAX(date) FROM payapp_closures WHERE date < '{date}')", () => reader.GetFloat(0))[0];
+
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
         {
             if (!success) return [];
@@ -443,6 +453,9 @@ namespace ElectronicServices
 
         public static bool DeleteTransaction(int id)
             => ExecuteNonQuery($"DELETE FROM transactions WHERE id = {id}") >= 0;
+
+        public static bool SetPayappClosure(string date, int payappId, float balance)
+            => ExecuteNonQuery($"INSERT INTO payapp_closures (date, payapp_id, balance) VALUES ('{date}', {payappId}, {balance}) ON CONFLICT(date, payapp_id) DO UPDATE SET balance = excluded.balance") >= 0;
 
         private static int ExecuteNonQuery(string sql)
         {
