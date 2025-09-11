@@ -110,6 +110,8 @@ namespace ElectronicServices
                 int.TryParse(listView1.Items[i].SubItems[1].Text, out int val);
                 DatabaseHelper.SetPayappClosure(date, i + 1, val);
             }
+
+            DatePicker_ValueChanged(this, EventArgs.Empty);
         }
 
     }
