@@ -78,6 +78,9 @@ namespace ElectronicServices
             float[] values = DatabaseHelper.GetPayappClosure(date);
             for (int i = 0; i < values.Length; i++)
                 listView1.Items[i].SubItems[1].Text = values[i].ToString();
+            for (int i = values.Length; i < payappsLength; i++)
+                listView1.Items[i].SubItems[1].Text = "0";
+
 
             float total = values.Sum();
             listView1.Items[payappsLength].SubItems[1].Text = total.ToString();
