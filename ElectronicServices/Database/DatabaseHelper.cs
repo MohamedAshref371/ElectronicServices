@@ -420,6 +420,13 @@ namespace ElectronicServices
         public static SumDate[] GetPayappClosureDates()
             => SelectMultiRows("SELECT date, SUM(balance) FROM payapp_closures GROUP BY date ORDER BY date DESC", GetSumDate);
 
+        public static float GetPayappClosureDateSum(string date)
+        {
+            float[] vals = SelectMultiRows($"SELECT SUM(balance) FROM payapp_closures WHERE date = '{date}'", () => reader.GetFloat(0));
+
+            return vals.Length == 0 ? 0f : vals[0];
+        }
+
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
         {
             if (!success) return [];

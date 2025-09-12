@@ -3,7 +3,7 @@ namespace ElectronicServices
 {
     public partial class ElecListViewDialog : Form
     {
-        int length; bool isDated;
+        int payappsLength; bool isDated; bool sizeChanged;
         public ElecListViewDialog(DateTime? date, bool changeDate)
         {
             InitializeComponent();
@@ -16,12 +16,12 @@ namespace ElectronicServices
                 saveDataBtn.Text = "إضافة جديد";
 
                 SumDate[] dates = DatabaseHelper.GetPayappClosureDates();
-                length = dates.Length;
 
                 if (dates.Length >= 17)
                 {
                     ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
                     listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
+                    sizeChanged = true;
                 }
 
                 listView1.Columns.Add("التاريخ", 300, HorizontalAlignment.Center);
@@ -43,7 +43,7 @@ namespace ElectronicServices
                 datePicker.Enabled = changeDate;
 
                 string[] payapps = DatabaseHelper.GetPayappsNames(true);
-                length = payapps.Length;
+                payappsLength = payapps.Length;
 
                 if (payapps.Length >= 17)
                 {
@@ -84,9 +84,14 @@ namespace ElectronicServices
         private void ConfirmSelection()
         {
             if (listView1.SelectedIndices.Count == 0) return;
+            var itm = listView1.SelectedItems[0];
+            string date = itm.SubItems[0].Text;
 
-            ElecListViewDialog elvd = new(listView1.SelectedItems[0].SubItems[0].Text.ToStandardDateTime(), false);
+            ElecListViewDialog elvd = new(date.ToStandardDateTime(), false);
             elvd.ShowDialog();
+
+            float sum = DatabaseHelper.GetPayappClosureDateSum(date);
+            itm.SubItems[1].Text = sum.ToString("0.##");
         }
 
         private void ListView1_KeyPress(object sender, KeyPressEventArgs e)
@@ -137,18 +142,18 @@ namespace ElectronicServices
             float[] values = DatabaseHelper.GetPayappClosure(date);
             for (int i = 0; i < values.Length; i++)
                 listView1.Items[i].SubItems[1].Text = values[i].ToString();
-            for (int i = values.Length; i < length; i++)
+            for (int i = values.Length; i < payappsLength; i++)
                 listView1.Items[i].SubItems[1].Text = "0";
 
             float total = values.Sum();
-            listView1.Items[length].SubItems[1].Text = total.ToString();
+            listView1.Items[payappsLength].SubItems[1].Text = total.ToString();
 
             float? prevTotal = DatabaseHelper.GetSumPrevPayappClosure(date);
 
             if (prevTotal == null)
             {
                 diff.BackColor = Color.FromArgb(220, 220, 220);
-                listView1.Items[length + 1].SubItems[1].Text = "لا يوجد";
+                listView1.Items[payappsLength + 1].SubItems[1].Text = "لا يوجد";
                 return;
             }
 
@@ -159,7 +164,7 @@ namespace ElectronicServices
             else
                 diff.BackColor = Color.FromArgb(240, 240, 240);
 
-            listView1.Items[length + 1].SubItems[1].Text = (total - prevTotal).ToString();
+            listView1.Items[payappsLength + 1].SubItems[1].Text = (total - prevTotal).ToString();
         }
 
         private void SaveDataBtn_Click(object sender, EventArgs e)
@@ -168,12 +173,32 @@ namespace ElectronicServices
             {
                 ElecListViewDialog elvd = new(DateTime.Now, true);
                 elvd.ShowDialog();
+
+                SumDate[] dates = DatabaseHelper.GetPayappClosureDates();
+
+                if (!sizeChanged && dates.Length >= 17)
+                {
+                    ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
+                    listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
+                    sizeChanged = true;
+                }
+
+                listView1.Items.Clear();
+
+                ListViewItem item;
+                for (int i = 0; i < dates.Length; i++)
+                {
+                    item = new ListViewItem(dates[i].Date);
+                    item.SubItems.Add(dates[i].Sum.ToString("0.##"));
+                    listView1.Items.Add(item);
+                }
+
                 return;
             }
 
             string date = datePicker.Value.ToStandardString();
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < payappsLength; i++)
             {
                 float.TryParse(listView1.Items[i].SubItems[1].Text, out float val);
                 DatabaseHelper.SetPayappClosure(date, i + 1, val);
