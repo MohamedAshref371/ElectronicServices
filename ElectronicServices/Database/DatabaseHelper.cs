@@ -328,6 +328,15 @@ namespace ElectronicServices
             };
         }
 
+        private static SumDate GetSumDate()
+        {
+            return new SumDate
+            {
+                Date = reader.GetString(0),
+                Sum = reader.GetFloat(1),
+            };
+        }
+
         public static float? GetTransactionBefore(int id, int customerId)
         {
             if (!success) return null;
@@ -407,6 +416,9 @@ namespace ElectronicServices
             float[] vals = SelectMultiRows($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = (SELECT MAX(date) FROM payapp_closures WHERE date < '{date}')", () => reader.GetFloat(0));
             return vals.Length == 0 ? null : vals[0];
         }
+
+        public static SumDate[] GetPayappClosureDates()
+            => SelectMultiRows("SELECT date, SUM(balance) FROM payapp_closures ORDER BY date DESC", GetSumDate);
 
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
         {

@@ -577,7 +577,7 @@ namespace ElectronicServices
 
         private void ElecPayBtn_Click(object sender, EventArgs e)
         {
-            ElecListViewDialog elvd = new();
+            ElecListViewDialog elvd = new(null, true);
             elvd.ShowDialog();
         }
     }
