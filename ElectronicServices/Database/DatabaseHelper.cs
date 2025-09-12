@@ -418,7 +418,7 @@ namespace ElectronicServices
         }
 
         public static SumDate[] GetPayappClosureDates()
-            => SelectMultiRows("SELECT date, SUM(balance) FROM payapp_closures ORDER BY date DESC", GetSumDate);
+            => SelectMultiRows("SELECT date, SUM(balance) FROM payapp_closures GROUB BY date ORDER BY date DESC", GetSumDate);
 
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
         {
