@@ -67,6 +67,10 @@ namespace ElectronicServices
                 item.SubItems.Add("0.00");
                 listView1.Items.Add(item);
 
+                item = new ListViewItem("");
+                item.SubItems.Add("");
+                listView1.Items.Add(item);
+
                 item = new ListViewItem("لنا") { BackColor = Color.FromArgb(255, 255, 255) };
                 item.SubItems.Add("0.00");
                 listView1.Items.Add(item);
@@ -186,9 +190,9 @@ namespace ElectronicServices
             listView1.Items[2].SubItems[1].Text = data.TotalWallets.ToString();
             listView1.Items[3].SubItems[1].Text = data.TotalCash.ToString();
             listView1.Items[4].SubItems[1].Text = data.TotalElectronic.ToString("0.##");
-            listView1.Items[5].SubItems[1].Text = data.Credit.ToString("0.##");
-            listView1.Items[6].SubItems[1].Text = data.Debit.ToString("0.##");
-            listView1.Items[8].SubItems[1].Text = total.ToString("0.##");
+            listView1.Items[6].SubItems[1].Text = data.Credit.ToString("0.##");
+            listView1.Items[7].SubItems[1].Text = data.Debit.ToString("0.##");
+            listView1.Items[9].SubItems[1].Text = total.ToString("0.##");
 
             if (total - prev < 0)
                 diff.BackColor = Color.FromArgb(255, 220, 220);
@@ -197,7 +201,7 @@ namespace ElectronicServices
             else
                 diff.BackColor = Color.FromArgb(240, 240, 240);
 
-            listView1.Items[9].SubItems[1].Text = (total - prev).ToString("0.##");
+            listView1.Items[10].SubItems[1].Text = (total - prev).ToString("0.##");
         }
 
         private void SaveDataBtn_Click(object sender, EventArgs e)
