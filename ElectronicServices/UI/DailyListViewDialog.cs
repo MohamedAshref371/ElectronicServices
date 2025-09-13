@@ -1,10 +1,10 @@
 ﻿
 namespace ElectronicServices
 {
-    public partial class ElecListViewDialog : Form
+    public partial class DailyListViewDialog : Form
     {
-        int payappsLength; bool isDated; bool sizeChanged;
-        public ElecListViewDialog(DateTime? date, bool changeDate)
+        bool isDated; bool sizeChanged;
+        public DailyListViewDialog(DateTime? date, bool changeDate)
         {
             InitializeComponent();
             if (date is null)
@@ -15,7 +15,7 @@ namespace ElectronicServices
 
                 saveDataBtn.Text = "إضافة جديد";
 
-                SumDate[] dates = DatabaseHelper.GetPayappClosureDates();
+                SumDate[] dates = DatabaseHelper.GetDailyClosureDates();
 
                 if (dates.Length >= 17)
                 {
@@ -42,37 +42,48 @@ namespace ElectronicServices
                 datePicker.ValueChanged += DatePicker_ValueChanged;
                 datePicker.Enabled = changeDate;
 
-                string[] payapps = DatabaseHelper.GetPayappsNames(true);
-                payappsLength = payapps.Length;
+                
 
-                if (payapps.Length >= 17)
-                {
-                    ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
-                    listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
-                }
-
-                listView1.Columns.Add("تطبيق الدفع الإلكتروني", 300, HorizontalAlignment.Center);
+                listView1.Columns.Add("تفاصيل التقفيل اليومي", 300, HorizontalAlignment.Center);
                 listView1.Columns.Add("الرصيد", listView1.ClientSize.Width - 301, HorizontalAlignment.Center);
 
                 ListViewItem item;
-                for (int i = 0; i < payapps.Length; i++)
-                {
-                    item = new ListViewItem(payapps[i]);
-                    item.SubItems.Add("0");
-                    listView1.Items.Add(item);
-                }
 
-                item = new ListViewItem("المجموع") { BackColor = Color.FromArgb(220, 255, 220) };
+                item = new ListViewItem("التاريخ") { BackColor = Color.FromArgb(255, 255, 255) };
+                item.SubItems.Add("");
+                listView1.Items.Add(item);
+
+                ListViewItem item1 = new ListViewItem("رصيد المحافظ");
                 item.SubItems.Add("0");
                 listView1.Items.Add(item);
 
-                diff = new("الفرق بين اليوم السابق") { BackColor = Color.FromArgb(220, 220, 220) };
-                diff.SubItems.Add("0");
+                ListViewItem item2 = new ListViewItem("السيولة");
+                item.SubItems.Add("0");
+                listView1.Items.Add(item);
+
+                item = new ListViewItem("المدفوعات الإلكترونية") { BackColor = Color.FromArgb(255, 255, 255) };
+                item.SubItems.Add("0.00");
+                listView1.Items.Add(item);
+
+                item = new ListViewItem("لنا") { BackColor = Color.FromArgb(255, 255, 255) };
+                item.SubItems.Add("0.00");
+                listView1.Items.Add(item);
+
+                item = new ListViewItem("علينا") { BackColor = Color.FromArgb(255, 255, 255) };
+                item.SubItems.Add("0.00");
+                listView1.Items.Add(item);
+
+                item = new ListViewItem("المجموع") { BackColor = Color.FromArgb(220, 255, 220) };
+                item.SubItems.Add("0.00");
+                listView1.Items.Add(item);
+
+                diff = new ListViewItem("الفرق بين اليوم السابق") { BackColor = Color.FromArgb(220, 220, 220) };
+                diff.SubItems.Add("0.00");
                 listView1.Items.Add(diff);
 
                 listView1.ItemSelectionChanged += (s, e) =>
                 {
-                    if ((e.Item == item || e.Item == diff) && e.IsSelected)
+                    if ((e.Item != item1 && e.Item != item2) && e.IsSelected)
                         e.Item.Selected = false;
                 };
 
@@ -87,10 +98,10 @@ namespace ElectronicServices
             var itm = listView1.SelectedItems[0];
             string date = itm.SubItems[0].Text;
 
-            ElecListViewDialog elvd = new(date.ToStandardDateTime(), false);
+            DailyListViewDialog elvd = new(date.ToStandardDateTime(), false);
             elvd.ShowDialog();
 
-            float sum = DatabaseHelper.GetSumPayappClosure(date);
+            float sum = DatabaseHelper.GetSumDailyClosure(date);
             itm.SubItems[1].Text = sum.ToString("0.##");
         }
 
@@ -139,42 +150,64 @@ namespace ElectronicServices
                 return;
             }
 
-            float[] values = DatabaseHelper.GetPayappClosure(date);
-            for (int i = 0; i < values.Length; i++)
-                listView1.Items[i].SubItems[1].Text = values[i].ToString();
-            for (int i = values.Length; i < payappsLength; i++)
-                listView1.Items[i].SubItems[1].Text = "0";
+            DailyClosureData? data = DatabaseHelper.GetDailyClosure(date);
 
-            float total = values.Sum();
-            listView1.Items[payappsLength].SubItems[1].Text = total.ToString();
+            if (data is null)
+            {
+                float totalElec = 0f;
+                if (!DatabaseHelper.FindDateInPayappClosure(date))
+                    MessageBox.Show("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا التاريخ\nيمكنك إضافته من خلال شاشة إقفال تطبيقات الدفع الإلكتروني.", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else
+                    totalElec = DatabaseHelper.GetSumPayappClosure(date);
 
-            float? prevTotal = DatabaseHelper.GetSumPrevPayappClosure(date);
+                float[] creditDebit = DatabaseHelper.GetCreditAndDept(date, true);
 
-            if (prevTotal == null)
+                data = new DailyClosureData
+                {
+                    Date = date,
+                    TotalWallets = 0,
+                    TotalCash = 0,
+                    TotalElectronic = totalElec,
+                    Credit = creditDebit[0],
+                    Debit = creditDebit[1],
+                };
+            }
+            float? prev = DatabaseHelper.GetSumPrevDailyClosure(date);
+            float total = data.Sum;
+
+            listView1.Items[0].SubItems[1].Text = data.Date;
+            listView1.Items[1].SubItems[1].Text = data.TotalWallets.ToString();
+            listView1.Items[2].SubItems[1].Text = data.TotalCash.ToString();
+            listView1.Items[3].SubItems[1].Text = data.TotalElectronic.ToString("0.##");
+            listView1.Items[4].SubItems[1].Text = data.Credit.ToString("0.##");
+            listView1.Items[5].SubItems[1].Text = data.Debit.ToString("0.##");
+            listView1.Items[6].SubItems[1].Text = total.ToString("0.##");
+
+            if (prev == null)
             {
                 diff.BackColor = Color.FromArgb(220, 220, 220);
-                listView1.Items[payappsLength + 1].SubItems[1].Text = "لا يوجد";
+                listView1.Items[7].SubItems[1].Text = "لا يوجد";
                 return;
             }
 
-            if (total - prevTotal < 0)
+            if (total - prev < 0)
                 diff.BackColor = Color.FromArgb(255, 220, 220);
-            else if (total - prevTotal > 0)
+            else if (total - prev > 0)
                 diff.BackColor = Color.FromArgb(220, 220, 255);
             else
                 diff.BackColor = Color.FromArgb(240, 240, 240);
 
-            listView1.Items[payappsLength + 1].SubItems[1].Text = (total - prevTotal).ToString();
+            listView1.Items[7].SubItems[1].Text = (total - prev).ToString();
         }
 
         private void SaveDataBtn_Click(object sender, EventArgs e)
         {
             if (!isDated)
             {
-                ElecListViewDialog elvd = new(DateTime.Now, true);
+                DailyListViewDialog elvd = new(DateTime.Now, true);
                 elvd.ShowDialog();
 
-                SumDate[] dates = DatabaseHelper.GetPayappClosureDates();
+                SumDate[] dates = DatabaseHelper.GetDailyClosureDates();
 
                 if (!sizeChanged && dates.Length >= 17)
                 {
@@ -198,11 +231,28 @@ namespace ElectronicServices
 
             string date = datePicker.Value.ToStandardString();
 
-            for (int i = 0; i < payappsLength; i++)
+            float totalElec = 0f;
+            if (!DatabaseHelper.FindDateInPayappClosure(date))
+                MessageBox.Show("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا التاريخ\nيمكنك إضافته من خلال شاشة إقفال تطبيقات الدفع الإلكتروني.", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else
+                totalElec = DatabaseHelper.GetSumPayappClosure(date);
+
+            float[] creditDebit = DatabaseHelper.GetCreditAndDept(date, true);
+
+            float.TryParse(listView1.Items[1].SubItems[1].Text, out float wallets);
+            float.TryParse(listView1.Items[2].SubItems[1].Text, out float cash);
+
+            DailyClosureData data = new DailyClosureData
             {
-                float.TryParse(listView1.Items[i].SubItems[1].Text, out float val);
-                DatabaseHelper.SetPayappClosure(date, i + 1, val);
-            }
+                Date = date,
+                TotalWallets = wallets,
+                TotalCash = cash,
+                TotalElectronic = totalElec,
+                Credit = creditDebit[0],
+                Debit = creditDebit[1],
+            };
+
+            DatabaseHelper.SetDailyClosure(data);
 
             DatePicker_ValueChanged(this, EventArgs.Empty);
         }

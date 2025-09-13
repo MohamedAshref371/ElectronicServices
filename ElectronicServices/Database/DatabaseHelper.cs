@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿
+using System.Data.SQLite;
 
 namespace ElectronicServices
 {
@@ -337,6 +338,19 @@ namespace ElectronicServices
             };
         }
 
+        private static DailyClosureData GetDailyClosureData()
+        {
+            return new DailyClosureData
+            {
+                Date = reader.GetString(0),
+                TotalWallets = reader.GetFloat(1),
+                TotalCash = reader.GetFloat(2),
+                TotalElectronic = reader.GetFloat(3),
+                Credit = reader.GetFloat(4),
+                Debit = reader.GetFloat(5),
+            };
+        }
+
         public static float? GetTransactionBefore(int id, int customerId)
         {
             if (!success) return null;
@@ -384,14 +398,14 @@ namespace ElectronicServices
             }
         }
 
-        public static float[] GetCreditAndDept(string date)
+        public static float[] GetCreditAndDept(string date, bool prev = false)
         {
             if (!success) return [0f, 0f];
             try
             {
                 conn.Open();
                 command.CommandText = "SELECT SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_debit FROM " +
-                                        $"( SELECT COALESCE(SUM(credit), 0) AS credit, COALESCE(SUM(debit), 0) AS debit FROM transactions WHERE date = '{date}' GROUP BY customer_id )";
+                                        $"( SELECT COALESCE(SUM(credit), 0) AS credit, COALESCE(SUM(debit), 0) AS debit FROM transactions WHERE date {(prev ? "<" : "")}= '{date}' GROUP BY customer_id )";
                 reader = command.ExecuteReader();
                 if (!reader.Read()) return [0f, 0f];
                 return [reader.IsDBNull(0) ? 0f : reader.GetFloat(0), reader.IsDBNull(1) ? 0f : reader.GetFloat(1)];
@@ -408,23 +422,62 @@ namespace ElectronicServices
             }
         }
 
+
         public static float[] GetPayappClosure(string date)
             => SelectMultiRows($"SELECT balance FROM payapp_closures WHERE date = '{date}' ORDER BY payapp_id", () => reader.GetFloat(0));
 
         public static float? GetSumPrevPayappClosure(string date)
-        {
-            float[] vals = SelectMultiRows($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = (SELECT MAX(date) FROM payapp_closures WHERE date < '{date}')", () => reader.GetFloat(0));
-            return vals.Length == 0 ? null : vals[0];
-        }
-
+            => SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = (SELECT MAX(date) FROM payapp_closures WHERE date < '{date}')", () => reader.GetFloat(0));
+        
         public static SumDate[] GetPayappClosureDates()
             => SelectMultiRows("SELECT date, SUM(balance) FROM payapp_closures GROUP BY date ORDER BY date DESC", GetSumDate);
 
-        public static float GetPayappClosureDateSum(string date)
+        public static float GetSumPayappClosure(string date)
         {
-            float[] vals = SelectMultiRows($"SELECT SUM(balance) FROM payapp_closures WHERE date = '{date}'", () => reader.GetFloat(0));
+            float? val = SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = '{date}'", () => reader.GetFloat(0));
 
-            return vals.Length == 0 ? 0f : vals[0];
+            return val.HasValue ? 0f : (float)val;
+        }
+
+        public static bool FindDateInPayappClosure(string date)
+            => ((int?)SelectRow($"SELECT 1 FROM payapp_closures WHERE date = '{date}' LIMIT 1", () => reader.GetInt32(0))).HasValue;
+
+
+        public static DailyClosureData? GetDailyClosure(string date)
+            => SelectRow($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit FROM daily_closures WHERE date = '{date}'", GetDailyClosureData);
+
+        public static float? GetSumPrevDailyClosure(string date)
+            => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = (SELECT MAX(date) FROM daily_closures WHERE date < '{date}')", () => reader.GetFloat(0));
+
+        public static SumDate[] GetDailyClosureDates()
+            => SelectMultiRows("SELECT date, total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures ORDER BY date DESC", GetSumDate);
+
+        public static float GetSumDailyClosure(string date)
+            => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = '{date}'", () => reader.GetFloat(0));
+
+
+        private static T? SelectRow<T>(string sql, Func<T> method)
+        {
+            if (!success) return default;
+            try
+            {
+                conn.Open();
+                command.CommandText = sql;
+                reader = command.ExecuteReader();
+                if (reader.Read())
+                    return method();
+                return default;
+            }
+            catch (Exception ex)
+            {
+                LogError(ex, true);
+                return default;
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
         }
 
         private static T[] SelectMultiRows<T>(string sql, Func<T> method)
@@ -478,6 +531,9 @@ namespace ElectronicServices
 
         public static bool SetPayappClosure(string date, int payappId, float balance)
             => ExecuteNonQuery($"INSERT INTO payapp_closures (date, payapp_id, balance) VALUES ('{date}', {payappId}, {balance}) ON CONFLICT(date, payapp_id) DO UPDATE SET balance = excluded.balance") >= 0;
+
+        public static bool SetDailyClosure(DailyClosureData data)
+            => ExecuteNonQuery($"INSERT INTO daily_closures (date, total_wallets, total_cash, total_electronic, credit, debit) VALUES ('{data.Date}', {data.TotalWallets}, {data.TotalCash}, {data.TotalElectronic}, {data.Credit}, {data.Debit}) ON CONFLICT(date) DO UPDATE SET total_wallets = excluded.total_wallets, total_cash = excluded.total_cash, total_electronic = excluded.total_electronic, credit = excluded.credit, debit = excluded.debit") >= 0;
 
         private static int ExecuteNonQuery(string sql)
         {
