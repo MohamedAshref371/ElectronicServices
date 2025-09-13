@@ -47,6 +47,10 @@ namespace ElectronicServices
 
                 ListViewItem item;
 
+                item = new ListViewItem("");
+                item.SubItems.Add("");
+                listView1.Items.Add(item);
+
                 item = new ListViewItem("التاريخ") { BackColor = Color.FromArgb(255, 255, 255) };
                 item.SubItems.Add("");
                 listView1.Items.Add(item);
@@ -69,6 +73,10 @@ namespace ElectronicServices
 
                 item = new ListViewItem("علينا") { BackColor = Color.FromArgb(255, 255, 255) };
                 item.SubItems.Add("0.00");
+                listView1.Items.Add(item);
+
+                item = new ListViewItem("");
+                item.SubItems.Add("");
                 listView1.Items.Add(item);
 
                 item = new ListViewItem("المجموع") { BackColor = Color.FromArgb(220, 255, 220) };
@@ -174,13 +182,13 @@ namespace ElectronicServices
             float prev = DatabaseHelper.GetSumPrevDailyClosure(date);
             float total = data.Sum;
 
-            listView1.Items[0].SubItems[1].Text = data.Date;
-            listView1.Items[1].SubItems[1].Text = data.TotalWallets.ToString();
-            listView1.Items[2].SubItems[1].Text = data.TotalCash.ToString();
-            listView1.Items[3].SubItems[1].Text = data.TotalElectronic.ToString("0.##");
-            listView1.Items[4].SubItems[1].Text = data.Credit.ToString("0.##");
-            listView1.Items[5].SubItems[1].Text = data.Debit.ToString("0.##");
-            listView1.Items[6].SubItems[1].Text = total.ToString("0.##");
+            listView1.Items[1].SubItems[1].Text = data.Date;
+            listView1.Items[2].SubItems[1].Text = data.TotalWallets.ToString();
+            listView1.Items[3].SubItems[1].Text = data.TotalCash.ToString();
+            listView1.Items[4].SubItems[1].Text = data.TotalElectronic.ToString("0.##");
+            listView1.Items[5].SubItems[1].Text = data.Credit.ToString("0.##");
+            listView1.Items[6].SubItems[1].Text = data.Debit.ToString("0.##");
+            listView1.Items[8].SubItems[1].Text = total.ToString("0.##");
 
             if (total - prev < 0)
                 diff.BackColor = Color.FromArgb(255, 220, 220);
@@ -189,7 +197,7 @@ namespace ElectronicServices
             else
                 diff.BackColor = Color.FromArgb(240, 240, 240);
 
-            listView1.Items[7].SubItems[1].Text = (total - prev).ToString("0.##");
+            listView1.Items[9].SubItems[1].Text = (total - prev).ToString("0.##");
         }
 
         private void SaveDataBtn_Click(object sender, EventArgs e)
@@ -231,8 +239,8 @@ namespace ElectronicServices
 
             float[] creditDebit = DatabaseHelper.GetCreditAndDept(date, true);
 
-            float.TryParse(listView1.Items[1].SubItems[1].Text, out float wallets);
-            float.TryParse(listView1.Items[2].SubItems[1].Text, out float cash);
+            float.TryParse(listView1.Items[2].SubItems[1].Text, out float wallets);
+            float.TryParse(listView1.Items[3].SubItems[1].Text, out float cash);
 
             DailyClosureData data = new DailyClosureData
             {
