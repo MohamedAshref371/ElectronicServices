@@ -580,5 +580,11 @@ namespace ElectronicServices
             ElecListViewDialog elvd = new(null, true);
             elvd.ShowDialog();
         }
+
+        private void InventoryBtn_Click(object sender, EventArgs e)
+        {
+            DailyListViewDialog dlvd = new(null, true);
+            dlvd.ShowDialog();
+        }
     }
 }

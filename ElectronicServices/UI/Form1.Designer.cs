@@ -1099,6 +1099,7 @@
             inventoryBtn.Size = new Size(162, 35);
             inventoryBtn.TabIndex = 8;
             inventoryBtn.Text = "التقفيل اليومي";
+            inventoryBtn.Click += InventoryBtn_Click;
             // 
             // elecPayBtn
             // 

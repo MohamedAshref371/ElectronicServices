@@ -42,8 +42,6 @@ namespace ElectronicServices
                 datePicker.ValueChanged += DatePicker_ValueChanged;
                 datePicker.Enabled = changeDate;
 
-                
-
                 listView1.Columns.Add("تفاصيل التقفيل اليومي", 300, HorizontalAlignment.Center);
                 listView1.Columns.Add("الرصيد", listView1.ClientSize.Width - 301, HorizontalAlignment.Center);
 
@@ -54,12 +52,12 @@ namespace ElectronicServices
                 listView1.Items.Add(item);
 
                 ListViewItem item1 = new ListViewItem("رصيد المحافظ");
-                item.SubItems.Add("0");
-                listView1.Items.Add(item);
+                item1.SubItems.Add("0");
+                listView1.Items.Add(item1);
 
                 ListViewItem item2 = new ListViewItem("السيولة");
-                item.SubItems.Add("0");
-                listView1.Items.Add(item);
+                item2.SubItems.Add("0");
+                listView1.Items.Add(item2);
 
                 item = new ListViewItem("المدفوعات الإلكترونية") { BackColor = Color.FromArgb(255, 255, 255) };
                 item.SubItems.Add("0.00");
@@ -172,7 +170,8 @@ namespace ElectronicServices
                     Debit = creditDebit[1],
                 };
             }
-            float? prev = DatabaseHelper.GetSumPrevDailyClosure(date);
+
+            float prev = DatabaseHelper.GetSumPrevDailyClosure(date);
             float total = data.Sum;
 
             listView1.Items[0].SubItems[1].Text = data.Date;
@@ -183,13 +182,6 @@ namespace ElectronicServices
             listView1.Items[5].SubItems[1].Text = data.Debit.ToString("0.##");
             listView1.Items[6].SubItems[1].Text = total.ToString("0.##");
 
-            if (prev == null)
-            {
-                diff.BackColor = Color.FromArgb(220, 220, 220);
-                listView1.Items[7].SubItems[1].Text = "لا يوجد";
-                return;
-            }
-
             if (total - prev < 0)
                 diff.BackColor = Color.FromArgb(255, 220, 220);
             else if (total - prev > 0)
@@ -197,7 +189,7 @@ namespace ElectronicServices
             else
                 diff.BackColor = Color.FromArgb(240, 240, 240);
 
-            listView1.Items[7].SubItems[1].Text = (total - prev).ToString();
+            listView1.Items[7].SubItems[1].Text = (total - prev).ToString("0.##");
         }
 
         private void SaveDataBtn_Click(object sender, EventArgs e)

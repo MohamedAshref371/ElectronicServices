@@ -63,11 +63,11 @@ namespace ElectronicServices
                 }
 
                 item = new ListViewItem("المجموع") { BackColor = Color.FromArgb(220, 255, 220) };
-                item.SubItems.Add("0");
+                item.SubItems.Add("0.00");
                 listView1.Items.Add(item);
 
                 diff = new("الفرق بين اليوم السابق") { BackColor = Color.FromArgb(220, 220, 220) };
-                diff.SubItems.Add("0");
+                diff.SubItems.Add("0.00");
                 listView1.Items.Add(diff);
 
                 listView1.ItemSelectionChanged += (s, e) =>
@@ -146,16 +146,9 @@ namespace ElectronicServices
                 listView1.Items[i].SubItems[1].Text = "0";
 
             float total = values.Sum();
-            listView1.Items[payappsLength].SubItems[1].Text = total.ToString();
+            listView1.Items[payappsLength].SubItems[1].Text = total.ToString("0.##");
 
-            float? prevTotal = DatabaseHelper.GetSumPrevPayappClosure(date);
-
-            if (prevTotal == null)
-            {
-                diff.BackColor = Color.FromArgb(220, 220, 220);
-                listView1.Items[payappsLength + 1].SubItems[1].Text = "لا يوجد";
-                return;
-            }
+            float prevTotal = DatabaseHelper.GetSumPrevPayappClosure(date);
 
             if (total - prevTotal < 0)
                 diff.BackColor = Color.FromArgb(255, 220, 220);
@@ -164,7 +157,7 @@ namespace ElectronicServices
             else
                 diff.BackColor = Color.FromArgb(240, 240, 240);
 
-            listView1.Items[payappsLength + 1].SubItems[1].Text = (total - prevTotal).ToString();
+            listView1.Items[payappsLength + 1].SubItems[1].Text = (total - prevTotal).ToString("0.##");
         }
 
         private void SaveDataBtn_Click(object sender, EventArgs e)

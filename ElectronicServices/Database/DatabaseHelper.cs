@@ -338,7 +338,7 @@ namespace ElectronicServices
             };
         }
 
-        private static DailyClosureData GetDailyClosureData()
+        private static DailyClosureData? GetDailyClosureData()
         {
             return new DailyClosureData
             {
@@ -426,27 +426,23 @@ namespace ElectronicServices
         public static float[] GetPayappClosure(string date)
             => SelectMultiRows($"SELECT balance FROM payapp_closures WHERE date = '{date}' ORDER BY payapp_id", () => reader.GetFloat(0));
 
-        public static float? GetSumPrevPayappClosure(string date)
+        public static float GetSumPrevPayappClosure(string date)
             => SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = (SELECT MAX(date) FROM payapp_closures WHERE date < '{date}')", () => reader.GetFloat(0));
         
         public static SumDate[] GetPayappClosureDates()
             => SelectMultiRows("SELECT date, SUM(balance) FROM payapp_closures GROUP BY date ORDER BY date DESC", GetSumDate);
 
         public static float GetSumPayappClosure(string date)
-        {
-            float? val = SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = '{date}'", () => reader.GetFloat(0));
-
-            return val.HasValue ? 0f : (float)val;
-        }
-
+            => SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = '{date}'", () => reader.GetFloat(0));
+        
         public static bool FindDateInPayappClosure(string date)
-            => ((int?)SelectRow($"SELECT 1 FROM payapp_closures WHERE date = '{date}' LIMIT 1", () => reader.GetInt32(0))).HasValue;
+            => SelectRow($"SELECT 1 FROM payapp_closures WHERE date = '{date}' LIMIT 1", () => reader.GetInt32(0)) == 1;
 
 
         public static DailyClosureData? GetDailyClosure(string date)
             => SelectRow($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit FROM daily_closures WHERE date = '{date}'", GetDailyClosureData);
 
-        public static float? GetSumPrevDailyClosure(string date)
+        public static float GetSumPrevDailyClosure(string date)
             => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = (SELECT MAX(date) FROM daily_closures WHERE date < '{date}')", () => reader.GetFloat(0));
 
         public static SumDate[] GetDailyClosureDates()
