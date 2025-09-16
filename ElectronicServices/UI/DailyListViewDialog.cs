@@ -191,6 +191,8 @@ namespace ElectronicServices
                     }
                     else if (res == DialogResult.Yes)
                         totalElec = DatabaseHelper.GetSumPayappClosure(id);
+                    else
+                        id = 0;
                 }
                 else
                     totalElec = DatabaseHelper.GetSumPayappClosure(id);
