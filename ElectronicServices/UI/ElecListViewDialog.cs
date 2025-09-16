@@ -25,13 +25,13 @@ namespace ElectronicServices
                     sizeChanged = true;
                 }
 
-                listView1.Columns.Add("التاريخ", 300, HorizontalAlignment.Center);
+                listView1.Columns.Add("            التاريخ", 300, HorizontalAlignment.Center);
                 listView1.Columns.Add("المجموع", listView1.ClientSize.Width - 301, HorizontalAlignment.Center);
 
                 ListViewItem item;
                 for (int i = 0; i < dates.Length; i++)
                 {
-                    item = new ListViewItem(dates[i].Date);
+                    item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
                     item.Tag = dates[i].Id;
                     item.SubItems.Add(dates[i].Sum.ToString("0.##"));
                     listView1.Items.Add(item);
@@ -87,7 +87,7 @@ namespace ElectronicServices
         {
             if (listView1.SelectedIndices.Count == 0) return;
             var itm = listView1.SelectedItems[0];
-            string date = itm.SubItems[0].Text;
+            string date = itm.SubItems[0].Text[5..].Replace("   ", " ");
 
             int id = (int)itm.Tag;
             ElecListViewDialog elvd = new(date.ToCompleteStandardDateTime(), false, id);
@@ -130,7 +130,7 @@ namespace ElectronicServices
             {
                 foreach (ListViewItem item in listView1.Items)
                 {
-                    if (item.Text[..10] == date[..10])
+                    if (item.Text[5..15] == date[..10])
                     {
                         item.Selected = true;
                         item.Focused = true;
@@ -186,7 +186,7 @@ namespace ElectronicServices
                 ListViewItem item;
                 for (int i = 0; i < dates.Length; i++)
                 {
-                    item = new ListViewItem(dates[i].Date);
+                    item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
                     item.Tag = dates[i].Id;
                     item.SubItems.Add(dates[i].Sum.ToString("0.##"));
                     listView1.Items.Add(item);
@@ -202,7 +202,6 @@ namespace ElectronicServices
                 datePicker.Value = DateTime.Now;
                 changeWithSave = false;
             }
-                
 
             string date = datePicker.Value.ToCompleteStandardString();
 

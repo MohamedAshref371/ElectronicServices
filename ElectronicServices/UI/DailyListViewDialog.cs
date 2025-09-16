@@ -25,13 +25,13 @@ namespace ElectronicServices
                     sizeChanged = true;
                 }
 
-                listView1.Columns.Add("التاريخ", 300, HorizontalAlignment.Center);
+                listView1.Columns.Add("            التاريخ", 300, HorizontalAlignment.Center);
                 listView1.Columns.Add("المجموع", listView1.ClientSize.Width - 301, HorizontalAlignment.Center);
 
                 ListViewItem item;
                 for (int i = 0; i < dates.Length; i++)
                 {
-                    item = new ListViewItem(dates[i].Date);
+                    item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
                     item.SubItems.Add(dates[i].Sum.ToString("0.##"));
                     listView1.Items.Add(item);
                 }
@@ -111,7 +111,7 @@ namespace ElectronicServices
         {
             if (listView1.SelectedIndices.Count == 0) return;
             var itm = listView1.SelectedItems[0];
-            string date = itm.SubItems[0].Text;
+            string date = itm.SubItems[0].Text[5..].Replace("   ", " ");
 
             DailyListViewDialog elvd = new(date.ToCompleteStandardDateTime(), false, false);
             elvd.ShowDialog();
@@ -153,7 +153,7 @@ namespace ElectronicServices
             {
                 foreach (ListViewItem item in listView1.Items)
                 {
-                    if (item.Text[..10] == date[..10])
+                    if (item.Text[5..15] == date[..10])
                     {
                         item.Selected = true;
                         item.Focused = true;
@@ -214,7 +214,7 @@ namespace ElectronicServices
             float prev = DatabaseHelper.GetSumPrevDailyClosure(date);
             float total = data.Sum;
 
-            listView1.Items[1].SubItems[1].Text = data.Date;
+            listView1.Items[1].SubItems[1].Text = "\u200E" + data.Date;
             listView1.Items[3].SubItems[1].Text = data.TotalWallets.ToString();
             listView1.Items[4].SubItems[1].Text = data.TotalCash.ToString();
             listView1.Items[5].SubItems[1].Text = data.TotalElectronic.ToString("0.##");
@@ -255,7 +255,7 @@ namespace ElectronicServices
                 ListViewItem item;
                 for (int i = 0; i < dates.Length; i++)
                 {
-                    item = new ListViewItem(dates[i].Date);
+                    item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
                     item.SubItems.Add(dates[i].Sum.ToString("0.##"));
                     listView1.Items.Add(item);
                 }
