@@ -9,6 +9,7 @@ namespace ElectronicServices
         public float TotalElectronic;
         public float Credit;
         public float Debit;
+        public int PayappClosureId;
         public float Sum => TotalWallets + TotalCash + TotalElectronic + Credit - Debit;
     }
 }

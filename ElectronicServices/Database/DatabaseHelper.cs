@@ -6,7 +6,7 @@ namespace ElectronicServices
     static class DatabaseHelper
     {
         private static bool success = false;
-        private static readonly int classVersion = 2;
+        private static readonly int classVersion = 3;
         private static readonly string dataFolder = "data", imagesFolder = $"{dataFolder}\\images\\", databaseFile = $"{dataFolder}\\ProgData.ds";
         private static readonly SQLiteConnection conn = new($"Data Source={databaseFile};Version=3;");
         private static readonly SQLiteCommand command = new(conn);
@@ -45,8 +45,9 @@ namespace ElectronicServices
                                       "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
                                       "CREATE TABLE payapp ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
                                       "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date TEXT NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, credit_payapp INTEGER NOT NULL, debit_payapp INTEGER NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id), FOREIGN KEY(credit_payapp) REFERENCES payapp(id), FOREIGN KEY(debit_payapp) REFERENCES payapp(id) );" +
-                                      "CREATE TABLE payapp_closures (date TEXT NOT NULL, payapp_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(payapp_id) REFERENCES payapp(id), PRIMARY KEY (date, payapp_id) );" +
-                                      "CREATE TABLE daily_closures ( date TEXT NOT NULL PRIMARY KEY, total_wallets REAL NOT NULL, total_cash REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL );" +
+                                      "CREATE TABLE payapp_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, closured INTEGER NOT NULL );" +
+                                      "CREATE TABLE payapp_closures_details (closure_id INTEGER NOT NULL, payapp_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(payapp_id) REFERENCES payapp(id), PRIMARY KEY (closure_id, payapp_id) );" +
+                                      "CREATE TABLE daily_closures ( date TEXT NOT NULL PRIMARY KEY, total_wallets REAL NOT NULL, total_cash REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, closure_id INTEGER NOT NULL, FOREIGN KEY(closure_id) REFERENCES payapp_closures(id) );" +
                                       "INSERT INTO payapp VALUES (-1, '');" +
                                       "INSERT INTO payapp VALUES (0, 'نقدا');" +
                                       $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 'https://github.com/MohamedAshref371');";
@@ -245,23 +246,9 @@ namespace ElectronicServices
         {
             string sql; 
             if (pay)
-                sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = {payapp} THEN credit ELSE 0 END ), 0 ) FROM transactions WHERE date = '{date}'";
+                sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = {payapp} THEN credit ELSE 0 END ), 0 ) FROM transactions WHERE date LIKE '{date}%'";
             else // take
-                sql = $"SELECT COALESCE( SUM( CASE WHEN debit_payapp = {payapp} THEN debit ELSE 0 END ), 0 ) FROM transactions WHERE date = '{date}'";
-
-            return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
-        }
-
-        public static float GetCerditCashField(string date)
-        {
-            string sql = $"SELECT COALESCE( SUM( CASE WHEN credit_payapp = 0 THEN credit ELSE 0 END ), 0 ) FROM transactions WHERE date = '{date}'";
-
-            return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
-        }
-
-        public static float GetDebitCashField(string date)
-        {
-            string sql = $"SELECT COALESCE( SUM( CASE WHEN debit_payapp = 0 THEN debit ELSE 0 END ), 0 ) FROM transactions WHERE date = '{date}'";
+                sql = $"SELECT COALESCE( SUM( CASE WHEN debit_payapp = {payapp} THEN debit ELSE 0 END ), 0 ) FROM transactions WHERE date LIKE '{date}%'";
 
             return SelectMultiRows(sql, () => reader.GetFloat(0))[0];
         }
@@ -333,6 +320,16 @@ namespace ElectronicServices
         {
             return new SumDate
             {
+                Id = reader.GetInt32(0),
+                Date = reader.GetString(1),
+                Sum = reader.GetFloat(2),
+            };
+        }
+
+        private static SumDate GetSumDate2()
+        {
+            return new SumDate
+            {
                 Date = reader.GetString(0),
                 Sum = reader.GetFloat(1),
             };
@@ -348,6 +345,7 @@ namespace ElectronicServices
                 TotalElectronic = reader.GetFloat(3),
                 Credit = reader.GetFloat(4),
                 Debit = reader.GetFloat(5),
+                PayappClosureId = reader.GetInt32(6),
             };
         }
 
@@ -374,14 +372,15 @@ namespace ElectronicServices
             }
         }
 
-        public static float[] GetCreditAndDept()
+        public static float[] GetCreditAndDept(string date = "", bool prev = false)
         {
             if (!success) return [0f, 0f];
             try
             {
+                string cond = date == "" ? "" : (prev ? $"WHERE date <= '{date}'" : $"WHERE date LIKE '{date}%'");
                 conn.Open();
                 command.CommandText = "SELECT SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_debit FROM " +
-                                        "( SELECT COALESCE(SUM(credit), 0) AS credit, COALESCE(SUM(debit), 0) AS debit FROM transactions GROUP BY customer_id )";
+                                        $"( SELECT COALESCE(SUM(credit), 0) AS credit, COALESCE(SUM(debit), 0) AS debit FROM transactions {cond} GROUP BY customer_id )";
                 reader = command.ExecuteReader();
                 if (!reader.Read()) return [0f, 0f];
                 return [reader.IsDBNull(0) ? 0f : reader.GetFloat(0), reader.IsDBNull(1) ? 0f : reader.GetFloat(1)];
@@ -398,55 +397,36 @@ namespace ElectronicServices
             }
         }
 
-        public static float[] GetCreditAndDept(string date, bool prev = false)
-        {
-            if (!success) return [0f, 0f];
-            try
-            {
-                conn.Open();
-                command.CommandText = "SELECT SUM(CASE WHEN (debit - credit) > 0 THEN (debit - credit) ELSE 0 END) AS comp_credit, SUM(CASE WHEN (credit - debit) > 0 THEN (credit - debit) ELSE 0 END) AS comp_debit FROM " +
-                                        $"( SELECT COALESCE(SUM(credit), 0) AS credit, COALESCE(SUM(debit), 0) AS debit FROM transactions WHERE date {(prev ? "<" : "")}= '{date}' GROUP BY customer_id )";
-                reader = command.ExecuteReader();
-                if (!reader.Read()) return [0f, 0f];
-                return [reader.IsDBNull(0) ? 0f : reader.GetFloat(0), reader.IsDBNull(1) ? 0f : reader.GetFloat(1)];
-            }
-            catch (Exception ex)
-            {
-                Program.LogError(ex, true);
-                return [0f, 0f];
-            }
-            finally
-            {
-                reader.Close();
-                conn.Close();
-            }
-        }
+        public static int GetPayappClosuresNextId()
+            => GetTableNextId("payapp_closures");
 
-
-        public static float[] GetPayappClosure(string date)
-            => SelectMultiRows($"SELECT balance FROM payapp_closures WHERE date = '{date}' ORDER BY payapp_id", () => reader.GetFloat(0));
+        public static float[] GetPayappClosure(int id)
+            => SelectMultiRows($"SELECT balance FROM payapp_closures_details WHERE closure_id = {id} ORDER BY payapp_id", () => reader.GetFloat(0));
 
         public static float GetSumPrevPayappClosure(string date)
-            => SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = (SELECT MAX(date) FROM payapp_closures WHERE date < '{date}')", () => reader.GetFloat(0));
+            => SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures_details WHERE closure_id = (SELECT id FROM payapp_closures WHERE date < '{date}' ORDER BY date DESC LIMIT 1)", () => reader.GetFloat(0));
         
         public static SumDate[] GetPayappClosureDates()
-            => SelectMultiRows("SELECT date, SUM(balance) FROM payapp_closures GROUP BY date ORDER BY date DESC", GetSumDate);
+            => SelectMultiRows("SELECT id, date, SUM(balance) FROM payapp_closures as c JOIN payapp_closures_details as d ON c.id = d.closure_id GROUP BY id ORDER BY date DESC", GetSumDate);
 
-        public static float GetSumPayappClosure(string date)
-            => SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures WHERE date = '{date}'", () => reader.GetFloat(0));
+        public static float GetSumPayappClosure(int id)
+            => SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM payapp_closures_details WHERE closure_id = {id}", () => reader.GetFloat(0));
         
-        public static bool FindDateInPayappClosure(string date)
-            => SelectRow($"SELECT 1 FROM payapp_closures WHERE date = '{date}' LIMIT 1", () => reader.GetInt32(0)) == 1;
+        public static int FindDayInPayappClosure(string date)
+            => SelectRow($"SELECT id FROM payapp_closures WHERE date LIKE '{date}%' ORDER BY date DESC LIMIT 1", () => reader.GetInt32(0));
+
+        public static bool IsNotUsed(int id)
+            => SelectRow($"SELECT 1 FROM payapp_closures WHERE id = {id} AND closured = 0 LIMIT 1", () => reader.GetInt32(0)) == 1;
 
 
         public static DailyClosureData? GetDailyClosure(string date)
-            => SelectRow($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit FROM daily_closures WHERE date = '{date}'", GetDailyClosureData);
+            => SelectRow($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit, closure_id FROM daily_closures WHERE date = '{date}'", GetDailyClosureData);
 
         public static float GetSumPrevDailyClosure(string date)
             => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = (SELECT MAX(date) FROM daily_closures WHERE date < '{date}')", () => reader.GetFloat(0));
 
         public static SumDate[] GetDailyClosureDates()
-            => SelectMultiRows("SELECT date, total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures ORDER BY date DESC", GetSumDate);
+            => SelectMultiRows("SELECT date, total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures ORDER BY date DESC", GetSumDate2);
 
         public static float GetSumDailyClosure(string date)
             => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = '{date}'", () => reader.GetFloat(0));
@@ -525,11 +505,17 @@ namespace ElectronicServices
         public static bool DeleteTransaction(int id)
             => ExecuteNonQuery($"DELETE FROM transactions WHERE id = {id}") >= 0;
 
-        public static bool SetPayappClosure(string date, int payappId, float balance)
-            => ExecuteNonQuery($"INSERT INTO payapp_closures (date, payapp_id, balance) VALUES ('{date}', {payappId}, {balance}) ON CONFLICT(date, payapp_id) DO UPDATE SET balance = excluded.balance") >= 0;
+        public static bool AddPayappClosure(string date)
+            => ExecuteNonQuery($"INSERT INTO payapp_closures (date, closured) VALUES ('{date}', 0)") >= 0;
+
+        public static bool SetPayappClosured(int id)
+            => ExecuteNonQuery($"UPDATE payapp_closures SET closured = 1 WHERE id = {id}") >= 0;
+
+        public static bool SetPayappClosureDetails(int closureId, int payappId, float balance)
+            => ExecuteNonQuery($"INSERT INTO payapp_closures_details (closure_id, payapp_id, balance) VALUES ({closureId}, {payappId}, {balance}) ON CONFLICT(closure_id, payapp_id) DO UPDATE SET balance = excluded.balance") >= 0;
 
         public static bool SetDailyClosure(DailyClosureData data)
-            => ExecuteNonQuery($"INSERT INTO daily_closures (date, total_wallets, total_cash, total_electronic, credit, debit) VALUES ('{data.Date}', {data.TotalWallets}, {data.TotalCash}, {data.TotalElectronic}, {data.Credit}, {data.Debit}) ON CONFLICT(date) DO UPDATE SET total_wallets = excluded.total_wallets, total_cash = excluded.total_cash, total_electronic = excluded.total_electronic, credit = excluded.credit, debit = excluded.debit") >= 0;
+            => ExecuteNonQuery($"INSERT INTO daily_closures (date, total_wallets, total_cash, total_electronic, credit, debit, closure_id) VALUES ('{data.Date}', {data.TotalWallets}, {data.TotalCash}, {data.TotalElectronic}, {data.Credit}, {data.Debit}, {data.PayappClosureId}) ON CONFLICT(date) DO UPDATE SET total_wallets = excluded.total_wallets, total_cash = excluded.total_cash, total_electronic = excluded.total_electronic, credit = excluded.credit, debit = excluded.debit") >= 0;
 
         private static int ExecuteNonQuery(string sql)
         {

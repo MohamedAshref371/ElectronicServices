@@ -485,6 +485,7 @@
             transDate.Size = new Size(228, 36);
             transDate.TabIndex = 22;
             transDate.Value = new DateTime(2025, 8, 13, 18, 30, 18, 694);
+            transDate.ValueChanged += TransDate_ValueChanged;
             // 
             // addTransactionBtn
             // 

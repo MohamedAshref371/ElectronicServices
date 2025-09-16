@@ -67,23 +67,23 @@
             // 
             // datePicker
             // 
-            datePicker.CustomFormat = "  yyyy - MM MMMM - dd";
+            datePicker.CustomFormat = "  yyyy - MM MMMM - dd     HH : mm : ss";
             datePicker.Font = new Font("Segoe UI", 11.7F);
             datePicker.Format = DateTimePickerFormat.Custom;
-            datePicker.Location = new Point(172, 12);
+            datePicker.Location = new Point(92, 12);
             datePicker.Name = "datePicker";
-            datePicker.Size = new Size(244, 28);
+            datePicker.Size = new Size(333, 28);
             datePicker.TabIndex = 3;
-            datePicker.Value = new DateTime(2025, 9, 11, 15, 46, 0, 0);
+            datePicker.Value = new DateTime(2025, 9, 11, 15, 46, 5, 0);
             // 
             // saveDataBtn
             // 
             saveDataBtn.Font = new Font("Segoe UI", 11.7F);
             saveDataBtn.Location = new Point(12, 7);
             saveDataBtn.Name = "saveDataBtn";
-            saveDataBtn.Size = new Size(121, 36);
+            saveDataBtn.Size = new Size(74, 36);
             saveDataBtn.TabIndex = 4;
-            saveDataBtn.Text = "إعتمد القيم";
+            saveDataBtn.Text = "حفظ";
             saveDataBtn.UseVisualStyleBackColor = true;
             saveDataBtn.Click += SaveDataBtn_Click;
             // 

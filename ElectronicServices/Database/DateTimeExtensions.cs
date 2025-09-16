@@ -16,5 +16,18 @@ namespace ElectronicServices
             
             return DateTime.MinValue;
         }
+
+        public static string ToCompleteStandardString(this DateTime date)
+        {
+            return date.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+        }
+
+        public static DateTime ToCompleteStandardDateTime(this string dateStr)
+        {
+            if (DateTime.TryParseExact(dateStr, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result))
+                return result;
+
+            return DateTime.MinValue;
+        }
     }
 }

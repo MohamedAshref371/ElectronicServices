@@ -3,17 +3,18 @@ namespace ElectronicServices
 {
     public partial class DailyListViewDialog : Form
     {
-        bool isDated; bool sizeChanged;
-        public DailyListViewDialog(DateTime? date, bool changeDate)
+        bool isDated; bool sizeChanged; bool isNew;
+        public DailyListViewDialog(DateTime? date, bool changeDate, bool isNew)
         {
             InitializeComponent();
+            this.isNew = isNew;
             if (date is null)
             {
                 datePicker.Value = DateTime.Now;
                 datePicker.ValueChanged += DatePicker_ValueChanged;
                 listView1.DoubleClick += (s, e) => ConfirmSelection();
 
-                saveDataBtn.Text = "إضافة جديد";
+                saveDataBtn.Text = "إضافة";
 
                 SumDate[] dates = DatabaseHelper.GetDailyClosureDates();
 
@@ -112,7 +113,7 @@ namespace ElectronicServices
             var itm = listView1.SelectedItems[0];
             string date = itm.SubItems[0].Text;
 
-            DailyListViewDialog elvd = new(date.ToStandardDateTime(), false);
+            DailyListViewDialog elvd = new(date.ToCompleteStandardDateTime(), false, false);
             elvd.ShowDialog();
 
             float sum = DatabaseHelper.GetSumDailyClosure(date);
@@ -142,15 +143,17 @@ namespace ElectronicServices
                 itms.Text = "0";
         }
 
+        bool changeWithSave = false;
         private void DatePicker_ValueChanged(object sender, EventArgs e)
         {
-            string date = datePicker.Value.ToStandardString();
+            if (changeWithSave) return;
+            string date = datePicker.Value.ToCompleteStandardString();
 
             if (!isDated)
             {
                 foreach (ListViewItem item in listView1.Items)
                 {
-                    if (item.Text == date)
+                    if (item.Text[..10] == date[..10])
                     {
                         item.Selected = true;
                         item.Focused = true;
@@ -169,10 +172,19 @@ namespace ElectronicServices
             if (data is null)
             {
                 float totalElec = 0f;
-                if (!DatabaseHelper.FindDateInPayappClosure(date))
-                    MessageBox.Show("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا التاريخ\nيمكنك إضافته من خلال شاشة إقفال تطبيقات الدفع الإلكتروني.", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                int id = DatabaseHelper.FindDayInPayappClosure(date[..10]);
+                if (id == 0 && MessageBox.Show("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا اليوم\nهل تريد الإستمرار ؟.", "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                    return;
+                else if (!DatabaseHelper.IsNotUsed(id))
+                {
+                    DialogResult res = MessageBox.Show("هناك اقفال يومي بالفعل لآخر إقفال لتطبيقات الدفع الإلكتروني\nهل تريد استعماله لهذا الإقفال أيضا ؟.", "تنبيه", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    if (res == DialogResult.Cancel)
+                        return;
+                    else if (res == DialogResult.Yes)
+                        totalElec = DatabaseHelper.GetSumPayappClosure(id);
+                }
                 else
-                    totalElec = DatabaseHelper.GetSumPayappClosure(date);
+                    totalElec = DatabaseHelper.GetSumPayappClosure(id);
 
                 float[] creditDebit = DatabaseHelper.GetCreditAndDept(date, true);
 
@@ -184,6 +196,7 @@ namespace ElectronicServices
                     TotalElectronic = totalElec,
                     Credit = creditDebit[0],
                     Debit = creditDebit[1],
+                    PayappClosureId = id
                 };
             }
 
@@ -206,13 +219,15 @@ namespace ElectronicServices
                 diff.BackColor = Color.FromArgb(240, 240, 240);
 
             listView1.Items[11].SubItems[1].Text = (total - prev).ToString("0.##");
+            id = data.PayappClosureId;
         }
+        int id;
 
         private void SaveDataBtn_Click(object sender, EventArgs e)
         {
             if (!isDated)
             {
-                DailyListViewDialog elvd = new(DateTime.Now, true);
+                DailyListViewDialog elvd = new(DateTime.Now, false, true);
                 elvd.ShowDialog();
 
                 SumDate[] dates = DatabaseHelper.GetDailyClosureDates();
@@ -237,13 +252,17 @@ namespace ElectronicServices
                 return;
             }
 
-            string date = datePicker.Value.ToStandardString();
 
-            float totalElec = 0f;
-            if (!DatabaseHelper.FindDateInPayappClosure(date))
-                MessageBox.Show("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا التاريخ\nيمكنك إضافته من خلال شاشة إقفال تطبيقات الدفع الإلكتروني.", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else
-                totalElec = DatabaseHelper.GetSumPayappClosure(date);
+            if (isNew)
+            {
+                changeWithSave = true;
+                datePicker.Value = DateTime.Now;
+                changeWithSave = false;
+            }
+
+            string date = datePicker.Value.ToCompleteStandardString();
+
+            float totalElec = DatabaseHelper.GetSumPayappClosure(id);
 
             float[] creditDebit = DatabaseHelper.GetCreditAndDept(date, true);
 
@@ -258,9 +277,11 @@ namespace ElectronicServices
                 TotalElectronic = totalElec,
                 Credit = creditDebit[0],
                 Debit = creditDebit[1],
+                PayappClosureId = id
             };
 
             DatabaseHelper.SetDailyClosure(data);
+            DatabaseHelper.SetPayappClosured(id);
 
             DatePicker_ValueChanged(this, EventArgs.Empty);
         }

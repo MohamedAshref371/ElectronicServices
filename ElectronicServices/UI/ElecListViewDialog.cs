@@ -3,17 +3,18 @@ namespace ElectronicServices
 {
     public partial class ElecListViewDialog : Form
     {
-        int payappsLength; bool isDated; bool sizeChanged;
-        public ElecListViewDialog(DateTime? date, bool changeDate)
+        int payappsLength; bool isDated; bool sizeChanged; int id;
+        public ElecListViewDialog(DateTime? date, bool changeDate, int id)
         {
             InitializeComponent();
+            this.id = id;
             if (date is null)
             {
                 datePicker.Value = DateTime.Now;
                 datePicker.ValueChanged += DatePicker_ValueChanged;
                 listView1.DoubleClick += (s, e) => ConfirmSelection();
 
-                saveDataBtn.Text = "إضافة جديد";
+                saveDataBtn.Text = "إضافة";
 
                 SumDate[] dates = DatabaseHelper.GetPayappClosureDates();
 
@@ -31,6 +32,7 @@ namespace ElectronicServices
                 for (int i = 0; i < dates.Length; i++)
                 {
                     item = new ListViewItem(dates[i].Date);
+                    item.Tag = dates[i].Id;
                     item.SubItems.Add(dates[i].Sum.ToString("0.##"));
                     listView1.Items.Add(item);
                 }
@@ -87,10 +89,11 @@ namespace ElectronicServices
             var itm = listView1.SelectedItems[0];
             string date = itm.SubItems[0].Text;
 
-            ElecListViewDialog elvd = new(date.ToStandardDateTime(), false);
+            int id = (int)itm.Tag;
+            ElecListViewDialog elvd = new(date.ToCompleteStandardDateTime(), false, id);
             elvd.ShowDialog();
 
-            float sum = DatabaseHelper.GetSumPayappClosure(date);
+            float sum = DatabaseHelper.GetSumPayappClosure(id);
             itm.SubItems[1].Text = sum.ToString("0.##");
         }
 
@@ -117,15 +120,17 @@ namespace ElectronicServices
                 itms.Text = "0";
         }
 
+        bool changeWithSave = false;
         private void DatePicker_ValueChanged(object sender, EventArgs e)
         {
-            string date = datePicker.Value.ToStandardString();
+            if (changeWithSave) return;
+            string date = datePicker.Value.ToCompleteStandardString();
 
             if (!isDated)
             {
                 foreach (ListViewItem item in listView1.Items)
                 {
-                    if (item.Text == date)
+                    if (item.Text[..10] == date[..10])
                     {
                         item.Selected = true;
                         item.Focused = true;
@@ -139,7 +144,7 @@ namespace ElectronicServices
                 return;
             }
 
-            float[] values = DatabaseHelper.GetPayappClosure(date);
+            float[] values = DatabaseHelper.GetPayappClosure(id);
             for (int i = 0; i < values.Length; i++)
                 listView1.Items[i].SubItems[1].Text = values[i].ToString();
             for (int i = values.Length; i < payappsLength; i++)
@@ -164,7 +169,7 @@ namespace ElectronicServices
         {
             if (!isDated)
             {
-                ElecListViewDialog elvd = new(DateTime.Now, true);
+                ElecListViewDialog elvd = new(DateTime.Now, false, -1);
                 elvd.ShowDialog();
 
                 SumDate[] dates = DatabaseHelper.GetPayappClosureDates();
@@ -182,6 +187,7 @@ namespace ElectronicServices
                 for (int i = 0; i < dates.Length; i++)
                 {
                     item = new ListViewItem(dates[i].Date);
+                    item.Tag = dates[i].Id;
                     item.SubItems.Add(dates[i].Sum.ToString("0.##"));
                     listView1.Items.Add(item);
                 }
@@ -189,12 +195,27 @@ namespace ElectronicServices
                 return;
             }
 
-            string date = datePicker.Value.ToStandardString();
+
+            if (id == -1)
+            {
+                changeWithSave = true;
+                datePicker.Value = DateTime.Now;
+                changeWithSave = false;
+            }
+                
+
+            string date = datePicker.Value.ToCompleteStandardString();
+
+            if (id == -1)
+            {
+                id = DatabaseHelper.GetPayappClosuresNextId();
+                DatabaseHelper.AddPayappClosure(date);
+            }
 
             for (int i = 0; i < payappsLength; i++)
             {
                 float.TryParse(listView1.Items[i].SubItems[1].Text, out float val);
-                DatabaseHelper.SetPayappClosure(date, i + 1, val);
+                DatabaseHelper.SetPayappClosureDetails(id, i + 1, val);
             }
 
             DatePicker_ValueChanged(this, EventArgs.Empty);

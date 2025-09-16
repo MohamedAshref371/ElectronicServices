@@ -67,7 +67,7 @@ namespace ElectronicServices
             customersComboBox.DisplayMember = "Value";
             customersComboBox.ValueMember = "Key";
             UpdateCustomersComboBox();
-            transDate.Value = DateTime.Now;
+            DateLabel_DoubleClick(this, EventArgs.Empty);
             excelDate.Value = DateTime.Now;
 
             UpdatePayappComboBox();
@@ -204,7 +204,7 @@ namespace ElectronicServices
                 TransactionRowData data = new()
                 {
                     CustomerId = (int)customerCode.Tag,
-                    Date = DateTime.Now.ToStandardString(),
+                    Date = DateTime.Now.ToCompleteStandardString(),
                     Pay = (float)custCreditAmount.Value,
                     Take = (float)custDebitAmount.Value,
                     PayWith = -1,
@@ -263,8 +263,23 @@ namespace ElectronicServices
             }
         }
 
+        private void DateLabel_DoubleClick(object sender, EventArgs e)
+        {
+            isManual = false; isAutoDate = true;
+            transDate.Value = DateTime.Now;
+        }
+
+        bool isAutoDate = true, isManual = false;
+        private void TransDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (isManual) isAutoDate = false;
+        }
+
         private void AddTransactionBtn_Click(object sender, EventArgs e)
         {
+            if (isAutoDate)
+                DateLabel_DoubleClick(this, EventArgs.Empty);
+
             if (customersComboBox.SelectedIndex <= 0)
             {
                 MessageBox.Show("«·—Ã«¡ «Œ Ì«— ⁄„Ì· „‰ «·ﬁ«∆„…", "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -282,7 +297,7 @@ namespace ElectronicServices
                 Id = (int)addTransactionsPanel.Tag,
                 CustomerId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key,
                 Name = customersComboBox.Text,
-                Date = transDate.Value.ToStandardString(),
+                Date = transDate.Value.ToCompleteStandardString(),
                 Pay = (float)payAmount.Value,
                 Take = (float)takeAmount.Value,
                 PayWith = payWith.Enabled ? payWith.SelectedIndex : -1,
@@ -460,11 +475,6 @@ namespace ElectronicServices
             UpdateCreditAndDept();
         }
 
-        private void DateLabel_DoubleClick(object sender, EventArgs e)
-        {
-            transDate.Value = DateTime.Now;
-        }
-
         private void ExcelBtn_Click(object sender, EventArgs e)
         {
             if (!File.Exists("ClosedXML.dll"))
@@ -529,7 +539,7 @@ namespace ElectronicServices
             sheet.Cell(5, payapps.Length + 2).Value = sum + sum2;
 
 
-            float cashCredit = DatabaseHelper.GetCerditCashField(date), cashDebit = DatabaseHelper.GetDebitCashField(date);
+            float cashCredit = DatabaseHelper.GetPayappDateField(0, date, pay: true), cashDebit = DatabaseHelper.GetPayappDateField(0, date, pay: false);
             sheet.Cell(8, 1).Value = "";
 
             sheet.Cell(8, 2).Value = "«” ·«„ ‰ﬁœÌ";
@@ -577,14 +587,15 @@ namespace ElectronicServices
 
         private void ElecPayBtn_Click(object sender, EventArgs e)
         {
-            ElecListViewDialog elvd = new(null, true);
+            ElecListViewDialog elvd = new(null, true, -1);
             elvd.ShowDialog();
         }
 
         private void InventoryBtn_Click(object sender, EventArgs e)
         {
-            DailyListViewDialog dlvd = new(null, true);
+            DailyListViewDialog dlvd = new(null, true, false);
             dlvd.ShowDialog();
         }
+
     }
 }
