@@ -176,13 +176,19 @@ namespace ElectronicServices
                 if (id == 0)
                 {
                     if (MessageBox.Show("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا اليوم\nهل تريد الإستمرار ؟.", "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                    {
+                        Close();
                         return;
+                    }
                 }
                 else if (!DatabaseHelper.IsNotUsed(id))
                 {
                     DialogResult res = MessageBox.Show("هناك اقفال يومي بالفعل لآخر إقفال لتطبيقات الدفع الإلكتروني\nهل تريد استعماله لهذا الإقفال أيضا ؟.", "تنبيه", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                     if (res == DialogResult.Cancel)
+                    {
+                        Close();
                         return;
+                    }
                     else if (res == DialogResult.Yes)
                         totalElec = DatabaseHelper.GetSumPayappClosure(id);
                 }
