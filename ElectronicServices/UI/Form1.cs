@@ -238,8 +238,8 @@ namespace ElectronicServices
         private void UpdateCreditAndDept()
         {
             float[] company = DatabaseHelper.GetCreditAndDept();
-            creditAmount.Text = company[0].ToString("N2");
-            debitAmount.Text = company[1].ToString("N2");
+            creditAmount.Text = company[0].ToString();
+            debitAmount.Text = company[1].ToString();
         }
 
         private void CustomerSearchBtn_Click(object sender, EventArgs e)

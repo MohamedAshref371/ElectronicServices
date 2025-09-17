@@ -19,18 +19,18 @@ namespace ElectronicServices
             this.id = data.Id;
             codeLabel.Text = data.Id.ToString();
             nameLabel.Text = data.Name;
-            payLabel.Text = data.Pay.ToString("N2");
-            takeLabel.Text = data.Take.ToString("N2");
+            payLabel.Text = data.Pay.ToString();
+            takeLabel.Text = data.Take.ToString();
 
             if (data.Pay > data.Take)
             {
                 resultLabel.Text = "له ";
-                resultLabel.Text += (data.Pay - data.Take).ToString("N2");
+                resultLabel.Text += (data.Pay - data.Take).ToString();
             }
             else if (data.Take > data.Pay)
             {
                 resultLabel.Text = "عليه ";
-                resultLabel.Text += (data.Take - data.Pay).ToString("N2");
+                resultLabel.Text += (data.Take - data.Pay).ToString();
             }
             else
                 resultLabel.Text = "صفر";
@@ -98,8 +98,8 @@ namespace ElectronicServices
                     return;
                 }
 
-                payLabel.Text = 0.ToString("N2");
-                takeLabel.Text = 0.ToString("N2");
+                payLabel.Text = 0.ToString();
+                takeLabel.Text = 0.ToString();
                 resultLabel.Text = "صفر";
                 return;
             }

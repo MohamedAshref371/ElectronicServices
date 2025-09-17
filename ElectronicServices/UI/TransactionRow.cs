@@ -27,18 +27,18 @@ namespace ElectronicServices
         string result;
         private void SetTransactionRowData(TransactionRowData data)
         {
-            payLabel.Text = data.Pay.ToString("N2");
-            takeLabel.Text = data.Take.ToString("N2");
+            payLabel.Text = data.Pay.ToString();
+            takeLabel.Text = data.Take.ToString();
 
             if (data.Pay > data.Take)
             {
                 result = "له ";
-                result += (data.Pay - data.Take).ToString("N2");
+                result += (data.Pay - data.Take).ToString();
             }
             else if (data.Take > data.Pay)
             {
                 result = "عليه ";
-                result += (data.Take - data.Pay).ToString("N2");
+                result += (data.Take - data.Pay).ToString();
             }
             else
                 result = "صفر";
@@ -55,9 +55,9 @@ namespace ElectronicServices
                 {
                     string text;
                     if (before < 0f)
-                        text = "عليه " + ((float)-before).ToString("N2");
+                        text = "عليه " + ((float)-before).ToString();
                     else if (before > 0f)
-                        text = "له " + ((float)before).ToString("N2");
+                        text = "له " + ((float)before).ToString();
                     else
                         text = "صفر";
 
@@ -65,9 +65,9 @@ namespace ElectronicServices
 
                     string text2;
                     if (after < 0f)
-                        text2 = "عليه " + ((float)-after).ToString("N2");
+                        text2 = "عليه " + ((float)-after).ToString();
                     else if (after > 0f)
-                        text2 = "له " + ((float)after).ToString("N2");
+                        text2 = "له " + ((float)after).ToString();
                     else
                         text2 = "صفر";
 

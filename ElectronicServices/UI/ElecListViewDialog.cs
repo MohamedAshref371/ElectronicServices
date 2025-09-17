@@ -33,7 +33,7 @@ namespace ElectronicServices
                 {
                     item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
                     item.Tag = dates[i].Id;
-                    item.SubItems.Add(dates[i].Sum.ToString("0.##"));
+                    item.SubItems.Add(dates[i].Sum.ToString());
                     listView1.Items.Add(item);
                 }
             }
@@ -94,7 +94,7 @@ namespace ElectronicServices
             elvd.ShowDialog();
 
             float sum = DatabaseHelper.GetSumPayappClosure(id);
-            itm.SubItems[1].Text = sum.ToString("0.##");
+            itm.SubItems[1].Text = sum.ToString();
         }
 
         private void ListView1_KeyPress(object sender, KeyPressEventArgs e)
@@ -151,7 +151,7 @@ namespace ElectronicServices
                 listView1.Items[i].SubItems[1].Text = "0";
 
             float total = values.Sum();
-            listView1.Items[payappsLength].SubItems[1].Text = total.ToString("0.##");
+            listView1.Items[payappsLength].SubItems[1].Text = total.ToString();
 
             float prevTotal = DatabaseHelper.GetSumPrevPayappClosure(date);
 
@@ -162,7 +162,7 @@ namespace ElectronicServices
             else
                 diff.BackColor = Color.FromArgb(240, 240, 240);
 
-            listView1.Items[payappsLength + 1].SubItems[1].Text = (total - prevTotal).ToString("0.##");
+            listView1.Items[payappsLength + 1].SubItems[1].Text = (total - prevTotal).ToString();
         }
 
         private void SaveDataBtn_Click(object sender, EventArgs e)
@@ -188,7 +188,7 @@ namespace ElectronicServices
                 {
                     item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
                     item.Tag = dates[i].Id;
-                    item.SubItems.Add(dates[i].Sum.ToString("0.##"));
+                    item.SubItems.Add(dates[i].Sum.ToString());
                     listView1.Items.Add(item);
                 }
 

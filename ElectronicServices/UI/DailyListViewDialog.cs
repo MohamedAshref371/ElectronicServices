@@ -32,7 +32,7 @@ namespace ElectronicServices
                 for (int i = 0; i < dates.Length; i++)
                 {
                     item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
-                    item.SubItems.Add(dates[i].Sum.ToString("0.##"));
+                    item.SubItems.Add(dates[i].Sum.ToString());
                     listView1.Items.Add(item);
                 }
             }
@@ -117,7 +117,7 @@ namespace ElectronicServices
             elvd.ShowDialog();
 
             float sum = DatabaseHelper.GetSumDailyClosure(date);
-            itm.SubItems[1].Text = sum.ToString("0.##");
+            itm.SubItems[1].Text = sum.ToString();
         }
 
         private void ListView1_KeyPress(object sender, KeyPressEventArgs e)
@@ -217,10 +217,10 @@ namespace ElectronicServices
             listView1.Items[1].SubItems[1].Text = "\u200E" + data.Date;
             listView1.Items[3].SubItems[1].Text = data.TotalWallets.ToString();
             listView1.Items[4].SubItems[1].Text = data.TotalCash.ToString();
-            listView1.Items[5].SubItems[1].Text = data.TotalElectronic.ToString("0.##");
-            listView1.Items[7].SubItems[1].Text = data.Credit.ToString("0.##");
-            listView1.Items[8].SubItems[1].Text = data.Debit.ToString("0.##");
-            listView1.Items[10].SubItems[1].Text = total.ToString("0.##");
+            listView1.Items[5].SubItems[1].Text = data.TotalElectronic.ToString();
+            listView1.Items[7].SubItems[1].Text = data.Credit.ToString();
+            listView1.Items[8].SubItems[1].Text = data.Debit.ToString();
+            listView1.Items[10].SubItems[1].Text = total.ToString();
 
             if (total - prev < 0)
                 diff.BackColor = Color.FromArgb(255, 220, 220);
@@ -229,7 +229,7 @@ namespace ElectronicServices
             else
                 diff.BackColor = Color.FromArgb(240, 240, 240);
 
-            listView1.Items[11].SubItems[1].Text = (total - prev).ToString("0.##");
+            listView1.Items[11].SubItems[1].Text = (total - prev).ToString();
             id = data.PayappClosureId;
         }
         int id;
@@ -256,7 +256,7 @@ namespace ElectronicServices
                 for (int i = 0; i < dates.Length; i++)
                 {
                     item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
-                    item.SubItems.Add(dates[i].Sum.ToString("0.##"));
+                    item.SubItems.Add(dates[i].Sum.ToString());
                     listView1.Items.Add(item);
                 }
 
