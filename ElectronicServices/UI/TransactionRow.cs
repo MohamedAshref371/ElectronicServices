@@ -81,7 +81,7 @@ namespace ElectronicServices
                 string time = "";
                 if (data.Date[11..] != "00:00:00")
                     time = "\nوقت العملية : " + data.Date[11..];
-                MessageBox.Show($"نتيجة فرق المعاملة : {result}{time}\n{data.Note}", "ملاحظات", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"نتيجة المعاملة : {result}{time}\n{data.Note}", "ملاحظات", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
