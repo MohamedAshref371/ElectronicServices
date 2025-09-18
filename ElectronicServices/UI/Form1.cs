@@ -267,12 +267,14 @@ namespace ElectronicServices
         {
             isManual = false; isAutoDate = true;
             transDate.Value = DateTime.Now;
+            isManual = true;
         }
 
-        bool isAutoDate = true, isManual = false;
+        bool isAutoDate = true, isManual = true;
         private void TransDate_ValueChanged(object sender, EventArgs e)
         {
             if (isManual) isAutoDate = false;
+            if (!isAutoDate && DateTime.Now.ToStandardString() == transDate.Value.ToStandardString()) isAutoDate = true;
         }
 
         private void AddTransactionBtn_Click(object sender, EventArgs e)
