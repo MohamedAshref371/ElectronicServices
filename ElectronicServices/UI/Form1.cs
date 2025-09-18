@@ -265,16 +265,23 @@ namespace ElectronicServices
 
         private void DateLabel_DoubleClick(object sender, EventArgs e)
         {
-            isManual = false; isAutoDate = true;
+            isInternal = true; isAutoDate = true;
             transDate.Value = DateTime.Now;
-            isManual = true;
+            isInternal = false;
         }
 
-        bool isAutoDate = true, isManual = true;
+        bool isAutoDate = true, isInternal = false;
         private void TransDate_ValueChanged(object sender, EventArgs e)
         {
-            if (isManual) isAutoDate = false;
+            if (isInternal) return;
+            isAutoDate = false;
             if (!isAutoDate && DateTime.Now.ToStandardString() == transDate.Value.ToStandardString()) isAutoDate = true;
+            if (!isAutoDate)
+            {
+                isInternal = true;
+                transDate.Value = transDate.Value.Date;
+                isInternal = false;
+            }
         }
 
         private void AddTransactionBtn_Click(object sender, EventArgs e)

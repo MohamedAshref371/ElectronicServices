@@ -77,7 +77,12 @@ namespace ElectronicServices
                 }
             }
             else if (e.Button == MouseButtons.Left)
-                MessageBox.Show($"نتيجة فرق المعاملة : {result}\n{data.Note}", "ملاحظات", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            {
+                string time = "";
+                if (data.Date[11..] != "00:00:00")
+                    time = "\nوقت العملية : " + data.Date[11..];
+                MessageBox.Show($"نتيجة فرق المعاملة : {result}{time}\n{data.Note}", "ملاحظات", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void EditBtn_Click(object sender, EventArgs e)
