@@ -18,7 +18,7 @@ namespace ElectronicServices
 
                 SumDate[] dates = DatabaseHelper.GetDailyClosureDates();
 
-                if (dates.Length >= 17)
+                if (dates.Length >= 19)
                 {
                     ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
                     listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
@@ -69,7 +69,7 @@ namespace ElectronicServices
                 listView1.Items.Add(item2);
 
                 item = new ListViewItem("المدفوعات الإلكترونية") { BackColor = Color.FromArgb(255, 255, 255) };
-                item.SubItems.Add("0.00");
+                item.SubItems.Add("0");
                 listView1.Items.Add(item);
 
                 item = new ListViewItem("");
@@ -77,11 +77,11 @@ namespace ElectronicServices
                 listView1.Items.Add(item);
 
                 item = new ListViewItem("لنا") { BackColor = Color.FromArgb(255, 255, 255) };
-                item.SubItems.Add("0.00");
+                item.SubItems.Add("0");
                 listView1.Items.Add(item);
 
                 item = new ListViewItem("علينا") { BackColor = Color.FromArgb(255, 255, 255) };
-                item.SubItems.Add("0.00");
+                item.SubItems.Add("0");
                 listView1.Items.Add(item);
 
                 item = new ListViewItem("");
@@ -89,11 +89,11 @@ namespace ElectronicServices
                 listView1.Items.Add(item);
 
                 item = new ListViewItem("المجموع") { BackColor = Color.FromArgb(220, 255, 220) };
-                item.SubItems.Add("0.00");
+                item.SubItems.Add("0");
                 listView1.Items.Add(item);
 
                 diff = new ListViewItem("الفرق بين اليوم السابق") { BackColor = Color.FromArgb(220, 220, 220) };
-                diff.SubItems.Add("0.00");
+                diff.SubItems.Add("0");
                 listView1.Items.Add(diff);
 
                 listView1.ItemSelectionChanged += (s, e) =>
@@ -243,7 +243,7 @@ namespace ElectronicServices
 
                 SumDate[] dates = DatabaseHelper.GetDailyClosureDates();
 
-                if (!sizeChanged && dates.Length >= 17)
+                if (!sizeChanged && dates.Length >= 19)
                 {
                     ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
                     listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);

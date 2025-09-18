@@ -18,7 +18,7 @@ namespace ElectronicServices
 
                 SumDate[] dates = DatabaseHelper.GetPayappClosureDates();
 
-                if (dates.Length >= 17)
+                if (dates.Length >= 19)
                 {
                     ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
                     listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
@@ -47,7 +47,7 @@ namespace ElectronicServices
                 string[] payapps = DatabaseHelper.GetPayappsNames(true);
                 payappsLength = payapps.Length;
 
-                if (payapps.Length >= 17)
+                if (payapps.Length >= 18)
                 {
                     ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
                     listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
@@ -65,23 +65,18 @@ namespace ElectronicServices
                 }
 
                 item = new ListViewItem("المجموع") { BackColor = Color.FromArgb(220, 255, 220) };
-                item.SubItems.Add("0.00");
+                item.SubItems.Add("0");
                 listView1.Items.Add(item);
-
-                diff = new("الفرق بين اليوم السابق") { BackColor = Color.FromArgb(220, 220, 220) };
-                diff.SubItems.Add("0.00");
-                listView1.Items.Add(diff);
 
                 listView1.ItemSelectionChanged += (s, e) =>
                 {
-                    if ((e.Item == item || e.Item == diff) && e.IsSelected)
+                    if ((e.Item == item) && e.IsSelected)
                         e.Item.Selected = false;
                 };
 
                 DatePicker_ValueChanged(this, EventArgs.Empty);
             }
         }
-        ListViewItem diff;
 
         private void ConfirmSelection()
         {
@@ -152,17 +147,6 @@ namespace ElectronicServices
 
             float total = values.Sum();
             listView1.Items[payappsLength].SubItems[1].Text = total.ToString();
-
-            float prevTotal = DatabaseHelper.GetSumPrevPayappClosure(date);
-
-            if (total - prevTotal < 0)
-                diff.BackColor = Color.FromArgb(255, 220, 220);
-            else if (total - prevTotal > 0)
-                diff.BackColor = Color.FromArgb(220, 220, 255);
-            else
-                diff.BackColor = Color.FromArgb(240, 240, 240);
-
-            listView1.Items[payappsLength + 1].SubItems[1].Text = (total - prevTotal).ToString();
         }
 
         private void SaveDataBtn_Click(object sender, EventArgs e)
@@ -174,7 +158,7 @@ namespace ElectronicServices
 
                 SumDate[] dates = DatabaseHelper.GetPayappClosureDates();
 
-                if (!sizeChanged && dates.Length >= 17)
+                if (!sizeChanged && dates.Length >= 19)
                 {
                     ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
                     listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
