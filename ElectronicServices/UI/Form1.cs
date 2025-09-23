@@ -529,6 +529,7 @@ namespace ElectronicServices
             sheet.Cell(3, 1).Value = "œ›⁄";
             sheet.Cell(4, 1).Value = "√Œ–";
             sheet.Cell(5, 1).Value = "«·„Ã„Ê⁄";
+            sheet.Cell(5, 1).Style.Fill.BackgroundColor = XLColor.LightBlue;
 
             float sum = 0, sum2 = 0, val, val2;
             for (int i = 0; i < payapps.Length; i++)
