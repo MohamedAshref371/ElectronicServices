@@ -16,25 +16,10 @@ namespace ElectronicServices
 
                 saveDataBtn.Text = "إضافة";
 
-                SumDate[] dates = DatabaseHelper.GetDailyClosureDates();
-
-                if (dates.Length >= 19)
-                {
-                    ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
-                    listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
-                    sizeChanged = true;
-                }
-
                 listView1.Columns.Add("            التاريخ", 300, HorizontalAlignment.Center);
                 listView1.Columns.Add("المجموع", listView1.ClientSize.Width - 301, HorizontalAlignment.Center);
 
-                ListViewItem item;
-                for (int i = 0; i < dates.Length; i++)
-                {
-                    item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
-                    item.SubItems.Add(dates[i].Sum.ToString());
-                    listView1.Items.Add(item);
-                }
+                AddDailyClosures();
             }
             else
             {
@@ -234,6 +219,28 @@ namespace ElectronicServices
         }
         int id;
 
+        private void AddDailyClosures()
+        {
+            SumDate[] dates = DatabaseHelper.GetDailyClosureDates();
+
+            if (!sizeChanged && dates.Length >= 19)
+            {
+                ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
+                listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
+                sizeChanged = true;
+            }
+
+            listView1.Items.Clear();
+
+            ListViewItem item;
+            for (int i = 0; i < dates.Length; i++)
+            {
+                item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
+                item.SubItems.Add(dates[i].Sum.ToString());
+                listView1.Items.Add(item);
+            }
+        }
+
         private void SaveDataBtn_Click(object sender, EventArgs e)
         {
             if (!isDated)
@@ -241,24 +248,7 @@ namespace ElectronicServices
                 DailyListViewDialog elvd = new(DateTime.Now, false, true);
                 elvd.ShowDialog();
 
-                SumDate[] dates = DatabaseHelper.GetDailyClosureDates();
-
-                if (!sizeChanged && dates.Length >= 19)
-                {
-                    ClientSize = new Size(ClientSize.Width + 20, ClientSize.Height);
-                    listView1.ClientSize = new Size(listView1.ClientSize.Width + 20, listView1.ClientSize.Height);
-                    sizeChanged = true;
-                }
-
-                listView1.Items.Clear();
-
-                ListViewItem item;
-                for (int i = 0; i < dates.Length; i++)
-                {
-                    item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
-                    item.SubItems.Add(dates[i].Sum.ToString());
-                    listView1.Items.Add(item);
-                }
+                AddDailyClosures();
 
                 return;
             }
@@ -295,6 +285,17 @@ namespace ElectronicServices
             DatabaseHelper.SetPayappClosured(id);
 
             DatePicker_ValueChanged(this, EventArgs.Empty);
+        }
+
+        private void DateLabel_DoubleClick(object sender, EventArgs e)
+        {
+            DialogResult res = MessageBox.Show("هل تريد حذف آخر تقفيل يومي ؟!", "؟!?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
+
+            if (res == DialogResult.No) return;
+
+            DatabaseHelper.DeleteLastDailyClosure();
+
+            AddDailyClosures();
         }
 
     }

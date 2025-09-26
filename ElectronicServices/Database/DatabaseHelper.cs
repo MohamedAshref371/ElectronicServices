@@ -517,6 +517,9 @@ namespace ElectronicServices
         public static bool SetDailyClosure(DailyClosureData data)
             => ExecuteNonQuery($"INSERT INTO daily_closures (date, total_wallets, total_cash, total_electronic, credit, debit, closure_id) VALUES ('{data.Date}', {data.TotalWallets}, {data.TotalCash}, {data.TotalElectronic}, {data.Credit}, {data.Debit}, {data.PayappClosureId}) ON CONFLICT(date) DO UPDATE SET total_wallets = excluded.total_wallets, total_cash = excluded.total_cash, total_electronic = excluded.total_electronic, credit = excluded.credit, debit = excluded.debit") >= 0;
 
+        public static bool DeleteLastDailyClosure()
+            => ExecuteNonQuery($"DELETE FROM daily_closures WHERE date = ( SELECT MAX(date) FROM daily_closures )") >= 0;
+
         private static int ExecuteNonQuery(string sql)
         {
             if (!success || sql is null || sql.Trim() == "") return -1;

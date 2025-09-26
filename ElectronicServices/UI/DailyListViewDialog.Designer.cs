@@ -64,6 +64,7 @@
             dateLabel.Size = new Size(86, 25);
             dateLabel.TabIndex = 2;
             dateLabel.Text = "التاريخ : ";
+            dateLabel.DoubleClick += DateLabel_DoubleClick;
             // 
             // datePicker
             // 
