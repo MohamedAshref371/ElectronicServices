@@ -633,7 +633,7 @@ namespace ElectronicServices
             using XLWorkbook workbook = new();
             workbook.RightToLeft = true;
 
-            IXLWorksheet custSheet = workbook.Worksheets.Add("Cutomers");
+            IXLWorksheet custSheet = workbook.Worksheets.Add("Customers");
 
             custSheet.Range("A1:E1").Merge().Value = "«·⁄„·«¡";
             custSheet.Row(1).Height = 30;
