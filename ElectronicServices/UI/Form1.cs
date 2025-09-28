@@ -1,4 +1,6 @@
 using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Office2016.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Guna.UI2.WinForms;
 
 namespace ElectronicServices
@@ -666,8 +668,8 @@ namespace ElectronicServices
             transSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             transSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
             transSheet.Column(1).Width = 30; transSheet.Cell(2, 1).Value = "«”„ «·⁄„Ì·";
-            transSheet.Column(2).Width = 20; transSheet.Cell(2, 2).Value = "«· «—ÌŒ";
-            transSheet.Column(3).Width = 16; transSheet.Cell(2, 3).Value = "«·Êﬁ ";
+            transSheet.Column(2).Width = 14; transSheet.Cell(2, 2).Value = "«· «—ÌŒ";
+            transSheet.Column(3).Width = 13; transSheet.Cell(2, 3).Value = "«·Êﬁ ";
             transSheet.Column(4).Width = 15; transSheet.Cell(2, 4).Value = "œ›⁄";
             transSheet.Column(5).Width = 16; transSheet.Cell(2, 5).Value = "œ›⁄ »Ê«”ÿ…";
             transSheet.Column(6).Width = 15; transSheet.Cell(2, 6).Value = "√Œ–";
@@ -702,6 +704,17 @@ namespace ElectronicServices
             elecSheet.Cell("A1").Style.Font.FontSize = 18;
             elecSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             elecSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            elecSheet.Column(1).Width = 14; elecSheet.Cell(2, 1).Value = "«· «—ÌŒ";
+            elecSheet.Column(2).Width = 13; elecSheet.Cell(2, 2).Value = "«·ÌÊ„";
+            for (int i = 1; i < payApps.Length; i++)
+            {
+                elecSheet.Column(i + 2).Width = 15;
+                elecSheet.Cell(2, i + 2).Value = payApps[i];
+                elecSheet.Cell(2, i + 2).Style.Fill.BackgroundColor = XLColor.LightYellow1;
+            }
+            elecSheet.Column(payApps.Length + 2).Width = 15;
+            elecSheet.Cell(2, payApps.Length + 2).Value = "«·„Ã„Ê⁄";
+            elecSheet.Cell(2, payApps.Length + 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
 
 
 
@@ -712,9 +725,9 @@ namespace ElectronicServices
             dailySheet.Cell("A1").Style.Font.FontSize = 18;
             dailySheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             dailySheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-            dailySheet.Column(1).Width = 20; dailySheet.Cell(2, 1).Value = "«· «—ÌŒ";
+            dailySheet.Column(1).Width = 14; dailySheet.Cell(2, 1).Value = "«· «—ÌŒ";
             dailySheet.Column(21).Width = 10; dailySheet.Cell(2, 2).Value = "«·ÌÊ„";
-            dailySheet.Column(3).Width = 16; dailySheet.Cell(2, 3).Value = "«·Êﬁ ";
+            dailySheet.Column(3).Width = 13; dailySheet.Cell(2, 3).Value = "«·Êﬁ ";
             dailySheet.Column(4).Width = 15; dailySheet.Cell(2, 4).Value = "„Õ«›Ÿ";
             dailySheet.Column(5).Width = 15; dailySheet.Cell(2, 5).Value = "”ÌÊ·…";
             dailySheet.Column(6).Width = 15; dailySheet.Cell(2, 6).Value = "„œ›Ê⁄«  ≈·ﬂ —Ê‰Ì…";
