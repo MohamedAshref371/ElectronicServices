@@ -620,12 +620,18 @@ namespace ElectronicServices
                 MessageBox.Show("„ﬂ »«  «·«Ìﬂ”· €Ì— „ÊÃÊœ…");
                 return;
             }
-
+            isRunning = true;
+            extraExcelBtn.Image = Properties.Resources.head_bandage;
+            Invalidate(); Update();
             saveExcelFileDialog.FileName = DateTime.Now.ToCompleteStandardString().Replace(":", "");
-            if (saveExcelFileDialog.ShowDialog() != DialogResult.OK) return;
 
-            ExtractExtraExcel(saveExcelFileDialog.FileName);
+            if (saveExcelFileDialog.ShowDialog() == DialogResult.OK)
+                ExtractExtraExcel(saveExcelFileDialog.FileName);
+
+            extraExcelBtn.Image = Properties.Resources.neutral_face;
+            isRunning = false;
         }
+        bool isRunning = false;
 
         private void ExtractExtraExcel(string path)
         {
@@ -702,7 +708,7 @@ namespace ElectronicServices
             elecSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             elecSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
             elecSheet.Column(1).Width = 14; elecSheet.Cell(2, 1).Value = "«· «—ÌŒ";
-            elecSheet.Column(2).Width = 13; elecSheet.Cell(2, 2).Value = "«·ÌÊ„";
+            elecSheet.Column(2).Width = 13; elecSheet.Cell(2, 2).Value = "«·Êﬁ ";
             for (int i = 1; i < payApps.Length; i++)
             {
                 elecSheet.Column(i + 2).Width = 15;
@@ -712,7 +718,22 @@ namespace ElectronicServices
             elecSheet.Column(payApps.Length + 2).Width = 15;
             elecSheet.Cell(2, payApps.Length + 2).Value = "«·„Ã„Ê⁄";
             elecSheet.Cell(2, payApps.Length + 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
-
+            var details = DatabaseHelper.GetPayappClosureDetails();
+            float total, val;
+            for (int i = 0; i < details.Length; i++)
+            {
+                total = 0;
+                datetime = details[i].Date.Split(' ');
+                elecSheet.Cell(i + 3, 1).Value = datetime[0];
+                elecSheet.Cell(i + 3, 2).Value = datetime[1];
+                for (int j = 1; j < payApps.Length; j++)
+                {
+                    val = details[i].Balances[j - 1];
+                    elecSheet.Cell(i + 3, j + 2).Value = val;
+                    total += val;
+                }
+                elecSheet.Cell(i + 3, payApps.Length + 2).Value = total;
+            }
 
 
             IXLWorksheet dailySheet = workbook.Worksheets.Add("Daily Inventory");
@@ -735,7 +756,7 @@ namespace ElectronicServices
 
             DailyClosureData[] data = DatabaseHelper.GetDailyClosure();
             float Sum, prevSum = 0;
-            System.Globalization.CultureInfo ar = new ("ar-EG");
+            System.Globalization.CultureInfo ar = new("ar-EG");
             for (int i = 0; i < data.Length; i++)
             {
                 datetime = data[i].Date.Split(' ');
@@ -763,6 +784,21 @@ namespace ElectronicServices
             {
                 MessageBox.Show("ÕœÀ Œÿ√ √À‰«¡ Õ›Ÿ «·„·›\n" + ex.Message, "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ExtraExcelBtn_MouseEnter(object sender, EventArgs e)
+        {
+            if (!isRunning) extraExcelBtn.Image = Properties.Resources.diagonal_mouth;
+        }
+
+        private void ExtraExcelBtn_MouseLeave(object sender, EventArgs e)
+        {
+            if (!isRunning) extraExcelBtn.Image = Properties.Resources.neutral_face;
+        }
+
+        private void ExtraExcelBtn_MouseDown(object sender, MouseEventArgs e)
+        {
+            extraExcelBtn.Image = Properties.Resources.confused_face;
         }
 
     }

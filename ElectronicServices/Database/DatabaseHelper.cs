@@ -225,6 +225,9 @@ namespace ElectronicServices
             return SelectMultiRows(sql, () => new KeyValuePair<int, string>(reader.GetInt32(0), reader.GetString(1)) );
         }
 
+        private static int GetPayappNextId()
+            => GetTableNextId("payapp");
+
         public static string[] GetPayappsNames(bool withoutCash = false)
         {
             string sql = $"SELECT name FROM payapp WHERE id >{(withoutCash ? "" : "=")} 0";
@@ -435,6 +438,26 @@ namespace ElectronicServices
 
         public static float GetSumDailyClosure(string date)
             => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = '{date}'", () => reader.GetFloat(0));
+
+
+        public static (string Date, float[] Balances)[] GetPayappClosureDetails()
+        {
+            int payappCount = GetPayappNextId() - 1;
+            if (payappCount < 1) return [];
+            string sql = "SELECT c.date ";
+            for (int i = 1; i <= payappCount; i++)
+                sql += $",COALESCE( MAX( CASE WHEN cd.payapp_id = {i} THEN cd.balance END ), 0)";
+            sql += " FROM payapp_closures c JOIN payapp_closures_details cd ON c.id = cd.closure_id WHERE cd.payapp_id >= 1 GROUP BY c.date";
+
+            return SelectMultiRows(sql, () =>
+            {
+                string date = reader.GetString(0);
+                float[] balances = new float[payappCount];
+                for (int i = 0; i < payappCount; i++)
+                    balances[i] = reader.GetFloat(i + 1);
+                return (date, balances);
+            });
+        }
 
 
         private static T? SelectRow<T>(string sql, Func<T> method)
