@@ -337,7 +337,7 @@ namespace ElectronicServices
             };
         }
 
-        private static DailyClosureData? GetDailyClosureData()
+        private static DailyClosureData GetDailyClosureData()
         {
             return new DailyClosureData
             {
@@ -423,6 +423,9 @@ namespace ElectronicServices
 
         public static DailyClosureData? GetDailyClosure(string date)
             => SelectRow($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit, closure_id FROM daily_closures WHERE date = '{date}'", GetDailyClosureData);
+
+        public static DailyClosureData[] GetDailyClosure()
+            => SelectMultiRows($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit, closure_id FROM daily_closures", GetDailyClosureData);
 
         public static float GetSumPrevDailyClosure(string date)
             => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = (SELECT MAX(date) FROM daily_closures WHERE date < '{date}')", () => reader.GetFloat(0));

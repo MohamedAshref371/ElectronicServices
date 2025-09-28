@@ -666,22 +666,24 @@ namespace ElectronicServices
             transSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             transSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
             transSheet.Column(1).Width = 30; transSheet.Cell(2, 1).Value = "«”„ «·⁄„Ì·";
-            transSheet.Column(2).Width = 20; transSheet.Cell(2, 2).Value = " «—ÌŒ «·„⁄«„·…";
-            transSheet.Column(3).Width = 20; transSheet.Cell(2, 3).Value = "Êﬁ  «·„⁄«„·…";
+            transSheet.Column(2).Width = 20; transSheet.Cell(2, 2).Value = "«· «—ÌŒ";
+            transSheet.Column(3).Width = 16; transSheet.Cell(2, 3).Value = "«·Êﬁ ";
             transSheet.Column(4).Width = 15; transSheet.Cell(2, 4).Value = "œ›⁄";
-            transSheet.Column(5).Width = 20; transSheet.Cell(2, 5).Value = "œ›⁄ »Ê«”ÿ…";
+            transSheet.Column(5).Width = 16; transSheet.Cell(2, 5).Value = "œ›⁄ »Ê«”ÿ…";
             transSheet.Column(6).Width = 15; transSheet.Cell(2, 6).Value = "√Œ–";
-            transSheet.Column(7).Width = 20; transSheet.Cell(2, 7).Value = "√Œ– »Ê«”ÿ…";
+            transSheet.Column(7).Width = 16; transSheet.Cell(2, 7).Value = "√Œ– »Ê«”ÿ…";
             transSheet.Column(8).Width = 15; transSheet.Cell(2, 8).Value = "«·—’Ìœ";
             transSheet.Column(9).Width = 30; transSheet.Cell(2, 9).Value = "„·«ÕŸ…";
 
             string[] payApps = DatabaseHelper.GetPayappsNames();
+            string[] datetime;
             TransactionRowData[] transactions = DatabaseHelper.GetTransactions(0);
             for (int i = 0; i < transactions.Length; i++)
             {
                 transSheet.Cell(i + 3, 1).Value = transactions[i].Name;
-                transSheet.Cell(i + 3, 2).Value = transactions[i].Date.Split(' ')[0];
-                transSheet.Cell(i + 3, 3).Value = transactions[i].Date.Split(' ')[1];
+                datetime = transactions[i].Date.Split(' ');
+                transSheet.Cell(i + 3, 2).Value = datetime[0];
+                transSheet.Cell(i + 3, 3).Value = datetime[1];
                 transSheet.Cell(i + 3, 4).Value = transactions[i].Pay;
                 transSheet.Cell(i + 3, 5).Value = transactions[i].PayWith < 0 ? "" : payApps[transactions[i].PayWith];
                 transSheet.Cell(i + 3, 6).Value = transactions[i].Take;
@@ -690,7 +692,48 @@ namespace ElectronicServices
                 transSheet.Cell(i + 3, 9).Value = transactions[i].Note;
             }
 
+
             IXLWorksheet elecSheet = workbook.Worksheets.Add("Electronic Payments");
+            elecSheet.Range("A1:J1").Merge().Value = "«·„œ›Ê⁄«  «·≈·ﬂ —Ê‰Ì…";
+
+
+            IXLWorksheet dailySheet = workbook.Worksheets.Add("Daily inventory");
+            dailySheet.Range("A1:J1").Merge().Value = "«· ﬁ›Ì· «·ÌÊ„Ì";
+            dailySheet.Row(1).Height = 30;
+            dailySheet.Cell("A1").Style.Font.Bold = true;
+            dailySheet.Cell("A1").Style.Font.FontSize = 18;
+            dailySheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            dailySheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            dailySheet.Column(1).Width = 20; dailySheet.Cell(2, 1).Value = "«· «—ÌŒ";
+            dailySheet.Column(21).Width = 10; dailySheet.Cell(2, 2).Value = "«·ÌÊ„";
+            dailySheet.Column(3).Width = 16; dailySheet.Cell(2, 3).Value = "«·Êﬁ ";
+            dailySheet.Column(4).Width = 15; dailySheet.Cell(2, 4).Value = "„Õ«›Ÿ";
+            dailySheet.Column(5).Width = 15; dailySheet.Cell(2, 5).Value = "”ÌÊ·…";
+            dailySheet.Column(6).Width = 15; dailySheet.Cell(2, 6).Value = "„œ›Ê⁄«  ≈·ﬂ —Ê‰Ì…";
+            dailySheet.Column(7).Width = 15; dailySheet.Cell(2, 7).Value = "·‰«";
+            dailySheet.Column(8).Width = 15; dailySheet.Cell(2, 8).Value = "⁄·Ì‰«";
+            dailySheet.Column(9).Width = 15; dailySheet.Cell(2, 9).Value = "«·„Ã„Ê⁄";
+            dailySheet.Column(10).Width = 15; dailySheet.Cell(2, 10).Value = "«·›—ﬁ";
+
+            DailyClosureData[] data = DatabaseHelper.GetDailyClosure();
+            float Sum, prevSum = 0;
+            System.Globalization.CultureInfo ar = new ("ar-EG");
+            for (int i = 0; i < data.Length; i++)
+            {
+                datetime = data[i].Date.Split(' ');
+                dailySheet.Cell(i + 3, 1).Value = datetime[0];
+                dailySheet.Cell(i + 3, 2).Value = datetime[0].ToStandardDateTime().ToString("dddd", ar);
+                dailySheet.Cell(i + 3, 3).Value = datetime[1];
+                dailySheet.Cell(i + 3, 4).Value = data[i].TotalWallets;
+                dailySheet.Cell(i + 3, 5).Value = data[i].TotalCash;
+                dailySheet.Cell(i + 3, 6).Value = data[i].TotalElectronic;
+                dailySheet.Cell(i + 3, 7).Value = data[i].Credit;
+                dailySheet.Cell(i + 3, 8).Value = data[i].Debit;
+                Sum = data[i].Sum;
+                dailySheet.Cell(i + 3, 9).Value = Sum;
+                dailySheet.Cell(i + 3, 10).Value = Sum - prevSum;
+                prevSum = Sum;
+            }
 
 
             try

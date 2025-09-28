@@ -356,7 +356,7 @@
             extraExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges14;
             extraExcelBtn.Size = new Size(242, 79);
             extraExcelBtn.TabIndex = 38;
-            extraExcelBtn.Text = "إستخراج بيانات البرنامج إلى إكسل \U0001f925";
+            extraExcelBtn.Text = "إستخراج بيانات البرنامج إلى إكسل 😐";
             extraExcelBtn.Click += ExtraExcelBtn_Click;
             // 
             // transactionsPanel
