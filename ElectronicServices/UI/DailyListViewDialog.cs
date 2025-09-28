@@ -246,10 +246,11 @@ namespace ElectronicServices
             if (!isDated)
             {
                 DailyListViewDialog elvd = new(DateTime.Now, false, true);
-                elvd.ShowDialog();
-
-                AddDailyClosures();
-
+                if (!elvd.IsDisposed)
+                {
+                    elvd.ShowDialog();
+                    AddDailyClosures();
+                }
                 return;
             }
 
@@ -289,7 +290,7 @@ namespace ElectronicServices
 
         private void DateLabel_DoubleClick(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("هل تريد حذف آخر تقفيل يومي ؟!", "؟!?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RtlReading | MessageBoxOptions.RightAlign);
+            DialogResult res = MessageBox.Show("هل تريد حذف آخر تقفيل يومي ؟!", "?!؟", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RtlReading);
 
             if (res == DialogResult.No) return;
 
@@ -297,6 +298,6 @@ namespace ElectronicServices
 
             AddDailyClosures();
         }
-
+        
     }
 }

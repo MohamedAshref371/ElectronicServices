@@ -423,7 +423,6 @@
             // 
             // transSearchBtn
             // 
-            transSearchBtn.BorderColor = Color.Silver;
             transSearchBtn.BorderRadius = 10;
             transSearchBtn.BorderThickness = 1;
             transSearchBtn.CustomizableEdges = customizableEdges19;
@@ -432,8 +431,8 @@
             transSearchBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             transSearchBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             transSearchBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            transSearchBtn.FillColor = Color.FromArgb(224, 224, 224);
-            transSearchBtn.FillColor2 = Color.Silver;
+            transSearchBtn.FillColor = Color.FromArgb(230, 160, 120);
+            transSearchBtn.FillColor2 = Color.FromArgb(200, 140, 100);
             transSearchBtn.Font = new Font("Segoe UI", 15F);
             transSearchBtn.ForeColor = Color.Black;
             transSearchBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
@@ -489,7 +488,6 @@
             // 
             // addTransactionBtn
             // 
-            addTransactionBtn.BorderColor = Color.Silver;
             addTransactionBtn.BorderRadius = 10;
             addTransactionBtn.BorderThickness = 1;
             addTransactionBtn.CustomizableEdges = customizableEdges25;
@@ -498,10 +496,10 @@
             addTransactionBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             addTransactionBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             addTransactionBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            addTransactionBtn.FillColor = Color.FromArgb(224, 224, 224);
-            addTransactionBtn.FillColor2 = Color.Silver;
+            addTransactionBtn.FillColor = Color.CornflowerBlue;
+            addTransactionBtn.FillColor2 = SystemColors.HotTrack;
             addTransactionBtn.Font = new Font("Segoe UI", 15F);
-            addTransactionBtn.ForeColor = Color.Black;
+            addTransactionBtn.ForeColor = Color.White;
             addTransactionBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addTransactionBtn.Location = new Point(13, 10);
             addTransactionBtn.Name = "addTransactionBtn";
@@ -630,6 +628,7 @@
             customerLabel.Size = new Size(64, 21);
             customerLabel.TabIndex = 19;
             customerLabel.Text = "العميل : ";
+            customerLabel.DoubleClick += CustomerLabel_DoubleClick;
             // 
             // customersPanel
             // 
@@ -741,7 +740,6 @@
             // 
             // customerSearchBtn
             // 
-            customerSearchBtn.BorderColor = Color.Silver;
             customerSearchBtn.BorderRadius = 10;
             customerSearchBtn.BorderThickness = 1;
             customerSearchBtn.CustomizableEdges = customizableEdges41;
@@ -750,8 +748,8 @@
             customerSearchBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             customerSearchBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             customerSearchBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            customerSearchBtn.FillColor = Color.FromArgb(224, 224, 224);
-            customerSearchBtn.FillColor2 = Color.Silver;
+            customerSearchBtn.FillColor = Color.FromArgb(230, 160, 120);
+            customerSearchBtn.FillColor2 = Color.FromArgb(200, 140, 100);
             customerSearchBtn.Font = new Font("Segoe UI", 15F);
             customerSearchBtn.ForeColor = Color.Black;
             customerSearchBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
@@ -765,7 +763,6 @@
             // 
             // addCustomerBtn
             // 
-            addCustomerBtn.BorderColor = Color.Silver;
             addCustomerBtn.BorderRadius = 10;
             addCustomerBtn.BorderThickness = 1;
             addCustomerBtn.CustomizableEdges = customizableEdges43;
@@ -774,10 +771,10 @@
             addCustomerBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             addCustomerBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             addCustomerBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            addCustomerBtn.FillColor = Color.FromArgb(224, 224, 224);
-            addCustomerBtn.FillColor2 = Color.Silver;
+            addCustomerBtn.FillColor = Color.CornflowerBlue;
+            addCustomerBtn.FillColor2 = SystemColors.HotTrack;
             addCustomerBtn.Font = new Font("Segoe UI", 15F);
-            addCustomerBtn.ForeColor = Color.Black;
+            addCustomerBtn.ForeColor = Color.White;
             addCustomerBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addCustomerBtn.Location = new Point(169, 32);
             addCustomerBtn.Name = "addCustomerBtn";
@@ -879,7 +876,6 @@
             // 
             // addPayappBtn
             // 
-            addPayappBtn.BorderColor = Color.Silver;
             addPayappBtn.BorderRadius = 10;
             addPayappBtn.BorderThickness = 1;
             addPayappBtn.CustomizableEdges = customizableEdges49;
@@ -888,10 +884,10 @@
             addPayappBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             addPayappBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             addPayappBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            addPayappBtn.FillColor = Color.FromArgb(224, 224, 224);
-            addPayappBtn.FillColor2 = Color.Silver;
+            addPayappBtn.FillColor = Color.CornflowerBlue;
+            addPayappBtn.FillColor2 = SystemColors.HotTrack;
             addPayappBtn.Font = new Font("Segoe UI", 15F);
-            addPayappBtn.ForeColor = Color.Black;
+            addPayappBtn.ForeColor = Color.White;
             addPayappBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addPayappBtn.Location = new Point(277, 204);
             addPayappBtn.Name = "addPayappBtn";
@@ -959,7 +955,6 @@
             // 
             // updateCreditDepitBtn
             // 
-            updateCreditDepitBtn.BorderColor = Color.Silver;
             updateCreditDepitBtn.BorderRadius = 10;
             updateCreditDepitBtn.BorderThickness = 1;
             updateCreditDepitBtn.CustomizableEdges = customizableEdges53;
@@ -968,8 +963,8 @@
             updateCreditDepitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             updateCreditDepitBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             updateCreditDepitBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            updateCreditDepitBtn.FillColor = Color.FromArgb(224, 224, 224);
-            updateCreditDepitBtn.FillColor2 = Color.Silver;
+            updateCreditDepitBtn.FillColor = Color.FromArgb(230, 160, 120);
+            updateCreditDepitBtn.FillColor2 = Color.FromArgb(200, 140, 100);
             updateCreditDepitBtn.Font = new Font("Segoe UI", 15F);
             updateCreditDepitBtn.ForeColor = Color.Black;
             updateCreditDepitBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
@@ -1035,7 +1030,6 @@
             // 
             // customersBtn
             // 
-            customersBtn.BorderColor = Color.Silver;
             customersBtn.BorderRadius = 10;
             customersBtn.BorderThickness = 1;
             customersBtn.CustomizableEdges = customizableEdges9;
@@ -1044,8 +1038,8 @@
             customersBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             customersBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             customersBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            customersBtn.FillColor = Color.FromArgb(224, 224, 224);
-            customersBtn.FillColor2 = Color.Silver;
+            customersBtn.FillColor = Color.FromArgb(192, 255, 192);
+            customersBtn.FillColor2 = Color.SteelBlue;
             customersBtn.Font = new Font("Segoe UI", 15F);
             customersBtn.ForeColor = Color.Black;
             customersBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
@@ -1080,7 +1074,6 @@
             // 
             // inventoryBtn
             // 
-            inventoryBtn.BorderColor = Color.Silver;
             inventoryBtn.BorderRadius = 10;
             inventoryBtn.BorderThickness = 1;
             inventoryBtn.CustomizableEdges = customizableEdges1;
@@ -1089,8 +1082,8 @@
             inventoryBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             inventoryBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             inventoryBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            inventoryBtn.FillColor = Color.FromArgb(224, 224, 224);
-            inventoryBtn.FillColor2 = Color.Silver;
+            inventoryBtn.FillColor = Color.FromArgb(255, 192, 192);
+            inventoryBtn.FillColor2 = Color.FromArgb(255, 255, 192);
             inventoryBtn.Font = new Font("Segoe UI", 15F);
             inventoryBtn.ForeColor = Color.Black;
             inventoryBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
@@ -1128,7 +1121,6 @@
             // 
             // mainBtn
             // 
-            mainBtn.BorderColor = Color.Silver;
             mainBtn.BorderRadius = 10;
             mainBtn.BorderThickness = 1;
             mainBtn.CustomizableEdges = customizableEdges5;
@@ -1137,13 +1129,14 @@
             mainBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             mainBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             mainBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            mainBtn.FillColor = Color.FromArgb(224, 224, 224);
-            mainBtn.FillColor2 = Color.Silver;
+            mainBtn.FillColor = Color.FromArgb(0, 0, 64);
+            mainBtn.FillColor2 = Color.FromArgb(64, 0, 0);
             mainBtn.Font = new Font("Segoe UI", 15F);
-            mainBtn.ForeColor = Color.Black;
+            mainBtn.ForeColor = Color.White;
             mainBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             mainBtn.Location = new Point(821, 5);
             mainBtn.Name = "mainBtn";
+            mainBtn.PressedColor = Color.White;
             mainBtn.ShadowDecoration.CustomizableEdges = customizableEdges6;
             mainBtn.Size = new Size(114, 35);
             mainBtn.TabIndex = 6;
@@ -1152,7 +1145,6 @@
             // 
             // transactionsBtn
             // 
-            transactionsBtn.BorderColor = Color.Silver;
             transactionsBtn.BorderRadius = 10;
             transactionsBtn.BorderThickness = 1;
             transactionsBtn.CustomizableEdges = customizableEdges7;
@@ -1161,8 +1153,8 @@
             transactionsBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             transactionsBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
             transactionsBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            transactionsBtn.FillColor = Color.FromArgb(224, 224, 224);
-            transactionsBtn.FillColor2 = Color.Silver;
+            transactionsBtn.FillColor = Color.FromArgb(192, 255, 192);
+            transactionsBtn.FillColor2 = Color.SteelBlue;
             transactionsBtn.Font = new Font("Segoe UI", 15F);
             transactionsBtn.ForeColor = Color.Black;
             transactionsBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;

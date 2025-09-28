@@ -263,6 +263,11 @@ namespace ElectronicServices
             }
         }
 
+        private void CustomerLabel_DoubleClick(object sender, EventArgs e)
+        {
+            customersComboBox.SelectedIndex = 0;
+        }
+
         private void DateLabel_DoubleClick(object sender, EventArgs e)
         {
             isInternal = true; isAutoDate = true;
@@ -606,6 +611,6 @@ namespace ElectronicServices
             DailyListViewDialog dlvd = new(null, true, false);
             dlvd.ShowDialog();
         }
-
+        
     }
 }
