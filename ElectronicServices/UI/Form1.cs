@@ -659,7 +659,7 @@ namespace ElectronicServices
 
 
             IXLWorksheet transSheet = workbook.Worksheets.Add("Transactions");
-            transSheet.Range("A1:I1").Merge().Value = "«·„⁄«„·« ";
+            transSheet.Range("A1:I1").Merge().Value = "Õ—ﬂ… «·⁄„·«¡";
             transSheet.Row(1).Height = 30;
             transSheet.Cell("A1").Style.Font.Bold = true;
             transSheet.Cell("A1").Style.Font.FontSize = 18;
@@ -694,7 +694,15 @@ namespace ElectronicServices
 
 
             IXLWorksheet elecSheet = workbook.Worksheets.Add("Electronic Payments");
-            elecSheet.Range("A1:J1").Merge().Value = "«·„œ›Ê⁄«  «·≈·ﬂ —Ê‰Ì…";
+            char c = (char)('A' + payApps.Length + 1);
+            if (c > 'Z') c = 'Z';
+            elecSheet.Range($"A1:{c}1").Merge().Value = "«·„œ›Ê⁄«  «·≈·ﬂ —Ê‰Ì…";
+            elecSheet.Row(1).Height = 30;
+            elecSheet.Cell("A1").Style.Font.Bold = true;
+            elecSheet.Cell("A1").Style.Font.FontSize = 18;
+            elecSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            elecSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+
 
 
             IXLWorksheet dailySheet = workbook.Worksheets.Add("Daily Inventory");
