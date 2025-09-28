@@ -464,8 +464,8 @@ namespace ElectronicServices
         {
             payWith.Items.Clear();
             takeWith.Items.Clear();
-            var payApps = DatabaseHelper.GetPayappsNames();
-            foreach (var payApp in payApps)
+            string[] payApps = DatabaseHelper.GetPayappsNames();
+            foreach (string payApp in payApps)
             {
                 payWith.Items.Add(payApp);
                 takeWith.Items.Add(payApp);
@@ -496,17 +496,19 @@ namespace ElectronicServices
                 MessageBox.Show("„ﬂ »«  «·«Ìﬂ”· €Ì— „ÊÃÊœ…");
                 return;
             }
+
+            string date = excelDate.Value.ToStandardString();
+            saveExcelFileDialog.FileName = date;
             if (saveExcelFileDialog.ShowDialog() != DialogResult.OK) return;
 
-            ExtractExcel(saveExcelFileDialog.FileName);
+            ExtractExcel(date, saveExcelFileDialog.FileName);
         }
 
-        public void ExtractExcel(string path)
+        private void ExtractExcel(string date, string path)
         {
             using XLWorkbook workbook = new();
             workbook.RightToLeft = true;
-            IXLWorksheet sheet = workbook.Worksheets.Add("Daily inventory");
-            string date = excelDate.Value.ToStandardString();
+            IXLWorksheet sheet = workbook.Worksheets.Add("Daily Summary");
 
             string[] payapps = DatabaseHelper.GetPayappsNames(true);
             char c = (char)('A' + payapps.Length + 1);
@@ -611,6 +613,96 @@ namespace ElectronicServices
             DailyListViewDialog dlvd = new(null, true, false);
             dlvd.ShowDialog();
         }
-        
+
+        private void ExtraExcelBtn_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("ClosedXML.dll"))
+            {
+                MessageBox.Show("„ﬂ »«  «·«Ìﬂ”· €Ì— „ÊÃÊœ…");
+                return;
+            }
+
+            saveExcelFileDialog.FileName = DateTime.Now.ToCompleteStandardString().Replace(":", "");
+            if (saveExcelFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            ExtractExtraExcel(saveExcelFileDialog.FileName);
+        }
+
+        private void ExtractExtraExcel(string path)
+        {
+            using XLWorkbook workbook = new();
+            workbook.RightToLeft = true;
+
+            IXLWorksheet custSheet = workbook.Worksheets.Add("Cutomers");
+
+            custSheet.Range("A1:E1").Merge().Value = "«·⁄„·«¡";
+            custSheet.Row(1).Height = 30;
+            custSheet.Cell("A1").Style.Font.Bold = true;
+            custSheet.Cell("A1").Style.Font.FontSize = 18;
+            custSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            custSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            custSheet.Column(1).Width = 10; custSheet.Cell(2, 1).Value = "ﬂÊœ «·⁄„Ì·";
+            custSheet.Column(2).Width = 30; custSheet.Cell(2, 2).Value = "«”„ «·⁄„Ì·";
+            custSheet.Column(3).Width = 15; custSheet.Cell(2, 3).Value = "œ›⁄";
+            custSheet.Column(4).Width = 15; custSheet.Cell(2, 4).Value = "√Œ–";
+            custSheet.Column(5).Width = 15; custSheet.Cell(2, 5).Value = "«·—’Ìœ";
+
+            CustomerRowData[] customers = DatabaseHelper.GetCustomers();
+            for (int i = 0; i < customers.Length; i++)
+            {
+                custSheet.Cell(i + 3, 1).Value = customers[i].Id;
+                custSheet.Cell(i + 3, 2).Value = customers[i].Name;
+                custSheet.Cell(i + 3, 3).Value = customers[i].Pay;
+                custSheet.Cell(i + 3, 4).Value = customers[i].Take;
+                custSheet.Cell(i + 3, 5).Value = customers[i].Balance;
+            }
+
+
+            IXLWorksheet transSheet = workbook.Worksheets.Add("Transactions");
+            transSheet.Range("A1:I1").Merge().Value = "«·„⁄«„·« ";
+            transSheet.Row(1).Height = 30;
+            transSheet.Cell("A1").Style.Font.Bold = true;
+            transSheet.Cell("A1").Style.Font.FontSize = 18;
+            transSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            transSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            transSheet.Column(1).Width = 30; transSheet.Cell(2, 1).Value = "«”„ «·⁄„Ì·";
+            transSheet.Column(2).Width = 20; transSheet.Cell(2, 2).Value = " «—ÌŒ «·„⁄«„·…";
+            transSheet.Column(3).Width = 20; transSheet.Cell(2, 3).Value = "Êﬁ  «·„⁄«„·…";
+            transSheet.Column(4).Width = 15; transSheet.Cell(2, 4).Value = "œ›⁄";
+            transSheet.Column(5).Width = 20; transSheet.Cell(2, 5).Value = "œ›⁄ »Ê«”ÿ…";
+            transSheet.Column(6).Width = 15; transSheet.Cell(2, 6).Value = "√Œ–";
+            transSheet.Column(7).Width = 20; transSheet.Cell(2, 7).Value = "√Œ– »Ê«”ÿ…";
+            transSheet.Column(8).Width = 15; transSheet.Cell(2, 8).Value = "«·—’Ìœ";
+            transSheet.Column(9).Width = 30; transSheet.Cell(2, 9).Value = "„·«ÕŸ…";
+
+            string[] payApps = DatabaseHelper.GetPayappsNames();
+            TransactionRowData[] transactions = DatabaseHelper.GetTransactions(0);
+            for (int i = 0; i < transactions.Length; i++)
+            {
+                transSheet.Cell(i + 3, 1).Value = transactions[i].Name;
+                transSheet.Cell(i + 3, 2).Value = transactions[i].Date.Split(' ')[0];
+                transSheet.Cell(i + 3, 3).Value = transactions[i].Date.Split(' ')[1];
+                transSheet.Cell(i + 3, 4).Value = transactions[i].Pay;
+                transSheet.Cell(i + 3, 5).Value = transactions[i].PayWith < 0 ? "" : payApps[transactions[i].PayWith];
+                transSheet.Cell(i + 3, 6).Value = transactions[i].Take;
+                transSheet.Cell(i + 3, 7).Value = transactions[i].TakeWith < 0 ? "" : payApps[transactions[i].TakeWith];
+                transSheet.Cell(i + 3, 8).Value = transactions[i].Balance;
+                transSheet.Cell(i + 3, 9).Value = transactions[i].Note;
+            }
+
+            IXLWorksheet elecSheet = workbook.Worksheets.Add("Electronic Payments");
+
+
+            try
+            {
+                workbook.SaveAs(path);
+                MessageBox.Show(" „ «” Œ—«Ã «·»Ì«‰«  »‰Ã«Õ");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ÕœÀ Œÿ√ √À‰«¡ Õ›Ÿ «·„·›\n" + ex.Message, "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
 }

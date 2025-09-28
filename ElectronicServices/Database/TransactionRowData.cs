@@ -11,6 +11,7 @@ namespace ElectronicServices
         public float Take;
         public int PayWith;
         public int TakeWith;
+        public float Balance => Pay - Take;
         public string Note;
     }
 }

@@ -7,5 +7,6 @@ namespace ElectronicServices
         public string Name;
         public float Pay;
         public float Take;
+        public float Balance => Pay - Take;
     }
 }

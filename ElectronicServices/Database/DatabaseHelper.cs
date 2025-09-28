@@ -152,7 +152,7 @@ namespace ElectronicServices
         public static TransactionRowData[] GetTransactions(int custId)
         {
             string cond = custId >= 1 ? $"WHERE customer_id = {custId}" : "";
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date DESC";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date DESC";
             return SelectMultiRows(sql, GetTransactionData);
         }
 
@@ -169,7 +169,7 @@ namespace ElectronicServices
             else cond += " AND";
             cond += $" strftime('{dt}', date) = '{date}'";
 
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date";
             return SelectMultiRows(sql, GetTransactionData);
         }
 
@@ -274,7 +274,9 @@ namespace ElectronicServices
                 Date = reader.GetString(3),
                 Pay = reader.GetFloat(4),
                 Take = reader.GetFloat(5),
-                Note = reader.GetString(6)
+                PayWith = reader.GetInt32(6),
+                TakeWith = reader.GetInt32(7),
+                Note = reader.GetString(8)
             };
         }
 
