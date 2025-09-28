@@ -697,7 +697,7 @@ namespace ElectronicServices
             elecSheet.Range("A1:J1").Merge().Value = "«·„œ›Ê⁄«  «·≈·ﬂ —Ê‰Ì…";
 
 
-            IXLWorksheet dailySheet = workbook.Worksheets.Add("Daily inventory");
+            IXLWorksheet dailySheet = workbook.Worksheets.Add("Daily Inventory");
             dailySheet.Range("A1:J1").Merge().Value = "«· ﬁ›Ì· «·ÌÊ„Ì";
             dailySheet.Row(1).Height = 30;
             dailySheet.Cell("A1").Style.Font.Bold = true;
