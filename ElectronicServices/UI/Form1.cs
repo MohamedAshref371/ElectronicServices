@@ -267,6 +267,11 @@ namespace ElectronicServices
             customersComboBox.SelectedIndex = 0;
         }
 
+        private void DateLabel_Click(object sender, EventArgs e)
+        {
+            customersComboBox.Focus();
+        }
+
         private void DateLabel_DoubleClick(object sender, EventArgs e)
         {
             isInternal = true; isAutoDate = true;

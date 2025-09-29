@@ -169,7 +169,7 @@ namespace ElectronicServices
             else cond += " AND";
             cond += $" strftime('{dt}', date) = '{date}'";
 
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date DESC";
             return SelectMultiRows(sql, GetTransactionData);
         }
 

@@ -87,14 +87,14 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges54 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges55 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges56 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges57 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges58 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges59 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges60 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -152,10 +152,10 @@
             excelDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             excelBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             extraExcelBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            customersBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            footerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             inventoryBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             elecPayBtn = new Guna.UI2.WinForms.Guna2GradientButton();
+            customersBtn = new Guna.UI2.WinForms.Guna2GradientButton();
+            footerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
             mainBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             transactionsBtn = new Guna.UI2.WinForms.Guna2GradientButton();
             saveExcelFileDialog = new SaveFileDialog();
@@ -622,6 +622,7 @@
             dateLabel.Size = new Size(61, 21);
             dateLabel.TabIndex = 23;
             dateLabel.Text = "التاريخ : ";
+            dateLabel.Click += DateLabel_Click;
             dateLabel.DoubleClick += DateLabel_DoubleClick;
             // 
             // customerLabel
@@ -861,7 +862,7 @@
             // debitAmount
             // 
             debitAmount.Font = new Font("Segoe UI", 16F);
-            debitAmount.Location = new Point(411, 333);
+            debitAmount.Location = new Point(512, 341);
             debitAmount.Name = "debitAmount";
             debitAmount.RightToLeft = RightToLeft.Yes;
             debitAmount.Size = new Size(125, 30);
@@ -872,7 +873,7 @@
             // creditAmount
             // 
             creditAmount.Font = new Font("Segoe UI", 16F);
-            creditAmount.Location = new Point(691, 333);
+            creditAmount.Location = new Point(512, 296);
             creditAmount.Name = "creditAmount";
             creditAmount.RightToLeft = RightToLeft.Yes;
             creditAmount.Size = new Size(125, 30);
@@ -895,7 +896,7 @@
             addPayappBtn.Font = new Font("Segoe UI", 15F);
             addPayappBtn.ForeColor = Color.White;
             addPayappBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addPayappBtn.Location = new Point(277, 135);
+            addPayappBtn.Location = new Point(271, 25);
             addPayappBtn.Name = "addPayappBtn";
             addPayappBtn.ShadowDecoration.CustomizableEdges = customizableEdges46;
             addPayappBtn.Size = new Size(114, 40);
@@ -916,7 +917,7 @@
             payApp.Font = new Font("Segoe UI", 12F);
             payApp.ForeColor = Color.Black;
             payApp.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            payApp.Location = new Point(407, 135);
+            payApp.Location = new Point(401, 25);
             payApp.Margin = new Padding(4);
             payApp.Name = "payApp";
             payApp.PlaceholderText = "مثال: انستا باي";
@@ -930,7 +931,7 @@
             // 
             payappLabel.AutoSize = true;
             payappLabel.Font = new Font("Segoe UI", 14F);
-            payappLabel.Location = new Point(639, 142);
+            payappLabel.Location = new Point(633, 32);
             payappLabel.Name = "payappLabel";
             payappLabel.RightToLeft = RightToLeft.Yes;
             payappLabel.Size = new Size(239, 25);
@@ -941,7 +942,7 @@
             // 
             debitLabel.AutoSize = true;
             debitLabel.Font = new Font("Segoe UI", 16F);
-            debitLabel.Location = new Point(542, 333);
+            debitLabel.Location = new Point(643, 341);
             debitLabel.Name = "debitLabel";
             debitLabel.RightToLeft = RightToLeft.Yes;
             debitLabel.Size = new Size(70, 30);
@@ -952,7 +953,7 @@
             // 
             creditLabel.AutoSize = true;
             creditLabel.Font = new Font("Segoe UI", 16F);
-            creditLabel.Location = new Point(822, 333);
+            creditLabel.Location = new Point(654, 296);
             creditLabel.Name = "creditLabel";
             creditLabel.RightToLeft = RightToLeft.Yes;
             creditLabel.Size = new Size(50, 30);
@@ -974,7 +975,7 @@
             updateCreditDepitBtn.Font = new Font("Segoe UI", 15F);
             updateCreditDepitBtn.ForeColor = Color.Black;
             updateCreditDepitBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            updateCreditDepitBtn.Location = new Point(275, 326);
+            updateCreditDepitBtn.Location = new Point(392, 314);
             updateCreditDepitBtn.Name = "updateCreditDepitBtn";
             updateCreditDepitBtn.ShadowDecoration.CustomizableEdges = customizableEdges50;
             updateCreditDepitBtn.Size = new Size(114, 40);
@@ -1064,6 +1065,53 @@
             extraExcelBtn.MouseEnter += ExtraExcelBtn_MouseEnter;
             extraExcelBtn.MouseLeave += ExtraExcelBtn_MouseLeave;
             // 
+            // inventoryBtn
+            // 
+            inventoryBtn.BorderRadius = 10;
+            inventoryBtn.BorderThickness = 1;
+            inventoryBtn.CustomizableEdges = customizableEdges57;
+            inventoryBtn.DisabledState.BorderColor = Color.DarkGray;
+            inventoryBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            inventoryBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            inventoryBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            inventoryBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            inventoryBtn.FillColor = Color.FromArgb(255, 192, 192);
+            inventoryBtn.FillColor2 = Color.FromArgb(255, 255, 192);
+            inventoryBtn.Font = new Font("Segoe UI", 15F);
+            inventoryBtn.ForeColor = Color.Black;
+            inventoryBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            inventoryBtn.Location = new Point(372, 219);
+            inventoryBtn.Name = "inventoryBtn";
+            inventoryBtn.ShadowDecoration.CustomizableEdges = customizableEdges58;
+            inventoryBtn.Size = new Size(162, 35);
+            inventoryBtn.TabIndex = 8;
+            inventoryBtn.Text = "التقفيل اليومي";
+            inventoryBtn.Click += InventoryBtn_Click;
+            // 
+            // elecPayBtn
+            // 
+            elecPayBtn.BorderColor = Color.Silver;
+            elecPayBtn.BorderRadius = 10;
+            elecPayBtn.BorderThickness = 1;
+            elecPayBtn.CustomizableEdges = customizableEdges59;
+            elecPayBtn.DisabledState.BorderColor = Color.DarkGray;
+            elecPayBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            elecPayBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            elecPayBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            elecPayBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            elecPayBtn.FillColor = Color.FromArgb(224, 224, 224);
+            elecPayBtn.FillColor2 = Color.Silver;
+            elecPayBtn.Font = new Font("Segoe UI", 15F);
+            elecPayBtn.ForeColor = Color.Black;
+            elecPayBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            elecPayBtn.Location = new Point(579, 219);
+            elecPayBtn.Name = "elecPayBtn";
+            elecPayBtn.ShadowDecoration.CustomizableEdges = customizableEdges60;
+            elecPayBtn.Size = new Size(189, 35);
+            elecPayBtn.TabIndex = 7;
+            elecPayBtn.Text = "مدفوعات الكترونية";
+            elecPayBtn.Click += ElecPayBtn_Click;
+            // 
             // customersBtn
             // 
             customersBtn.BorderRadius = 10;
@@ -1105,53 +1153,6 @@
             footerPanel.ShadowDecoration.CustomizableEdges = customizableEdges8;
             footerPanel.Size = new Size(951, 45);
             footerPanel.TabIndex = 2;
-            // 
-            // inventoryBtn
-            // 
-            inventoryBtn.BorderRadius = 10;
-            inventoryBtn.BorderThickness = 1;
-            inventoryBtn.CustomizableEdges = customizableEdges57;
-            inventoryBtn.DisabledState.BorderColor = Color.DarkGray;
-            inventoryBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            inventoryBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            inventoryBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            inventoryBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            inventoryBtn.FillColor = Color.FromArgb(255, 192, 192);
-            inventoryBtn.FillColor2 = Color.FromArgb(255, 255, 192);
-            inventoryBtn.Font = new Font("Segoe UI", 15F);
-            inventoryBtn.ForeColor = Color.Black;
-            inventoryBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            inventoryBtn.Location = new Point(332, 213);
-            inventoryBtn.Name = "inventoryBtn";
-            inventoryBtn.ShadowDecoration.CustomizableEdges = customizableEdges58;
-            inventoryBtn.Size = new Size(162, 35);
-            inventoryBtn.TabIndex = 8;
-            inventoryBtn.Text = "التقفيل اليومي";
-            inventoryBtn.Click += InventoryBtn_Click;
-            // 
-            // elecPayBtn
-            // 
-            elecPayBtn.BorderColor = Color.Silver;
-            elecPayBtn.BorderRadius = 10;
-            elecPayBtn.BorderThickness = 1;
-            elecPayBtn.CustomizableEdges = customizableEdges59;
-            elecPayBtn.DisabledState.BorderColor = Color.DarkGray;
-            elecPayBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            elecPayBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            elecPayBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            elecPayBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            elecPayBtn.FillColor = Color.FromArgb(224, 224, 224);
-            elecPayBtn.FillColor2 = Color.Silver;
-            elecPayBtn.Font = new Font("Segoe UI", 15F);
-            elecPayBtn.ForeColor = Color.Black;
-            elecPayBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            elecPayBtn.Location = new Point(627, 213);
-            elecPayBtn.Name = "elecPayBtn";
-            elecPayBtn.ShadowDecoration.CustomizableEdges = customizableEdges60;
-            elecPayBtn.Size = new Size(189, 35);
-            elecPayBtn.TabIndex = 7;
-            elecPayBtn.Text = "مدفوعات الكترونية";
-            elecPayBtn.Click += ElecPayBtn_Click;
             // 
             // mainBtn
             // 
