@@ -491,6 +491,7 @@
             transDate.TabIndex = 22;
             transDate.Value = new DateTime(2025, 8, 13, 18, 30, 18, 694);
             transDate.ValueChanged += TransDate_ValueChanged;
+            transDate.KeyUp += TransDate_KeyUp;
             // 
             // addTransactionBtn
             // 
@@ -566,7 +567,6 @@
             customersComboBox.ShadowDecoration.CustomizableEdges = customizableEdges28;
             customersComboBox.Size = new Size(228, 36);
             customersComboBox.TabIndex = 0;
-            customersComboBox.KeyUp += CustomersComboBox_KeyUp;
             // 
             // takeLabel
             // 

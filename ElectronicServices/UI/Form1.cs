@@ -269,7 +269,7 @@ namespace ElectronicServices
 
         private void DateLabel_Click(object sender, EventArgs e)
         {
-            customersComboBox.Focus();
+            transDate.Focus();
         }
 
         private void DateLabel_DoubleClick(object sender, EventArgs e)
@@ -401,7 +401,7 @@ namespace ElectronicServices
             }
         }
 
-        private void CustomersComboBox_KeyUp(object sender, KeyEventArgs e)
+        private void TransDate_KeyUp(object sender, KeyEventArgs e)
         {
             int key = (int)e.KeyCode - 111;
             FieldData[] data;
