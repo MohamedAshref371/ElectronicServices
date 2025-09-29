@@ -68,7 +68,7 @@
             // 
             // datePicker
             // 
-            datePicker.CustomFormat = "  yyyy - MM MMMM - dd     HH : mm : ss";
+            datePicker.CustomFormat = "  yyyy - MM MMM - dd ddd     HH : mm : ss";
             datePicker.Font = new Font("Segoe UI", 11.7F);
             datePicker.Format = DateTimePickerFormat.Custom;
             datePicker.Location = new Point(92, 12);
