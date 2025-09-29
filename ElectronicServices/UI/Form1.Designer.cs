@@ -346,7 +346,7 @@
             transactionsPanel.FillColor2 = Color.Linen;
             transactionsPanel.Font = new Font("Segoe UI", 9F);
             transactionsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            transactionsPanel.Location = new Point(-900, 96);
+            transactionsPanel.Location = new Point(-1, 96);
             transactionsPanel.Name = "transactionsPanel";
             transactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges14;
             transactionsPanel.Size = new Size(951, 510);
@@ -644,7 +644,7 @@
             customersPanel.FillColor = Color.FromArgb(128, 192, 128);
             customersPanel.FillColor2 = Color.FromArgb(192, 255, 192);
             customersPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            customersPanel.Location = new Point(-800, 96);
+            customersPanel.Location = new Point(-1, 96);
             customersPanel.Name = "customersPanel";
             customersPanel.ShadowDecoration.CustomizableEdges = customizableEdges36;
             customersPanel.Size = new Size(951, 508);
