@@ -262,6 +262,11 @@ namespace ElectronicServices
             }
         }
 
+        private void CustomerLabel_Click(object sender, EventArgs e)
+        {
+            customersComboBox.Focus();
+        }
+
         private void CustomerLabel_DoubleClick(object sender, EventArgs e)
         {
             customersComboBox.SelectedIndex = 0;
@@ -401,7 +406,7 @@ namespace ElectronicServices
             }
         }
 
-        private void TransDate_KeyUp(object sender, KeyEventArgs e)
+        private void CustomersComboBox_KeyUp(object sender, KeyEventArgs e)
         {
             int key = (int)e.KeyCode - 111;
             FieldData[] data;
@@ -415,7 +420,14 @@ namespace ElectronicServices
 
                 customersComboBox.SelectedItem = customersComboBox.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(c => c.Value == data[lvd.SelectedIndex].Text);
             }
-            else if (key >= 6 && key <= 8)
+        }
+
+        private void TransDate_KeyUp(object sender, KeyEventArgs e)
+        {
+            int key = (int)e.KeyCode - 111;
+            FieldData[] data;
+            ListViewDialog lvd;
+            if (key >= 6 && key <= 8)
             {
                 int custId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key;
                 data = DatabaseHelper.TransFieldSearch(custId, key);
