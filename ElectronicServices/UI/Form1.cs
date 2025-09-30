@@ -4,6 +4,8 @@ namespace ElectronicServices
 {
     public partial class Form1 : Form
     {
+        #region Form
+        private int rowPadding = 7;
         private readonly int SizeX = 950, SizeY = 700;
         private int NewSizeX = 950, NewSizeY = 700;
 
@@ -72,7 +74,6 @@ namespace ElectronicServices
             UpdatePayappComboBox();
             UpdateCreditAndDept();
         }
-        int rowPadding = 7;
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
@@ -113,6 +114,7 @@ namespace ElectronicServices
         {
             WindowState = FormWindowState.Minimized;
         }
+        #endregion
 
         #region Footer Panel
         private void MainBtn_Click(object sender, EventArgs e)
@@ -161,6 +163,35 @@ namespace ElectronicServices
         }
         #endregion
 
+        #region Daily Inventory
+        private void ElecPayBtn_Click(object sender, EventArgs e)
+        {
+            ElecListViewDialog elvd = new(null, true, -1);
+            elvd.ShowDialog();
+        }
+
+        private void InventoryBtn_Click(object sender, EventArgs e)
+        {
+            DailyListViewDialog dlvd = new(null, true, false);
+            dlvd.ShowDialog();
+        }
+        #endregion
+
+        #region Credit & Dept
+        private void UpdateCreditDepitBtn_Click(object sender, EventArgs e)
+        {
+            UpdateCreditAndDept();
+        }
+
+        private void UpdateCreditAndDept()
+        {
+            float[] company = DatabaseHelper.GetCreditAndDept();
+            creditAmount.Text = company[0].ToString();
+            debitAmount.Text = company[1].ToString();
+        }
+        #endregion
+
+        #region Customers & Transactions & Payapps
         private void AddCustomerBtn_Click(object sender, EventArgs e)
         {
             string custName = customerName.Text.Trim();
@@ -231,23 +262,6 @@ namespace ElectronicServices
             customerName.Text = string.Empty;
         }
 
-        private void UpdateCustomersComboBox()
-        {
-            customersComboBox.Items.Clear();
-            customersComboBox.Items.Add(new KeyValuePair<int, string>(0, "«Œ — „‰ «·ﬁ«∆„…"));
-            var customers = DatabaseHelper.GetCustomersNames();
-            foreach (var customer in customers)
-                customersComboBox.Items.Add(customer);
-            customersComboBox.SelectedIndex = 0;
-        }
-
-        private void UpdateCreditAndDept()
-        {
-            float[] company = DatabaseHelper.GetCreditAndDept();
-            creditAmount.Text = company[0].ToString();
-            debitAmount.Text = company[1].ToString();
-        }
-
         private void CustomerSearchBtn_Click(object sender, EventArgs e)
         {
             CustomerRowData[] customers = DatabaseHelper.GetCustomers(customerName.Text.Trim() == "" ? "" : customerName.Text);
@@ -267,6 +281,16 @@ namespace ElectronicServices
                 fs?.SetControls(row.Controls);
                 customersPanel.Controls.Add(row);
             }
+        }
+
+        private void UpdateCustomersComboBox()
+        {
+            customersComboBox.Items.Clear();
+            customersComboBox.Items.Add(new KeyValuePair<int, string>(0, "«Œ — „‰ «·ﬁ«∆„…"));
+            var customers = DatabaseHelper.GetCustomersNames();
+            foreach (var customer in customers)
+                customersComboBox.Items.Add(customer);
+            customersComboBox.SelectedIndex = 0;
         }
 
         private void CustomerLabel_Click(object sender, EventArgs e)
@@ -356,7 +380,6 @@ namespace ElectronicServices
 
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             payAmount.Value = 0; takeAmount.Value = 0;
-            // transDate.Value = DateTime.Now;
         }
 
         private void TransSearchBtn_Click(object sender, EventArgs e)
@@ -447,6 +470,30 @@ namespace ElectronicServices
             }
         }
 
+        private void PayAmount_ValueChanged(object sender, EventArgs e)
+        {
+            payWith.Enabled = payAmount.Value > 0;
+        }
+
+        private void TakeAmount_ValueChanged(object sender, EventArgs e)
+        {
+            takeWith.Enabled = takeAmount.Value > 0;
+        }
+
+        private void UpdatePayappComboBox()
+        {
+            payWith.Items.Clear();
+            takeWith.Items.Clear();
+            string[] payApps = DatabaseHelper.GetPayappsNames();
+            foreach (string payApp in payApps)
+            {
+                payWith.Items.Add(payApp);
+                takeWith.Items.Add(payApp);
+            }
+            payWith.SelectedIndex = 0;
+            takeWith.SelectedIndex = 0;
+        }
+
         private void AddPayappBtn_Click(object sender, EventArgs e)
         {
             string payappName = payApp.Text.Trim();
@@ -474,36 +521,13 @@ namespace ElectronicServices
             payApp.Text = "";
             UpdatePayappComboBox();
         }
+        #endregion
 
-        private void UpdatePayappComboBox()
-        {
-            payWith.Items.Clear();
-            takeWith.Items.Clear();
-            string[] payApps = DatabaseHelper.GetPayappsNames();
-            foreach (string payApp in payApps)
-            {
-                payWith.Items.Add(payApp);
-                takeWith.Items.Add(payApp);
-            }
-            payWith.SelectedIndex = 0;
-            takeWith.SelectedIndex = 0;
-        }
+        #region Wallets & Operations
 
-        private void PayAmount_ValueChanged(object sender, EventArgs e)
-        {
-            payWith.Enabled = payAmount.Value > 0;
-        }
+        #endregion
 
-        private void TakeAmount_ValueChanged(object sender, EventArgs e)
-        {
-            takeWith.Enabled = takeAmount.Value > 0;
-        }
-
-        private void UpdateCreditDepitBtn_Click(object sender, EventArgs e)
-        {
-            UpdateCreditAndDept();
-        }
-
+        #region Extract Excel Files
         private void ExcelBtn_Click(object sender, EventArgs e)
         {
             if (!File.Exists("ClosedXML.dll"))
@@ -616,19 +640,6 @@ namespace ElectronicServices
                 MessageBox.Show("ÕœÀ Œÿ√ √À‰«¡ Õ›Ÿ «·„·›\n" + ex.Message, "Œÿ√", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void ElecPayBtn_Click(object sender, EventArgs e)
-        {
-            ElecListViewDialog elvd = new(null, true, -1);
-            elvd.ShowDialog();
-        }
-
-        private void InventoryBtn_Click(object sender, EventArgs e)
-        {
-            DailyListViewDialog dlvd = new(null, true, false);
-            dlvd.ShowDialog();
-        }
-
 
         private void ExtraExcelBtn_Click(object sender, EventArgs e)
         {
@@ -817,6 +828,7 @@ namespace ElectronicServices
         {
             extraExcelBtn.Image = Properties.Resources.confused_face;
         }
+        #endregion
 
     }
 }
