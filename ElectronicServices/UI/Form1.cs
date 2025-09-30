@@ -630,6 +630,19 @@ namespace ElectronicServices
             dlvd.ShowDialog();
         }
 
+
+        private void WalletsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OperationsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
         private void ExtraExcelBtn_Click(object sender, EventArgs e)
         {
             if (!File.Exists("ClosedXML.dll"))

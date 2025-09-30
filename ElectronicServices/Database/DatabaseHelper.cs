@@ -6,7 +6,7 @@ namespace ElectronicServices
     static class DatabaseHelper
     {
         private static bool success = false;
-        private static readonly int classVersion = 3;
+        private static readonly int classVersion = 4;
         private static readonly string dataFolder = "data", imagesFolder = $"{dataFolder}\\images\\", databaseFile = $"{dataFolder}\\ProgData.ds";
         private static readonly SQLiteConnection conn = new($"Data Source={databaseFile};Version=3;");
         private static readonly SQLiteCommand command = new(conn);
@@ -44,10 +44,12 @@ namespace ElectronicServices
                 command.CommandText = "CREATE TABLE metadata (version INTEGER PRIMARY KEY, create_date INTEGER, comment TEXT);" +
                                       "CREATE TABLE customers ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
                                       "CREATE TABLE payapp ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL);" +
-                                      "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER NOT NULL, date TEXT NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, credit_payapp INTEGER NOT NULL, debit_payapp INTEGER NOT NULL, note TEXT, FOREIGN KEY(customer_id) REFERENCES customers(id), FOREIGN KEY(credit_payapp) REFERENCES payapp(id), FOREIGN KEY(debit_payapp) REFERENCES payapp(id) );" +
+                                      "CREATE TABLE transactions ( id INTEGER PRIMARY KEY AUTOINCREMENT, customer_id INTEGER REFERENCES customers(id) NOT NULL, date TEXT NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, credit_payapp INTEGER REFERENCES payapp(id) NOT NULL, debit_payapp INTEGER REFERENCES payapp(id) NOT NULL, note TEXT NOT NULL );" +
                                       "CREATE TABLE payapp_closures ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, closured INTEGER NOT NULL );" +
-                                      "CREATE TABLE payapp_closures_details (closure_id INTEGER NOT NULL, payapp_id INTEGER NOT NULL, balance REAL NOT NULL, FOREIGN KEY(payapp_id) REFERENCES payapp(id), PRIMARY KEY (closure_id, payapp_id) );" +
-                                      "CREATE TABLE daily_closures ( date TEXT NOT NULL PRIMARY KEY, total_wallets REAL NOT NULL, total_cash REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, closure_id INTEGER NOT NULL, FOREIGN KEY(closure_id) REFERENCES payapp_closures(id) );" +
+                                      "CREATE TABLE payapp_closures_details (closure_id INTEGER REFERENCES payapp_closures(id), payapp_id INTEGER REFERENCES payapp(id), balance REAL NOT NULL, PRIMARY KEY (closure_id, payapp_id) );" +
+                                      "CREATE TABLE daily_closures ( date TEXT PRIMARY KEY, total_wallets REAL NOT NULL, total_cash REAL NOT NULL, total_electronic REAL NOT NULL, credit REAL NOT NULL, debit REAL NOT NULL, closure_id INTEGER REFERENCES payapp_closures(id) NOT NULL );" +
+                                      "CREATE TABLE phones ( phone TEXT PRIMARY KEY, balance REAL NOT NULL, withdrawal_remaining REAL NOT NULL, deposit_remaining REAL NOT NULL, maximum_withdrawal REAL NOT NULL, maximum_deposit REAL NOT NULL, type TEXT NOT NULL, comment TEXT NOT NULL );" +
+                                      "CREATE TABLE payments ( phone TEXT REFERENCES phones(phone), date TEXT, balance REAL NOT NULL, withdrawal_amount REAL NOT NULL, deposit_amount REAL NOT NULL, withdrawal_remaining REAL NOT NULL, deposit_remaining REAL NOT NULL, comment TEXT NOT NULL, PRIMARY KEY (phone, date) );" +
                                       "INSERT INTO payapp VALUES (-1, '');" +
                                       "INSERT INTO payapp VALUES (0, 'نقدا');" +
                                       $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 'https://github.com/MohamedAshref371');";

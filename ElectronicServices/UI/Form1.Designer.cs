@@ -1185,6 +1185,7 @@
             operationsBtn.Size = new Size(114, 35);
             operationsBtn.TabIndex = 8;
             operationsBtn.Text = "العمليات";
+            operationsBtn.Click += OperationsBtn_Click;
             // 
             // walletsBtn
             // 
@@ -1207,6 +1208,7 @@
             walletsBtn.Size = new Size(114, 35);
             walletsBtn.TabIndex = 7;
             walletsBtn.Text = "المحافظ";
+            walletsBtn.Click += WalletsBtn_Click;
             // 
             // mainBtn
             // 
