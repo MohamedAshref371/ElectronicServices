@@ -76,9 +76,6 @@ namespace ElectronicServices
 
         private void ExitBtn_Click(object sender, EventArgs e)
         {
-            //string f = "C:\\Users\\Mohamed\\Pictures\\logo.png";
-            //string f1 = "C:\\Users\\Mohamed\\Pictures\\logo2.png";
-            //TintPng(new Bitmap(f), Color.Orange).Save(f1);
             Close();
         }
 
@@ -117,31 +114,21 @@ namespace ElectronicServices
             WindowState = FormWindowState.Minimized;
         }
 
-        //public static Bitmap TintPng(Bitmap original, Color tintColor)
-        //{
-        //    Bitmap tinted = new Bitmap(original.Width, original.Height);
-        //    for (int y = 0; y < original.Height; y++)
-        //    {
-        //        for (int x = 0; x < original.Width; x++)
-        //        {
-        //            Color pixel = original.GetPixel(x, y);
-        //            if (pixel.A > 0) // ›ﬁÿ ·Ê «·»ﬂ”· „‘ ‘›«›
-        //            {
-        //                tinted.SetPixel(x, y, Color.FromArgb(pixel.A, tintColor.R, tintColor.G, tintColor.B));
-        //            }
-        //            else
-        //            {
-        //                tinted.SetPixel(x, y, Color.Transparent);
-        //            }
-        //        }
-        //    }
-        //    return tinted;
-        //}
+        #region Footer Panel
+        private void MainBtn_Click(object sender, EventArgs e)
+        {
+            customersPanel.Visible = false;
+            addCustomersPanel.Visible = false;
+            transactionsPanel.Visible = false;
+            addTransactionsPanel.Visible = false;
+
+        }
 
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
             customersPanel.Visible = true;
             addCustomersPanel.Visible = true;
+
             transactionsPanel.Visible = false;
             addTransactionsPanel.Visible = false;
         }
@@ -150,9 +137,29 @@ namespace ElectronicServices
         {
             transactionsPanel.Visible = true;
             addTransactionsPanel.Visible = true;
+
             customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
         }
+
+        private void WalletsBtn_Click(object sender, EventArgs e)
+        {
+
+            customersPanel.Visible = false;
+            addCustomersPanel.Visible = false;
+            transactionsPanel.Visible = false;
+            addTransactionsPanel.Visible = false;
+        }
+
+        private void OperationsBtn_Click(object sender, EventArgs e)
+        {
+
+            customersPanel.Visible = false;
+            addCustomersPanel.Visible = false;
+            transactionsPanel.Visible = false;
+            addTransactionsPanel.Visible = false;
+        }
+        #endregion
 
         private void AddCustomerBtn_Click(object sender, EventArgs e)
         {
@@ -440,14 +447,6 @@ namespace ElectronicServices
             }
         }
 
-        private void MainBtn_Click(object sender, EventArgs e)
-        {
-            customersPanel.Visible = false;
-            addCustomersPanel.Visible = false;
-            transactionsPanel.Visible = false;
-            addTransactionsPanel.Visible = false;
-        }
-
         private void AddPayappBtn_Click(object sender, EventArgs e)
         {
             string payappName = payApp.Text.Trim();
@@ -629,18 +628,6 @@ namespace ElectronicServices
             DailyListViewDialog dlvd = new(null, true, false);
             dlvd.ShowDialog();
         }
-
-
-        private void WalletsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OperationsBtn_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
 
         private void ExtraExcelBtn_Click(object sender, EventArgs e)
