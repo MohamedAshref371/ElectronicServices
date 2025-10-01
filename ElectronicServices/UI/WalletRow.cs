@@ -39,7 +39,7 @@ namespace ElectronicServices
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            bool res = DatabaseHelper.IsTherePayments(data.Phone);
+            bool res = DatabaseHelper.IsThereRecords(data.Phone);
 
             if (res && MessageBox.Show("لا يمكن حذف هذه المحفظة لأنها مرتبطة بعمليات\nهل تريد تصفير هذه المحفظة أولا ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
