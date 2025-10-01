@@ -81,16 +81,12 @@ namespace ElectronicServices
 
         private void DeleteCustomerBtn_Click(object sender, EventArgs e)
         {
-            int res = DatabaseHelper.IsThereTransactions(id);
-            if (res < 0)
-            {
-                MessageBox.Show("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (res > 0 && MessageBox.Show("لا يمكن حذف هذا العميل لأنه مرتبط بمعاملات\nهل تريد تصفير هذا العميل أولا؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            bool res = DatabaseHelper.IsThereTransactions(id);
+
+            if (res && MessageBox.Show("لا يمكن حذف هذا العميل لأنه مرتبط بمعاملات\nهل تريد تصفير هذا العميل أولا؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
 
-            if (res > 0)
+            if (res)
             {
                 if (!DatabaseHelper.ResetCustomer(id))
                 {

@@ -32,7 +32,7 @@ namespace ElectronicServices
         }
 
         private void ChooseBtn_Click(object sender, EventArgs e)
-            => Program.Form.ChooseWalletBtn(data.Phone);
+            => Program.Form.ChooseWalletBtn(data);
 
         private void EditBtn_Click(object sender, EventArgs e)
             => Program.Form.SetWalletData(data);

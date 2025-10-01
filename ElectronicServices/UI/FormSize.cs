@@ -7,23 +7,20 @@ class FormSize(int oldSizeX, int oldSizeY, int newSizeX, int newSizeY)
     private readonly double xDiv = newSizeX / (double)oldSizeX,
                             yDiv = newSizeY / (double)oldSizeY;
 
-    public void SetControl(Control control, bool setFont = true, bool loc = true)
+    public void SetControl(Control control)
     {
-        if (loc) control.Location = new Point(Round(control.Location.X * xDiv), Round(control.Location.Y * yDiv));
-        control.Size = new Size(Round(control.Size.Width * xDiv), Round(control.Size.Height * yDiv));
-        if (setFont)
-            control.Font = new Font(control.Font.FontFamily, Roundf(control.Font.Size * ((xDiv < yDiv && xDiv > 1 || xDiv > yDiv && xDiv < 1) ? xDiv : yDiv)));
+        Point point = control.Location; Size size = control.Size;
+        control.Font = new Font(control.Font.FontFamily, Roundf(control.Font.Size * ((xDiv < yDiv && xDiv > 1 || xDiv > yDiv && xDiv < 1) ? xDiv : yDiv)));
+        control.Location = new Point(Round(point.X * xDiv), Round(point.Y * yDiv));
+        control.Size = new Size(Round(size.Width * xDiv), Round(size.Height * yDiv));
     }
 
     public void SetControls(Control.ControlCollection controls)
     {
         for (int i = 0; i < controls.Count; i++)
         {
-            if (controls[i] is Guna2TextBox)
-                SetControl(controls[i], false);
-            else
-                SetControl(controls[i]);
-            if (controls[i] is Panel || controls[i] is CustomerRow || controls[i] is TransactionRow)
+            SetControl(controls[i]);
+            if (controls[i] is Panel || controls[i] is CustomerRow || controls[i] is TransactionRow || controls[i] is WalletRow)
                 SetControls(controls[i].Controls);
         }
     }
