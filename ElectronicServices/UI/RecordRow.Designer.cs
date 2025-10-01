@@ -126,7 +126,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(50, 128, 128, 128);
+            BackColor = Color.FromArgb(50, 255, 255, 255);
             Controls.Add(date);
             Controls.Add(withdRema);
             Controls.Add(depoRema);
