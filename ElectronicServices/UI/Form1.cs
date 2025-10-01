@@ -845,7 +845,7 @@ namespace ElectronicServices
 
             RecordRowData data = new()
             {
-                Phone = phoneNumber.Text,
+                Phone = walletData.Phone,
                 Date = DateTime.Now.ToCompleteStandardString(),
                 WithdrawalRemaining = walletData.WithdrawalRemaining,
                 DepositRemaining = walletData.DepositRemaining,
@@ -863,7 +863,7 @@ namespace ElectronicServices
                 MessageBox.Show("حدث خطأ أثناء إضافة العملية\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            RecordRowData[] records = DatabaseHelper.GetRecords(phoneNumber.Text);
+            RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
             AddRecordsInPanel(records);
         }
         #endregion
