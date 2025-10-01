@@ -1,7 +1,7 @@
 ﻿
 namespace ElectronicServices
 {
-    internal class RecordRowData
+    public class RecordRowData
     {
         public string Phone;
         public string Date;
