@@ -745,7 +745,7 @@ namespace ElectronicServices
             deposit.Value = 0;
             operComment.Text = "";
             operSaveBtn.Enabled = true;
-            RecordRowData[] records = DatabaseHelper.GetRecords(phoneNumber.Text);
+            RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
             AddRecordsInPanel(records);
             RecordsBtnBtn_Click(null, null);
         }
