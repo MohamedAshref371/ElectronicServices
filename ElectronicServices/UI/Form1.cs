@@ -1,4 +1,4 @@
-using ClosedXML.Excel;
+ï»¿using ClosedXML.Excel;
 
 namespace ElectronicServices
 {
@@ -21,6 +21,16 @@ namespace ElectronicServices
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (addCustomersPanel.Visible)
+                Customers_KeyUp(e);
+            else if (addTransactionsPanel.Visible)
+                Transactions_KeyUp(e);
+            else if (addWalletsPanel.Visible)
+                Wallets_KeyUp(e);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -51,7 +61,7 @@ namespace ElectronicServices
             headerPanel.MouseDown += meh; ;
             formIcon.MouseDown += meh;
             formTitle.MouseDown += meh;
-            phoneNumber.MouseDown += meh;
+            CompanyPhone.MouseDown += meh;
 
 
             CustomerRow cust = new();
@@ -69,9 +79,14 @@ namespace ElectronicServices
             customersComboBox.ValueMember = "Key";
             UpdateCustomersComboBox();
             DateLabel_DoubleClick(this, EventArgs.Empty);
-            excelDate.Value = DateTime.Now;
-
             UpdatePayappComboBox();
+
+            WalletRow wallet = new();
+            wallet.Location = new Point(wallet.Location.X + rowPadding, 5);
+            walletsPanel.Controls.Add(wallet);
+            UpdateWalletTypeComboBox();
+
+            excelDate.Value = DateTime.Now;
             UpdateCreditAndDept();
         }
 
@@ -123,43 +138,58 @@ namespace ElectronicServices
             addCustomersPanel.Visible = false;
             transactionsPanel.Visible = false;
             addTransactionsPanel.Visible = false;
-
+            walletsPanel.Visible = false;
+            addWalletsPanel.Visible = false;
+            recordsPanel.Visible = false;
+            addRecordsPanel.Visible = false;
         }
 
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
             customersPanel.Visible = true;
             addCustomersPanel.Visible = true;
-
             transactionsPanel.Visible = false;
             addTransactionsPanel.Visible = false;
+            walletsPanel.Visible = false;
+            addWalletsPanel.Visible = false;
+            recordsPanel.Visible = false;
+            addRecordsPanel.Visible = false;
         }
 
         private void TransactionsBtn_Click(object sender, EventArgs e)
         {
             transactionsPanel.Visible = true;
             addTransactionsPanel.Visible = true;
-
             customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
+            walletsPanel.Visible = false;
+            addWalletsPanel.Visible = false;
+            recordsPanel.Visible = false;
+            addRecordsPanel.Visible = false;
         }
 
         private void WalletsBtn_Click(object sender, EventArgs e)
         {
-
+            walletsPanel.Visible = true;
+            addWalletsPanel.Visible = true;
             customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
             transactionsPanel.Visible = false;
             addTransactionsPanel.Visible = false;
+            recordsPanel.Visible = false;
+            addRecordsPanel.Visible = false;
         }
 
-        private void OperationsBtn_Click(object sender, EventArgs e)
+        private void RecordsBtnBtn_Click(object sender, EventArgs e)
         {
-
+            recordsPanel.Visible = true;
+            addRecordsPanel.Visible = true;
             customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
             transactionsPanel.Visible = false;
             addTransactionsPanel.Visible = false;
+            walletsPanel.Visible = false;
+            addWalletsPanel.Visible = false;
         }
         #endregion
 
@@ -201,18 +231,18 @@ namespace ElectronicServices
             int res = DatabaseHelper.SearchWithExactCustomerName(custName);
             if (res < 0)
             {
-                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ŞÑÇÁÉ ÇáÈíÇäÇÊ", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ù‚Ø±Ø§Ø¡Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (res >= 1)
             {
-                MessageBox.Show("áŞÏ ÊãÊ ÅÖÇİÉ åĞÇ ÇáÚãíá ãä ŞÈá", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ù„Ù‚Ø¯ ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© Ù‡Ø°Ø§ Ø§Ù„Ø¹Ù…ÙŠÙ„ Ù…Ù† Ù‚Ø¨Ù„", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!DatabaseHelper.AddCustomer(custName))
             {
-                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÅÖÇİÉ ÇáÚãíá\nÇáÑÌÇÁ ÇáãÍÇæáÉ ãÑÉ ÃÎÑì", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ø¥Ø¶Ø§ÙØ© Ø§Ù„Ø¹Ù…ÙŠÙ„\nØ§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -250,7 +280,7 @@ namespace ElectronicServices
                 };
 
                 if (!DatabaseHelper.AddTransaction(data))
-                    MessageBox.Show("ÍÏË ÎØÃ ÇËäÇÁ ÅÖÇİÉ ÇáŞíã ÇáÇÈÊÏÇÆíÉ ááÚãíá", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø§Ø«Ù†Ø§Ø¡ Ø¥Ø¶Ø§ÙØ© Ø§Ù„Ù‚ÙŠÙ… Ø§Ù„Ø§Ø¨ØªØ¯Ø§Ø¦ÙŠØ© Ù„Ù„Ø¹Ù…ÙŠÙ„", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             }
@@ -286,26 +316,16 @@ namespace ElectronicServices
         private void UpdateCustomersComboBox()
         {
             customersComboBox.Items.Clear();
-            customersComboBox.Items.Add(new KeyValuePair<int, string>(0, "ÇÎÊÑ ãä ÇáŞÇÆãÉ"));
+            customersComboBox.Items.Add(new KeyValuePair<int, string>(0, "Ø§Ø®ØªØ± Ù…Ù† Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©"));
             var customers = DatabaseHelper.GetCustomersNames();
             foreach (var customer in customers)
                 customersComboBox.Items.Add(customer);
             customersComboBox.SelectedIndex = 0;
         }
 
-        private void CustomerLabel_Click(object sender, EventArgs e)
-        {
-            customersComboBox.Focus();
-        }
-
         private void CustomerLabel_DoubleClick(object sender, EventArgs e)
         {
             customersComboBox.SelectedIndex = 0;
-        }
-
-        private void DateLabel_Click(object sender, EventArgs e)
-        {
-            transDate.Focus();
         }
 
         private void DateLabel_DoubleClick(object sender, EventArgs e)
@@ -336,13 +356,13 @@ namespace ElectronicServices
 
             if (customersComboBox.SelectedIndex <= 0)
             {
-                MessageBox.Show("ÇáÑÌÇÁ ÇÎÊíÇÑ Úãíá ãä ÇáŞÇÆãÉ", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ø®ØªÙŠØ§Ø± Ø¹Ù…ÙŠÙ„ Ù…Ù† Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (payAmount.Value == 0 && takeAmount.Value == 0)
             {
-                MessageBox.Show("ÇáÑÌÇÁ ÅÏÎÇá ŞíãÉ ÇáÏİÚ Ãæ ÇáÓÍÈ", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø¥Ø¯Ø®Ø§Ù„ Ù‚ÙŠÙ…Ø© Ø§Ù„Ø¯ÙØ¹ Ø£Ùˆ Ø§Ù„Ø³Ø­Ø¨", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -361,7 +381,7 @@ namespace ElectronicServices
 
             if (!DatabaseHelper.AddTransaction(data))
             {
-                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÅÖÇİÉ ÇáãÚÇãáÉ.\nÇáÑÌÇÁ ÇáãÍÇæáÉ ãÑÉ ÃÎÑì", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ø¥Ø¶Ø§ÙØ© Ø§Ù„Ù…Ø¹Ø§Ù…Ù„Ø©.\nØ§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -423,20 +443,20 @@ namespace ElectronicServices
             TransSearchBtn_Click(null, null);
         }
 
-        private void CustomerName_KeyUp(object sender, KeyEventArgs e)
+        private void Customers_KeyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
             {
                 FieldData[] data = DatabaseHelper.CustomerFieldSearch();
                 if (data is null) return;
-                ListViewDialog lvd = new("ÇÓã ÇáÚãíá", data);
+                ListViewDialog lvd = new("Ø§Ø³Ù… Ø§Ù„Ø¹Ù…ÙŠÙ„", data);
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
                 customerName.Text = data[lvd.SelectedIndex].Text;
             }
         }
 
-        private void CustomersComboBox_KeyUp(object sender, KeyEventArgs e)
+        private void Transactions_KeyUp(KeyEventArgs e)
         {
             int key = (int)e.KeyCode - 111;
             FieldData[] data;
@@ -445,24 +465,17 @@ namespace ElectronicServices
             {
                 data = DatabaseHelper.TransFieldSearch();
                 if (data is null) return;
-                lvd = new("ÇÓã ÇáÚãíá", data);
+                lvd = new("Ø§Ø³Ù… Ø§Ù„Ø¹Ù…ÙŠÙ„", data);
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
                 customersComboBox.SelectedItem = customersComboBox.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(c => c.Value == data[lvd.SelectedIndex].Text);
             }
-        }
-
-        private void TransDate_KeyUp(object sender, KeyEventArgs e)
-        {
-            int key = (int)e.KeyCode - 111;
-            FieldData[] data;
-            ListViewDialog lvd;
-            if (key >= 6 && key <= 8)
+            else if (key >= 6 && key <= 8)
             {
                 int custId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key;
                 data = DatabaseHelper.TransFieldSearch(custId, key);
                 if (data is null) return;
-                lvd = new("ÊÇÑíÎ ÇáãÚÇãáÉ", data);
+                lvd = new("ØªØ§Ø±ÙŠØ® Ø§Ù„Ù…Ø¹Ø§Ù…Ù„Ø©", data);
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
                 TransactionRowData[] transactions = DatabaseHelper.GetTransactions(custId, data[lvd.SelectedIndex].Text, key);
@@ -497,24 +510,23 @@ namespace ElectronicServices
         private void AddPayappBtn_Click(object sender, EventArgs e)
         {
             string payappName = payApp.Text.Trim();
-
             if (payappName == "") return;
 
             int res = DatabaseHelper.SearchWithExactPayappName(payappName);
             if (res < 0)
             {
-                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ŞÑÇÁÉ ÇáÈíÇäÇÊ", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ù‚Ø±Ø§Ø¡Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (res >= 1)
             {
-                MessageBox.Show("áŞÏ ÊãÊ ÅÖÇİÉ ÊØÈíŞ ÇáÏİÚ åĞÇ ãä ŞÈá", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Ù„Ù‚Ø¯ ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© ØªØ·Ø¨ÙŠÙ‚ Ø§Ù„Ø¯ÙØ¹ Ù‡Ø°Ø§ Ù…Ù† Ù‚Ø¨Ù„", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!DatabaseHelper.AddPayapp(payappName))
             {
-                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÅÖÇİÉ ÊØÈíŞ ÇáÏİÚ\nÇáÑÌÇÁ ÇáãÍÇæáÉ ãÑÉ ÃÎÑì", "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ø¥Ø¶Ø§ÙØ© ØªØ·Ø¨ÙŠÙ‚ Ø§Ù„Ø¯ÙØ¹\nØ§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -524,7 +536,336 @@ namespace ElectronicServices
         #endregion
 
         #region Wallets & Operations
+        private void AddWalletTypeBtn_Click(object sender, EventArgs e)
+        {
+            string type = walletType.Text.Trim();
+            if (type == "") return;
 
+            int res = DatabaseHelper.SearchWithExactWalletType(type);
+            if (res < 0)
+            {
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ù‚Ø±Ø§Ø¡Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (res >= 1)
+            {
+                MessageBox.Show("Ù„Ù‚Ø¯ ØªÙ…Øª Ø¥Ø¶Ø§ÙØ© Ù†ÙˆØ¹ Ø§Ù„Ù…Ø­ÙØ¸Ø© Ù‡Ø°Ø§ Ù…Ù† Ù‚Ø¨Ù„", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!DatabaseHelper.AddWalletType(type))
+            {
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ø¥Ø¶Ø§ÙØ© Ù†ÙˆØ¹ Ø§Ù„Ù…Ø­ÙØ¸Ø©\nØ§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            walletType.Text = "";
+            UpdateWalletTypeComboBox();
+        }
+
+        private void UpdateWalletTypeComboBox()
+        {
+            walletTypeComboBox.Items.Clear();
+            walletTypeComboBox.Items.Add("Ø§Ø®ØªØ± Ù…Ù† Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©");
+            string[] types = DatabaseHelper.GetWalletTypes();
+            foreach (string type in types)
+                walletTypeComboBox.Items.Add(type);
+            walletTypeComboBox.SelectedIndex = 0;
+        }
+
+        private void WalletSearchBtn_Click(object sender, EventArgs e)
+        {
+            WalletRowData[] wallets = DatabaseHelper.GetWallets(phoneNumber.Text);
+            AddWalletsInPanel(wallets);
+        }
+
+        private void AddWalletsInPanel(WalletRowData[] wallets)
+        {
+            walletsPanel.Controls.Clear();
+            WalletRow row = new();
+            row.Location = new Point(row.Location.X + rowPadding, 5);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
+            walletsPanel.Controls.Add(row);
+
+            for (int i = 0; i < wallets.Length; i++)
+            {
+                row = new(wallets[i]);
+                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
+                fs?.SetControl(row);
+                fs?.SetControls(row.Controls);
+                walletsPanel.Controls.Add(row);
+            }
+        }
+
+        private void WalletSaveBtn_Click(object sender, EventArgs e)
+        {
+            if (phoneNumber.Text == "") return;
+
+            if (walletTypeComboBox.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ø®ØªÙŠØ§Ø± Ù†ÙˆØ¹ Ø§Ù„Ù…Ø­ÙØ¸Ø© Ù…Ù† Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (isEqualMax.Checked)
+            {
+                withdrawalRemaining.Value = maxWithdrawal.Value;
+                depositRemaining.Value = maxDeposit.Value;
+            }
+
+            WalletRowData data = new()
+            {
+                Phone = phoneNumber.Text,
+                MaximumWithdrawal = (float)maxWithdrawal.Value,
+                MaximumDeposit = (float)maxDeposit.Value,
+                WithdrawalRemaining = (float)withdrawalRemaining.Value,
+                DepositRemaining = (float)depositRemaining.Value,
+                Balance = (float)balance.Value,
+                Type = walletTypeComboBox.SelectedIndex,
+                Comment = walletComment.Text.Trim(),
+            };
+
+            bool res = DatabaseHelper.IsWalletExist(data.Phone);
+
+            if (res)
+            {
+                if (MessageBox.Show("Ù‡Ù„ ØªØ±ÙŠØ¯ ØªØ­Ø¯ÙŠØ« Ø¨ÙŠØ§Ù†Ø§Øª Ù‡Ø°Ù‡ Ø§Ù„Ù…Ø­ÙØ¸Ø© ØŸ", "ØªØ£ÙƒÙŠØ¯", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                if (!DatabaseHelper.EditWallet(data))
+                {
+                    MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ ØªØ­Ø¯ÙŠØ« Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù…Ø­ÙØ¸Ø©\nØ§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else if (!DatabaseHelper.AddWallet(data))
+            {
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ø¥Ø¶Ø§ÙØ© Ø§Ù„Ù…Ø­ÙØ¸Ø©\nØ§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            for (int i = 1; i < walletsPanel.Controls.Count; i++)
+            {
+                if (walletsPanel.Controls[i] is WalletRow wr && wr.Phone == data.Phone)
+                {
+                    wr.SetWalletRowData(data);
+                    return;
+                }
+            }
+
+            int count = walletsPanel.Controls.Count, bottom;
+            if (count > 0)
+                bottom = walletsPanel.Controls[count - 1].Bottom;
+            else
+                bottom = 2;
+
+            WalletRow row = new(data);
+            row.Location = new Point(row.Location.X + rowPadding, 0);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
+            row.Location = new Point(row.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
+            walletsPanel.Controls.Add(row);
+        }
+
+        private void WalletEmptyBtn_Click(object sender, EventArgs e)
+        {
+            phoneNumber.Text = "";
+            maxWithdrawal.Value = 0;
+            maxDeposit.Value = 0;
+            isEqualMax.Checked = true;
+            withdrawalRemaining.Value = 0;
+            depositRemaining.Value = 0;
+            balance.Value = 0;
+            walletTypeComboBox.SelectedIndex = 0;
+            walletComment.Text = "";
+        }
+
+        private void Wallets_KeyUp(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                FieldData[] data = DatabaseHelper.WalletFieldSearch();
+                if (data is null) return;
+                ListViewDialog lvd = new("Ø±Ù‚Ù… Ø§Ù„Ù…Ø­ÙØ¸Ø©", data);
+                if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
+
+                phoneNumber.Text = data[lvd.SelectedIndex].Text;
+            }
+            else if (e.KeyCode == Keys.F2)
+            {
+                FieldData[] data = DatabaseHelper.WalletTypeFieldSearch();
+                if (data is null) return;
+                ListViewDialog lvd = new("Ù†ÙˆØ¹ Ø§Ù„Ù…Ø­ÙØ¸Ø©", data);
+                if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
+
+                phoneNumber.Text = "";
+                walletTypeComboBox.SelectedItem = data[lvd.SelectedIndex].Text;
+            }
+            else if (e.KeyCode == Keys.F3)
+            {
+                WalletRowData[] data = DatabaseHelper.GetWallets(walletTypeComboBox.SelectedIndex);
+                if (data is null) return;
+
+                phoneNumber.Text = "";
+                AddWalletsInPanel(data);
+            }
+            else if (e.KeyCode == Keys.F4)
+            {
+                int type = walletTypeComboBox.SelectedIndex;
+                float totalBalance = DatabaseHelper.GetTotalWalletsBalance(type);
+                RecordRowData[] records = DatabaseHelper.GetRecords(type);
+                phoneNumber2.Text = "";
+                maxWithd.Text = "";
+                maxDepo.Text = "";
+                withdRema.Text = "";
+                depoRema.Text = "";
+                balance2.Text = totalBalance.ToString();
+                walletType2.Text = type == 0 ? "" : GetWalletType(type);
+                withdrawal.Value = 0;
+                deposit.Value = 0;
+                operComment.Text = "";
+                operSaveBtn.Enabled = false;
+                AddRecordsInPanel(records);
+                RecordsBtnBtn_Click(null, null);
+            }
+        }
+
+        WalletRowData walletData;
+        public void ChooseWalletBtn(WalletRowData data)
+        {
+            walletData = data;
+            phoneNumber2.Text = data.Phone;
+            maxWithd.Text = data.MaximumWithdrawal.ToString();
+            maxDepo.Text = data.MaximumDeposit.ToString();
+            withdRema.Text = data.WithdrawalRemaining.ToString();
+            depoRema.Text = data.DepositRemaining.ToString();
+            balance2.Text = data.Balance.ToString();
+            walletType2.Text = GetWalletType(data.Type);
+            withdrawal.Value = 0;
+            deposit.Value = 0;
+            operComment.Text = "";
+            operSaveBtn.Enabled = true;
+            RecordRowData[] records = DatabaseHelper.GetRecords(phoneNumber.Text);
+            AddRecordsInPanel(records);
+            RecordsBtnBtn_Click(null, null);
+        }
+
+        public void SetWalletData(WalletRowData data)
+        {
+            phoneNumber.Text = data.Phone;
+            maxWithdrawal.Value = (decimal)data.MaximumWithdrawal;
+            maxDeposit.Value = (decimal)data.MaximumDeposit;
+            isEqualMax.Checked = false;
+            withdrawalRemaining.Value = (decimal)data.WithdrawalRemaining;
+            depositRemaining.Value = (decimal)data.DepositRemaining;
+            balance.Value = (decimal)data.Balance;
+            walletTypeComboBox.SelectedIndex = data.Type;
+            walletComment.Text = data.Comment;
+        }
+
+        public string GetWalletType(int type)
+            => walletTypeComboBox.Items[type].ToString();
+
+        private void PhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void IsEqualMax_CheckedChanged(object sender, EventArgs e)
+        {
+            withdrawalRemaining.Enabled = !isEqualMax.Checked;
+            depositRemaining.Enabled = !isEqualMax.Checked;
+        }
+
+        private void AddRecordsInPanel(RecordRowData[] records)
+        {
+            recordsPanel.Controls.Clear();
+            RecordRow row = new();
+            row.Location = new Point(row.Location.X + rowPadding, 5);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
+            recordsPanel.Controls.Add(row);
+
+            for (int i = 0; i < records.Length; i++)
+            {
+                row = new(records[i]);
+                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
+                fs?.SetControl(row);
+                fs?.SetControls(row.Controls);
+                recordsPanel.Controls.Add(row);
+            }
+        }
+
+        private void OperSaveBtn_Click(object sender, EventArgs e)
+        {
+            if (withdrawal.Value == 0 && deposit.Value == 0)
+            {
+                MessageBox.Show("Ø§Ù„Ø±Ø¬Ø§Ø¡ Ø¥Ø¯Ø®Ø§Ù„ Ù‚ÙŠÙ…Ø© Ø§Ù„Ø³Ø­Ø¨ Ø£Ùˆ Ø§Ù„Ø¥ÙŠØ¯Ø§Ø¹", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if ((float)withdrawal.Value > walletData.WithdrawalRemaining)
+            {
+                MessageBox.Show("Ù‚ÙŠÙ…Ø© Ø§Ù„Ø³Ø­Ø¨ Ø£ÙƒØ¨Ø± Ù…Ù† Ø§Ù„Ù…ØªØ¨Ù‚ÙŠ Ù„Ù„Ø³Ø­Ø¨", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if ((float)deposit.Value > walletData.DepositRemaining)
+            {
+                MessageBox.Show("Ù‚ÙŠÙ…Ø© Ø§Ù„Ø¥ÙŠØ¯Ø§Ø¹ Ø£ÙƒØ¨Ø± Ù…Ù† Ø§Ù„Ù…ØªØ¨Ù‚ÙŠ Ù„Ù„Ø¥ÙŠØ¯Ø§Ø¹", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (walletData.Balance - (float)withdrawal.Value + (float)deposit.Value < 0)
+            {
+                MessageBox.Show("Ø§Ù„Ø±ØµÙŠØ¯ Ù„Ø§ ÙŠÙ…ÙƒÙ† Ø£Ù† ÙŠÙƒÙˆÙ† Ø³Ø§Ù„Ø¨Ø§Ù‹", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            walletData.WithdrawalRemaining -= (float)withdrawal.Value;
+            walletData.DepositRemaining -= (float)deposit.Value;
+            walletData.Balance = walletData.Balance - (float)withdrawal.Value + (float)deposit.Value;
+
+            withdRema.Text = walletData.WithdrawalRemaining.ToString();
+            depoRema.Text = walletData.DepositRemaining.ToString();
+            balance2.Text = walletData.Balance.ToString();
+
+            if (!DatabaseHelper.EditWallet(walletData))
+            {
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ ØªØ­Ø¯ÙŠØ« Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù…Ø­ÙØ¸Ø©\nØ§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            for (int i = 1; i < walletsPanel.Controls.Count; i++)
+            {
+                if (walletsPanel.Controls[i] is WalletRow wr && wr.Phone == walletData.Phone)
+                {
+                    wr.SetWalletRowData(walletData);
+                    break;
+                }
+            }
+
+            RecordRowData data = new()
+            {
+                Phone = phoneNumber.Text,
+                Date = DateTime.Now.ToCompleteStandardString(),
+                WithdrawalRemaining = walletData.WithdrawalRemaining,
+                DepositRemaining = walletData.DepositRemaining,
+                Withdrawal = (float)withdrawal.Value,
+                Deposit = (float)deposit.Value,
+                Balance = walletData.Balance,
+                Comment = walletComment.Text.Trim(),
+            };
+
+            withdrawal.Value = 0;
+            deposit.Value = 0;
+
+            if (!DatabaseHelper.AddRecord(data))
+            {
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ø¥Ø¶Ø§ÙØ© Ø§Ù„Ø¹Ù…Ù„ÙŠØ©\nØ§Ù„Ø±Ø¬Ø§Ø¡ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰", "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            RecordRowData[] records = DatabaseHelper.GetRecords(phoneNumber.Text);
+            AddRecordsInPanel(records);
+        }
         #endregion
 
         #region Extract Excel Files
@@ -532,7 +873,7 @@ namespace ElectronicServices
         {
             if (!File.Exists("ClosedXML.dll"))
             {
-                MessageBox.Show("ãßÊÈÇÊ ÇáÇíßÓá ÛíÑ ãæÌæÏÉ");
+                MessageBox.Show("Ù…ÙƒØªØ¨Ø§Øª Ø§Ù„Ø§ÙŠÙƒØ³Ù„ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø©");
                 return;
             }
 
@@ -552,7 +893,7 @@ namespace ElectronicServices
             string[] payapps = DatabaseHelper.GetPayappsNames(true);
             char c = (char)('A' + payapps.Length + 1);
             if (c > 'Z') c = 'Z';
-            sheet.Range($"A1:{c}1").Merge().Value = "ãáÎÕ íæã     " + date;
+            sheet.Range($"A1:{c}1").Merge().Value = "Ù…Ù„Ø®Øµ ÙŠÙˆÙ…     " + date;
             sheet.Row(1).Height = 30;
             sheet.Cell("A1").Style.Font.Bold = true;
             sheet.Cell("A1").Style.Font.FontSize = 18;
@@ -569,12 +910,12 @@ namespace ElectronicServices
             }
 
             sheet.Column(payapps.Length + 2).Width = 12;
-            sheet.Cell(2, payapps.Length + 2).Value = "ÇáãÌãæÚ";
+            sheet.Cell(2, payapps.Length + 2).Value = "Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹";
             sheet.Cell(2, payapps.Length + 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
 
-            sheet.Cell(3, 1).Value = "ÏİÚ";
-            sheet.Cell(4, 1).Value = "ÃÎĞ";
-            sheet.Cell(5, 1).Value = "ÇáãÌãæÚ";
+            sheet.Cell(3, 1).Value = "Ø¯ÙØ¹";
+            sheet.Cell(4, 1).Value = "Ø£Ø®Ø°";
+            sheet.Cell(5, 1).Value = "Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹";
             sheet.Cell(5, 1).Style.Fill.BackgroundColor = XLColor.LightBlue;
 
             float sum = 0, sum2 = 0, val, val2;
@@ -598,15 +939,15 @@ namespace ElectronicServices
             float cashCredit = DatabaseHelper.GetPayappDateField(0, date, pay: true), cashDebit = DatabaseHelper.GetPayappDateField(0, date, pay: false);
             sheet.Cell(8, 1).Value = "";
 
-            sheet.Cell(8, 2).Value = "ÇÓÊáÇã äŞÏí";
-            sheet.Cell(8, 3).Value = "ÊÓáíã äŞÏí";
+            sheet.Cell(8, 2).Value = "Ø§Ø³ØªÙ„Ø§Ù… Ù†Ù‚Ø¯ÙŠ";
+            sheet.Cell(8, 3).Value = "ØªØ³Ù„ÙŠÙ… Ù†Ù‚Ø¯ÙŠ";
             sheet.Cell(8, 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
             sheet.Cell(8, 3).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
             sheet.Cell(9, 2).Value = cashCredit;
             sheet.Cell(9, 3).Value = cashDebit;
 
-            sheet.Cell(8, 4).Value = "ÇáãÌãæÚ";
-            sheet.Cell(8, 5).Value = "ÇáİÑŞ";
+            sheet.Cell(8, 4).Value = "Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹";
+            sheet.Cell(8, 5).Value = "Ø§Ù„ÙØ±Ù‚";
             sheet.Cell(8, 4).Style.Fill.BackgroundColor = XLColor.LightBlue;
             sheet.Cell(8, 5).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
             sheet.Cell(9, 4).Value = cashCredit + cashDebit;
@@ -615,15 +956,15 @@ namespace ElectronicServices
 
             float[] creditDebit = DatabaseHelper.GetCreditAndDept(date);
 
-            sheet.Cell(12, 2).Value = "áäÇ";
-            sheet.Cell(12, 3).Value = "ÚáíäÇ";
+            sheet.Cell(12, 2).Value = "Ù„Ù†Ø§";
+            sheet.Cell(12, 3).Value = "Ø¹Ù„ÙŠÙ†Ø§";
             sheet.Cell(12, 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
             sheet.Cell(12, 3).Style.Fill.BackgroundColor = XLColor.LightBlue;
             sheet.Cell(13, 2).Value = creditDebit[0];
             sheet.Cell(13, 3).Value = creditDebit[1];
 
-            sheet.Cell(12, 4).Value = "ÇáãÌãæÚ";
-            sheet.Cell(12, 5).Value = "ÇáİÑŞ";
+            sheet.Cell(12, 4).Value = "Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹";
+            sheet.Cell(12, 5).Value = "Ø§Ù„ÙØ±Ù‚";
             sheet.Cell(12, 4).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
             sheet.Cell(12, 5).Style.Fill.BackgroundColor = XLColor.LightBlue;
             sheet.Cell(13, 4).Value = creditDebit[0] + creditDebit[1];
@@ -633,11 +974,11 @@ namespace ElectronicServices
             try
             {
                 workbook.SaveAs(path);
-                MessageBox.Show("Êã ÇÓÊÎÑÇÌ ÇáÈíÇäÇÊ ÈäÌÇÍ");
+                MessageBox.Show("ØªÙ… Ø§Ø³ØªØ®Ø±Ø§Ø¬ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø¨Ù†Ø¬Ø§Ø­");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÍİÙ Çáãáİ\n" + ex.Message, "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ø­ÙØ¸ Ø§Ù„Ù…Ù„Ù\n" + ex.Message, "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -645,7 +986,7 @@ namespace ElectronicServices
         {
             if (!File.Exists("ClosedXML.dll"))
             {
-                MessageBox.Show("ãßÊÈÇÊ ÇáÇíßÓá ÛíÑ ãæÌæÏÉ");
+                MessageBox.Show("Ù…ÙƒØªØ¨Ø§Øª Ø§Ù„Ø§ÙŠÙƒØ³Ù„ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø©");
                 return;
             }
             isRunning = true;
@@ -668,17 +1009,17 @@ namespace ElectronicServices
 
             IXLWorksheet custSheet = workbook.Worksheets.Add("Customers");
 
-            custSheet.Range("A1:E1").Merge().Value = "ÇáÚãáÇÁ";
+            custSheet.Range("A1:E1").Merge().Value = "Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡";
             custSheet.Row(1).Height = 30;
             custSheet.Cell("A1").Style.Font.Bold = true;
             custSheet.Cell("A1").Style.Font.FontSize = 18;
             custSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             custSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-            custSheet.Column(1).Width = 10; custSheet.Cell(2, 1).Value = "ßæÏ ÇáÚãíá";
-            custSheet.Column(2).Width = 30; custSheet.Cell(2, 2).Value = "ÇÓã ÇáÚãíá";
-            custSheet.Column(3).Width = 15; custSheet.Cell(2, 3).Value = "ÏİÚ";
-            custSheet.Column(4).Width = 15; custSheet.Cell(2, 4).Value = "ÃÎĞ";
-            custSheet.Column(5).Width = 15; custSheet.Cell(2, 5).Value = "ÇáÑÕíÏ";
+            custSheet.Column(1).Width = 10; custSheet.Cell(2, 1).Value = "ÙƒÙˆØ¯ Ø§Ù„Ø¹Ù…ÙŠÙ„";
+            custSheet.Column(2).Width = 30; custSheet.Cell(2, 2).Value = "Ø§Ø³Ù… Ø§Ù„Ø¹Ù…ÙŠÙ„";
+            custSheet.Column(3).Width = 15; custSheet.Cell(2, 3).Value = "Ø¯ÙØ¹";
+            custSheet.Column(4).Width = 15; custSheet.Cell(2, 4).Value = "Ø£Ø®Ø°";
+            custSheet.Column(5).Width = 15; custSheet.Cell(2, 5).Value = "Ø§Ù„Ø±ØµÙŠØ¯";
 
             CustomerRowData[] customers = DatabaseHelper.GetCustomers();
             for (int i = 0; i < customers.Length; i++)
@@ -692,21 +1033,21 @@ namespace ElectronicServices
 
 
             IXLWorksheet transSheet = workbook.Worksheets.Add("Transactions");
-            transSheet.Range("A1:I1").Merge().Value = "ÍÑßÉ ÇáÚãáÇÁ";
+            transSheet.Range("A1:I1").Merge().Value = "Ø­Ø±ÙƒØ© Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡";
             transSheet.Row(1).Height = 30;
             transSheet.Cell("A1").Style.Font.Bold = true;
             transSheet.Cell("A1").Style.Font.FontSize = 18;
             transSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             transSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-            transSheet.Column(1).Width = 30; transSheet.Cell(2, 1).Value = "ÇÓã ÇáÚãíá";
-            transSheet.Column(2).Width = 14; transSheet.Cell(2, 2).Value = "ÇáÊÇÑíÎ";
-            transSheet.Column(3).Width = 13; transSheet.Cell(2, 3).Value = "ÇáæŞÊ";
-            transSheet.Column(4).Width = 15; transSheet.Cell(2, 4).Value = "ÏİÚ";
-            transSheet.Column(5).Width = 16; transSheet.Cell(2, 5).Value = "ÏİÚ ÈæÇÓØÉ";
-            transSheet.Column(6).Width = 15; transSheet.Cell(2, 6).Value = "ÃÎĞ";
-            transSheet.Column(7).Width = 16; transSheet.Cell(2, 7).Value = "ÃÎĞ ÈæÇÓØÉ";
-            transSheet.Column(8).Width = 15; transSheet.Cell(2, 8).Value = "ÇáÑÕíÏ";
-            transSheet.Column(9).Width = 30; transSheet.Cell(2, 9).Value = "ãáÇÍÙÉ";
+            transSheet.Column(1).Width = 30; transSheet.Cell(2, 1).Value = "Ø§Ø³Ù… Ø§Ù„Ø¹Ù…ÙŠÙ„";
+            transSheet.Column(2).Width = 14; transSheet.Cell(2, 2).Value = "Ø§Ù„ØªØ§Ø±ÙŠØ®";
+            transSheet.Column(3).Width = 13; transSheet.Cell(2, 3).Value = "Ø§Ù„ÙˆÙ‚Øª";
+            transSheet.Column(4).Width = 15; transSheet.Cell(2, 4).Value = "Ø¯ÙØ¹";
+            transSheet.Column(5).Width = 16; transSheet.Cell(2, 5).Value = "Ø¯ÙØ¹ Ø¨ÙˆØ§Ø³Ø·Ø©";
+            transSheet.Column(6).Width = 15; transSheet.Cell(2, 6).Value = "Ø£Ø®Ø°";
+            transSheet.Column(7).Width = 16; transSheet.Cell(2, 7).Value = "Ø£Ø®Ø° Ø¨ÙˆØ§Ø³Ø·Ø©";
+            transSheet.Column(8).Width = 15; transSheet.Cell(2, 8).Value = "Ø§Ù„Ø±ØµÙŠØ¯";
+            transSheet.Column(9).Width = 30; transSheet.Cell(2, 9).Value = "Ù…Ù„Ø§Ø­Ø¸Ø©";
 
             string[] payApps = DatabaseHelper.GetPayappsNames();
             string[] datetime;
@@ -729,14 +1070,14 @@ namespace ElectronicServices
             IXLWorksheet elecSheet = workbook.Worksheets.Add("Electronic Payments");
             char c = (char)('A' + payApps.Length + 1);
             if (c > 'Z') c = 'Z';
-            elecSheet.Range($"A1:{c}1").Merge().Value = "ÇáãÏİæÚÇÊ ÇáÅáßÊÑæäíÉ";
+            elecSheet.Range($"A1:{c}1").Merge().Value = "Ø§Ù„Ù…Ø¯ÙÙˆØ¹Ø§Øª Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠØ©";
             elecSheet.Row(1).Height = 30;
             elecSheet.Cell("A1").Style.Font.Bold = true;
             elecSheet.Cell("A1").Style.Font.FontSize = 18;
             elecSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             elecSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-            elecSheet.Column(1).Width = 14; elecSheet.Cell(2, 1).Value = "ÇáÊÇÑíÎ";
-            elecSheet.Column(2).Width = 13; elecSheet.Cell(2, 2).Value = "ÇáæŞÊ";
+            elecSheet.Column(1).Width = 14; elecSheet.Cell(2, 1).Value = "Ø§Ù„ØªØ§Ø±ÙŠØ®";
+            elecSheet.Column(2).Width = 13; elecSheet.Cell(2, 2).Value = "Ø§Ù„ÙˆÙ‚Øª";
             for (int i = 1; i < payApps.Length; i++)
             {
                 elecSheet.Column(i + 2).Width = 15;
@@ -744,7 +1085,7 @@ namespace ElectronicServices
                 elecSheet.Cell(2, i + 2).Style.Fill.BackgroundColor = XLColor.LightYellow1;
             }
             elecSheet.Column(payApps.Length + 2).Width = 15;
-            elecSheet.Cell(2, payApps.Length + 2).Value = "ÇáãÌãæÚ";
+            elecSheet.Cell(2, payApps.Length + 2).Value = "Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹";
             elecSheet.Cell(2, payApps.Length + 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
             var details = DatabaseHelper.GetPayappClosureDetails();
             float total, val;
@@ -765,22 +1106,22 @@ namespace ElectronicServices
 
 
             IXLWorksheet dailySheet = workbook.Worksheets.Add("Daily Inventory");
-            dailySheet.Range("A1:J1").Merge().Value = "ÇáÊŞİíá Çáíæãí";
+            dailySheet.Range("A1:J1").Merge().Value = "Ø§Ù„ØªÙ‚ÙÙŠÙ„ Ø§Ù„ÙŠÙˆÙ…ÙŠ";
             dailySheet.Row(1).Height = 30;
             dailySheet.Cell("A1").Style.Font.Bold = true;
             dailySheet.Cell("A1").Style.Font.FontSize = 18;
             dailySheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             dailySheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-            dailySheet.Column(1).Width = 14; dailySheet.Cell(2, 1).Value = "ÇáÊÇÑíÎ";
-            dailySheet.Column(21).Width = 10; dailySheet.Cell(2, 2).Value = "Çáíæã";
-            dailySheet.Column(3).Width = 13; dailySheet.Cell(2, 3).Value = "ÇáæŞÊ";
-            dailySheet.Column(4).Width = 15; dailySheet.Cell(2, 4).Value = "ãÍÇİÙ";
-            dailySheet.Column(5).Width = 15; dailySheet.Cell(2, 5).Value = "ÓíæáÉ";
-            dailySheet.Column(6).Width = 15; dailySheet.Cell(2, 6).Value = "ãÏİæÚÇÊ ÅáßÊÑæäíÉ";
-            dailySheet.Column(7).Width = 15; dailySheet.Cell(2, 7).Value = "áäÇ";
-            dailySheet.Column(8).Width = 15; dailySheet.Cell(2, 8).Value = "ÚáíäÇ";
-            dailySheet.Column(9).Width = 15; dailySheet.Cell(2, 9).Value = "ÇáãÌãæÚ";
-            dailySheet.Column(10).Width = 15; dailySheet.Cell(2, 10).Value = "ÇáİÑŞ";
+            dailySheet.Column(1).Width = 14; dailySheet.Cell(2, 1).Value = "Ø§Ù„ØªØ§Ø±ÙŠØ®";
+            dailySheet.Column(2).Width = 10; dailySheet.Cell(2, 2).Value = "Ø§Ù„ÙŠÙˆÙ…";
+            dailySheet.Column(3).Width = 13; dailySheet.Cell(2, 3).Value = "Ø§Ù„ÙˆÙ‚Øª";
+            dailySheet.Column(4).Width = 15; dailySheet.Cell(2, 4).Value = "Ù…Ø­Ø§ÙØ¸";
+            dailySheet.Column(5).Width = 15; dailySheet.Cell(2, 5).Value = "Ø³ÙŠÙˆÙ„Ø©";
+            dailySheet.Column(6).Width = 15; dailySheet.Cell(2, 6).Value = "Ù…Ø¯ÙÙˆØ¹Ø§Øª Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠØ©";
+            dailySheet.Column(7).Width = 15; dailySheet.Cell(2, 7).Value = "Ù„Ù†Ø§";
+            dailySheet.Column(8).Width = 15; dailySheet.Cell(2, 8).Value = "Ø¹Ù„ÙŠÙ†Ø§";
+            dailySheet.Column(9).Width = 15; dailySheet.Cell(2, 9).Value = "Ø§Ù„Ù…Ø¬Ù…ÙˆØ¹";
+            dailySheet.Column(10).Width = 15; dailySheet.Cell(2, 10).Value = "Ø§Ù„ÙØ±Ù‚";
 
             DailyClosureData[] data = DatabaseHelper.GetDailyClosure();
             float Sum, prevSum = 0;
@@ -803,14 +1144,75 @@ namespace ElectronicServices
             }
 
 
+            IXLWorksheet walletsSheet = workbook.Worksheets.Add("Wallets");
+            walletsSheet.Range("A1:H1").Merge().Value = "Ø§Ù„Ù…Ø­Ø§ÙØ¸";
+            walletsSheet.Row(1).Height = 30;
+            walletsSheet.Cell("A1").Style.Font.Bold = true;
+            walletsSheet.Cell("A1").Style.Font.FontSize = 18;
+            walletsSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            walletsSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            walletsSheet.Column(1).Width = 15; walletsSheet.Cell(2, 1).Value = "Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ";
+            walletsSheet.Column(2).Width = 15; walletsSheet.Cell(2, 2).Value = "Ø£Ù‚ØµÙ‰ Ø§Ù„Ø³Ø­Ø¨";
+            walletsSheet.Column(3).Width = 15; walletsSheet.Cell(2, 3).Value = "Ø£Ù‚ØµÙ‰ Ø§Ù„Ø¥ÙŠØ¯Ø§Ø¹";
+            walletsSheet.Column(4).Width = 15; walletsSheet.Cell(2, 4).Value = "Ø¨Ø§Ù‚ÙŠ Ø§Ù„Ø³Ø­Ø¨";
+            walletsSheet.Column(5).Width = 15; walletsSheet.Cell(2, 5).Value = "Ø¨Ø§Ù‚ÙŠ Ø§Ù„Ø¥ÙŠØ¯Ø§Ø¹";
+            walletsSheet.Column(6).Width = 15; walletsSheet.Cell(2, 6).Value = "Ø§Ù„Ø±ØµÙŠØ¯";
+            walletsSheet.Column(7).Width = 10; walletsSheet.Cell(2, 7).Value = "Ø§Ù„Ù†ÙˆØ¹";
+            walletsSheet.Column(8).Width = 30; walletsSheet.Cell(2, 8).Value = "ØªØ¹Ù„ÙŠÙ‚";
+            WalletRowData[] wallets = DatabaseHelper.GetWallets();
+            for (int i = 0; i < wallets.Length; i++)
+            {
+                walletsSheet.Cell(i + 3, 1).Value = wallets[i].Phone;
+                walletsSheet.Cell(i + 3, 2).Value = wallets[i].MaximumWithdrawal;
+                walletsSheet.Cell(i + 3, 3).Value = wallets[i].MaximumDeposit;
+                walletsSheet.Cell(i + 3, 4).Value = wallets[i].WithdrawalRemaining;
+                walletsSheet.Cell(i + 3, 5).Value = wallets[i].DepositRemaining;
+                walletsSheet.Cell(i + 3, 6).Value = wallets[i].Balance;
+                walletsSheet.Cell(i + 3, 7).Value = GetWalletType(wallets[i].Type);
+                walletsSheet.Cell(i + 3, 8).Value = wallets[i].Comment;
+            }
+
+
+            IXLWorksheet recordsSheet = workbook.Worksheets.Add("Wallets Records");
+            recordsSheet.Range("A1:H1").Merge().Value = "Ø¹Ù…Ù„ÙŠØ§Øª Ø§Ù„Ù…Ø­Ø§ÙØ¸";
+            recordsSheet.Row(1).Height = 30;
+            recordsSheet.Cell("A1").Style.Font.Bold = true;
+            recordsSheet.Cell("A1").Style.Font.FontSize = 18;
+            recordsSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            recordsSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            recordsSheet.Column(1).Width = 15; recordsSheet.Cell(2, 1).Value = "Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ";
+            recordsSheet.Column(2).Width = 14; recordsSheet.Cell(2, 2).Value = "Ø§Ù„ØªØ§Ø±ÙŠØ®";
+            recordsSheet.Column(3).Width = 13; recordsSheet.Cell(2, 3).Value = "Ø§Ù„ÙˆÙ‚Øª";
+            recordsSheet.Column(4).Width = 15; recordsSheet.Cell(2, 4).Value = "Ø¨Ø§Ù‚ÙŠ Ø§Ù„Ø³Ø­Ø¨";
+            recordsSheet.Column(5).Width = 15; recordsSheet.Cell(2, 5).Value = "Ø¨Ø§Ù‚ÙŠ Ø§Ù„Ø¥ÙŠØ¯Ø§Ø¹";
+            recordsSheet.Column(6).Width = 15; recordsSheet.Cell(2, 6).Value = "Ù…Ø¨Ù„Øº Ø§Ù„Ø³Ø­Ø¨";
+            recordsSheet.Column(7).Width = 15; recordsSheet.Cell(2, 7).Value = "Ù…Ø¨Ù„Øº Ø§Ù„Ø¥ÙŠØ¯Ø§Ø¹";
+            recordsSheet.Column(8).Width = 15; recordsSheet.Cell(2, 8).Value = "Ø§Ù„Ø±ØµÙŠØ¯";
+            recordsSheet.Column(9).Width = 30; recordsSheet.Cell(2, 9).Value = "ØªØ¹Ù„ÙŠÙ‚";
+            RecordRowData[] records = DatabaseHelper.GetRecords();
+            for (int i = 0; i < records.Length; i++)
+            {
+                datetime = data[i].Date.Split(' ');
+                recordsSheet.Cell(i + 3, 1).Value = records[i].Phone;
+                recordsSheet.Cell(i + 3, 2).Value = datetime[0];
+                recordsSheet.Cell(i + 3, 3).Value = datetime[1];
+                recordsSheet.Cell(i + 3, 4).Value = records[i].WithdrawalRemaining;
+                recordsSheet.Cell(i + 3, 5).Value = records[i].DepositRemaining;
+                recordsSheet.Cell(i + 3, 6).Value = records[i].Withdrawal;
+                recordsSheet.Cell(i + 3, 7).Value = records[i].Deposit;
+                recordsSheet.Cell(i + 3, 8).Value = records[i].Balance;
+                recordsSheet.Cell(i + 3, 9).Value = records[i].Comment;
+            }
+
+
             try
             {
                 workbook.SaveAs(path);
-                MessageBox.Show("Êã ÇÓÊÎÑÇÌ ÇáÈíÇäÇÊ ÈäÌÇÍ");
+                MessageBox.Show("ØªÙ… Ø§Ø³ØªØ®Ø±Ø§Ø¬ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø¨Ù†Ø¬Ø§Ø­");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ÍÏË ÎØÃ ÃËäÇÁ ÍİÙ Çáãáİ\n" + ex.Message, "ÎØÃ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ø­Ø¯Ø« Ø®Ø·Ø£ Ø£Ø«Ù†Ø§Ø¡ Ø­ÙØ¸ Ø§Ù„Ù…Ù„Ù\n" + ex.Message, "Ø®Ø·Ø£", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
