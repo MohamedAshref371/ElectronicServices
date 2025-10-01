@@ -189,8 +189,8 @@ namespace ElectronicServices
                 data = new DailyClosureData
                 {
                     Date = date,
-                    TotalWallets = 0,
-                    TotalCash = totalWallets,
+                    TotalWallets = totalWallets,
+                    TotalCash = 0,
                     TotalElectronic = totalElec,
                     Credit = creditDebit[0],
                     Debit = creditDebit[1],
