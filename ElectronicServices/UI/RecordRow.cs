@@ -47,7 +47,7 @@ namespace ElectronicServices
         private void PhoneNumber_Click(object sender, EventArgs e)
         {
             string comment = phoneNumber.Tag.ToString();
-            if (comment.Trim() == "") return;
+            if (comment == "") return;
             MessageBox.Show(phoneNumber.Tag.ToString(), "ملاحظات العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
