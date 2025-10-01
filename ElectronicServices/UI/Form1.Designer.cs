@@ -1,4 +1,6 @@
-﻿namespace ElectronicServices
+﻿using Guna.UI2.WinForms;
+
+namespace ElectronicServices
 {
     partial class Form1
     {
@@ -29,146 +31,238 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges73 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges74 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges67 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges68 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges69 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges70 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges71 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges72 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges65 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges66 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges47 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges48 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges43 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges44 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges45 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges46 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges49 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges50 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges51 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges52 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges53 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges54 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges55 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges56 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges57 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges58 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges59 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges60 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges61 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges62 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges63 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges64 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges227 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges228 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges221 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges222 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges223 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges224 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges225 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges226 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges219 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges220 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges135 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges136 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges127 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges128 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges129 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges130 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges131 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges132 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges133 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges134 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges137 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges138 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges161 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges162 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges139 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges140 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges141 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges142 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges143 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges144 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges145 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges146 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges147 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges148 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges149 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges150 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges151 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges152 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges153 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges154 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges155 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges156 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges157 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges158 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges159 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges160 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges163 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges164 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges183 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges184 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges165 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges166 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges167 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges168 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges169 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges170 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges171 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges172 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges173 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges174 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges175 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges176 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges177 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges178 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges179 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges180 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges181 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges182 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges185 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges186 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges197 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges198 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges187 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges188 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges189 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges190 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges191 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges192 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges193 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges194 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges195 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges196 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges199 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges200 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges201 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges202 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges203 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges204 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges205 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges206 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges207 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges208 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges209 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges210 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges211 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges212 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges213 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges214 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges215 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges216 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges217 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges218 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges123 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges124 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges125 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges126 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges115 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges116 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges117 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges118 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges119 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges120 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges121 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges122 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            guna2BorderlessForm1 = new Guna.UI2.WinForms.Guna2BorderlessForm(components);
-            headerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            phoneNumber = new PictureBox();
+            guna2BorderlessForm1 = new Guna2BorderlessForm(components);
+            headerPanel = new Guna2GradientPanel();
+            CompanyPhone = new PictureBox();
             formIcon = new PictureBox();
-            minimizeBtn = new Guna.UI2.WinForms.Guna2Button();
-            maximizeBtn = new Guna.UI2.WinForms.Guna2Button();
-            exitBtn = new Guna.UI2.WinForms.Guna2Button();
+            minimizeBtn = new Guna2Button();
+            maximizeBtn = new Guna2Button();
+            exitBtn = new Guna2Button();
             formTitle = new Label();
-            mainPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            transactionsPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            addTransactionsPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            takeWith = new Guna.UI2.WinForms.Guna2ComboBox();
-            payWith = new Guna.UI2.WinForms.Guna2ComboBox();
-            transSearchBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            transNote = new Guna.UI2.WinForms.Guna2TextBox();
-            transDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            addTransactionBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            takeAmount = new Guna.UI2.WinForms.Guna2NumericUpDown();
-            payAmount = new Guna.UI2.WinForms.Guna2NumericUpDown();
-            customersComboBox = new Guna.UI2.WinForms.Guna2ComboBox();
+            mainPanel = new Guna2GradientPanel();
+            addOperationsPanel = new Guna2GradientPanel();
+            balance2 = new Label();
+            walletType2 = new Label();
+            phoneNumber2 = new Label();
+            depoRema = new Label();
+            withdRema = new Label();
+            maxDepo = new Label();
+            maxWithd = new Label();
+            deposit = new Guna2NumericUpDown();
+            withdrawal = new Guna2NumericUpDown();
+            operSaveBtn = new Guna2GradientButton();
+            operComment = new Guna2TextBox();
+            balance2Label = new Label();
+            typeLabel = new Label();
+            depoLabel = new Label();
+            withdLabel = new Label();
+            maxDepoLabel = new Label();
+            maxWithdLabel = new Label();
+            phone2Label = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            walletsPanel = new Guna2GradientPanel();
+            addWalletsPanel = new Guna2GradientPanel();
+            walletEmptyBtn = new Guna2GradientButton();
+            walletSaveBtn = new Guna2GradientButton();
+            walletSearchBtn = new Guna2GradientButton();
+            walletComment = new Guna2TextBox();
+            balanceLabel = new Label();
+            walletTypeComboBox = new Guna2ComboBox();
+            depositRemaining = new Guna2NumericUpDown();
+            withdrawalRemaining = new Guna2NumericUpDown();
+            balance = new Guna2NumericUpDown();
+            maxDeposit = new Guna2NumericUpDown();
+            maxWithdrawal = new Guna2NumericUpDown();
+            phoneNumber = new Guna2TextBox();
+            walletType2Label = new Label();
+            maxDepositLabel = new Label();
+            maxWithdrawalLabel = new Label();
+            phoneLabel = new Label();
+            isEqualMax = new Guna2CheckBox();
+            transactionsPanel = new Guna2GradientPanel();
+            addTransactionsPanel = new Guna2GradientPanel();
+            takeWith = new Guna2ComboBox();
+            payWith = new Guna2ComboBox();
+            transSearchBtn = new Guna2GradientButton();
+            transNote = new Guna2TextBox();
+            transDate = new Guna2DateTimePicker();
+            addTransactionBtn = new Guna2GradientButton();
+            takeAmount = new Guna2NumericUpDown();
+            payAmount = new Guna2NumericUpDown();
+            customersComboBox = new Guna2ComboBox();
             takeLabel = new Label();
             payLabel = new Label();
             label2 = new Label();
             label1 = new Label();
             dateLabel = new Label();
             customerLabel = new Label();
-            customersPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            addCustomersPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
+            customersPanel = new Guna2GradientPanel();
+            addCustomersPanel = new Guna2GradientPanel();
             label4 = new Label();
-            custDebitAmount = new Guna.UI2.WinForms.Guna2NumericUpDown();
-            custCreditAmount = new Guna.UI2.WinForms.Guna2NumericUpDown();
+            custDebitAmount = new Guna2NumericUpDown();
+            custCreditAmount = new Guna2NumericUpDown();
             label3 = new Label();
             initValLabel = new Label();
-            customerSearchBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            addCustomerBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            customerName = new Guna.UI2.WinForms.Guna2TextBox();
+            customerSearchBtn = new Guna2GradientButton();
+            addCustomerBtn = new Guna2GradientButton();
+            customerName = new Guna2TextBox();
             customerNameLabel = new Label();
             customerCode = new Label();
             customerCodeLabel = new Label();
             pictureBox1 = new PictureBox();
             debitAmount = new Label();
             creditAmount = new Label();
-            addPayappBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            payApp = new Guna.UI2.WinForms.Guna2TextBox();
+            addPayappBtn = new Guna2GradientButton();
+            payApp = new Guna2TextBox();
             payappLabel = new Label();
             debitLabel = new Label();
             creditLabel = new Label();
-            updateCreditDepitBtn = new Guna.UI2.WinForms.Guna2GradientButton();
+            updateCreditDepitBtn = new Guna2GradientButton();
             inventoryTitle = new Label();
-            excelDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            excelBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            extraExcelBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            inventoryBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            elecPayBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            customersBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            footerPanel = new Guna.UI2.WinForms.Guna2GradientPanel();
-            operationsBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            walletsBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            mainBtn = new Guna.UI2.WinForms.Guna2GradientButton();
-            transactionsBtn = new Guna.UI2.WinForms.Guna2GradientButton();
+            excelDate = new Guna2DateTimePicker();
+            excelBtn = new Guna2GradientButton();
+            extraExcelBtn = new Guna2GradientButton();
+            inventoryBtn = new Guna2GradientButton();
+            elecPayBtn = new Guna2GradientButton();
+            addWalletTypeBtn = new Guna2GradientButton();
+            walletType = new Guna2TextBox();
+            walletTypeLabel = new Label();
+            customersBtn = new Guna2GradientButton();
+            footerPanel = new Guna2GradientPanel();
+            operationsBtn = new Guna2GradientButton();
+            walletsBtn = new Guna2GradientButton();
+            mainBtn = new Guna2GradientButton();
+            transactionsBtn = new Guna2GradientButton();
             saveExcelFileDialog = new SaveFileDialog();
             headerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)phoneNumber).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)CompanyPhone).BeginInit();
             ((System.ComponentModel.ISupportInitialize)formIcon).BeginInit();
             mainPanel.SuspendLayout();
+            addOperationsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)deposit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)withdrawal).BeginInit();
+            addWalletsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)depositRemaining).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)withdrawalRemaining).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)balance).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)maxDeposit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)maxWithdrawal).BeginInit();
             addTransactionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)takeAmount).BeginInit();
             ((System.ComponentModel.ISupportInitialize)payAmount).BeginInit();
@@ -193,32 +287,32 @@
             headerPanel.BorderColor = Color.Silver;
             headerPanel.BorderRadius = 10;
             headerPanel.BorderThickness = 1;
-            headerPanel.Controls.Add(phoneNumber);
+            headerPanel.Controls.Add(CompanyPhone);
             headerPanel.Controls.Add(formIcon);
             headerPanel.Controls.Add(minimizeBtn);
             headerPanel.Controls.Add(maximizeBtn);
             headerPanel.Controls.Add(exitBtn);
             headerPanel.Controls.Add(formTitle);
-            headerPanel.CustomizableEdges = customizableEdges73;
+            headerPanel.CustomizableEdges = customizableEdges227;
             headerPanel.FillColor = Color.FromArgb(192, 192, 255);
             headerPanel.FillColor2 = Color.FromArgb(128, 128, 255);
             headerPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             headerPanel.Location = new Point(-1, -1);
             headerPanel.Name = "headerPanel";
-            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges74;
+            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges228;
             headerPanel.Size = new Size(951, 45);
             headerPanel.TabIndex = 0;
             // 
-            // phoneNumber
+            // CompanyPhone
             // 
-            phoneNumber.BackColor = Color.Transparent;
-            phoneNumber.BackgroundImage = Properties.Resources.Phone;
-            phoneNumber.BackgroundImageLayout = ImageLayout.Zoom;
-            phoneNumber.Location = new Point(296, -2);
-            phoneNumber.Name = "phoneNumber";
-            phoneNumber.Size = new Size(325, 50);
-            phoneNumber.TabIndex = 1;
-            phoneNumber.TabStop = false;
+            CompanyPhone.BackColor = Color.Transparent;
+            CompanyPhone.BackgroundImage = Properties.Resources.Phone;
+            CompanyPhone.BackgroundImageLayout = ImageLayout.Zoom;
+            CompanyPhone.Location = new Point(296, -2);
+            CompanyPhone.Name = "CompanyPhone";
+            CompanyPhone.Size = new Size(325, 50);
+            CompanyPhone.TabIndex = 1;
+            CompanyPhone.TabStop = false;
             // 
             // formIcon
             // 
@@ -236,7 +330,7 @@
             minimizeBtn.BackColor = Color.Transparent;
             minimizeBtn.BorderColor = Color.Transparent;
             minimizeBtn.BorderRadius = 8;
-            minimizeBtn.CustomizableEdges = customizableEdges67;
+            minimizeBtn.CustomizableEdges = customizableEdges221;
             minimizeBtn.DisabledState.BorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -248,7 +342,7 @@
             minimizeBtn.ImageSize = new Size(32, 32);
             minimizeBtn.Location = new Point(88, 6);
             minimizeBtn.Name = "minimizeBtn";
-            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges68;
+            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges222;
             minimizeBtn.Size = new Size(32, 32);
             minimizeBtn.TabIndex = 4;
             minimizeBtn.Click += MinimizeBtn_Click;
@@ -258,7 +352,7 @@
             maximizeBtn.BackColor = Color.Transparent;
             maximizeBtn.BorderColor = Color.Transparent;
             maximizeBtn.BorderRadius = 8;
-            maximizeBtn.CustomizableEdges = customizableEdges69;
+            maximizeBtn.CustomizableEdges = customizableEdges223;
             maximizeBtn.DisabledState.BorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -270,7 +364,7 @@
             maximizeBtn.ImageSize = new Size(32, 32);
             maximizeBtn.Location = new Point(50, 6);
             maximizeBtn.Name = "maximizeBtn";
-            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges70;
+            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges224;
             maximizeBtn.Size = new Size(32, 32);
             maximizeBtn.TabIndex = 3;
             maximizeBtn.Click += MaximizeBtn_Click;
@@ -280,7 +374,7 @@
             exitBtn.BackColor = Color.Transparent;
             exitBtn.BorderColor = Color.Transparent;
             exitBtn.BorderRadius = 8;
-            exitBtn.CustomizableEdges = customizableEdges71;
+            exitBtn.CustomizableEdges = customizableEdges225;
             exitBtn.DisabledState.BorderColor = Color.DarkGray;
             exitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             exitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -292,7 +386,7 @@
             exitBtn.ImageSize = new Size(32, 32);
             exitBtn.Location = new Point(12, 6);
             exitBtn.Name = "exitBtn";
-            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges72;
+            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges226;
             exitBtn.Size = new Size(32, 32);
             exitBtn.TabIndex = 2;
             exitBtn.Click += ExitBtn_Click;
@@ -314,6 +408,9 @@
             mainPanel.BorderColor = Color.Silver;
             mainPanel.BorderRadius = 10;
             mainPanel.BorderThickness = 1;
+            mainPanel.Controls.Add(addOperationsPanel);
+            mainPanel.Controls.Add(walletsPanel);
+            mainPanel.Controls.Add(addWalletsPanel);
             mainPanel.Controls.Add(transactionsPanel);
             mainPanel.Controls.Add(addTransactionsPanel);
             mainPanel.Controls.Add(customersPanel);
@@ -333,15 +430,667 @@
             mainPanel.Controls.Add(extraExcelBtn);
             mainPanel.Controls.Add(inventoryBtn);
             mainPanel.Controls.Add(elecPayBtn);
-            mainPanel.CustomizableEdges = customizableEdges65;
+            mainPanel.Controls.Add(addWalletTypeBtn);
+            mainPanel.Controls.Add(walletType);
+            mainPanel.Controls.Add(walletTypeLabel);
+            mainPanel.CustomizableEdges = customizableEdges219;
             mainPanel.FillColor = Color.FromArgb(255, 192, 192);
             mainPanel.FillColor2 = Color.FromArgb(255, 224, 192);
             mainPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             mainPanel.Location = new Point(-1, 47);
             mainPanel.Name = "mainPanel";
-            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges66;
+            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges220;
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
+            // 
+            // addOperationsPanel
+            // 
+            addOperationsPanel.BorderColor = Color.Silver;
+            addOperationsPanel.BorderRadius = 10;
+            addOperationsPanel.BorderThickness = 1;
+            addOperationsPanel.Controls.Add(balance2);
+            addOperationsPanel.Controls.Add(walletType2);
+            addOperationsPanel.Controls.Add(phoneNumber2);
+            addOperationsPanel.Controls.Add(depoRema);
+            addOperationsPanel.Controls.Add(withdRema);
+            addOperationsPanel.Controls.Add(maxDepo);
+            addOperationsPanel.Controls.Add(maxWithd);
+            addOperationsPanel.Controls.Add(deposit);
+            addOperationsPanel.Controls.Add(withdrawal);
+            addOperationsPanel.Controls.Add(operSaveBtn);
+            addOperationsPanel.Controls.Add(operComment);
+            addOperationsPanel.Controls.Add(balance2Label);
+            addOperationsPanel.Controls.Add(typeLabel);
+            addOperationsPanel.Controls.Add(depoLabel);
+            addOperationsPanel.Controls.Add(withdLabel);
+            addOperationsPanel.Controls.Add(maxDepoLabel);
+            addOperationsPanel.Controls.Add(maxWithdLabel);
+            addOperationsPanel.Controls.Add(phone2Label);
+            addOperationsPanel.Controls.Add(label5);
+            addOperationsPanel.Controls.Add(label6);
+            addOperationsPanel.CustomizableEdges = customizableEdges135;
+            addOperationsPanel.FillColor = Color.White;
+            addOperationsPanel.FillColor2 = Color.Silver;
+            addOperationsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            addOperationsPanel.Location = new Point(-1, 0);
+            addOperationsPanel.Name = "addOperationsPanel";
+            addOperationsPanel.ShadowDecoration.CustomizableEdges = customizableEdges136;
+            addOperationsPanel.Size = new Size(951, 128);
+            addOperationsPanel.TabIndex = 43;
+            addOperationsPanel.Visible = false;
+            // 
+            // balance2
+            // 
+            balance2.Font = new Font("Segoe UI", 12F);
+            balance2.ForeColor = Color.Green;
+            balance2.Location = new Point(336, 73);
+            balance2.Name = "balance2";
+            balance2.RightToLeft = RightToLeft.Yes;
+            balance2.Size = new Size(112, 21);
+            balance2.TabIndex = 32;
+            balance2.Text = "0";
+            balance2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // walletType2
+            // 
+            walletType2.Font = new Font("Segoe UI", 12F);
+            walletType2.ForeColor = Color.Black;
+            walletType2.Location = new Point(508, 11);
+            walletType2.Name = "walletType2";
+            walletType2.RightToLeft = RightToLeft.Yes;
+            walletType2.Size = new Size(101, 21);
+            walletType2.TabIndex = 31;
+            walletType2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // phoneNumber2
+            // 
+            phoneNumber2.Font = new Font("Segoe UI", 12F);
+            phoneNumber2.ForeColor = Color.Black;
+            phoneNumber2.Location = new Point(692, 11);
+            phoneNumber2.Name = "phoneNumber2";
+            phoneNumber2.RightToLeft = RightToLeft.Yes;
+            phoneNumber2.Size = new Size(148, 21);
+            phoneNumber2.TabIndex = 30;
+            phoneNumber2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // depoRema
+            // 
+            depoRema.Font = new Font("Segoe UI", 12F);
+            depoRema.ForeColor = Color.Navy;
+            depoRema.Location = new Point(495, 93);
+            depoRema.Name = "depoRema";
+            depoRema.RightToLeft = RightToLeft.Yes;
+            depoRema.Size = new Size(112, 21);
+            depoRema.TabIndex = 29;
+            depoRema.Text = "0";
+            depoRema.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // withdRema
+            // 
+            withdRema.Font = new Font("Segoe UI", 12F);
+            withdRema.ForeColor = Color.Maroon;
+            withdRema.Location = new Point(495, 53);
+            withdRema.Name = "withdRema";
+            withdRema.RightToLeft = RightToLeft.Yes;
+            withdRema.Size = new Size(112, 21);
+            withdRema.TabIndex = 28;
+            withdRema.Text = "0";
+            withdRema.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // maxDepo
+            // 
+            maxDepo.Font = new Font("Segoe UI", 12F);
+            maxDepo.ForeColor = Color.Navy;
+            maxDepo.Location = new Point(721, 93);
+            maxDepo.Name = "maxDepo";
+            maxDepo.RightToLeft = RightToLeft.Yes;
+            maxDepo.Size = new Size(112, 21);
+            maxDepo.TabIndex = 27;
+            maxDepo.Text = "0";
+            maxDepo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // maxWithd
+            // 
+            maxWithd.Font = new Font("Segoe UI", 12F);
+            maxWithd.ForeColor = Color.Maroon;
+            maxWithd.Location = new Point(721, 53);
+            maxWithd.Name = "maxWithd";
+            maxWithd.RightToLeft = RightToLeft.Yes;
+            maxWithd.Size = new Size(112, 21);
+            maxWithd.TabIndex = 26;
+            maxWithd.Text = "0";
+            maxWithd.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // deposit
+            // 
+            deposit.BackColor = Color.Transparent;
+            deposit.BorderColor = Color.Silver;
+            deposit.BorderRadius = 10;
+            deposit.CustomizableEdges = customizableEdges127;
+            deposit.DecimalPlaces = 2;
+            deposit.Enabled = false;
+            deposit.Font = new Font("Segoe UI", 12F);
+            deposit.Location = new Point(121, 46);
+            deposit.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            deposit.Name = "deposit";
+            deposit.ShadowDecoration.CustomizableEdges = customizableEdges128;
+            deposit.Size = new Size(124, 36);
+            deposit.TabIndex = 23;
+            // 
+            // withdrawal
+            // 
+            withdrawal.BackColor = Color.Transparent;
+            withdrawal.BorderColor = Color.Silver;
+            withdrawal.BorderRadius = 10;
+            withdrawal.CustomizableEdges = customizableEdges129;
+            withdrawal.DecimalPlaces = 2;
+            withdrawal.Enabled = false;
+            withdrawal.Font = new Font("Segoe UI", 12F);
+            withdrawal.Location = new Point(121, 4);
+            withdrawal.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            withdrawal.Name = "withdrawal";
+            withdrawal.ShadowDecoration.CustomizableEdges = customizableEdges130;
+            withdrawal.Size = new Size(124, 36);
+            withdrawal.TabIndex = 22;
+            withdrawal.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
+            // 
+            // operSaveBtn
+            // 
+            operSaveBtn.BorderRadius = 10;
+            operSaveBtn.BorderThickness = 1;
+            operSaveBtn.CustomizableEdges = customizableEdges131;
+            operSaveBtn.DisabledState.BorderColor = Color.DarkGray;
+            operSaveBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            operSaveBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            operSaveBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            operSaveBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            operSaveBtn.FillColor = Color.CornflowerBlue;
+            operSaveBtn.FillColor2 = SystemColors.HotTrack;
+            operSaveBtn.Font = new Font("Segoe UI", 15F);
+            operSaveBtn.ForeColor = Color.White;
+            operSaveBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            operSaveBtn.Location = new Point(13, 24);
+            operSaveBtn.Name = "operSaveBtn";
+            operSaveBtn.ShadowDecoration.CustomizableEdges = customizableEdges132;
+            operSaveBtn.Size = new Size(102, 35);
+            operSaveBtn.TabIndex = 19;
+            operSaveBtn.Text = "تسجيل";
+            // 
+            // operComment
+            // 
+            operComment.BorderColor = Color.Silver;
+            operComment.BorderRadius = 10;
+            operComment.CustomizableEdges = customizableEdges133;
+            operComment.DefaultText = "";
+            operComment.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            operComment.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            operComment.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            operComment.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            operComment.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            operComment.Font = new Font("Segoe UI", 12F);
+            operComment.ForeColor = Color.Black;
+            operComment.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            operComment.Location = new Point(13, 87);
+            operComment.Name = "operComment";
+            operComment.PlaceholderForeColor = Color.Gray;
+            operComment.PlaceholderText = "تعليق ";
+            operComment.RightToLeft = RightToLeft.Yes;
+            operComment.SelectedText = "";
+            operComment.ShadowDecoration.CustomizableEdges = customizableEdges134;
+            operComment.Size = new Size(261, 36);
+            operComment.TabIndex = 13;
+            // 
+            // balance2Label
+            // 
+            balance2Label.AutoSize = true;
+            balance2Label.Font = new Font("Segoe UI", 12F);
+            balance2Label.ForeColor = Color.Green;
+            balance2Label.Location = new Point(365, 42);
+            balance2Label.Name = "balance2Label";
+            balance2Label.RightToLeft = RightToLeft.Yes;
+            balance2Label.Size = new Size(54, 21);
+            balance2Label.TabIndex = 12;
+            balance2Label.Text = "الرصيد";
+            // 
+            // typeLabel
+            // 
+            typeLabel.AutoSize = true;
+            typeLabel.Font = new Font("Segoe UI", 12F);
+            typeLabel.Location = new Point(611, 11);
+            typeLabel.Name = "typeLabel";
+            typeLabel.RightToLeft = RightToLeft.Yes;
+            typeLabel.Size = new Size(52, 21);
+            typeLabel.TabIndex = 11;
+            typeLabel.Text = "النوع : ";
+            // 
+            // depoLabel
+            // 
+            depoLabel.AutoSize = true;
+            depoLabel.Font = new Font("Segoe UI", 12F);
+            depoLabel.ForeColor = Color.Navy;
+            depoLabel.Location = new Point(245, 53);
+            depoLabel.Name = "depoLabel";
+            depoLabel.RightToLeft = RightToLeft.Yes;
+            depoLabel.Size = new Size(50, 21);
+            depoLabel.TabIndex = 25;
+            depoLabel.Text = "إيداع : ";
+            // 
+            // withdLabel
+            // 
+            withdLabel.AutoSize = true;
+            withdLabel.Font = new Font("Segoe UI", 12F);
+            withdLabel.ForeColor = Color.Maroon;
+            withdLabel.Location = new Point(242, 11);
+            withdLabel.Name = "withdLabel";
+            withdLabel.RightToLeft = RightToLeft.Yes;
+            withdLabel.Size = new Size(58, 21);
+            withdLabel.TabIndex = 24;
+            withdLabel.Text = "سحب : ";
+            // 
+            // maxDepoLabel
+            // 
+            maxDepoLabel.AutoSize = true;
+            maxDepoLabel.Font = new Font("Segoe UI", 12F);
+            maxDepoLabel.ForeColor = Color.Navy;
+            maxDepoLabel.Location = new Point(835, 93);
+            maxDepoLabel.Name = "maxDepoLabel";
+            maxDepoLabel.RightToLeft = RightToLeft.Yes;
+            maxDepoLabel.Size = new Size(101, 21);
+            maxDepoLabel.TabIndex = 3;
+            maxDepoLabel.Text = "أقصى الإيداع : ";
+            // 
+            // maxWithdLabel
+            // 
+            maxWithdLabel.AutoSize = true;
+            maxWithdLabel.Font = new Font("Segoe UI", 12F);
+            maxWithdLabel.ForeColor = Color.Maroon;
+            maxWithdLabel.Location = new Point(831, 53);
+            maxWithdLabel.Name = "maxWithdLabel";
+            maxWithdLabel.RightToLeft = RightToLeft.Yes;
+            maxWithdLabel.Size = new Size(109, 21);
+            maxWithdLabel.TabIndex = 2;
+            maxWithdLabel.Text = "أقصى السحب : ";
+            // 
+            // phone2Label
+            // 
+            phone2Label.AutoSize = true;
+            phone2Label.Font = new Font("Segoe UI", 12F);
+            phone2Label.Location = new Point(846, 11);
+            phone2Label.Name = "phone2Label";
+            phone2Label.RightToLeft = RightToLeft.Yes;
+            phone2Label.Size = new Size(90, 21);
+            phone2Label.TabIndex = 0;
+            phone2Label.Text = "رقم الهاتف : ";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F);
+            label5.ForeColor = Color.Navy;
+            label5.Location = new Point(605, 93);
+            label5.Name = "label5";
+            label5.RightToLeft = RightToLeft.Yes;
+            label5.Size = new Size(93, 21);
+            label5.TabIndex = 21;
+            label5.Text = "باقي الإيداع : ";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F);
+            label6.ForeColor = Color.Maroon;
+            label6.Location = new Point(601, 53);
+            label6.Name = "label6";
+            label6.RightToLeft = RightToLeft.Yes;
+            label6.Size = new Size(101, 21);
+            label6.TabIndex = 20;
+            label6.Text = "باقي السحب : ";
+            // 
+            // walletsPanel
+            // 
+            walletsPanel.AutoScroll = true;
+            walletsPanel.BorderColor = Color.Silver;
+            walletsPanel.BorderRadius = 10;
+            walletsPanel.BorderThickness = 1;
+            walletsPanel.CustomizableEdges = customizableEdges137;
+            walletsPanel.FillColor = Color.FromArgb(255, 240, 240);
+            walletsPanel.FillColor2 = Color.Azure;
+            walletsPanel.Font = new Font("Segoe UI", 9F);
+            walletsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            walletsPanel.Location = new Point(-1, 128);
+            walletsPanel.Name = "walletsPanel";
+            walletsPanel.ShadowDecoration.CustomizableEdges = customizableEdges138;
+            walletsPanel.Size = new Size(951, 476);
+            walletsPanel.TabIndex = 42;
+            walletsPanel.Visible = false;
+            // 
+            // addWalletsPanel
+            // 
+            addWalletsPanel.BorderColor = Color.Silver;
+            addWalletsPanel.BorderRadius = 10;
+            addWalletsPanel.BorderThickness = 1;
+            addWalletsPanel.Controls.Add(walletEmptyBtn);
+            addWalletsPanel.Controls.Add(walletSaveBtn);
+            addWalletsPanel.Controls.Add(walletSearchBtn);
+            addWalletsPanel.Controls.Add(walletComment);
+            addWalletsPanel.Controls.Add(balanceLabel);
+            addWalletsPanel.Controls.Add(walletTypeComboBox);
+            addWalletsPanel.Controls.Add(depositRemaining);
+            addWalletsPanel.Controls.Add(withdrawalRemaining);
+            addWalletsPanel.Controls.Add(balance);
+            addWalletsPanel.Controls.Add(maxDeposit);
+            addWalletsPanel.Controls.Add(maxWithdrawal);
+            addWalletsPanel.Controls.Add(phoneNumber);
+            addWalletsPanel.Controls.Add(walletType2Label);
+            addWalletsPanel.Controls.Add(maxDepositLabel);
+            addWalletsPanel.Controls.Add(maxWithdrawalLabel);
+            addWalletsPanel.Controls.Add(phoneLabel);
+            addWalletsPanel.Controls.Add(isEqualMax);
+            addWalletsPanel.CustomizableEdges = customizableEdges161;
+            addWalletsPanel.FillColor = Color.White;
+            addWalletsPanel.FillColor2 = Color.Silver;
+            addWalletsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            addWalletsPanel.Location = new Point(-1, 0);
+            addWalletsPanel.Name = "addWalletsPanel";
+            addWalletsPanel.ShadowDecoration.CustomizableEdges = customizableEdges162;
+            addWalletsPanel.Size = new Size(951, 128);
+            addWalletsPanel.TabIndex = 0;
+            addWalletsPanel.Visible = false;
+            // 
+            // walletEmptyBtn
+            // 
+            walletEmptyBtn.BorderRadius = 10;
+            walletEmptyBtn.BorderThickness = 1;
+            walletEmptyBtn.CustomizableEdges = customizableEdges139;
+            walletEmptyBtn.DisabledState.BorderColor = Color.DarkGray;
+            walletEmptyBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            walletEmptyBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            walletEmptyBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            walletEmptyBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            walletEmptyBtn.FillColor = Color.FromArgb(224, 224, 224);
+            walletEmptyBtn.FillColor2 = Color.Silver;
+            walletEmptyBtn.Font = new Font("Segoe UI", 15F);
+            walletEmptyBtn.ForeColor = Color.Black;
+            walletEmptyBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            walletEmptyBtn.Location = new Point(22, 86);
+            walletEmptyBtn.Name = "walletEmptyBtn";
+            walletEmptyBtn.ShadowDecoration.CustomizableEdges = customizableEdges140;
+            walletEmptyBtn.Size = new Size(102, 35);
+            walletEmptyBtn.TabIndex = 20;
+            walletEmptyBtn.Text = "إفراغ";
+            walletEmptyBtn.Click += WalletEmptyBtn_Click;
+            // 
+            // walletSaveBtn
+            // 
+            walletSaveBtn.BorderRadius = 10;
+            walletSaveBtn.BorderThickness = 1;
+            walletSaveBtn.CustomizableEdges = customizableEdges141;
+            walletSaveBtn.DisabledState.BorderColor = Color.DarkGray;
+            walletSaveBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            walletSaveBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            walletSaveBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            walletSaveBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            walletSaveBtn.FillColor = Color.CornflowerBlue;
+            walletSaveBtn.FillColor2 = SystemColors.HotTrack;
+            walletSaveBtn.Font = new Font("Segoe UI", 15F);
+            walletSaveBtn.ForeColor = Color.White;
+            walletSaveBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            walletSaveBtn.Location = new Point(22, 45);
+            walletSaveBtn.Name = "walletSaveBtn";
+            walletSaveBtn.ShadowDecoration.CustomizableEdges = customizableEdges142;
+            walletSaveBtn.Size = new Size(102, 35);
+            walletSaveBtn.TabIndex = 19;
+            walletSaveBtn.Text = "حفظ";
+            walletSaveBtn.Click += WalletSaveBtn_Click;
+            // 
+            // walletSearchBtn
+            // 
+            walletSearchBtn.BorderRadius = 10;
+            walletSearchBtn.BorderThickness = 1;
+            walletSearchBtn.CustomizableEdges = customizableEdges143;
+            walletSearchBtn.DisabledState.BorderColor = Color.DarkGray;
+            walletSearchBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            walletSearchBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            walletSearchBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            walletSearchBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            walletSearchBtn.FillColor = Color.FromArgb(230, 160, 120);
+            walletSearchBtn.FillColor2 = Color.FromArgb(200, 140, 100);
+            walletSearchBtn.Font = new Font("Segoe UI", 15F);
+            walletSearchBtn.ForeColor = Color.Black;
+            walletSearchBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            walletSearchBtn.Location = new Point(22, 4);
+            walletSearchBtn.Name = "walletSearchBtn";
+            walletSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges144;
+            walletSearchBtn.Size = new Size(102, 35);
+            walletSearchBtn.TabIndex = 14;
+            walletSearchBtn.Text = "بحث";
+            walletSearchBtn.Click += WalletSearchBtn_Click;
+            // 
+            // walletComment
+            // 
+            walletComment.BorderColor = Color.Silver;
+            walletComment.BorderRadius = 10;
+            walletComment.CustomizableEdges = customizableEdges145;
+            walletComment.DefaultText = "";
+            walletComment.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            walletComment.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            walletComment.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            walletComment.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            walletComment.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            walletComment.Font = new Font("Segoe UI", 12F);
+            walletComment.ForeColor = Color.Black;
+            walletComment.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            walletComment.Location = new Point(156, 45);
+            walletComment.Multiline = true;
+            walletComment.Name = "walletComment";
+            walletComment.PlaceholderForeColor = Color.Gray;
+            walletComment.PlaceholderText = "تعليق ";
+            walletComment.RightToLeft = RightToLeft.Yes;
+            walletComment.SelectedText = "";
+            walletComment.ShadowDecoration.CustomizableEdges = customizableEdges146;
+            walletComment.Size = new Size(263, 77);
+            walletComment.TabIndex = 13;
+            // 
+            // balanceLabel
+            // 
+            balanceLabel.AutoSize = true;
+            balanceLabel.Font = new Font("Segoe UI", 12F);
+            balanceLabel.Location = new Point(336, 12);
+            balanceLabel.Name = "balanceLabel";
+            balanceLabel.RightToLeft = RightToLeft.Yes;
+            balanceLabel.Size = new Size(65, 21);
+            balanceLabel.TabIndex = 12;
+            balanceLabel.Text = "الرصيد : ";
+            // 
+            // walletTypeComboBox
+            // 
+            walletTypeComboBox.BackColor = Color.Transparent;
+            walletTypeComboBox.BorderColor = Color.Silver;
+            walletTypeComboBox.BorderRadius = 10;
+            walletTypeComboBox.CustomizableEdges = customizableEdges147;
+            walletTypeComboBox.DrawMode = DrawMode.OwnerDrawFixed;
+            walletTypeComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            walletTypeComboBox.FocusedColor = Color.FromArgb(94, 148, 255);
+            walletTypeComboBox.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            walletTypeComboBox.Font = new Font("Segoe UI", 10F);
+            walletTypeComboBox.ForeColor = Color.Black;
+            walletTypeComboBox.ItemHeight = 30;
+            walletTypeComboBox.Location = new Point(438, 4);
+            walletTypeComboBox.Name = "walletTypeComboBox";
+            walletTypeComboBox.ShadowDecoration.CustomizableEdges = customizableEdges148;
+            walletTypeComboBox.Size = new Size(140, 36);
+            walletTypeComboBox.TabIndex = 10;
+            // 
+            // depositRemaining
+            // 
+            depositRemaining.BackColor = Color.Transparent;
+            depositRemaining.BorderColor = Color.Silver;
+            depositRemaining.BorderRadius = 10;
+            depositRemaining.CustomizableEdges = customizableEdges149;
+            depositRemaining.DecimalPlaces = 2;
+            depositRemaining.Enabled = false;
+            depositRemaining.Font = new Font("Segoe UI", 12F);
+            depositRemaining.Location = new Point(438, 86);
+            depositRemaining.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            depositRemaining.Name = "depositRemaining";
+            depositRemaining.ShadowDecoration.CustomizableEdges = customizableEdges150;
+            depositRemaining.Size = new Size(124, 36);
+            depositRemaining.TabIndex = 8;
+            // 
+            // withdrawalRemaining
+            // 
+            withdrawalRemaining.BackColor = Color.Transparent;
+            withdrawalRemaining.BorderColor = Color.Silver;
+            withdrawalRemaining.BorderRadius = 10;
+            withdrawalRemaining.CustomizableEdges = customizableEdges151;
+            withdrawalRemaining.DecimalPlaces = 2;
+            withdrawalRemaining.Enabled = false;
+            withdrawalRemaining.Font = new Font("Segoe UI", 12F);
+            withdrawalRemaining.Location = new Point(438, 45);
+            withdrawalRemaining.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            withdrawalRemaining.Name = "withdrawalRemaining";
+            withdrawalRemaining.ShadowDecoration.CustomizableEdges = customizableEdges152;
+            withdrawalRemaining.Size = new Size(124, 36);
+            withdrawalRemaining.TabIndex = 7;
+            withdrawalRemaining.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
+            // 
+            // balance
+            // 
+            balance.BackColor = Color.Transparent;
+            balance.BorderColor = Color.Silver;
+            balance.BorderRadius = 10;
+            balance.CustomizableEdges = customizableEdges153;
+            balance.DecimalPlaces = 2;
+            balance.Font = new Font("Segoe UI", 12F);
+            balance.Location = new Point(196, 4);
+            balance.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            balance.Name = "balance";
+            balance.ShadowDecoration.CustomizableEdges = customizableEdges154;
+            balance.Size = new Size(124, 36);
+            balance.TabIndex = 6;
+            balance.UpDownButtonFillColor = Color.FromArgb(50, 200, 50);
+            // 
+            // maxDeposit
+            // 
+            maxDeposit.BackColor = Color.Transparent;
+            maxDeposit.BorderColor = Color.Silver;
+            maxDeposit.BorderRadius = 10;
+            maxDeposit.CustomizableEdges = customizableEdges155;
+            maxDeposit.DecimalPlaces = 2;
+            maxDeposit.Font = new Font("Segoe UI", 12F);
+            maxDeposit.Location = new Point(692, 86);
+            maxDeposit.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            maxDeposit.Name = "maxDeposit";
+            maxDeposit.ShadowDecoration.CustomizableEdges = customizableEdges156;
+            maxDeposit.Size = new Size(124, 36);
+            maxDeposit.TabIndex = 5;
+            // 
+            // maxWithdrawal
+            // 
+            maxWithdrawal.BackColor = Color.Transparent;
+            maxWithdrawal.BorderColor = Color.Silver;
+            maxWithdrawal.BorderRadius = 10;
+            maxWithdrawal.CustomizableEdges = customizableEdges157;
+            maxWithdrawal.DecimalPlaces = 2;
+            maxWithdrawal.Font = new Font("Segoe UI", 12F);
+            maxWithdrawal.Location = new Point(692, 45);
+            maxWithdrawal.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            maxWithdrawal.Name = "maxWithdrawal";
+            maxWithdrawal.ShadowDecoration.CustomizableEdges = customizableEdges158;
+            maxWithdrawal.Size = new Size(124, 36);
+            maxWithdrawal.TabIndex = 4;
+            maxWithdrawal.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
+            // 
+            // phoneNumber
+            // 
+            phoneNumber.BorderColor = Color.Silver;
+            phoneNumber.BorderRadius = 10;
+            phoneNumber.CustomizableEdges = customizableEdges159;
+            phoneNumber.DefaultText = "";
+            phoneNumber.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            phoneNumber.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            phoneNumber.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            phoneNumber.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            phoneNumber.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            phoneNumber.Font = new Font("Segoe UI", 12F);
+            phoneNumber.ForeColor = Color.Black;
+            phoneNumber.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            phoneNumber.Location = new Point(670, 4);
+            phoneNumber.MaxLength = 14;
+            phoneNumber.Name = "phoneNumber";
+            phoneNumber.PlaceholderText = "";
+            phoneNumber.SelectedText = "";
+            phoneNumber.ShadowDecoration.CustomizableEdges = customizableEdges160;
+            phoneNumber.Size = new Size(170, 36);
+            phoneNumber.TabIndex = 1;
+            phoneNumber.TextAlign = HorizontalAlignment.Center;
+            phoneNumber.KeyPress += PhoneNumber_KeyPress;
+            // 
+            // walletType2Label
+            // 
+            walletType2Label.AutoSize = true;
+            walletType2Label.Font = new Font("Segoe UI", 12F);
+            walletType2Label.Location = new Point(584, 11);
+            walletType2Label.Name = "walletType2Label";
+            walletType2Label.RightToLeft = RightToLeft.Yes;
+            walletType2Label.Size = new Size(52, 21);
+            walletType2Label.TabIndex = 11;
+            walletType2Label.Text = "النوع : ";
+            // 
+            // maxDepositLabel
+            // 
+            maxDepositLabel.AutoSize = true;
+            maxDepositLabel.Font = new Font("Segoe UI", 12F);
+            maxDepositLabel.Location = new Point(835, 93);
+            maxDepositLabel.Name = "maxDepositLabel";
+            maxDepositLabel.RightToLeft = RightToLeft.Yes;
+            maxDepositLabel.Size = new Size(101, 21);
+            maxDepositLabel.TabIndex = 3;
+            maxDepositLabel.Text = "أقصى الإيداع : ";
+            // 
+            // maxWithdrawalLabel
+            // 
+            maxWithdrawalLabel.AutoSize = true;
+            maxWithdrawalLabel.Font = new Font("Segoe UI", 12F);
+            maxWithdrawalLabel.Location = new Point(831, 53);
+            maxWithdrawalLabel.Name = "maxWithdrawalLabel";
+            maxWithdrawalLabel.RightToLeft = RightToLeft.Yes;
+            maxWithdrawalLabel.Size = new Size(109, 21);
+            maxWithdrawalLabel.TabIndex = 2;
+            maxWithdrawalLabel.Text = "أقصى السحب : ";
+            // 
+            // phoneLabel
+            // 
+            phoneLabel.AutoSize = true;
+            phoneLabel.Font = new Font("Segoe UI", 12F);
+            phoneLabel.Location = new Point(846, 11);
+            phoneLabel.Name = "phoneLabel";
+            phoneLabel.RightToLeft = RightToLeft.Yes;
+            phoneLabel.Size = new Size(90, 21);
+            phoneLabel.TabIndex = 0;
+            phoneLabel.Text = "رقم الهاتف : ";
+            // 
+            // isEqualMax
+            // 
+            isEqualMax.AutoSize = true;
+            isEqualMax.Checked = true;
+            isEqualMax.CheckedState.BorderColor = Color.Silver;
+            isEqualMax.CheckedState.BorderRadius = 5;
+            isEqualMax.CheckedState.BorderThickness = 1;
+            isEqualMax.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            isEqualMax.CheckState = CheckState.Checked;
+            isEqualMax.Font = new Font("Segoe UI", 12F);
+            isEqualMax.Location = new Point(557, 62);
+            isEqualMax.Name = "isEqualMax";
+            isEqualMax.RightToLeft = RightToLeft.Yes;
+            isEqualMax.Size = new Size(114, 46);
+            isEqualMax.TabIndex = 9;
+            isEqualMax.Text = "الباقي يساوي\r\nالحد الأقصى";
+            isEqualMax.UncheckedState.BorderColor = Color.Silver;
+            isEqualMax.UncheckedState.BorderRadius = 5;
+            isEqualMax.UncheckedState.BorderThickness = 1;
+            isEqualMax.UncheckedState.FillColor = Color.Gray;
+            isEqualMax.CheckedChanged += IsEqualMax_CheckedChanged;
             // 
             // transactionsPanel
             // 
@@ -349,14 +1098,14 @@
             transactionsPanel.BorderColor = Color.Silver;
             transactionsPanel.BorderRadius = 10;
             transactionsPanel.BorderThickness = 1;
-            transactionsPanel.CustomizableEdges = customizableEdges13;
+            transactionsPanel.CustomizableEdges = customizableEdges163;
             transactionsPanel.FillColor = Color.AntiqueWhite;
             transactionsPanel.FillColor2 = Color.Linen;
             transactionsPanel.Font = new Font("Segoe UI", 9F);
             transactionsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             transactionsPanel.Location = new Point(-1, 96);
             transactionsPanel.Name = "transactionsPanel";
-            transactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            transactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges164;
             transactionsPanel.Size = new Size(951, 510);
             transactionsPanel.TabIndex = 6;
             transactionsPanel.Visible = false;
@@ -381,14 +1130,14 @@
             addTransactionsPanel.Controls.Add(label1);
             addTransactionsPanel.Controls.Add(dateLabel);
             addTransactionsPanel.Controls.Add(customerLabel);
-            addTransactionsPanel.CustomizableEdges = customizableEdges33;
+            addTransactionsPanel.CustomizableEdges = customizableEdges183;
             addTransactionsPanel.FillColor = Color.FromArgb(255, 192, 255);
             addTransactionsPanel.FillColor2 = Color.FromArgb(255, 128, 255);
             addTransactionsPanel.Font = new Font("Segoe UI", 9F);
             addTransactionsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addTransactionsPanel.Location = new Point(-1, 0);
             addTransactionsPanel.Name = "addTransactionsPanel";
-            addTransactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges34;
+            addTransactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges184;
             addTransactionsPanel.Size = new Size(951, 96);
             addTransactionsPanel.TabIndex = 5;
             addTransactionsPanel.Visible = false;
@@ -397,7 +1146,7 @@
             // 
             takeWith.BackColor = Color.Transparent;
             takeWith.BorderRadius = 10;
-            takeWith.CustomizableEdges = customizableEdges15;
+            takeWith.CustomizableEdges = customizableEdges165;
             takeWith.DrawMode = DrawMode.OwnerDrawFixed;
             takeWith.DropDownStyle = ComboBoxStyle.DropDownList;
             takeWith.Enabled = false;
@@ -409,7 +1158,7 @@
             takeWith.Location = new Point(297, 51);
             takeWith.Name = "takeWith";
             takeWith.RightToLeft = RightToLeft.Yes;
-            takeWith.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            takeWith.ShadowDecoration.CustomizableEdges = customizableEdges166;
             takeWith.Size = new Size(137, 36);
             takeWith.TabIndex = 30;
             // 
@@ -417,7 +1166,7 @@
             // 
             payWith.BackColor = Color.Transparent;
             payWith.BorderRadius = 10;
-            payWith.CustomizableEdges = customizableEdges17;
+            payWith.CustomizableEdges = customizableEdges167;
             payWith.DrawMode = DrawMode.OwnerDrawFixed;
             payWith.DropDownStyle = ComboBoxStyle.DropDownList;
             payWith.Enabled = false;
@@ -429,7 +1178,7 @@
             payWith.Location = new Point(297, 9);
             payWith.Name = "payWith";
             payWith.RightToLeft = RightToLeft.Yes;
-            payWith.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            payWith.ShadowDecoration.CustomizableEdges = customizableEdges168;
             payWith.Size = new Size(137, 36);
             payWith.TabIndex = 29;
             // 
@@ -437,7 +1186,7 @@
             // 
             transSearchBtn.BorderRadius = 10;
             transSearchBtn.BorderThickness = 1;
-            transSearchBtn.CustomizableEdges = customizableEdges19;
+            transSearchBtn.CustomizableEdges = customizableEdges169;
             transSearchBtn.DisabledState.BorderColor = Color.DarkGray;
             transSearchBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             transSearchBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -450,7 +1199,7 @@
             transSearchBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             transSearchBtn.Location = new Point(13, 54);
             transSearchBtn.Name = "transSearchBtn";
-            transSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            transSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges170;
             transSearchBtn.Size = new Size(125, 35);
             transSearchBtn.TabIndex = 26;
             transSearchBtn.Text = "بحث";
@@ -459,7 +1208,7 @@
             // transNote
             // 
             transNote.BorderRadius = 10;
-            transNote.CustomizableEdges = customizableEdges21;
+            transNote.CustomizableEdges = customizableEdges171;
             transNote.DefaultText = "";
             transNote.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             transNote.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -475,7 +1224,7 @@
             transNote.PlaceholderText = "ملاحظة";
             transNote.RightToLeft = RightToLeft.Yes;
             transNote.SelectedText = "";
-            transNote.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            transNote.ShadowDecoration.CustomizableEdges = customizableEdges172;
             transNote.Size = new Size(147, 36);
             transNote.TabIndex = 25;
             // 
@@ -484,7 +1233,7 @@
             transDate.BorderRadius = 10;
             transDate.BorderThickness = 1;
             transDate.Checked = true;
-            transDate.CustomizableEdges = customizableEdges23;
+            transDate.CustomizableEdges = customizableEdges173;
             transDate.FillColor = Color.FromArgb(255, 192, 192);
             transDate.Font = new Font("Segoe UI", 9F);
             transDate.Format = DateTimePickerFormat.Long;
@@ -492,18 +1241,17 @@
             transDate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             transDate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             transDate.Name = "transDate";
-            transDate.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            transDate.ShadowDecoration.CustomizableEdges = customizableEdges174;
             transDate.Size = new Size(228, 36);
             transDate.TabIndex = 22;
             transDate.Value = new DateTime(2025, 8, 13, 18, 30, 18, 694);
             transDate.ValueChanged += TransDate_ValueChanged;
-            transDate.KeyUp += TransDate_KeyUp;
             // 
             // addTransactionBtn
             // 
             addTransactionBtn.BorderRadius = 10;
             addTransactionBtn.BorderThickness = 1;
-            addTransactionBtn.CustomizableEdges = customizableEdges25;
+            addTransactionBtn.CustomizableEdges = customizableEdges175;
             addTransactionBtn.DisabledState.BorderColor = Color.DarkGray;
             addTransactionBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             addTransactionBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -516,7 +1264,7 @@
             addTransactionBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addTransactionBtn.Location = new Point(13, 10);
             addTransactionBtn.Name = "addTransactionBtn";
-            addTransactionBtn.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            addTransactionBtn.ShadowDecoration.CustomizableEdges = customizableEdges176;
             addTransactionBtn.Size = new Size(125, 35);
             addTransactionBtn.TabIndex = 18;
             addTransactionBtn.Text = "إضافة";
@@ -527,13 +1275,13 @@
             takeAmount.BackColor = Color.Transparent;
             takeAmount.BorderColor = Color.Silver;
             takeAmount.BorderRadius = 10;
-            takeAmount.CustomizableEdges = customizableEdges27;
+            takeAmount.CustomizableEdges = customizableEdges177;
             takeAmount.DecimalPlaces = 2;
             takeAmount.Font = new Font("Segoe UI", 12F);
             takeAmount.Location = new Point(464, 51);
             takeAmount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             takeAmount.Name = "takeAmount";
-            takeAmount.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            takeAmount.ShadowDecoration.CustomizableEdges = customizableEdges178;
             takeAmount.Size = new Size(120, 36);
             takeAmount.TabIndex = 17;
             takeAmount.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
@@ -544,13 +1292,13 @@
             payAmount.BackColor = Color.Transparent;
             payAmount.BorderColor = Color.Silver;
             payAmount.BorderRadius = 10;
-            payAmount.CustomizableEdges = customizableEdges29;
+            payAmount.CustomizableEdges = customizableEdges179;
             payAmount.DecimalPlaces = 2;
             payAmount.Font = new Font("Segoe UI", 12F);
             payAmount.Location = new Point(464, 9);
             payAmount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             payAmount.Name = "payAmount";
-            payAmount.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            payAmount.ShadowDecoration.CustomizableEdges = customizableEdges180;
             payAmount.Size = new Size(120, 36);
             payAmount.TabIndex = 16;
             payAmount.ValueChanged += PayAmount_ValueChanged;
@@ -559,7 +1307,7 @@
             // 
             customersComboBox.BackColor = Color.Transparent;
             customersComboBox.BorderRadius = 10;
-            customersComboBox.CustomizableEdges = customizableEdges31;
+            customersComboBox.CustomizableEdges = customizableEdges181;
             customersComboBox.DrawMode = DrawMode.OwnerDrawFixed;
             customersComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             customersComboBox.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -570,10 +1318,9 @@
             customersComboBox.Location = new Point(642, 9);
             customersComboBox.Name = "customersComboBox";
             customersComboBox.RightToLeft = RightToLeft.Yes;
-            customersComboBox.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            customersComboBox.ShadowDecoration.CustomizableEdges = customizableEdges182;
             customersComboBox.Size = new Size(228, 36);
             customersComboBox.TabIndex = 0;
-            customersComboBox.KeyUp += CustomersComboBox_KeyUp;
             // 
             // takeLabel
             // 
@@ -629,7 +1376,6 @@
             dateLabel.Size = new Size(61, 21);
             dateLabel.TabIndex = 23;
             dateLabel.Text = "التاريخ : ";
-            dateLabel.Click += DateLabel_Click;
             dateLabel.DoubleClick += DateLabel_DoubleClick;
             // 
             // customerLabel
@@ -642,7 +1388,6 @@
             customerLabel.Size = new Size(64, 21);
             customerLabel.TabIndex = 19;
             customerLabel.Text = "العميل : ";
-            customerLabel.Click += CustomerLabel_Click;
             customerLabel.DoubleClick += CustomerLabel_DoubleClick;
             // 
             // customersPanel
@@ -651,13 +1396,13 @@
             customersPanel.BorderColor = Color.Silver;
             customersPanel.BorderRadius = 10;
             customersPanel.BorderThickness = 1;
-            customersPanel.CustomizableEdges = customizableEdges35;
+            customersPanel.CustomizableEdges = customizableEdges185;
             customersPanel.FillColor = Color.FromArgb(128, 192, 128);
             customersPanel.FillColor2 = Color.FromArgb(192, 255, 192);
             customersPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             customersPanel.Location = new Point(-1, 96);
             customersPanel.Name = "customersPanel";
-            customersPanel.ShadowDecoration.CustomizableEdges = customizableEdges36;
+            customersPanel.ShadowDecoration.CustomizableEdges = customizableEdges186;
             customersPanel.Size = new Size(951, 508);
             customersPanel.TabIndex = 4;
             customersPanel.Visible = false;
@@ -678,13 +1423,13 @@
             addCustomersPanel.Controls.Add(customerNameLabel);
             addCustomersPanel.Controls.Add(customerCode);
             addCustomersPanel.Controls.Add(customerCodeLabel);
-            addCustomersPanel.CustomizableEdges = customizableEdges47;
+            addCustomersPanel.CustomizableEdges = customizableEdges197;
             addCustomersPanel.FillColor = Color.LightCyan;
             addCustomersPanel.FillColor2 = Color.Azure;
             addCustomersPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addCustomersPanel.Location = new Point(-1, 0);
             addCustomersPanel.Name = "addCustomersPanel";
-            addCustomersPanel.ShadowDecoration.CustomizableEdges = customizableEdges48;
+            addCustomersPanel.ShadowDecoration.CustomizableEdges = customizableEdges198;
             addCustomersPanel.Size = new Size(951, 96);
             addCustomersPanel.TabIndex = 3;
             addCustomersPanel.Visible = false;
@@ -705,13 +1450,13 @@
             custDebitAmount.BackColor = Color.Transparent;
             custDebitAmount.BorderColor = Color.Silver;
             custDebitAmount.BorderRadius = 10;
-            custDebitAmount.CustomizableEdges = customizableEdges37;
+            custDebitAmount.CustomizableEdges = customizableEdges187;
             custDebitAmount.DecimalPlaces = 2;
             custDebitAmount.Font = new Font("Segoe UI", 12F);
             custDebitAmount.Location = new Point(345, 52);
             custDebitAmount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             custDebitAmount.Name = "custDebitAmount";
-            custDebitAmount.ShadowDecoration.CustomizableEdges = customizableEdges38;
+            custDebitAmount.ShadowDecoration.CustomizableEdges = customizableEdges188;
             custDebitAmount.Size = new Size(120, 36);
             custDebitAmount.TabIndex = 19;
             custDebitAmount.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
@@ -721,13 +1466,13 @@
             custCreditAmount.BackColor = Color.Transparent;
             custCreditAmount.BorderColor = Color.Silver;
             custCreditAmount.BorderRadius = 10;
-            custCreditAmount.CustomizableEdges = customizableEdges39;
+            custCreditAmount.CustomizableEdges = customizableEdges189;
             custCreditAmount.DecimalPlaces = 2;
             custCreditAmount.Font = new Font("Segoe UI", 12F);
             custCreditAmount.Location = new Point(594, 52);
             custCreditAmount.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             custCreditAmount.Name = "custCreditAmount";
-            custCreditAmount.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            custCreditAmount.ShadowDecoration.CustomizableEdges = customizableEdges190;
             custCreditAmount.Size = new Size(120, 36);
             custCreditAmount.TabIndex = 18;
             // 
@@ -757,7 +1502,7 @@
             // 
             customerSearchBtn.BorderRadius = 10;
             customerSearchBtn.BorderThickness = 1;
-            customerSearchBtn.CustomizableEdges = customizableEdges41;
+            customerSearchBtn.CustomizableEdges = customizableEdges191;
             customerSearchBtn.DisabledState.BorderColor = Color.DarkGray;
             customerSearchBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             customerSearchBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -770,7 +1515,7 @@
             customerSearchBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             customerSearchBtn.Location = new Point(24, 32);
             customerSearchBtn.Name = "customerSearchBtn";
-            customerSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges42;
+            customerSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges192;
             customerSearchBtn.Size = new Size(114, 35);
             customerSearchBtn.TabIndex = 5;
             customerSearchBtn.Text = "بحث";
@@ -780,7 +1525,7 @@
             // 
             addCustomerBtn.BorderRadius = 10;
             addCustomerBtn.BorderThickness = 1;
-            addCustomerBtn.CustomizableEdges = customizableEdges43;
+            addCustomerBtn.CustomizableEdges = customizableEdges193;
             addCustomerBtn.DisabledState.BorderColor = Color.DarkGray;
             addCustomerBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             addCustomerBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -793,7 +1538,7 @@
             addCustomerBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addCustomerBtn.Location = new Point(169, 32);
             addCustomerBtn.Name = "addCustomerBtn";
-            addCustomerBtn.ShadowDecoration.CustomizableEdges = customizableEdges44;
+            addCustomerBtn.ShadowDecoration.CustomizableEdges = customizableEdges194;
             addCustomerBtn.Size = new Size(114, 35);
             addCustomerBtn.TabIndex = 4;
             addCustomerBtn.Text = "إضافة";
@@ -802,7 +1547,7 @@
             // customerName
             // 
             customerName.BorderRadius = 8;
-            customerName.CustomizableEdges = customizableEdges45;
+            customerName.CustomizableEdges = customizableEdges195;
             customerName.DefaultText = "محمد أشرف سيد محمد علي";
             customerName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             customerName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -818,10 +1563,9 @@
             customerName.PlaceholderText = "";
             customerName.RightToLeft = RightToLeft.Yes;
             customerName.SelectedText = "";
-            customerName.ShadowDecoration.CustomizableEdges = customizableEdges46;
+            customerName.ShadowDecoration.CustomizableEdges = customizableEdges196;
             customerName.Size = new Size(251, 40);
             customerName.TabIndex = 3;
-            customerName.KeyUp += CustomerName_KeyUp;
             // 
             // customerNameLabel
             // 
@@ -893,7 +1637,7 @@
             // 
             addPayappBtn.BorderRadius = 10;
             addPayappBtn.BorderThickness = 1;
-            addPayappBtn.CustomizableEdges = customizableEdges49;
+            addPayappBtn.CustomizableEdges = customizableEdges199;
             addPayappBtn.DisabledState.BorderColor = Color.DarkGray;
             addPayappBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             addPayappBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -904,9 +1648,9 @@
             addPayappBtn.Font = new Font("Segoe UI", 15F);
             addPayappBtn.ForeColor = Color.White;
             addPayappBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addPayappBtn.Location = new Point(252, 69);
+            addPayappBtn.Location = new Point(262, 27);
             addPayappBtn.Name = "addPayappBtn";
-            addPayappBtn.ShadowDecoration.CustomizableEdges = customizableEdges50;
+            addPayappBtn.ShadowDecoration.CustomizableEdges = customizableEdges200;
             addPayappBtn.Size = new Size(114, 40);
             addPayappBtn.TabIndex = 6;
             addPayappBtn.Text = "إضافة";
@@ -915,7 +1659,7 @@
             // payApp
             // 
             payApp.BorderRadius = 8;
-            payApp.CustomizableEdges = customizableEdges51;
+            payApp.CustomizableEdges = customizableEdges201;
             payApp.DefaultText = "";
             payApp.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             payApp.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -925,13 +1669,13 @@
             payApp.Font = new Font("Segoe UI", 12F);
             payApp.ForeColor = Color.Black;
             payApp.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            payApp.Location = new Point(382, 69);
+            payApp.Location = new Point(392, 27);
             payApp.Margin = new Padding(4);
             payApp.Name = "payApp";
             payApp.PlaceholderText = "مثال: انستا باي";
             payApp.RightToLeft = RightToLeft.Yes;
             payApp.SelectedText = "";
-            payApp.ShadowDecoration.CustomizableEdges = customizableEdges52;
+            payApp.ShadowDecoration.CustomizableEdges = customizableEdges202;
             payApp.Size = new Size(225, 40);
             payApp.TabIndex = 6;
             // 
@@ -939,12 +1683,12 @@
             // 
             payappLabel.AutoSize = true;
             payappLabel.Font = new Font("Segoe UI", 14F);
-            payappLabel.Location = new Point(614, 76);
+            payappLabel.Location = new Point(624, 34);
             payappLabel.Name = "payappLabel";
             payappLabel.RightToLeft = RightToLeft.Yes;
-            payappLabel.Size = new Size(239, 25);
+            payappLabel.Size = new Size(202, 25);
             payappLabel.TabIndex = 33;
-            payappLabel.Text = "اسم تطبيق الدفع الإلكتروني : ";
+            payappLabel.Text = "تطبيق الدفع الإلكتروني : ";
             // 
             // debitLabel
             // 
@@ -972,7 +1716,7 @@
             // 
             updateCreditDepitBtn.BorderRadius = 10;
             updateCreditDepitBtn.BorderThickness = 1;
-            updateCreditDepitBtn.CustomizableEdges = customizableEdges53;
+            updateCreditDepitBtn.CustomizableEdges = customizableEdges203;
             updateCreditDepitBtn.DisabledState.BorderColor = Color.DarkGray;
             updateCreditDepitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             updateCreditDepitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -985,7 +1729,7 @@
             updateCreditDepitBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             updateCreditDepitBtn.Location = new Point(392, 314);
             updateCreditDepitBtn.Name = "updateCreditDepitBtn";
-            updateCreditDepitBtn.ShadowDecoration.CustomizableEdges = customizableEdges54;
+            updateCreditDepitBtn.ShadowDecoration.CustomizableEdges = customizableEdges204;
             updateCreditDepitBtn.Size = new Size(114, 40);
             updateCreditDepitBtn.TabIndex = 36;
             updateCreditDepitBtn.Text = "تحديث";
@@ -1007,7 +1751,7 @@
             excelDate.BorderRadius = 7;
             excelDate.BorderThickness = 1;
             excelDate.Checked = true;
-            excelDate.CustomizableEdges = customizableEdges55;
+            excelDate.CustomizableEdges = customizableEdges205;
             excelDate.FillColor = Color.FromArgb(192, 255, 192);
             excelDate.Font = new Font("Segoe UI", 9F);
             excelDate.Format = DateTimePickerFormat.Long;
@@ -1015,16 +1759,16 @@
             excelDate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             excelDate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             excelDate.Name = "excelDate";
-            excelDate.ShadowDecoration.CustomizableEdges = customizableEdges56;
+            excelDate.ShadowDecoration.CustomizableEdges = customizableEdges206;
             excelDate.Size = new Size(225, 42);
             excelDate.TabIndex = 7;
-            excelDate.Value = new DateTime(2025, 8, 31, 10, 19, 11, 901);
+            excelDate.Value = new DateTime(2025, 8, 30, 10, 19, 11, 901);
             // 
             // excelBtn
             // 
             excelBtn.BorderRadius = 10;
             excelBtn.BorderThickness = 1;
-            excelBtn.CustomizableEdges = customizableEdges57;
+            excelBtn.CustomizableEdges = customizableEdges207;
             excelBtn.DisabledState.BorderColor = Color.DarkGray;
             excelBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             excelBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1037,7 +1781,7 @@
             excelBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             excelBtn.Location = new Point(323, 412);
             excelBtn.Name = "excelBtn";
-            excelBtn.ShadowDecoration.CustomizableEdges = customizableEdges58;
+            excelBtn.ShadowDecoration.CustomizableEdges = customizableEdges208;
             excelBtn.Size = new Size(114, 43);
             excelBtn.TabIndex = 5;
             excelBtn.Text = "إكسل";
@@ -1047,7 +1791,7 @@
             // 
             extraExcelBtn.BorderRadius = 10;
             extraExcelBtn.BorderThickness = 1;
-            extraExcelBtn.CustomizableEdges = customizableEdges59;
+            extraExcelBtn.CustomizableEdges = customizableEdges209;
             extraExcelBtn.DisabledState.BorderColor = Color.DarkGray;
             extraExcelBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             extraExcelBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1064,7 +1808,7 @@
             extraExcelBtn.Location = new Point(317, 472);
             extraExcelBtn.Name = "extraExcelBtn";
             extraExcelBtn.RightToLeft = RightToLeft.Yes;
-            extraExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges60;
+            extraExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges210;
             extraExcelBtn.Size = new Size(522, 120);
             extraExcelBtn.TabIndex = 38;
             extraExcelBtn.Text = "إستخراج بيانات البرنامج إلى إكسل               ";
@@ -1077,7 +1821,7 @@
             // 
             inventoryBtn.BorderRadius = 10;
             inventoryBtn.BorderThickness = 1;
-            inventoryBtn.CustomizableEdges = customizableEdges61;
+            inventoryBtn.CustomizableEdges = customizableEdges211;
             inventoryBtn.DisabledState.BorderColor = Color.DarkGray;
             inventoryBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             inventoryBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1088,9 +1832,9 @@
             inventoryBtn.Font = new Font("Segoe UI", 15F);
             inventoryBtn.ForeColor = Color.Black;
             inventoryBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            inventoryBtn.Location = new Point(372, 155);
+            inventoryBtn.Location = new Point(371, 155);
             inventoryBtn.Name = "inventoryBtn";
-            inventoryBtn.ShadowDecoration.CustomizableEdges = customizableEdges62;
+            inventoryBtn.ShadowDecoration.CustomizableEdges = customizableEdges212;
             inventoryBtn.Size = new Size(162, 35);
             inventoryBtn.TabIndex = 8;
             inventoryBtn.Text = "التقفيل اليومي";
@@ -1101,7 +1845,7 @@
             elecPayBtn.BorderColor = Color.Silver;
             elecPayBtn.BorderRadius = 10;
             elecPayBtn.BorderThickness = 1;
-            elecPayBtn.CustomizableEdges = customizableEdges63;
+            elecPayBtn.CustomizableEdges = customizableEdges213;
             elecPayBtn.DisabledState.BorderColor = Color.DarkGray;
             elecPayBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             elecPayBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1112,19 +1856,76 @@
             elecPayBtn.Font = new Font("Segoe UI", 15F);
             elecPayBtn.ForeColor = Color.Black;
             elecPayBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            elecPayBtn.Location = new Point(579, 155);
+            elecPayBtn.Location = new Point(555, 155);
             elecPayBtn.Name = "elecPayBtn";
-            elecPayBtn.ShadowDecoration.CustomizableEdges = customizableEdges64;
+            elecPayBtn.ShadowDecoration.CustomizableEdges = customizableEdges214;
             elecPayBtn.Size = new Size(189, 35);
             elecPayBtn.TabIndex = 7;
             elecPayBtn.Text = "مدفوعات الكترونية";
             elecPayBtn.Click += ElecPayBtn_Click;
             // 
+            // addWalletTypeBtn
+            // 
+            addWalletTypeBtn.BorderRadius = 10;
+            addWalletTypeBtn.BorderThickness = 1;
+            addWalletTypeBtn.CustomizableEdges = customizableEdges215;
+            addWalletTypeBtn.DisabledState.BorderColor = Color.DarkGray;
+            addWalletTypeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            addWalletTypeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            addWalletTypeBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            addWalletTypeBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            addWalletTypeBtn.FillColor = Color.CornflowerBlue;
+            addWalletTypeBtn.FillColor2 = SystemColors.HotTrack;
+            addWalletTypeBtn.Font = new Font("Segoe UI", 15F);
+            addWalletTypeBtn.ForeColor = Color.White;
+            addWalletTypeBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            addWalletTypeBtn.Location = new Point(262, 80);
+            addWalletTypeBtn.Name = "addWalletTypeBtn";
+            addWalletTypeBtn.ShadowDecoration.CustomizableEdges = customizableEdges216;
+            addWalletTypeBtn.Size = new Size(114, 40);
+            addWalletTypeBtn.TabIndex = 39;
+            addWalletTypeBtn.Text = "إضافة";
+            addWalletTypeBtn.Click += AddWalletTypeBtn_Click;
+            // 
+            // walletType
+            // 
+            walletType.BorderRadius = 8;
+            walletType.CustomizableEdges = customizableEdges217;
+            walletType.DefaultText = "";
+            walletType.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            walletType.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            walletType.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            walletType.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            walletType.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            walletType.Font = new Font("Segoe UI", 12F);
+            walletType.ForeColor = Color.Black;
+            walletType.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            walletType.Location = new Point(392, 80);
+            walletType.Margin = new Padding(4);
+            walletType.Name = "walletType";
+            walletType.PlaceholderText = "مثال: اورانج";
+            walletType.RightToLeft = RightToLeft.Yes;
+            walletType.SelectedText = "";
+            walletType.ShadowDecoration.CustomizableEdges = customizableEdges218;
+            walletType.Size = new Size(225, 40);
+            walletType.TabIndex = 40;
+            // 
+            // walletTypeLabel
+            // 
+            walletTypeLabel.AutoSize = true;
+            walletTypeLabel.Font = new Font("Segoe UI", 14F);
+            walletTypeLabel.Location = new Point(669, 87);
+            walletTypeLabel.Name = "walletTypeLabel";
+            walletTypeLabel.RightToLeft = RightToLeft.Yes;
+            walletTypeLabel.Size = new Size(128, 25);
+            walletTypeLabel.TabIndex = 41;
+            walletTypeLabel.Text = "نوع المحفظة : ";
+            // 
             // customersBtn
             // 
             customersBtn.BorderRadius = 10;
             customersBtn.BorderThickness = 1;
-            customersBtn.CustomizableEdges = customizableEdges9;
+            customersBtn.CustomizableEdges = customizableEdges123;
             customersBtn.DisabledState.BorderColor = Color.DarkGray;
             customersBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             customersBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1137,7 +1938,7 @@
             customersBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             customersBtn.Location = new Point(645, 5);
             customersBtn.Name = "customersBtn";
-            customersBtn.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            customersBtn.ShadowDecoration.CustomizableEdges = customizableEdges124;
             customersBtn.Size = new Size(114, 35);
             customersBtn.TabIndex = 3;
             customersBtn.Text = "العملاء";
@@ -1154,13 +1955,13 @@
             footerPanel.Controls.Add(mainBtn);
             footerPanel.Controls.Add(transactionsBtn);
             footerPanel.Controls.Add(customersBtn);
-            footerPanel.CustomizableEdges = customizableEdges11;
+            footerPanel.CustomizableEdges = customizableEdges125;
             footerPanel.FillColor = Color.FromArgb(255, 255, 192);
             footerPanel.FillColor2 = Color.FromArgb(192, 255, 192);
             footerPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             footerPanel.Location = new Point(-1, 654);
             footerPanel.Name = "footerPanel";
-            footerPanel.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            footerPanel.ShadowDecoration.CustomizableEdges = customizableEdges126;
             footerPanel.Size = new Size(951, 45);
             footerPanel.TabIndex = 2;
             // 
@@ -1168,7 +1969,7 @@
             // 
             operationsBtn.BorderRadius = 10;
             operationsBtn.BorderThickness = 1;
-            operationsBtn.CustomizableEdges = customizableEdges1;
+            operationsBtn.CustomizableEdges = customizableEdges115;
             operationsBtn.DisabledState.BorderColor = Color.DarkGray;
             operationsBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             operationsBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1181,7 +1982,7 @@
             operationsBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             operationsBtn.Location = new Point(50, 5);
             operationsBtn.Name = "operationsBtn";
-            operationsBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            operationsBtn.ShadowDecoration.CustomizableEdges = customizableEdges116;
             operationsBtn.Size = new Size(114, 35);
             operationsBtn.TabIndex = 8;
             operationsBtn.Text = "العمليات";
@@ -1191,7 +1992,7 @@
             // 
             walletsBtn.BorderRadius = 10;
             walletsBtn.BorderThickness = 1;
-            walletsBtn.CustomizableEdges = customizableEdges3;
+            walletsBtn.CustomizableEdges = customizableEdges117;
             walletsBtn.DisabledState.BorderColor = Color.DarkGray;
             walletsBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             walletsBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1204,7 +2005,7 @@
             walletsBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             walletsBtn.Location = new Point(181, 5);
             walletsBtn.Name = "walletsBtn";
-            walletsBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            walletsBtn.ShadowDecoration.CustomizableEdges = customizableEdges118;
             walletsBtn.Size = new Size(114, 35);
             walletsBtn.TabIndex = 7;
             walletsBtn.Text = "المحافظ";
@@ -1214,7 +2015,7 @@
             // 
             mainBtn.BorderRadius = 10;
             mainBtn.BorderThickness = 1;
-            mainBtn.CustomizableEdges = customizableEdges5;
+            mainBtn.CustomizableEdges = customizableEdges119;
             mainBtn.DisabledState.BorderColor = Color.DarkGray;
             mainBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             mainBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1228,7 +2029,7 @@
             mainBtn.Location = new Point(821, 5);
             mainBtn.Name = "mainBtn";
             mainBtn.PressedColor = Color.White;
-            mainBtn.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            mainBtn.ShadowDecoration.CustomizableEdges = customizableEdges120;
             mainBtn.Size = new Size(114, 35);
             mainBtn.TabIndex = 6;
             mainBtn.Text = "الرئيسية";
@@ -1238,7 +2039,7 @@
             // 
             transactionsBtn.BorderRadius = 10;
             transactionsBtn.BorderThickness = 1;
-            transactionsBtn.CustomizableEdges = customizableEdges7;
+            transactionsBtn.CustomizableEdges = customizableEdges121;
             transactionsBtn.DisabledState.BorderColor = Color.DarkGray;
             transactionsBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             transactionsBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1251,7 +2052,7 @@
             transactionsBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             transactionsBtn.Location = new Point(507, 5);
             transactionsBtn.Name = "transactionsBtn";
-            transactionsBtn.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            transactionsBtn.ShadowDecoration.CustomizableEdges = customizableEdges122;
             transactionsBtn.Size = new Size(125, 35);
             transactionsBtn.TabIndex = 4;
             transactionsBtn.Text = "المعاملات";
@@ -1271,15 +2072,28 @@
             Controls.Add(headerPanel);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            KeyPreview = true;
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            KeyUp += Form1_KeyUp;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)phoneNumber).EndInit();
+            ((System.ComponentModel.ISupportInitialize)CompanyPhone).EndInit();
             ((System.ComponentModel.ISupportInitialize)formIcon).EndInit();
             mainPanel.ResumeLayout(false);
             mainPanel.PerformLayout();
+            addOperationsPanel.ResumeLayout(false);
+            addOperationsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)deposit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)withdrawal).EndInit();
+            addWalletsPanel.ResumeLayout(false);
+            addWalletsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)depositRemaining).EndInit();
+            ((System.ComponentModel.ISupportInitialize)withdrawalRemaining).EndInit();
+            ((System.ComponentModel.ISupportInitialize)balance).EndInit();
+            ((System.ComponentModel.ISupportInitialize)maxDeposit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)maxWithdrawal).EndInit();
             addTransactionsPanel.ResumeLayout(false);
             addTransactionsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)takeAmount).EndInit();
@@ -1302,7 +2116,7 @@
         private Guna.UI2.WinForms.Guna2Button maximizeBtn;
         private Guna.UI2.WinForms.Guna2Button minimizeBtn;
         private PictureBox formIcon;
-        private PictureBox phoneNumber;
+        private PictureBox CompanyPhone;
         private Guna.UI2.WinForms.Guna2GradientPanel mainPanel;
         private PictureBox pictureBox1;
         private Guna.UI2.WinForms.Guna2GradientButton customersBtn;
@@ -1356,5 +2170,54 @@
         private Guna.UI2.WinForms.Guna2GradientButton extraExcelBtn;
         private Guna.UI2.WinForms.Guna2GradientButton walletsBtn;
         private Guna.UI2.WinForms.Guna2GradientButton operationsBtn;
+        private Guna.UI2.WinForms.Guna2GradientPanel addWalletsPanel;
+        private Guna.UI2.WinForms.Guna2GradientButton addWalletTypeBtn;
+        private Guna.UI2.WinForms.Guna2TextBox walletType;
+        private Label walletTypeLabel;
+        private Label phoneLabel;
+        private Guna.UI2.WinForms.Guna2TextBox phoneNumber;
+        private Label maxDepositLabel;
+        private Label maxWithdrawalLabel;
+        private Guna2NumericUpDown maxWithdrawal;
+        private Guna2NumericUpDown balance;
+        private Guna2NumericUpDown maxDeposit;
+        private Guna2NumericUpDown depositRemaining;
+        private Guna2NumericUpDown withdrawalRemaining;
+        private Guna2CheckBox isEqualMax;
+        private Guna2ComboBox walletTypeComboBox;
+        private Label walletType2Label;
+        private Label balanceLabel;
+        private Guna2TextBox walletComment;
+        private Guna2GradientButton walletEmptyBtn;
+        private Guna2GradientButton walletSaveBtn;
+        private Guna2GradientButton walletSearchBtn;
+        private Guna2GradientPanel walletsPanel;
+        private Guna2GradientPanel addOperationsPanel;
+        private Guna2GradientButton operSaveBtn;
+        private Guna2TextBox operComment;
+        private Guna2ComboBox guna2ComboBox1;
+        private Guna2NumericUpDown guna2NumericUpDown3;
+        private Guna2NumericUpDown guna2NumericUpDown4;
+        private Guna2NumericUpDown guna2NumericUpDown5;
+        private Guna2TextBox guna2TextBox2;
+        private Label phone2Label;
+        private Label label5;
+        private Label label6;
+        private Guna2NumericUpDown deposit;
+        private Guna2NumericUpDown withdrawal;
+        private Label depoLabel;
+        private Label withdLabel;
+        private Label phoneNumber2;
+        private Label depoRema;
+        private Label withdRema;
+        private Label maxDepo;
+        private Label maxWithd;
+        private Label walletType2;
+        private Guna2CheckBox guna2CheckBox1;
+        private Label balance2Label;
+        private Label typeLabel;
+        private Label maxDepoLabel;
+        private Label maxWithdLabel;
+        private Label balance2;
     }
 }
