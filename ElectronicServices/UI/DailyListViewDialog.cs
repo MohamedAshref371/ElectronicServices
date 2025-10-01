@@ -184,11 +184,13 @@ namespace ElectronicServices
 
                 float[] creditDebit = DatabaseHelper.GetCreditAndDept(date, true);
 
+                float totalWallets = DatabaseHelper.GetTotalWalletsBalance(0);
+
                 data = new DailyClosureData
                 {
                     Date = date,
                     TotalWallets = 0,
-                    TotalCash = 0,
+                    TotalCash = totalWallets,
                     TotalElectronic = totalElec,
                     Credit = creditDebit[0],
                     Debit = creditDebit[1],
