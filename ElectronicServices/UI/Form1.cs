@@ -1174,15 +1174,15 @@ namespace ElectronicServices
 
 
             IXLWorksheet recordsSheet = workbook.Worksheets.Add("Wallets Records");
-            recordsSheet.Range("A1:H1").Merge().Value = "عمليات المحافظ";
+            recordsSheet.Range("A1:I1").Merge().Value = "عمليات المحافظ";
             recordsSheet.Row(1).Height = 30;
             recordsSheet.Cell("A1").Style.Font.Bold = true;
             recordsSheet.Cell("A1").Style.Font.FontSize = 18;
             recordsSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
             recordsSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
-            recordsSheet.Column(1).Width = 15; recordsSheet.Cell(2, 1).Value = "رقم الهاتف";
-            recordsSheet.Column(2).Width = 14; recordsSheet.Cell(2, 2).Value = "التاريخ";
-            recordsSheet.Column(3).Width = 13; recordsSheet.Cell(2, 3).Value = "الوقت";
+            recordsSheet.Column(1).Width = 14; recordsSheet.Cell(2, 1).Value = "التاريخ";
+            recordsSheet.Column(2).Width = 13; recordsSheet.Cell(2, 2).Value = "الوقت";
+            recordsSheet.Column(3).Width = 15; recordsSheet.Cell(2, 3).Value = "رقم الهاتف";
             recordsSheet.Column(4).Width = 15; recordsSheet.Cell(2, 4).Value = "باقي السحب";
             recordsSheet.Column(5).Width = 15; recordsSheet.Cell(2, 5).Value = "باقي الإيداع";
             recordsSheet.Column(6).Width = 15; recordsSheet.Cell(2, 6).Value = "مبلغ السحب";
@@ -1192,10 +1192,10 @@ namespace ElectronicServices
             RecordRowData[] records = DatabaseHelper.GetRecords();
             for (int i = 0; i < records.Length; i++)
             {
-                datetime = data[i].Date.Split(' ');
-                recordsSheet.Cell(i + 3, 1).Value = records[i].Phone;
-                recordsSheet.Cell(i + 3, 2).Value = datetime[0];
-                recordsSheet.Cell(i + 3, 3).Value = datetime[1];
+                datetime = records[i].Date.Split(' ');
+                recordsSheet.Cell(i + 3, 1).Value = datetime[0];
+                recordsSheet.Cell(i + 3, 2).Value = datetime[1];
+                recordsSheet.Cell(i + 3, 3).Value = records[i].Phone;
                 recordsSheet.Cell(i + 3, 4).Value = records[i].WithdrawalRemaining;
                 recordsSheet.Cell(i + 3, 5).Value = records[i].DepositRemaining;
                 recordsSheet.Cell(i + 3, 6).Value = records[i].Withdrawal;

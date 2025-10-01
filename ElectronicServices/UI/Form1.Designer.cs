@@ -491,8 +491,8 @@ namespace ElectronicServices
             addRecordsPanel.Controls.Add(label5);
             addRecordsPanel.Controls.Add(label6);
             addRecordsPanel.CustomizableEdges = customizableEdges23;
-            addRecordsPanel.FillColor = Color.White;
-            addRecordsPanel.FillColor2 = Color.Silver;
+            addRecordsPanel.FillColor = Color.Azure;
+            addRecordsPanel.FillColor2 = Color.Honeydew;
             addRecordsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addRecordsPanel.Location = new Point(-1, 0);
             addRecordsPanel.Name = "addRecordsPanel";
