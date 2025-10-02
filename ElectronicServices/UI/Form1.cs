@@ -89,7 +89,6 @@ namespace ElectronicServices
             excelDate.Value = DateTime.Now;
             UpdateCreditAndDept();
             walletData = new WalletRowData { Phone = "", Type = 0 };
-            timer1.Stop();
             Timer1_Tick(null, null);
             timer1.Start();
         }

@@ -2072,7 +2072,6 @@ namespace ElectronicServices
             // 
             // timer1
             // 
-            timer1.Enabled = true;
             timer1.Interval = 1000;
             timer1.Tick += Timer1_Tick;
             // 
