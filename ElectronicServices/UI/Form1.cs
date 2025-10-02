@@ -89,6 +89,8 @@ namespace ElectronicServices
             excelDate.Value = DateTime.Now;
             UpdateCreditAndDept();
             walletData = new WalletRowData { Phone = "", Type = 0 };
+            Timer1_Tick(null, null);
+            timer1.Start();
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -130,11 +132,25 @@ namespace ElectronicServices
         {
             WindowState = FormWindowState.Minimized;
         }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now;
+            System.Globalization.CultureInfo ar = new("ar-EG");
+            string date = now.ToStandardString();
+            string month = now.ToString("MMMM", ar);
+            string day = now.ToString("dddd", ar);
+            string time = now.ToString("hh:mm:ss tt", ar);
+            dateNow.Text = $"{date}\n{month}\n{day}\n{time}";
+        }
         #endregion
 
         #region Footer Panel
         private void MainBtn_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
+            Timer1_Tick(null, null);
+            timer1.Start();
             UpdateCreditAndDept();
             customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
@@ -148,6 +164,7 @@ namespace ElectronicServices
 
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             customersPanel.Visible = true;
             addCustomersPanel.Visible = true;
             transactionsPanel.Visible = false;
@@ -160,6 +177,7 @@ namespace ElectronicServices
 
         private void TransactionsBtn_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             transactionsPanel.Visible = true;
             addTransactionsPanel.Visible = true;
             customersPanel.Visible = false;
@@ -172,6 +190,7 @@ namespace ElectronicServices
 
         private void WalletsBtn_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             walletsPanel.Visible = true;
             addWalletsPanel.Visible = true;
             customersPanel.Visible = false;
@@ -187,6 +206,7 @@ namespace ElectronicServices
             if (walletData.Phone == "")
                 balance2.Text = DatabaseHelper.GetTotalWalletsBalance(walletData.Type).ToString();
 
+            timer1.Stop();
             recordsPanel.Visible = true;
             addRecordsPanel.Visible = true;
             customersPanel.Visible = false;
