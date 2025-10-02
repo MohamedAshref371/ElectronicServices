@@ -1,16 +1,12 @@
-﻿
-using DocumentFormat.OpenXml.Office2010.Excel;
-using DocumentFormat.OpenXml.Wordprocessing;
+﻿using System.Data.Entity;
 using System.Data.SQLite;
-using System.Windows.Forms;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace ElectronicServices
 {
     static class DatabaseHelper
     {
         private static bool success = false;
-        private static readonly int classVersion = 4;
+        private static readonly int classVersion = 5;
         private static readonly string dataFolder = "data", imagesFolder = $"{dataFolder}\\images\\", databaseFile = $"{dataFolder}\\ProgData.ds";
         private static readonly SQLiteConnection conn = new($"Data Source={databaseFile};Version=3;");
         private static readonly SQLiteCommand command = new(conn);
@@ -57,6 +53,7 @@ namespace ElectronicServices
                                       "CREATE TABLE wallet_type ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
                                       "CREATE TABLE wallets ( phone TEXT PRIMARY KEY, maximum_withdrawal REAL NOT NULL, maximum_deposit REAL NOT NULL, withdrawal_remaining REAL NOT NULL, deposit_remaining REAL NOT NULL, balance REAL NOT NULL, type INTEGER REFERENCES wallet_type(id) NOT NULL, comment TEXT NOT NULL );" +
                                       "CREATE TABLE records ( phone TEXT REFERENCES wallets(phone), date TEXT, withdrawal_remaining REAL NOT NULL, deposit_remaining REAL NOT NULL, withdrawal_amount REAL NOT NULL, deposit_amount REAL NOT NULL, balance REAL NOT NULL, comment TEXT NOT NULL, PRIMARY KEY (phone, date) );" +
+                                      "CREATE TABLE expenses ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, title TEXT NOT NULL, amount REAL NOT NULL, comment TEXT NOT NULL );" +
                                       "INSERT INTO payapp VALUES (-1, '');" +
                                       "INSERT INTO payapp VALUES (0, 'نقدا');" +
                                       $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 'https://github.com/MohamedAshref371');";
@@ -80,6 +77,15 @@ namespace ElectronicServices
                 reader = command.ExecuteReader();
                 if (!reader.Read()) return;
                 Version = reader.GetInt32(0);
+                if (Version == 4)
+                {
+                    reader.Close();
+                    command.CommandText = "CREATE TABLE expenses ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, title TEXT NOT NULL, amount REAL NOT NULL, comment TEXT NOT NULL ); UPDATE TABLE metadata SET version = 5";
+                    command.ExecuteNonQuery();
+                    command.CommandText = "SELECT version, create_date, comment FROM metadata";
+                    reader = command.ExecuteReader();
+                    Version = reader.GetInt32(0);
+                }
                 if (Version != classVersion) return;
                 CreateDate = new DateTime(reader.GetInt64(1));
                 Comment = reader.GetString(2);
@@ -187,6 +193,39 @@ namespace ElectronicServices
             return SelectRow($"SELECT SUM(balance) FROM wallets {cond}", () => reader.GetFloat(0));
         }
 
+        public static ExpenseRowData[] GetExpenses(string title = "")
+        {
+            if (title != "") title = $"WHERE title LIKE '%{title}%'";
+            return SelectMultiRows($"SELECT * FROM expenses {title} ORDER BY date DESC", GetExpenseData);
+        }
+
+        public static FieldData[] ExpenseFieldSearch(int method)
+        {
+            string dt = method switch
+            {
+                6 => "%Y-%m-%d",
+                7 => "%Y-%m",
+                _ => "%Y"
+            };
+            string sql = $"SELECT strftime('{dt}', date) AS text, COUNT(*) AS count FROM expenses GROUP BY text ORDER BY text";
+            return SelectMultiRows(sql, GetFieldData);
+        }
+
+        public static FieldData[] ExpenseFieldAmount(int method)
+        {
+            string dt = method switch
+            {
+                2 => "%Y-%m-%d",
+                3 => "%Y-%m",
+                _ => "%Y"
+            };
+            string sql = $"SELECT strftime('{dt}', date) AS text, SUM(amount) FROM expenses GROUP BY text ORDER BY text";
+            return SelectMultiRows(sql, GetFieldData);
+        }
+
+        public static FieldData[] ExpenseFieldSearch()
+            => SelectMultiRows($"SELECT title, COUNT(title) FROM expenses GROUP BY title ORDER BY title", GetFieldData);
+        
 
         private static int GetTableNextId(string table)
         {
@@ -300,6 +339,18 @@ namespace ElectronicServices
                 Deposit = reader.GetFloat(5),
                 Balance = reader.GetFloat(6),
                 Comment = reader.GetString(7)
+            };
+        }
+
+        private static ExpenseRowData GetExpenseData()
+        {
+            return new ExpenseRowData
+            {
+                Id = reader.GetInt32(0),
+                Date = reader.GetString(1),
+                Title = reader.GetString(2),
+                Amount = reader.GetFloat(3),
+                Comment = reader.GetString(4)
             };
         }
 
@@ -603,6 +654,17 @@ namespace ElectronicServices
 
         public static bool AddRecord(RecordRowData data)
             => ExecuteNonQuery($"INSERT INTO records VALUES ({data})") >= 0;
+
+
+        public static bool AddExpense(ExpenseRowData data)
+            => ExecuteNonQuery($"INSERT INTO expenses (date, title, amount, comment) VALUES ({data})") >= 0;
+
+        public static bool EditExpense(int id, float amount)
+            => ExecuteNonQuery($"UPDATE expenses SET amount = {amount} WHERE id = {id}") >= 0;
+
+        public static bool DeleteExpense(int id)
+            => ExecuteNonQuery($"DELETE FROM expenses WHERE id = {id}") >= 0;
+
 
         private static int ExecuteNonQuery(string sql)
         {

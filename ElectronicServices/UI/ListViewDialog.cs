@@ -5,7 +5,7 @@ namespace ElectronicServices
     {
         public int SelectedIndex { get; private set; } = -1;
 
-        public ListViewDialog(string title, FieldData[] data, bool clickable = true)
+        public ListViewDialog(string title, FieldData[] data, string title2 = "التكرار", bool clickable = true)
         {
             if (data is null) Close();
             InitializeComponent();
@@ -17,7 +17,7 @@ namespace ElectronicServices
             }
 
             listView1.Columns.Add(title, 320, HorizontalAlignment.Center);
-            listView1.Columns.Add("التكرار", listView1.ClientSize.Width - 321, HorizontalAlignment.Center);
+            listView1.Columns.Add(title2, listView1.ClientSize.Width - 321, HorizontalAlignment.Center);
 
             ListViewItem item; int total = 0;
             for (int i = 0; i < data.Length; i++)

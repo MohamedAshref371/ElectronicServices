@@ -1375,6 +1375,16 @@ namespace ElectronicServices
             }
 
 
+            IXLWorksheet expensesSheet = workbook.Worksheets.Add("Expenses");
+            expensesSheet.Range("A1:E1").Merge().Value = "المصروفات";
+            expensesSheet.Column(1).Width = 14; expensesSheet.Cell(2, 1).Value = "التاريخ";
+            expensesSheet.Column(2).Width = 13; expensesSheet.Cell(2, 2).Value = "الوقت";
+            expensesSheet.Column(3).Width = 30; expensesSheet.Cell(2, 3).Value = "العنوان";
+            expensesSheet.Column(4).Width = 15; expensesSheet.Cell(2, 4).Value = "المبلغ";
+            expensesSheet.Column(5).Width = 30; expensesSheet.Cell(2, 5).Value = "تعليق";
+
+
+
             try
             {
                 workbook.SaveAs(path);

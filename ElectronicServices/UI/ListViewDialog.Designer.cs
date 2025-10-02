@@ -29,65 +29,65 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListViewDialog));
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            listView1 = new ListView();
+            textBox1 = new TextBox();
+            label1 = new Label();
+            SuspendLayout();
             // 
             // listView1
             // 
-            this.listView1.BackColor = System.Drawing.Color.Ivory;
-            this.listView1.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.listView1.ForeColor = System.Drawing.Color.Black;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(0, 38);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.listView1.RightToLeftLayout = true;
-            this.listView1.Size = new System.Drawing.Size(400, 462);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            listView1.BackColor = Color.Ivory;
+            listView1.Font = new Font("Tahoma", 15.6F);
+            listView1.ForeColor = Color.Black;
+            listView1.FullRowSelect = true;
+            listView1.GridLines = true;
+            listView1.HeaderStyle = ColumnHeaderStyle.Nonclickable;
+            listView1.Location = new Point(0, 49);
+            listView1.MultiSelect = false;
+            listView1.Name = "listView1";
+            listView1.RightToLeft = RightToLeft.Yes;
+            listView1.RightToLeftLayout = true;
+            listView1.Size = new Size(520, 601);
+            listView1.TabIndex = 0;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.View = View.Details;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(327, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
+            textBox1.Font = new Font("Segoe UI", 16F);
+            textBox1.Location = new Point(12, 6);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(423, 36);
+            textBox1.TabIndex = 1;
+            textBox1.TextChanged += TextBox1_TextChanged;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label1.Location = new System.Drawing.Point(345, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 19);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "البحث";
+            label1.AutoSize = true;
+            label1.Font = new Font("Tahoma", 16F);
+            label1.Location = new Point(444, 12);
+            label1.Name = "label1";
+            label1.Size = new Size(67, 27);
+            label1.TabIndex = 2;
+            label1.Text = "البحث";
             // 
             // ListViewDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(400, 500);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.listView1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "ListViewDialog";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "مساعد الحقول";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(520, 650);
+            Controls.Add(label1);
+            Controls.Add(textBox1);
+            Controls.Add(listView1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "ListViewDialog";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "مساعد الحقول";
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
