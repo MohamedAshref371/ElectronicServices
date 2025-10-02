@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using System.Globalization;
 
 namespace ElectronicServices
 {
@@ -201,7 +202,7 @@ namespace ElectronicServices
             addRecordsPanel.Visible = false;
         }
 
-        private void RecordsBtnBtn_Click(object sender, EventArgs e)
+        private void RecordsBtn_Click(object sender, EventArgs e)
         {
             if (walletData.Phone == "")
                 balance2.Text = DatabaseHelper.GetTotalWalletsBalance(walletData.Type).ToString();
@@ -252,11 +253,11 @@ namespace ElectronicServices
 
             if (openExcelFileDialog.ShowDialog() != DialogResult.OK) return;
 
-            ReadExcelFile();
+            ReadCustomerExcelFile();
             MessageBox.Show("تمت إضافة العملاء من ملف الايكسل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void ReadExcelFile()
+        private void ReadCustomerExcelFile()
         {
             using var workbook = new XLWorkbook(openExcelFileDialog.FileName);
             var worksheet = workbook.Worksheet(1);
@@ -706,7 +707,7 @@ namespace ElectronicServices
 
             if (res)
             {
-                if (MessageBox.Show("هل تريد تحديث بيانات هذه المحفظة ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show($"هل تريد تحديث بيانات هذه المحفظة ؟\n{data.Phone}", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
                 if (!DatabaseHelper.EditWallet(data))
                 {
@@ -767,6 +768,58 @@ namespace ElectronicServices
             walletComment.Text = "";
         }
 
+        private void AddWalletExcelBtn_Click(object sender, EventArgs e)
+        {
+            if (!File.Exists("ClosedXML.dll"))
+            {
+                MessageBox.Show("مكتبات الايكسل غير موجودة");
+                return;
+            }
+
+            if (walletTypeComboBox.SelectedIndex <= 0)
+            {
+                MessageBox.Show("الرجاء اختيار نوع المحفظة من القائمة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (openExcelFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            isEqualMax.Checked = false;
+            walletComment.Text = "تمت الإضافة من ملف الايكسل";
+
+            ReadWalletExcelFile();
+            MessageBox.Show("تمت إضافة المحافظ من ملف الايكسل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ReadWalletExcelFile()
+        {
+            using var workbook = new XLWorkbook(openExcelFileDialog.FileName);
+            var worksheet = workbook.Worksheet(1);
+
+            string phone;
+            foreach (var row in worksheet.RowsUsed())
+            {
+                string normalized = row.Cell(1).GetValue<string>().Select(c =>
+                {
+                    if (char.GetUnicodeCategory(c) == UnicodeCategory.DecimalDigitNumber)
+                    {
+                        return (char)('0' + char.GetNumericValue(c));
+                    }
+                    return c;
+                }).Aggregate("", (current, next) => current + next);
+
+                phone = new string([.. normalized.Where(char.IsDigit)]);
+                row.Cell(2).TryGetValue(out float withd);
+                row.Cell(3).TryGetValue(out float depo);
+                row.Cell(4).TryGetValue(out float bala);
+                phoneNumber.Text = phone;
+                withdrawalRemaining.Value = (decimal)withd;
+                depositRemaining.Value = (decimal)depo;
+                balance.Value = (decimal)bala;
+                WalletSaveBtn_Click(null, null);
+            }
+        }
+
         private void Wallets_KeyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
@@ -814,7 +867,11 @@ namespace ElectronicServices
                 operComment.Text = "";
                 operSaveBtn.Enabled = false;
                 AddRecordsInPanel(records);
-                RecordsBtnBtn_Click(null, null);
+                RecordsBtn_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.F5)
+            {
+                WalletEmptyBtn_Click(null, null);
             }
         }
 
@@ -835,7 +892,7 @@ namespace ElectronicServices
             operSaveBtn.Enabled = true;
             RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
             AddRecordsInPanel(records);
-            RecordsBtnBtn_Click(null, null);
+            RecordsBtn_Click(null, null);
         }
 
         public void SetWalletData(WalletRowData data)

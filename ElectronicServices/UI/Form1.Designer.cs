@@ -182,6 +182,7 @@ namespace ElectronicServices
             walletsPanel = new Guna2GradientPanel();
             addWalletsPanel = new Guna2GradientPanel();
             walletEmptyBtn = new Guna2GradientButton();
+            addWalletExcelBtn = new Guna2GradientButton();
             walletSaveBtn = new Guna2GradientButton();
             walletSearchBtn = new Guna2GradientButton();
             walletComment = new Guna2TextBox();
@@ -795,6 +796,7 @@ namespace ElectronicServices
             addWalletsPanel.BorderRadius = 10;
             addWalletsPanel.BorderThickness = 1;
             addWalletsPanel.Controls.Add(walletEmptyBtn);
+            addWalletsPanel.Controls.Add(addWalletExcelBtn);
             addWalletsPanel.Controls.Add(walletSaveBtn);
             addWalletsPanel.Controls.Add(walletSearchBtn);
             addWalletsPanel.Controls.Add(walletComment);
@@ -843,7 +845,31 @@ namespace ElectronicServices
             walletEmptyBtn.Size = new Size(102, 35);
             walletEmptyBtn.TabIndex = 20;
             walletEmptyBtn.Text = "إفراغ";
+            walletEmptyBtn.Visible = false;
             walletEmptyBtn.Click += WalletEmptyBtn_Click;
+            // 
+            // addWalletExcelBtn
+            // 
+            addWalletExcelBtn.BorderRadius = 10;
+            addWalletExcelBtn.BorderThickness = 1;
+            addWalletExcelBtn.CustomizableEdges = customizableEdges27;
+            addWalletExcelBtn.DisabledState.BorderColor = Color.DarkGray;
+            addWalletExcelBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            addWalletExcelBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            addWalletExcelBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            addWalletExcelBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            addWalletExcelBtn.FillColor = Color.FromArgb(0, 192, 0);
+            addWalletExcelBtn.FillColor2 = Color.Green;
+            addWalletExcelBtn.Font = new Font("Segoe UI", 15F);
+            addWalletExcelBtn.ForeColor = Color.White;
+            addWalletExcelBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            addWalletExcelBtn.Location = new Point(22, 86);
+            addWalletExcelBtn.Name = "addWalletExcelBtn";
+            addWalletExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            addWalletExcelBtn.Size = new Size(102, 35);
+            addWalletExcelBtn.TabIndex = 20;
+            addWalletExcelBtn.Text = "إضافة";
+            addWalletExcelBtn.Click += AddWalletExcelBtn_Click;
             // 
             // walletSaveBtn
             // 
@@ -2022,7 +2048,7 @@ namespace ElectronicServices
             recordsBtn.Size = new Size(114, 35);
             recordsBtn.TabIndex = 8;
             recordsBtn.Text = "العمليات";
-            recordsBtn.Click += RecordsBtnBtn_Click;
+            recordsBtn.Click += RecordsBtn_Click;
             // 
             // walletsBtn
             // 
@@ -2233,6 +2259,7 @@ namespace ElectronicServices
         private Label balanceLabel;
         private Guna2TextBox walletComment;
         private Guna2GradientButton walletEmptyBtn;
+        private Guna2GradientButton addWalletExcelBtn;
         private Guna2GradientButton walletSaveBtn;
         private Guna2GradientButton walletSearchBtn;
         private Guna2GradientPanel walletsPanel;
