@@ -51,6 +51,7 @@ namespace ElectronicServices
                     MessageBox.Show("حدث خطأ أثناء حذف عمليات المحفظة. يرجى المحاولة مرة أخرى.");
                     return;
                 }
+                Program.Form.ResetWallet(data.Phone);
                 return;
             }
 
@@ -63,6 +64,8 @@ namespace ElectronicServices
                 return;
             }
 
+            Program.Form.CheckWallet(data.Phone);
+            data.Phone = "";
             this.Enabled = false;
         }
 

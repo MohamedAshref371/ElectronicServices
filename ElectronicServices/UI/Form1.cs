@@ -88,6 +88,7 @@ namespace ElectronicServices
 
             excelDate.Value = DateTime.Now;
             UpdateCreditAndDept();
+            walletData = new WalletRowData { Phone = "", Type = 0 };
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -134,6 +135,7 @@ namespace ElectronicServices
         #region Footer Panel
         private void MainBtn_Click(object sender, EventArgs e)
         {
+            UpdateCreditAndDept();
             customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
             transactionsPanel.Visible = false;
@@ -182,6 +184,9 @@ namespace ElectronicServices
 
         private void RecordsBtnBtn_Click(object sender, EventArgs e)
         {
+            if (walletData.Phone == "")
+                balance2.Text = DatabaseHelper.GetTotalWalletsBalance(walletData.Type).ToString();
+
             recordsPanel.Visible = true;
             addRecordsPanel.Visible = true;
             customersPanel.Visible = false;
@@ -208,11 +213,6 @@ namespace ElectronicServices
         #endregion
 
         #region Credit & Dept
-        private void UpdateCreditDepitBtn_Click(object sender, EventArgs e)
-        {
-            UpdateCreditAndDept();
-        }
-
         private void UpdateCreditAndDept()
         {
             float[] company = DatabaseHelper.GetCreditAndDept();
@@ -644,6 +644,17 @@ namespace ElectronicServices
                 return;
             }
 
+            if (walletData.Phone == data.Phone)
+            {
+                walletData = data;
+                maxWithd.Text = data.MaximumWithdrawal.ToString();
+                maxDepo.Text = data.MaximumDeposit.ToString();
+                withdRema.Text = data.WithdrawalRemaining.ToString();
+                depoRema.Text = data.DepositRemaining.ToString();
+                balance2.Text = data.Balance.ToString();
+                walletType2.Text = GetWalletType(data.Type);
+            }
+
             for (int i = 1; i < walletsPanel.Controls.Count; i++)
             {
                 if (walletsPanel.Controls[i] is WalletRow wr && wr.Phone == data.Phone)
@@ -714,6 +725,7 @@ namespace ElectronicServices
                 int type = walletTypeComboBox.SelectedIndex;
                 float totalBalance = DatabaseHelper.GetTotalWalletsBalance(type);
                 RecordRowData[] records = DatabaseHelper.GetRecords(type);
+                walletData = new WalletRowData { Phone = "", Type = type };
                 phoneNumber2.Text = "";
                 maxWithd.Text = "";
                 maxDepo.Text = "";
@@ -761,6 +773,31 @@ namespace ElectronicServices
             balance.Value = (decimal)data.Balance;
             walletTypeComboBox.SelectedIndex = data.Type;
             walletComment.Text = data.Comment;
+        }
+
+        public void ResetWallet(string phone)
+        {
+            if (walletData.Phone != phone) return;
+            recordsPanel.Controls.Clear();
+            RecordRow row = new();
+            row.Location = new Point(row.Location.X + rowPadding, 5);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
+            recordsPanel.Controls.Add(row);
+        }
+
+        public void CheckWallet(string phone)
+        {
+            if (walletData.Phone == phone)
+            {
+                walletData.Phone = "";
+                phoneNumber2.Text = "";
+                maxWithd.Text = "";
+                maxDepo.Text = "";
+                withdRema.Text = "";
+                depoRema.Text = "";
+                operSaveBtn.Enabled = false;
+            }
         }
 
         public string GetWalletType(int type)

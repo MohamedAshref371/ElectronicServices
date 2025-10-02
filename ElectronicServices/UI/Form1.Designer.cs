@@ -31,16 +31,16 @@ namespace ElectronicServices
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges115 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges116 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges109 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges110 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges111 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges112 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges113 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges114 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges107 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges108 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges109 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges110 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges111 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges112 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges105 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges106 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -133,8 +133,6 @@ namespace ElectronicServices
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges102 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges103 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges104 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges105 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges106 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -236,7 +234,6 @@ namespace ElectronicServices
             payappLabel = new Label();
             debitLabel = new Label();
             creditLabel = new Label();
-            updateCreditDepitBtn = new Guna2GradientButton();
             inventoryTitle = new Label();
             excelDate = new Guna2DateTimePicker();
             excelBtn = new Guna2GradientButton();
@@ -296,13 +293,13 @@ namespace ElectronicServices
             headerPanel.Controls.Add(maximizeBtn);
             headerPanel.Controls.Add(exitBtn);
             headerPanel.Controls.Add(formTitle);
-            headerPanel.CustomizableEdges = customizableEdges115;
+            headerPanel.CustomizableEdges = customizableEdges113;
             headerPanel.FillColor = Color.FromArgb(192, 192, 255);
             headerPanel.FillColor2 = Color.FromArgb(128, 128, 255);
             headerPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             headerPanel.Location = new Point(-1, -1);
             headerPanel.Name = "headerPanel";
-            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges116;
+            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges114;
             headerPanel.Size = new Size(951, 45);
             headerPanel.TabIndex = 0;
             // 
@@ -333,7 +330,7 @@ namespace ElectronicServices
             minimizeBtn.BackColor = Color.Transparent;
             minimizeBtn.BorderColor = Color.Transparent;
             minimizeBtn.BorderRadius = 8;
-            minimizeBtn.CustomizableEdges = customizableEdges109;
+            minimizeBtn.CustomizableEdges = customizableEdges107;
             minimizeBtn.DisabledState.BorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -345,7 +342,7 @@ namespace ElectronicServices
             minimizeBtn.ImageSize = new Size(32, 32);
             minimizeBtn.Location = new Point(88, 6);
             minimizeBtn.Name = "minimizeBtn";
-            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges110;
+            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges108;
             minimizeBtn.Size = new Size(32, 32);
             minimizeBtn.TabIndex = 4;
             minimizeBtn.Click += MinimizeBtn_Click;
@@ -355,7 +352,7 @@ namespace ElectronicServices
             maximizeBtn.BackColor = Color.Transparent;
             maximizeBtn.BorderColor = Color.Transparent;
             maximizeBtn.BorderRadius = 8;
-            maximizeBtn.CustomizableEdges = customizableEdges111;
+            maximizeBtn.CustomizableEdges = customizableEdges109;
             maximizeBtn.DisabledState.BorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -367,7 +364,7 @@ namespace ElectronicServices
             maximizeBtn.ImageSize = new Size(32, 32);
             maximizeBtn.Location = new Point(50, 6);
             maximizeBtn.Name = "maximizeBtn";
-            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges112;
+            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges110;
             maximizeBtn.Size = new Size(32, 32);
             maximizeBtn.TabIndex = 3;
             maximizeBtn.Click += MaximizeBtn_Click;
@@ -377,7 +374,7 @@ namespace ElectronicServices
             exitBtn.BackColor = Color.Transparent;
             exitBtn.BorderColor = Color.Transparent;
             exitBtn.BorderRadius = 8;
-            exitBtn.CustomizableEdges = customizableEdges113;
+            exitBtn.CustomizableEdges = customizableEdges111;
             exitBtn.DisabledState.BorderColor = Color.DarkGray;
             exitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             exitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -389,7 +386,7 @@ namespace ElectronicServices
             exitBtn.ImageSize = new Size(32, 32);
             exitBtn.Location = new Point(12, 6);
             exitBtn.Name = "exitBtn";
-            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges114;
+            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges112;
             exitBtn.Size = new Size(32, 32);
             exitBtn.TabIndex = 2;
             exitBtn.Click += ExitBtn_Click;
@@ -427,7 +424,6 @@ namespace ElectronicServices
             mainPanel.Controls.Add(payappLabel);
             mainPanel.Controls.Add(debitLabel);
             mainPanel.Controls.Add(creditLabel);
-            mainPanel.Controls.Add(updateCreditDepitBtn);
             mainPanel.Controls.Add(inventoryTitle);
             mainPanel.Controls.Add(excelDate);
             mainPanel.Controls.Add(excelBtn);
@@ -437,13 +433,13 @@ namespace ElectronicServices
             mainPanel.Controls.Add(addWalletTypeBtn);
             mainPanel.Controls.Add(walletType);
             mainPanel.Controls.Add(walletTypeLabel);
-            mainPanel.CustomizableEdges = customizableEdges107;
+            mainPanel.CustomizableEdges = customizableEdges105;
             mainPanel.FillColor = Color.FromArgb(255, 192, 192);
             mainPanel.FillColor2 = Color.FromArgb(255, 224, 192);
             mainPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             mainPanel.Location = new Point(-1, 47);
             mainPanel.Name = "mainPanel";
-            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges108;
+            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges106;
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
             // 
@@ -1734,29 +1730,6 @@ namespace ElectronicServices
             creditLabel.TabIndex = 31;
             creditLabel.Text = "لنا : ";
             // 
-            // updateCreditDepitBtn
-            // 
-            updateCreditDepitBtn.BorderRadius = 10;
-            updateCreditDepitBtn.BorderThickness = 1;
-            updateCreditDepitBtn.CustomizableEdges = customizableEdges91;
-            updateCreditDepitBtn.DisabledState.BorderColor = Color.DarkGray;
-            updateCreditDepitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            updateCreditDepitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            updateCreditDepitBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            updateCreditDepitBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            updateCreditDepitBtn.FillColor = Color.FromArgb(230, 160, 120);
-            updateCreditDepitBtn.FillColor2 = Color.FromArgb(200, 140, 100);
-            updateCreditDepitBtn.Font = new Font("Segoe UI", 15F);
-            updateCreditDepitBtn.ForeColor = Color.Black;
-            updateCreditDepitBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            updateCreditDepitBtn.Location = new Point(392, 314);
-            updateCreditDepitBtn.Name = "updateCreditDepitBtn";
-            updateCreditDepitBtn.ShadowDecoration.CustomizableEdges = customizableEdges92;
-            updateCreditDepitBtn.Size = new Size(114, 40);
-            updateCreditDepitBtn.TabIndex = 36;
-            updateCreditDepitBtn.Text = "تحديث";
-            updateCreditDepitBtn.Click += UpdateCreditDepitBtn_Click;
-            // 
             // inventoryTitle
             // 
             inventoryTitle.AutoSize = true;
@@ -1773,7 +1746,7 @@ namespace ElectronicServices
             excelDate.BorderRadius = 7;
             excelDate.BorderThickness = 1;
             excelDate.Checked = true;
-            excelDate.CustomizableEdges = customizableEdges93;
+            excelDate.CustomizableEdges = customizableEdges91;
             excelDate.FillColor = Color.FromArgb(192, 255, 192);
             excelDate.Font = new Font("Segoe UI", 9F);
             excelDate.Format = DateTimePickerFormat.Long;
@@ -1781,7 +1754,7 @@ namespace ElectronicServices
             excelDate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             excelDate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             excelDate.Name = "excelDate";
-            excelDate.ShadowDecoration.CustomizableEdges = customizableEdges94;
+            excelDate.ShadowDecoration.CustomizableEdges = customizableEdges92;
             excelDate.Size = new Size(225, 42);
             excelDate.TabIndex = 7;
             excelDate.Value = new DateTime(2025, 8, 30, 10, 19, 11, 901);
@@ -1790,7 +1763,7 @@ namespace ElectronicServices
             // 
             excelBtn.BorderRadius = 10;
             excelBtn.BorderThickness = 1;
-            excelBtn.CustomizableEdges = customizableEdges95;
+            excelBtn.CustomizableEdges = customizableEdges93;
             excelBtn.DisabledState.BorderColor = Color.DarkGray;
             excelBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             excelBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1803,7 +1776,7 @@ namespace ElectronicServices
             excelBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             excelBtn.Location = new Point(323, 412);
             excelBtn.Name = "excelBtn";
-            excelBtn.ShadowDecoration.CustomizableEdges = customizableEdges96;
+            excelBtn.ShadowDecoration.CustomizableEdges = customizableEdges94;
             excelBtn.Size = new Size(114, 43);
             excelBtn.TabIndex = 5;
             excelBtn.Text = "إكسل";
@@ -1813,7 +1786,7 @@ namespace ElectronicServices
             // 
             extraExcelBtn.BorderRadius = 10;
             extraExcelBtn.BorderThickness = 1;
-            extraExcelBtn.CustomizableEdges = customizableEdges97;
+            extraExcelBtn.CustomizableEdges = customizableEdges95;
             extraExcelBtn.DisabledState.BorderColor = Color.DarkGray;
             extraExcelBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             extraExcelBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1830,7 +1803,7 @@ namespace ElectronicServices
             extraExcelBtn.Location = new Point(317, 472);
             extraExcelBtn.Name = "extraExcelBtn";
             extraExcelBtn.RightToLeft = RightToLeft.Yes;
-            extraExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges98;
+            extraExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges96;
             extraExcelBtn.Size = new Size(522, 120);
             extraExcelBtn.TabIndex = 38;
             extraExcelBtn.Text = "إستخراج بيانات البرنامج إلى إكسل               ";
@@ -1843,7 +1816,7 @@ namespace ElectronicServices
             // 
             inventoryBtn.BorderRadius = 10;
             inventoryBtn.BorderThickness = 1;
-            inventoryBtn.CustomizableEdges = customizableEdges99;
+            inventoryBtn.CustomizableEdges = customizableEdges97;
             inventoryBtn.DisabledState.BorderColor = Color.DarkGray;
             inventoryBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             inventoryBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1856,7 +1829,7 @@ namespace ElectronicServices
             inventoryBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             inventoryBtn.Location = new Point(371, 155);
             inventoryBtn.Name = "inventoryBtn";
-            inventoryBtn.ShadowDecoration.CustomizableEdges = customizableEdges100;
+            inventoryBtn.ShadowDecoration.CustomizableEdges = customizableEdges98;
             inventoryBtn.Size = new Size(162, 35);
             inventoryBtn.TabIndex = 8;
             inventoryBtn.Text = "التقفيل اليومي";
@@ -1867,7 +1840,7 @@ namespace ElectronicServices
             elecPayBtn.BorderColor = Color.Silver;
             elecPayBtn.BorderRadius = 10;
             elecPayBtn.BorderThickness = 1;
-            elecPayBtn.CustomizableEdges = customizableEdges101;
+            elecPayBtn.CustomizableEdges = customizableEdges99;
             elecPayBtn.DisabledState.BorderColor = Color.DarkGray;
             elecPayBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             elecPayBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1880,7 +1853,7 @@ namespace ElectronicServices
             elecPayBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             elecPayBtn.Location = new Point(555, 155);
             elecPayBtn.Name = "elecPayBtn";
-            elecPayBtn.ShadowDecoration.CustomizableEdges = customizableEdges102;
+            elecPayBtn.ShadowDecoration.CustomizableEdges = customizableEdges100;
             elecPayBtn.Size = new Size(189, 35);
             elecPayBtn.TabIndex = 7;
             elecPayBtn.Text = "مدفوعات الكترونية";
@@ -1890,7 +1863,7 @@ namespace ElectronicServices
             // 
             addWalletTypeBtn.BorderRadius = 10;
             addWalletTypeBtn.BorderThickness = 1;
-            addWalletTypeBtn.CustomizableEdges = customizableEdges103;
+            addWalletTypeBtn.CustomizableEdges = customizableEdges101;
             addWalletTypeBtn.DisabledState.BorderColor = Color.DarkGray;
             addWalletTypeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             addWalletTypeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -1903,7 +1876,7 @@ namespace ElectronicServices
             addWalletTypeBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             addWalletTypeBtn.Location = new Point(262, 80);
             addWalletTypeBtn.Name = "addWalletTypeBtn";
-            addWalletTypeBtn.ShadowDecoration.CustomizableEdges = customizableEdges104;
+            addWalletTypeBtn.ShadowDecoration.CustomizableEdges = customizableEdges102;
             addWalletTypeBtn.Size = new Size(114, 40);
             addWalletTypeBtn.TabIndex = 39;
             addWalletTypeBtn.Text = "إضافة";
@@ -1912,7 +1885,7 @@ namespace ElectronicServices
             // walletType
             // 
             walletType.BorderRadius = 8;
-            walletType.CustomizableEdges = customizableEdges105;
+            walletType.CustomizableEdges = customizableEdges103;
             walletType.DefaultText = "";
             walletType.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             walletType.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -1928,7 +1901,7 @@ namespace ElectronicServices
             walletType.PlaceholderText = "مثال: اورانج";
             walletType.RightToLeft = RightToLeft.Yes;
             walletType.SelectedText = "";
-            walletType.ShadowDecoration.CustomizableEdges = customizableEdges106;
+            walletType.ShadowDecoration.CustomizableEdges = customizableEdges104;
             walletType.Size = new Size(225, 40);
             walletType.TabIndex = 40;
             // 
@@ -2183,7 +2156,6 @@ namespace ElectronicServices
         private Guna.UI2.WinForms.Guna2NumericUpDown custCreditAmount;
         private Label label3;
         private Label initValLabel;
-        private Guna.UI2.WinForms.Guna2GradientButton updateCreditDepitBtn;
         private SaveFileDialog saveExcelFileDialog;
         private Guna.UI2.WinForms.Guna2DateTimePicker excelDate;
         private Label inventoryTitle;
