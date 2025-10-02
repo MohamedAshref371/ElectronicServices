@@ -45,9 +45,9 @@ namespace ElectronicServices
                 item.SubItems.Add("");
                 listView1.Items.Add(item);
 
-                ListViewItem item1 = new ListViewItem("رصيد المحافظ");
-                item1.SubItems.Add("0");
-                listView1.Items.Add(item1);
+                item = new ListViewItem("رصيد المحافظ") { BackColor = Color.FromArgb(255, 255, 255) };
+                item.SubItems.Add("0");
+                listView1.Items.Add(item);
 
                 ListViewItem item2 = new ListViewItem("السيولة");
                 item2.SubItems.Add("0");
@@ -83,7 +83,7 @@ namespace ElectronicServices
 
                 listView1.ItemSelectionChanged += (s, e) =>
                 {
-                    if ((e.Item != item1 && e.Item != item2) && e.IsSelected)
+                    if (e.Item != item2 && e.IsSelected)
                         e.Item.Selected = false;
                 };
 
