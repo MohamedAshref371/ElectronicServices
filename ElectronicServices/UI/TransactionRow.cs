@@ -14,6 +14,8 @@ namespace ElectronicServices
         }
 
         private TransactionRowData data;
+        public int CustomerId => data.CustomerId;
+
         public TransactionRow(TransactionRowData data)
         {
             InitializeComponent();
@@ -110,8 +112,12 @@ namespace ElectronicServices
                     MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                data.Pay = (float)payEdit.Value;
-                data.Take = (float)takeEdit.Value;
+
+                float pay = (float)payEdit.Value, take = (float)takeEdit.Value;
+                Program.Form.UpdateCustomerRow(data.CustomerId, pay - data.Pay, take - data.Take);
+
+                data.Pay = pay;
+                data.Take = take;
                 SetTransactionRowData(data);
             }
         }
@@ -130,8 +136,8 @@ namespace ElectronicServices
                 return;
             }
 
+            Program.Form.UpdateCustomerRow(data.CustomerId, -data.Pay, -data.Take);
             this.Enabled = false;
-            //this.Dispose();
         }
 
 

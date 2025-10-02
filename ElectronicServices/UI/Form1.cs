@@ -244,9 +244,6 @@ namespace ElectronicServices
         #region Customers & Transactions & Payapps
         private void AddCustExcelBtn_Click(object sender, EventArgs e)
         {
-            custCreditAmount.Value = 0;
-            custDebitAmount.Value = 0;
-
             if (!File.Exists("ClosedXML.dll"))
             {
                 MessageBox.Show("مكتبات الايكسل غير موجودة");
@@ -264,9 +261,15 @@ namespace ElectronicServices
             using var workbook = new XLWorkbook(openExcelFileDialog.FileName);
             var worksheet = workbook.Worksheet(1);
 
-            foreach (var cell in worksheet.Column(1).CellsUsed())
+            string name;
+            foreach (var row in worksheet.RowsUsed())
             {
-                customerName.Text = cell.Value.ToString();
+                name = row.Cell(1).GetValue<string>();
+                row.Cell(2).TryGetValue(out float credit);
+                row.Cell(3).TryGetValue(out float debit);
+                customerName.Text = name;
+                custCreditAmount.Value = (decimal)credit;
+                custDebitAmount.Value = (decimal)debit;
                 AddCustomerBtn_Click(null, null);
             }
         }
@@ -415,14 +418,15 @@ namespace ElectronicServices
                 return;
             }
 
+            float pay = (float)payAmount.Value, take = (float)takeAmount.Value;
             TransactionRowData data = new()
             {
                 Id = (int)addTransactionsPanel.Tag,
                 CustomerId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key,
                 Name = customersComboBox.Text,
                 Date = transDate.Value.ToCompleteStandardString(),
-                Pay = (float)payAmount.Value,
-                Take = (float)takeAmount.Value,
+                Pay = pay,
+                Take = take,
                 PayWith = payWith.Enabled ? payWith.SelectedIndex : -1,
                 TakeWith = takeWith.Enabled ? takeWith.SelectedIndex : -1,
                 Note = transNote.Text.Trim(),
@@ -449,6 +453,29 @@ namespace ElectronicServices
 
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             payAmount.Value = 0; takeAmount.Value = 0;
+
+            UpdateCustomerRow(data.CustomerId, pay, take);
+        }
+
+        public void UpdateCustomerRow(int id, float pay, float take)
+        {
+            for (int i = 1; i < customersPanel.Controls.Count; i++)
+            {
+                if (customersPanel.Controls[i] is CustomerRow cr && cr.Id == id)
+                {
+                    cr.SetPayTakePlus(pay, take);
+                    return;
+                }
+            }
+        }
+
+        public void DeleteTransactions(int customerId)
+        {
+            for (int i = 1; i < transactionsPanel.Controls.Count; i++)
+            {
+                if (transactionsPanel.Controls[i] is TransactionRow tr && tr.CustomerId == customerId)
+                    tr.Enabled = false;
+            }
         }
 
         private void TransSearchBtn_Click(object sender, EventArgs e)

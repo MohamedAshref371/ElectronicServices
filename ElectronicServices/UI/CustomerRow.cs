@@ -12,32 +12,45 @@ namespace ElectronicServices
             deleteCustomerBtn.Visible = false;
         }
 
-        private int id;
+        public int Id { get; private set; }
+        float pay, take;
+
         public CustomerRow(CustomerRowData data)
         {
             InitializeComponent();
-            this.id = data.Id;
+            this.Id = data.Id;
             codeLabel.Text = data.Id.ToString();
             nameLabel.Text = data.Name;
-            payLabel.Text = data.Pay.ToString();
-            takeLabel.Text = data.Take.ToString();
+            SetCustomerRowData(data.Pay, data.Take);
+        }
 
-            if (data.Pay > data.Take)
+        private void SetCustomerRowData(float pay, float take)
+        {
+            this.pay = pay;
+            this.take = take;
+            payLabel.Text = pay.ToString();
+            takeLabel.Text = take.ToString();
+
+            if (pay > take)
             {
                 resultLabel.Text = "له ";
-                resultLabel.Text += (data.Pay - data.Take).ToString();
+                resultLabel.Text += (pay - take).ToString();
             }
-            else if (data.Take > data.Pay)
+            else if (take > pay)
             {
                 resultLabel.Text = "عليه ";
-                resultLabel.Text += (data.Take - data.Pay).ToString();
+                resultLabel.Text += (take - pay).ToString();
             }
             else
                 resultLabel.Text = "صفر";
         }
 
+        public void SetPayTakePlus(float payP, float takeP)
+            => SetCustomerRowData(pay + payP, take + takeP);
+        
+
         private void CustomerTransactionsBtn_Click(object sender, EventArgs e)
-            => Program.Form.CustomerTransactionsBtnInCustomerRow(id);
+            => Program.Form.CustomerTransactionsBtnInCustomerRow(Id);
 
         private void EditBtn_Click(object sender, EventArgs e)
         {
@@ -69,7 +82,7 @@ namespace ElectronicServices
                     return;
                 }
 
-                if (!DatabaseHelper.EditCustomer(id, customerName.Text))
+                if (!DatabaseHelper.EditCustomer(Id, customerName.Text))
                 {
                     MessageBox.Show("حدث خطأ أثناء حفظ البيانات. يرجى المحاولة مرة أخرى.");
                     return;
@@ -81,14 +94,14 @@ namespace ElectronicServices
 
         private void DeleteCustomerBtn_Click(object sender, EventArgs e)
         {
-            bool res = DatabaseHelper.IsThereTransactions(id);
+            bool res = DatabaseHelper.IsThereTransactions(Id);
 
             if (res && MessageBox.Show("لا يمكن حذف هذا العميل لأنه مرتبط بمعاملات\nهل تريد تصفير هذا العميل أولا؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
 
             if (res)
             {
-                if (!DatabaseHelper.ResetCustomer(id))
+                if (!DatabaseHelper.ResetCustomer(Id))
                 {
                     MessageBox.Show("حدث خطأ أثناء تصفير العميل. يرجى المحاولة مرة أخرى.");
                     return;
@@ -97,19 +110,21 @@ namespace ElectronicServices
                 payLabel.Text = 0.ToString();
                 takeLabel.Text = 0.ToString();
                 resultLabel.Text = "صفر";
+                Program.Form.DeleteTransactions(Id);
                 return;
             }
 
             if (MessageBox.Show("هل أنت متأكد من حذف هذا العميل؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
 
-            if (!DatabaseHelper.DeleteCustomer(id))
+            if (!DatabaseHelper.DeleteCustomer(Id))
             {
                 MessageBox.Show("حدث خطأ أثناء حذف العميل. يرجى المحاولة مرة أخرى.");
                 return;
             }
 
             this.Enabled = false;
+            Id = 0;
         }
 
         #region Border Radius
