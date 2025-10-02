@@ -242,6 +242,35 @@ namespace ElectronicServices
         #endregion
 
         #region Customers & Transactions & Payapps
+        private void AddCustExcelBtn_Click(object sender, EventArgs e)
+        {
+            custCreditAmount.Value = 0;
+            custDebitAmount.Value = 0;
+
+            if (!File.Exists("ClosedXML.dll"))
+            {
+                MessageBox.Show("مكتبات الايكسل غير موجودة");
+                return;
+            }
+
+            if (openExcelFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            ReadExcelFile();
+            MessageBox.Show("تمت إضافة العملاء من ملف الايكسل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ReadExcelFile()
+        {
+            using var workbook = new XLWorkbook(openExcelFileDialog.FileName);
+            var worksheet = workbook.Worksheet(1);
+
+            foreach (var cell in worksheet.Column(1).CellsUsed())
+            {
+                customerName.Text = cell.Value.ToString();
+                AddCustomerBtn_Click(null, null);
+            }
+        }
+
         private void AddCustomerBtn_Click(object sender, EventArgs e)
         {
             string custName = customerName.Text.Trim();
@@ -256,7 +285,7 @@ namespace ElectronicServices
             }
             if (res >= 1)
             {
-                MessageBox.Show("لقد تمت إضافة هذا العميل من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"لقد تمت إضافة هذا العميل من قبل\n{custName}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
