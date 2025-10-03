@@ -12,7 +12,8 @@ namespace ElectronicServices
             deleteBtn.Visible = false;
         }
 
-        private int id; private string attachmentPath;
+        private int id;
+        private readonly string attachmentPath;
         public ExpenseRow(ExpenseRowData data)
         {
             InitializeComponent();

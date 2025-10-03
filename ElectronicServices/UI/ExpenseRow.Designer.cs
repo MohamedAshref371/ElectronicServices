@@ -152,7 +152,7 @@
             attachmentBtn.FillColor = Color.Transparent;
             attachmentBtn.Font = new Font("Segoe UI", 9F);
             attachmentBtn.ForeColor = Color.White;
-            attachmentBtn.Image = Properties.Resources.search;
+            attachmentBtn.Image = Properties.Resources.Folder_Explorer;
             attachmentBtn.ImageSize = new Size(40, 40);
             attachmentBtn.Location = new Point(95, 0);
             attachmentBtn.Name = "attachmentBtn";

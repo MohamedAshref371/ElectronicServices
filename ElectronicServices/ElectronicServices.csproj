@@ -20,6 +20,7 @@
     <None Remove="Resources\diagonal-mouth.png" />
     <None Remove="Resources\editIcon.png" />
     <None Remove="Resources\ExitToApp.png" />
+    <None Remove="Resources\Folder Explorer.png" />
     <None Remove="Resources\Fullscreen.png" />
     <None Remove="Resources\FullscreenExit.png" />
     <None Remove="Resources\head-bandage.png" />
@@ -52,6 +53,7 @@
     <Resource Include="Resources\diagonal-mouth.png" />
     <Resource Include="Resources\editIcon.png" />
     <Resource Include="Resources\ExitToApp.png" />
+    <Resource Include="Resources\Folder Explorer.png" />
     <Resource Include="Resources\Fullscreen.png" />
     <Resource Include="Resources\FullscreenExit.png" />
     <Resource Include="Resources\head-bandage.png" />
