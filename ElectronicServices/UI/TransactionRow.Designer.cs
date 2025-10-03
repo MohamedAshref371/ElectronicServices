@@ -192,7 +192,7 @@
             payEdit.DecimalPlaces = 2;
             payEdit.Font = new Font("Segoe UI", 12F);
             payEdit.Location = new Point(293, 1);
-            payEdit.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            payEdit.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
             payEdit.Name = "payEdit";
             payEdit.ShadowDecoration.CustomizableEdges = customizableEdges10;
             payEdit.Size = new Size(100, 36);
@@ -208,7 +208,7 @@
             takeEdit.DecimalPlaces = 2;
             takeEdit.Font = new Font("Segoe UI", 12F);
             takeEdit.Location = new Point(187, 1);
-            takeEdit.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            takeEdit.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
             takeEdit.Name = "takeEdit";
             takeEdit.ShadowDecoration.CustomizableEdges = customizableEdges12;
             takeEdit.Size = new Size(100, 36);

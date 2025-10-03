@@ -186,6 +186,9 @@ namespace ElectronicServices
             return SelectMultiRows($"SELECT r.* FROM records r JOIN ( SELECT phone, MAX(date) AS max_date FROM records GROUP BY phone ) latest ON r.phone = latest.phone AND r.date = latest.max_date JOIN wallets w ON r.phone = w.phone {cond} ORDER BY r.date DESC", GetRecordData);
         }
 
+        public static float[] GetWalletsWithdDepo(string date)
+            => SelectRow($"SELECT COALESCE(SUM(withdrawal_amount), 0), COALESCE(SUM(deposit_amount), 0) FROM records WHERE date LIKE '{date}%'", () => new float[] { reader.GetFloat(0), reader.GetFloat(1) });
+        
         public static float GetTotalWalletsBalance(int type)
         {
             string cond = "";
@@ -199,6 +202,9 @@ namespace ElectronicServices
             return SelectMultiRows($"SELECT * FROM expenses {title} ORDER BY date DESC", GetExpenseData);
         }
 
+        public static ExpenseRowData[] GetExpensesWithDate(string date)
+            => SelectMultiRows($"SELECT * FROM expenses WHERE date LIKE '{date}%' ORDER BY date DESC", GetExpenseData);
+        
         public static FieldData[] ExpenseFieldSearch(int method)
         {
             string dt = method switch
@@ -207,10 +213,13 @@ namespace ElectronicServices
                 7 => "%Y-%m",
                 _ => "%Y"
             };
-            string sql = $"SELECT strftime('{dt}', date) AS text, COUNT(*) AS count FROM expenses GROUP BY text ORDER BY text";
+            string sql = $"SELECT strftime('{dt}', date) AS text, COUNT(*) AS count FROM expenses GROUP BY text ORDER BY text DESC";
             return SelectMultiRows(sql, GetFieldData);
         }
 
+        public static float ExpenseAmount(string date)
+            => SelectRow($"SELECT SUM(amount) FROM expenses WHERE date LIKE '{date}%'", () => reader.GetFloat(0)); 
+        
         public static FieldData[] ExpenseFieldAmount(int method)
         {
             string dt = method switch
@@ -219,7 +228,7 @@ namespace ElectronicServices
                 3 => "%Y-%m",
                 _ => "%Y"
             };
-            string sql = $"SELECT strftime('{dt}', date) AS text, SUM(amount) FROM expenses GROUP BY text ORDER BY text";
+            string sql = $"SELECT strftime('{dt}', date) AS text, SUM(amount) FROM expenses GROUP BY text ORDER BY text DESC";
             return SelectMultiRows(sql, GetFieldData);
         }
 
@@ -392,7 +401,7 @@ namespace ElectronicServices
             };
             string cond = custId >= 1 ? $"WHERE customer_id = {custId}" : "";
 
-            string sql = $"SELECT strftime('{dt}', date) AS text, COUNT(*) AS count FROM transactions {cond} GROUP BY text ORDER BY text";
+            string sql = $"SELECT strftime('{dt}', date) AS text, COUNT(*) AS count FROM transactions {cond} GROUP BY text ORDER BY text DESC";
 
             return SelectMultiRows(sql, GetFieldData);
         }
