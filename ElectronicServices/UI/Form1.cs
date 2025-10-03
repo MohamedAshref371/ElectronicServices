@@ -161,6 +161,7 @@ namespace ElectronicServices
             addWalletsPanel.Visible = false;
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+            addExpensesPanel.Visible = false;
 
         }
 
@@ -175,6 +176,7 @@ namespace ElectronicServices
             addWalletsPanel.Visible = false;
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+            addExpensesPanel.Visible = false;
 
         }
 
@@ -189,6 +191,7 @@ namespace ElectronicServices
             addWalletsPanel.Visible = false;
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+            addExpensesPanel.Visible = false;
 
         }
 
@@ -203,6 +206,7 @@ namespace ElectronicServices
             addTransactionsPanel.Visible = false;
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+            addExpensesPanel.Visible = false;
 
         }
 
@@ -220,12 +224,14 @@ namespace ElectronicServices
             addTransactionsPanel.Visible = false;
             walletsPanel.Visible = false;
             addWalletsPanel.Visible = false;
+            addExpensesPanel.Visible = false;
 
         }
 
         private void ExpensesBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            addExpensesPanel.Visible = true;
 
             customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
@@ -1058,9 +1064,26 @@ namespace ElectronicServices
         #endregion
 
         #region Expenses
-        
+        private void ChooseAttachmentBtn_Click(object sender, EventArgs e)
+        {
+            if (attachmentDialog.ShowDialog() == DialogResult.OK)
+                attachmentPath.Text = Path.GetFullPath(attachmentDialog.FileName);
+        }
 
+        private void ExpenseSearchBtn_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void AddExpenseBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StatisticsExcelBtn_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Extract Excel Files
