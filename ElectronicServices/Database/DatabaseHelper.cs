@@ -193,7 +193,7 @@ namespace ElectronicServices
         {
             string cond = "";
             if (type >= 1) cond = $"WHERE type = {type}";
-            return SelectRow($"SELECT SUM(balance) FROM wallets {cond}", () => reader.GetFloat(0));
+            return SelectRow($"SELECT COALESCE(SUM(balance), 0) FROM wallets {cond}", () => reader.GetFloat(0));
         }
 
         public static ExpenseRowData[] GetExpenses(string title = "")
