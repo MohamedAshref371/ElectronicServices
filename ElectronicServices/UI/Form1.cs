@@ -32,6 +32,10 @@ namespace ElectronicServices
                 Transactions_KeyUp(e);
             else if (addWalletsPanel.Visible)
                 Wallets_KeyUp(e);
+            else if (addRecordsPanel.Visible)
+                /*Records_KeyUp(e)*/;
+            else if (addExpensesPanel.Visible)
+                Expenses_KeyUp(e);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -162,7 +166,7 @@ namespace ElectronicServices
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
             addExpensesPanel.Visible = false;
-
+            expensesPanel.Visible = false;
         }
 
         private void CustomersBtn_Click(object sender, EventArgs e)
@@ -177,7 +181,7 @@ namespace ElectronicServices
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
             addExpensesPanel.Visible = false;
-
+            expensesPanel.Visible = false;
         }
 
         private void TransactionsBtn_Click(object sender, EventArgs e)
@@ -192,7 +196,7 @@ namespace ElectronicServices
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
             addExpensesPanel.Visible = false;
-
+            expensesPanel.Visible = false;
         }
 
         private void WalletsBtn_Click(object sender, EventArgs e)
@@ -207,7 +211,7 @@ namespace ElectronicServices
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
             addExpensesPanel.Visible = false;
-
+            expensesPanel.Visible = false;
         }
 
         private void RecordsBtn_Click(object sender, EventArgs e)
@@ -225,14 +229,14 @@ namespace ElectronicServices
             walletsPanel.Visible = false;
             addWalletsPanel.Visible = false;
             addExpensesPanel.Visible = false;
-
+            expensesPanel.Visible = false;
         }
 
         private void ExpensesBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
             addExpensesPanel.Visible = true;
-
+            expensesPanel.Visible = true;
             customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
             transactionsPanel.Visible = false;
@@ -896,7 +900,16 @@ namespace ElectronicServices
             }
             else if (e.KeyCode == Keys.F5)
             {
-                WalletEmptyBtn_Click(null, null);
+                if (addWalletExcelBtn.Visible)
+                {
+                    walletEmptyBtn.Visible = true;
+                    addWalletExcelBtn.Visible = false;
+                }
+                else
+                {
+                    addWalletExcelBtn.Visible = true;
+                    walletEmptyBtn.Visible = false;
+                }
             }
         }
 
@@ -1072,17 +1085,99 @@ namespace ElectronicServices
 
         private void ExpenseSearchBtn_Click(object sender, EventArgs e)
         {
+            ExpenseRowData[] expenses = DatabaseHelper.GetExpenses(expenseTitle.Text.Trim() == "" ? "" : expenseTitle.Text);
 
+            AddExpensesRows(expenses);
         }
 
+        private void AddExpensesRows(ExpenseRowData[] expenses)
+        {
+            expensesPanel.Controls.Clear();
+            ExpenseRow row = new();
+            row.Location = new Point(row.Location.X + rowPadding, 5);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
+            expensesPanel.Controls.Add(row);
+
+            for (int i = 0; i < expenses.Length; i++)
+            {
+                row = new(expenses[i]);
+                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
+                fs?.SetControl(row);
+                fs?.SetControls(row.Controls);
+                expensesPanel.Controls.Add(row);
+            }
+        }
+
+        private void Expenses_KeyUp(KeyEventArgs e)
+        {
+            int key = (int)e.KeyCode - 111;
+            FieldData[] data;
+            ListViewDialog lvd;
+
+            if (key == 1)
+            {
+                data = DatabaseHelper.ExpenseFieldSearch();
+                if (data is null) return;
+                lvd = new("المصروفات", data);
+                if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
+
+                expenseTitle.Text = data[lvd.SelectedIndex].Text;
+            }
+            else if (key >= 6 && key <= 8)
+            {
+                data = DatabaseHelper.ExpenseFieldSearch(key, false);
+                if (data is null) return;
+                lvd = new("تاريخ المصروفات", data);
+                if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
+
+                ExpenseRowData[] expenses = DatabaseHelper.GetExpensesWithDate(data[lvd.SelectedIndex].Text);
+                AddExpensesRows(expenses);
+            }
+        }
+
+        private const string attachmentPathReset = "... لم يتم اختيار مرفق";
         private void AddExpenseBtn_Click(object sender, EventArgs e)
         {
+            string title = expenseTitle.Text.Trim();
+            if (title == "") return;
 
+            if (expenseAmount.Value == 0 && MessageBox.Show("قيمة المصروف صفر\nهل انت متأكد من الاستمرار ؟", "خطأ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
+
+            string attachment = attachmentPath.Text == attachmentPathReset ? "" : attachmentPath.Text;
+            ExpenseRowData data = new()
+            {
+                Title = title,
+                Date = DateTime.Now.ToCompleteStandardString(),
+                Amount = (float)expenseAmount.Value,
+                Attachment = attachment,
+                Comment = expenseComment.Text.Trim(),
+            };
+
+            if (!DatabaseHelper.AddExpense(data))
+            {
+                MessageBox.Show("حدث خطأ أثناء إضافة المصروفات.\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int count = expensesPanel.Controls.Count, bottom;
+            if (count > 0)
+                bottom = expensesPanel.Controls[count - 1].Bottom;
+            else
+                bottom = 2;
+
+            ExpenseRow row = new(data);
+            row.Location = new Point(row.Location.X + rowPadding, 0);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
+            row.Location = new Point(row.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
+            expensesPanel.Controls.Add(row);
         }
 
         private void StatisticsExcelBtn_Click(object sender, EventArgs e)
         {
-
+            
         }
         #endregion
 
