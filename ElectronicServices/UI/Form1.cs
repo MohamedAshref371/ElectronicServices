@@ -161,6 +161,7 @@ namespace ElectronicServices
             addWalletsPanel.Visible = false;
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+
         }
 
         private void CustomersBtn_Click(object sender, EventArgs e)
@@ -174,6 +175,7 @@ namespace ElectronicServices
             addWalletsPanel.Visible = false;
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+
         }
 
         private void TransactionsBtn_Click(object sender, EventArgs e)
@@ -187,6 +189,7 @@ namespace ElectronicServices
             addWalletsPanel.Visible = false;
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+
         }
 
         private void WalletsBtn_Click(object sender, EventArgs e)
@@ -200,6 +203,7 @@ namespace ElectronicServices
             addTransactionsPanel.Visible = false;
             recordsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+
         }
 
         private void RecordsBtn_Click(object sender, EventArgs e)
@@ -216,6 +220,21 @@ namespace ElectronicServices
             addTransactionsPanel.Visible = false;
             walletsPanel.Visible = false;
             addWalletsPanel.Visible = false;
+
+        }
+
+        private void ExpensesBtn_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+
+            customersPanel.Visible = false;
+            addCustomersPanel.Visible = false;
+            transactionsPanel.Visible = false;
+            addTransactionsPanel.Visible = false;
+            walletsPanel.Visible = false;
+            addWalletsPanel.Visible = false;
+            recordsPanel.Visible = false;
+            addRecordsPanel.Visible = false;
         }
         #endregion
 
@@ -1038,6 +1057,12 @@ namespace ElectronicServices
         }
         #endregion
 
+        #region Expenses
+        
+
+
+        #endregion
+
         #region Extract Excel Files
         private void ExcelBtn_Click(object sender, EventArgs e)
         {
@@ -1142,6 +1167,7 @@ namespace ElectronicServices
 
 
             float[] withDepo = DatabaseHelper.GetWalletsWithdDepo(date);
+            sheet.Cell(16, 1).Value = "المحافظ";
             sheet.Cell(16, 2).Value = "إيداع";
             sheet.Cell(16, 3).Value = "سحب";
             sheet.Cell(16, 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
@@ -1157,9 +1183,14 @@ namespace ElectronicServices
             sheet.Cell(17, 5).Value = withDepo[1] - withDepo[0];
 
 
-            sheet.Cell(20, 2).Value = "المصاريف";
+            float[] expense = DatabaseHelper.ExpenseAmount(date);
+            sheet.Cell(20, 1).Value = "المصاريف";
+            sheet.Cell(20, 2).Value = "العدد";
+            sheet.Cell(20, 3).Value = "الإجمالي";
             sheet.Cell(20, 2).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(20, 3).Value = DatabaseHelper.ExpenseAmount(date);
+            sheet.Cell(20, 3).Style.Fill.BackgroundColor = XLColor.LightBlue;
+            sheet.Cell(21, 2).Value = expense[0];
+            sheet.Cell(21, 3).Value = expense[1];
 
 
             try

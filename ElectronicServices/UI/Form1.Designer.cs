@@ -139,6 +139,8 @@ namespace ElectronicServices
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -147,8 +149,6 @@ namespace ElectronicServices
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             guna2BorderlessForm1 = new Guna2BorderlessForm(components);
             headerPanel = new Guna2GradientPanel();
@@ -252,6 +252,7 @@ namespace ElectronicServices
             dateNow = new Label();
             customersBtn = new Guna2GradientButton();
             footerPanel = new Guna2GradientPanel();
+            expensesBtn = new Guna2GradientButton();
             recordsBtn = new Guna2GradientButton();
             walletsBtn = new Guna2GradientButton();
             mainBtn = new Guna2GradientButton();
@@ -259,7 +260,6 @@ namespace ElectronicServices
             saveExcelFileDialog = new SaveFileDialog();
             timer1 = new System.Windows.Forms.Timer(components);
             openExcelFileDialog = new OpenFileDialog();
-            expensesBtn = new Guna2GradientButton();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CompanyPhone).BeginInit();
             ((System.ComponentModel.ISupportInitialize)formIcon).BeginInit();
@@ -2031,6 +2031,30 @@ namespace ElectronicServices
             footerPanel.Size = new Size(951, 45);
             footerPanel.TabIndex = 2;
             // 
+            // expensesBtn
+            // 
+            expensesBtn.BorderRadius = 10;
+            expensesBtn.BorderThickness = 1;
+            expensesBtn.CustomizableEdges = customizableEdges1;
+            expensesBtn.DisabledState.BorderColor = Color.DarkGray;
+            expensesBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            expensesBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            expensesBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            expensesBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            expensesBtn.FillColor = Color.FromArgb(255, 224, 192);
+            expensesBtn.FillColor2 = Color.FromArgb(192, 192, 255);
+            expensesBtn.Font = new Font("Segoe UI", 15F);
+            expensesBtn.ForeColor = Color.Black;
+            expensesBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            expensesBtn.Location = new Point(330, 5);
+            expensesBtn.Name = "expensesBtn";
+            expensesBtn.PressedColor = Color.White;
+            expensesBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            expensesBtn.Size = new Size(141, 35);
+            expensesBtn.TabIndex = 9;
+            expensesBtn.Text = "المصروفات";
+            expensesBtn.Click += ExpensesBtn_Click;
+            // 
             // recordsBtn
             // 
             recordsBtn.BorderRadius = 10;
@@ -2136,29 +2160,6 @@ namespace ElectronicServices
             // openExcelFileDialog
             // 
             openExcelFileDialog.Filter = "Excel files|*.xlsx";
-            // 
-            // expensesBtn
-            // 
-            expensesBtn.BorderRadius = 10;
-            expensesBtn.BorderThickness = 1;
-            expensesBtn.CustomizableEdges = customizableEdges1;
-            expensesBtn.DisabledState.BorderColor = Color.DarkGray;
-            expensesBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            expensesBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            expensesBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            expensesBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            expensesBtn.FillColor = Color.FromArgb(255, 224, 192);
-            expensesBtn.FillColor2 = Color.FromArgb(192, 192, 255);
-            expensesBtn.Font = new Font("Segoe UI", 15F);
-            expensesBtn.ForeColor = Color.Black;
-            expensesBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            expensesBtn.Location = new Point(330, 5);
-            expensesBtn.Name = "expensesBtn";
-            expensesBtn.PressedColor = Color.White;
-            expensesBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            expensesBtn.Size = new Size(141, 35);
-            expensesBtn.TabIndex = 9;
-            expensesBtn.Text = "المصروفات";
             // 
             // Form1
             // 

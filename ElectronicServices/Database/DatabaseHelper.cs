@@ -104,7 +104,7 @@ namespace ElectronicServices
                 conn.Close();
             }
         }
-        
+
         public static int GetCustomerNextId()
             => GetTableNextId("customers");
 
@@ -188,7 +188,7 @@ namespace ElectronicServices
 
         public static float[] GetWalletsWithdDepo(string date)
             => SelectRow($"SELECT COALESCE(SUM(withdrawal_amount), 0), COALESCE(SUM(deposit_amount), 0) FROM records WHERE date LIKE '{date}%'", () => new float[] { reader.GetFloat(0), reader.GetFloat(1) });
-        
+
         public static float GetTotalWalletsBalance(int type)
         {
             string cond = "";
@@ -204,8 +204,8 @@ namespace ElectronicServices
 
         public static ExpenseRowData[] GetExpensesWithDate(string date)
             => SelectMultiRows($"SELECT * FROM expenses WHERE date LIKE '{date}%' ORDER BY date DESC", GetExpenseData);
-        
-        public static FieldData[] ExpenseFieldSearch(int method)
+
+        public static FieldData[] ExpenseFieldSearch(int method, bool sum)
         {
             string dt = method switch
             {
@@ -213,24 +213,12 @@ namespace ElectronicServices
                 7 => "%Y-%m",
                 _ => "%Y"
             };
-            string sql = $"SELECT strftime('{dt}', date) AS text, COUNT(*) AS count FROM expenses GROUP BY text ORDER BY text DESC";
+            string sql = $"SELECT strftime('{dt}', date) AS text, {(sum ? "SUM" : "COUNT")}(amount) FROM expenses GROUP BY text ORDER BY text DESC";
             return SelectMultiRows(sql, GetFieldData);
         }
 
-        public static float ExpenseAmount(string date)
-            => SelectRow($"SELECT SUM(amount) FROM expenses WHERE date LIKE '{date}%'", () => reader.GetFloat(0)); 
-        
-        public static FieldData[] ExpenseFieldAmount(int method)
-        {
-            string dt = method switch
-            {
-                2 => "%Y-%m-%d",
-                3 => "%Y-%m",
-                _ => "%Y"
-            };
-            string sql = $"SELECT strftime('{dt}', date) AS text, SUM(amount) FROM expenses GROUP BY text ORDER BY text DESC";
-            return SelectMultiRows(sql, GetFieldData);
-        }
+        public static float[] ExpenseAmount(string date)
+            => SelectRow($"SELECT COUNT(amount), SUM(amount) FROM expenses WHERE date LIKE '{date}%'", () => new float[] {reader.GetFloat(0), reader.GetFloat(1) }); 
 
         public static FieldData[] ExpenseFieldSearch()
             => SelectMultiRows($"SELECT title, COUNT(title) FROM expenses GROUP BY title ORDER BY title", GetFieldData);
