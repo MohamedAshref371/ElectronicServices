@@ -56,6 +56,7 @@
             title.TabIndex = 1;
             title.Text = "العنوان";
             title.TextAlign = ContentAlignment.MiddleCenter;
+            title.DoubleClick += Title_DoubleClick;
             // 
             // amount
             // 

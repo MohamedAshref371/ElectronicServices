@@ -217,6 +217,18 @@ namespace ElectronicServices
             return SelectMultiRows(sql, GetFieldData);
         }
 
+        public static Field3Data[] GetExpenseStatistics(int method)
+        {
+            string dt = method switch
+            {
+                6 => "%Y-%m-%d",
+                7 => "%Y-%m",
+                _ => "%Y"
+            };
+            string sql = $"SELECT strftime('{dt}', date) AS text, COUNT(amount), SUM(amount) FROM expenses GROUP BY text ORDER BY text DESC";
+            return SelectMultiRows(sql, GetField3Data);
+        }
+
         public static float[] ExpenseAmount(string date)
             => SelectRow($"SELECT COUNT(amount), SUM(amount) FROM expenses WHERE date LIKE '{date}%'", () => new float[] {reader.GetFloat(0), reader.GetFloat(1) }); 
 
@@ -401,6 +413,16 @@ namespace ElectronicServices
             {
                 Text = reader.GetString(0),
                 Count = reader.GetInt32(1),
+            };
+        }
+
+        private static Field3Data GetField3Data()
+        {
+            return new Field3Data
+            {
+                Text = reader.GetString(0),
+                Count = reader.GetInt32(1),
+                Sum = reader.GetFloat(2),
             };
         }
 

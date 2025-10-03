@@ -8,12 +8,14 @@ namespace ElectronicServices
         public ExpenseRow()
         {
             InitializeComponent();
+            attachmentBtn.Visible = false;
             editBtn.Visible = false;
             deleteBtn.Visible = false;
         }
 
         private int id;
         private readonly string attachmentPath;
+        private readonly string comment;
         public ExpenseRow(ExpenseRowData data)
         {
             InitializeComponent();
@@ -23,11 +25,18 @@ namespace ElectronicServices
             amount.Text = data.Amount.ToString();
             attachmentPath = data.Attachment;
             amount.Tag = (decimal)data.Amount;
+            comment = data.Comment;
+        }
+
+        private void Title_DoubleClick(object sender, EventArgs e)
+        {
+            if (comment != "")
+                MessageBox.Show(comment, "ملاحظة", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void AttachmentBtn_MouseClick(object sender, MouseEventArgs e)
         {
-            if (attachmentPath != "")
+            if (attachmentPath == "")
             {
                 MessageBox.Show("لا يوجد مرفق لهذا البند", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -39,10 +48,13 @@ namespace ElectronicServices
             }
             try
             {
-                if (e.Button == MouseButtons.Right)
-                    Process.Start("explorer.exe", $"/select,\"{attachmentPath}\"");
+                if (e.Button == MouseButtons.Left)
+                {
+                    ProcessStartInfo psi = new() { FileName = attachmentPath, UseShellExecute = true };
+                    Process.Start(psi);
+                }
                 else
-                    Process.Start(attachmentPath);
+                    Process.Start("explorer.exe", $"/select,\"{attachmentPath}\"");
             }
             catch (Exception ex)
             {

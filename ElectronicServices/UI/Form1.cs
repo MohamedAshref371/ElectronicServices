@@ -1,5 +1,4 @@
 ﻿using ClosedXML.Excel;
-using System.Globalization;
 
 namespace ElectronicServices
 {
@@ -33,7 +32,8 @@ namespace ElectronicServices
             else if (addWalletsPanel.Visible)
                 Wallets_KeyUp(e);
             else if (addRecordsPanel.Visible)
-                /*Records_KeyUp(e)*/;
+                /*Records_KeyUp(e)*/
+                ;
             else if (addExpensesPanel.Visible)
                 Expenses_KeyUp(e);
         }
@@ -90,6 +90,14 @@ namespace ElectronicServices
             wallet.Location = new Point(wallet.Location.X + rowPadding, 5);
             walletsPanel.Controls.Add(wallet);
             UpdateWalletTypeComboBox();
+
+            RecordRow record = new();
+            record.Location = new Point(record.Location.X + rowPadding, 5);
+            recordsPanel.Controls.Add(record);
+
+            ExpenseRow expense = new();
+            expense.Location = new Point(expense.Location.X + rowPadding, 5);
+            expensesPanel.Controls.Add(expense);
 
             excelDate.Value = DateTime.Now;
             UpdateCreditAndDept();
@@ -830,7 +838,7 @@ namespace ElectronicServices
             {
                 string normalized = row.Cell(1).GetValue<string>().Select(c =>
                 {
-                    if (char.GetUnicodeCategory(c) == UnicodeCategory.DecimalDigitNumber)
+                    if (char.GetUnicodeCategory(c) == System.Globalization.UnicodeCategory.DecimalDigitNumber)
                     {
                         return (char)('0' + char.GetNumericValue(c));
                     }
@@ -1161,6 +1169,10 @@ namespace ElectronicServices
                 return;
             }
 
+            expenseTitle.Text = "";
+            expenseAmount.Value = 0;
+            attachmentPath.Text = attachmentPathReset;
+
             int count = expensesPanel.Controls.Count, bottom;
             if (count > 0)
                 bottom = expensesPanel.Controls[count - 1].Bottom;
@@ -1177,7 +1189,97 @@ namespace ElectronicServices
 
         private void StatisticsExcelBtn_Click(object sender, EventArgs e)
         {
-            
+            if (!File.Exists("ClosedXML.dll"))
+            {
+                MessageBox.Show("مكتبات الايكسل غير موجودة");
+                return;
+            }
+
+            string date = DateTime.Now.ToCompleteStandardString();
+            saveExcelFileDialog.FileName = date.Replace(":", "");
+            if (saveExcelFileDialog.ShowDialog() != DialogResult.OK) return;
+
+            ExtractStatisticsExcel(saveExcelFileDialog.FileName);
+        }
+
+        private void ExtractStatisticsExcel(string path)
+        {
+            using XLWorkbook workbook = new();
+            workbook.RightToLeft = true;
+
+            IXLWorksheet day = workbook.Worksheets.Add("Daily Expense Statistics");
+            day.Range("A1:D1").Merge().Value = "إحصائيات المصروفات اليومية";
+            day.Row(1).Height = 30;
+            day.Cell("A1").Style.Font.Bold = true;
+            day.Cell("A1").Style.Font.FontSize = 16;
+            day.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            day.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            day.Column(1).Width = 14; day.Cell(2, 1).Value = "التاريخ";
+            day.Column(2).Width = 10; day.Cell(2, 2).Value = "اليوم";
+            day.Column(3).Width = 15; day.Cell(2, 3).Value = "عدد المصروفات";
+            day.Column(4).Width = 15; day.Cell(2, 4).Value = "المبلغ الإجمالي";
+
+            Field3Data[] data = DatabaseHelper.GetExpenseStatistics(6);
+            for (int i = 0; i < data.Length; i++)
+            {
+                day.Cell(i + 3, 1).Value = data[i].Text;
+                day.Cell(i + 3, 2).Value = data[i].Text.GetArabic(day: true);
+                day.Cell(i + 3, 3).Value = data[i].Count;
+                day.Cell(i + 3, 4).Value = data[i].Sum;
+            }
+
+            IXLWorksheet month = workbook.Worksheets.Add("Monthly Expense Statistics");
+            month.Range("A1:D1").Merge().Value = "إحصائيات المصروفات الشهرية";
+            month.Row(1).Height = 30;
+            month.Cell("A1").Style.Font.Bold = true;
+            month.Cell("A1").Style.Font.FontSize = 16;
+            month.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            month.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            month.Column(1).Width = 14; month.Cell(2, 1).Value = "التاريخ";
+            month.Column(2).Width = 10; month.Cell(2, 2).Value = "الشهر";
+            month.Column(3).Width = 15; month.Cell(2, 3).Value = "عدد المصروفات";
+            month.Column(4).Width = 15; month.Cell(2, 4).Value = "المبلغ الإجمالي";
+
+            data = DatabaseHelper.GetExpenseStatistics(7);
+            for (int i = 0; i < data.Length; i++)
+            {
+                month.Cell(i + 3, 1).Value = data[i].Text;
+                month.Cell(i + 3, 2).Value = data[i].Text.GetArabic(day: false);
+                month.Cell(i + 3, 3).Value = data[i].Count;
+                month.Cell(i + 3, 4).Value = data[i].Sum;
+            }
+
+            IXLWorksheet year = workbook.Worksheets.Add("Yearly Expense Statistics");
+            year.Range("A1:D1").Merge().Value = "إحصائيات المصروفات السنوية";
+            year.Row(1).Height = 30;
+            year.Cell("A1").Style.Font.Bold = true;
+            year.Cell("A1").Style.Font.FontSize = 16;
+            year.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            year.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
+            year.Column(1).Width = 14; year.Cell(2, 1).Value = "التاريخ";
+            year.Column(2).Width = 10; year.Cell(2, 2).Value = "السنة";
+            year.Column(3).Width = 15; year.Cell(2, 3).Value = "عدد المصروفات";
+            year.Column(4).Width = 15; year.Cell(2, 4).Value = "المبلغ الإجمالي";
+
+            data = DatabaseHelper.GetExpenseStatistics(8);
+            for (int i = 0; i < data.Length; i++)
+            {
+                year.Cell(i + 3, 1).Value = data[i].Text;
+                year.Cell(i + 3, 2).Value = "";
+                year.Cell(i + 3, 3).Value = data[i].Count;
+                year.Cell(i + 3, 4).Value = data[i].Sum;
+            }
+
+
+            try
+            {
+                workbook.SaveAs(path);
+                MessageBox.Show("تم استخراج البيانات بنجاح");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("حدث خطأ أثناء حفظ الملف\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         #endregion
 
@@ -1552,7 +1654,7 @@ namespace ElectronicServices
             expensesSheet.Column(3).Width = 30; expensesSheet.Cell(2, 3).Value = "العنوان";
             expensesSheet.Column(4).Width = 15; expensesSheet.Cell(2, 4).Value = "المبلغ";
             expensesSheet.Column(5).Width = 30; expensesSheet.Cell(2, 6).Value = "مسار المرفق";
-            expensesSheet.Column(6).Width = 30; expensesSheet.Cell(2, 6).Value = "تعليق";
+            expensesSheet.Column(6).Width = 30; expensesSheet.Cell(2, 6).Value = "ملاحظة";
             ExpenseRowData[] expenses = DatabaseHelper.GetExpenses();
             for (int i = 0; i < expenses.Length; i++)
             {

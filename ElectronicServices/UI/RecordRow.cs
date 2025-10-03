@@ -51,7 +51,7 @@ namespace ElectronicServices
             MessageBox.Show(phoneNumber.Tag.ToString(), "ملاحظات العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void Date_Click(object sender, EventArgs e)
+        private void Date_DoubleClick(object sender, EventArgs e)
         {
             MessageBox.Show(date.Tag.ToString(), "وقت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

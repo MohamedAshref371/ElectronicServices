@@ -120,7 +120,7 @@
             date.TabIndex = 7;
             date.Text = "التاريخ";
             date.TextAlign = ContentAlignment.MiddleCenter;
-            date.Click += Date_Click;
+            date.DoubleClick += Date_DoubleClick;
             // 
             // RecordRow
             // 
