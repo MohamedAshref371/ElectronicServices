@@ -53,7 +53,7 @@ namespace ElectronicServices
                                       "CREATE TABLE wallet_type ( id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT UNIQUE NOT NULL );" +
                                       "CREATE TABLE wallets ( phone TEXT PRIMARY KEY, maximum_withdrawal REAL NOT NULL, maximum_deposit REAL NOT NULL, withdrawal_remaining REAL NOT NULL, deposit_remaining REAL NOT NULL, balance REAL NOT NULL, type INTEGER REFERENCES wallet_type(id) NOT NULL, comment TEXT NOT NULL );" +
                                       "CREATE TABLE records ( phone TEXT REFERENCES wallets(phone), date TEXT, withdrawal_remaining REAL NOT NULL, deposit_remaining REAL NOT NULL, withdrawal_amount REAL NOT NULL, deposit_amount REAL NOT NULL, balance REAL NOT NULL, comment TEXT NOT NULL, PRIMARY KEY (phone, date) );" +
-                                      "CREATE TABLE expenses ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, title TEXT NOT NULL, amount REAL NOT NULL, comment TEXT NOT NULL );" +
+                                      "CREATE TABLE expenses ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, title TEXT NOT NULL, amount REAL NOT NULL, attachment TEXT NOT NULL, comment TEXT NOT NULL );" +
                                       "INSERT INTO payapp VALUES (-1, '');" +
                                       "INSERT INTO payapp VALUES (0, 'نقدا');" +
                                       $"INSERT INTO metadata VALUES ({classVersion}, '{DateTime.Now.Ticks}', 'https://github.com/MohamedAshref371');";
@@ -80,7 +80,7 @@ namespace ElectronicServices
                 if (Version == 4)
                 {
                     reader.Close();
-                    command.CommandText = "CREATE TABLE expenses ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, title TEXT NOT NULL, amount REAL NOT NULL, comment TEXT NOT NULL ); UPDATE TABLE metadata SET version = 5";
+                    command.CommandText = "CREATE TABLE expenses ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, title TEXT NOT NULL, amount REAL NOT NULL, attachment TEXT NOT NULL, comment TEXT NOT NULL ); UPDATE metadata SET version = 5";
                     command.ExecuteNonQuery();
                     command.CommandText = "SELECT version, create_date, comment FROM metadata";
                     reader = command.ExecuteReader();
@@ -347,7 +347,8 @@ namespace ElectronicServices
                 Date = reader.GetString(1),
                 Title = reader.GetString(2),
                 Amount = reader.GetFloat(3),
-                Comment = reader.GetString(4)
+                Attachment = reader.GetString(4),
+                Comment = reader.GetString(5)
             };
         }
 
@@ -654,7 +655,7 @@ namespace ElectronicServices
 
 
         public static bool AddExpense(ExpenseRowData data)
-            => ExecuteNonQuery($"INSERT INTO expenses (date, title, amount, comment) VALUES ({data})") >= 0;
+            => ExecuteNonQuery($"INSERT INTO expenses (date, title, amount, attachment, comment) VALUES ({data})") >= 0;
 
         public static bool EditExpense(int id, float amount)
             => ExecuteNonQuery($"UPDATE expenses SET amount = {amount} WHERE id = {id}") >= 0;

@@ -1168,19 +1168,19 @@ namespace ElectronicServices
 
             float[] withDepo = DatabaseHelper.GetWalletsWithdDepo(date);
             sheet.Cell(16, 1).Value = "المحافظ";
-            sheet.Cell(16, 2).Value = "إيداع";
-            sheet.Cell(16, 3).Value = "سحب";
+            sheet.Cell(16, 2).Value = "سحب";
+            sheet.Cell(16, 3).Value = "إيداع";
             sheet.Cell(16, 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
             sheet.Cell(16, 3).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(17, 2).Value = withDepo[1];
-            sheet.Cell(17, 3).Value = withDepo[0];
+            sheet.Cell(17, 2).Value = withDepo[0];
+            sheet.Cell(17, 3).Value = withDepo[1];
 
             sheet.Cell(16, 4).Value = "المجموع";
             sheet.Cell(16, 5).Value = "الفرق";
             sheet.Cell(16, 4).Style.Fill.BackgroundColor = XLColor.LightBlue;
             sheet.Cell(16, 5).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(17, 4).Value = withDepo[1] + withDepo[0];
-            sheet.Cell(17, 5).Value = withDepo[1] - withDepo[0];
+            sheet.Cell(17, 4).Value = withDepo[0] + withDepo[1];
+            sheet.Cell(17, 5).Value = withDepo[0] - withDepo[1];
 
 
             float[] expense = DatabaseHelper.ExpenseAmount(date);
@@ -1433,7 +1433,8 @@ namespace ElectronicServices
             expensesSheet.Column(2).Width = 13; expensesSheet.Cell(2, 2).Value = "الوقت";
             expensesSheet.Column(3).Width = 30; expensesSheet.Cell(2, 3).Value = "العنوان";
             expensesSheet.Column(4).Width = 15; expensesSheet.Cell(2, 4).Value = "المبلغ";
-            expensesSheet.Column(5).Width = 30; expensesSheet.Cell(2, 5).Value = "تعليق";
+            expensesSheet.Column(5).Width = 30; expensesSheet.Cell(2, 6).Value = "مسار المرفق";
+            expensesSheet.Column(6).Width = 30; expensesSheet.Cell(2, 6).Value = "تعليق";
             ExpenseRowData[] expenses = DatabaseHelper.GetExpenses();
             for (int i = 0; i < expenses.Length; i++)
             {
@@ -1442,7 +1443,8 @@ namespace ElectronicServices
                 expensesSheet.Cell(i + 3, 2).Value = datetime[1];
                 expensesSheet.Cell(i + 3, 3).Value = expenses[i].Title;
                 expensesSheet.Cell(i + 3, 4).Value = expenses[i].Amount;
-                expensesSheet.Cell(i + 3, 5).Value = expenses[i].Comment;
+                expensesSheet.Cell(i + 3, 5).Value = expenses[i].Attachment;
+                expensesSheet.Cell(i + 3, 6).Value = expenses[i].Comment;
             }
 
 

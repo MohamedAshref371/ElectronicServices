@@ -1,4 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
+﻿using System.Diagnostics;
 using System.Drawing.Drawing2D;
 
 namespace ElectronicServices
@@ -12,7 +12,7 @@ namespace ElectronicServices
             deleteBtn.Visible = false;
         }
 
-        private int id;
+        private int id; private string attachmentPath;
         public ExpenseRow(ExpenseRowData data)
         {
             InitializeComponent();
@@ -20,7 +20,34 @@ namespace ElectronicServices
             title.Text = data.Title;
             date.Text = data.Date;
             amount.Text = data.Amount.ToString();
+            attachmentPath = data.Attachment;
             amount.Tag = (decimal)data.Amount;
+        }
+
+        private void AttachmentBtn_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (attachmentPath != "")
+            {
+                MessageBox.Show("لا يوجد مرفق لهذا البند", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (!File.Exists(attachmentPath))
+            {
+                MessageBox.Show("تعذر العثور على المرفق. قد يكون قد تم نقله أو حذفه.", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                if (e.Button == MouseButtons.Right)
+                    Process.Start("explorer.exe", $"/select,\"{attachmentPath}\"");
+                else
+                    Process.Start(attachmentPath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("حدث خطأ أثناء فتح المرفق:\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
 
         private void EditBtn_Click(object sender, EventArgs e)
@@ -85,11 +112,12 @@ namespace ElectronicServices
         }
         #endregion
 
-        private void EditBtn_SizeChanged(object sender, EventArgs e)
+        private void AttachmentBtn_SizeChanged(object sender, EventArgs e)
         {
-            int minSize = Math.Min(editBtn.Width, editBtn.Height);
+            int minSize = Math.Min(attachmentBtn.Width, attachmentBtn.Height);
             Size newSize = new(minSize, minSize);
 
+            attachmentBtn.ImageSize = newSize;
             editBtn.ImageSize = newSize;
             deleteBtn.ImageSize = newSize;
         }
