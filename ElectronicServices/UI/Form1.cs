@@ -906,19 +906,6 @@ namespace ElectronicServices
                 AddRecordsInPanel(records);
                 RecordsBtn_Click(null, null);
             }
-            else if (e.KeyCode == Keys.F5)
-            {
-                if (addWalletExcelBtn.Visible)
-                {
-                    walletEmptyBtn.Visible = true;
-                    addWalletExcelBtn.Visible = false;
-                }
-                else
-                {
-                    addWalletExcelBtn.Visible = true;
-                    walletEmptyBtn.Visible = false;
-                }
-            }
         }
 
         WalletRowData walletData;

@@ -133,7 +133,7 @@
             amountEdit.DecimalPlaces = 2;
             amountEdit.Font = new Font("Segoe UI", 12F);
             amountEdit.Location = new Point(141, 2);
-            amountEdit.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            amountEdit.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             amountEdit.Name = "amountEdit";
             amountEdit.ShadowDecoration.CustomizableEdges = customizableEdges6;
             amountEdit.Size = new Size(130, 36);

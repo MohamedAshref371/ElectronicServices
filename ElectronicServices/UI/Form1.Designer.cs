@@ -647,7 +647,7 @@ namespace ElectronicServices
             expenseAmount.DecimalPlaces = 2;
             expenseAmount.Font = new Font("Segoe UI", 12F);
             expenseAmount.Location = new Point(354, 4);
-            expenseAmount.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            expenseAmount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             expenseAmount.Name = "expenseAmount";
             expenseAmount.ShadowDecoration.CustomizableEdges = customizableEdges26;
             expenseAmount.Size = new Size(130, 36);
@@ -898,7 +898,7 @@ namespace ElectronicServices
             deposit.DecimalPlaces = 2;
             deposit.Font = new Font("Segoe UI", 12F);
             deposit.Location = new Point(121, 46);
-            deposit.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            deposit.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             deposit.Name = "deposit";
             deposit.ShadowDecoration.CustomizableEdges = customizableEdges36;
             deposit.Size = new Size(124, 36);
@@ -913,7 +913,7 @@ namespace ElectronicServices
             withdrawal.DecimalPlaces = 2;
             withdrawal.Font = new Font("Segoe UI", 12F);
             withdrawal.Location = new Point(121, 4);
-            withdrawal.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            withdrawal.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             withdrawal.Name = "withdrawal";
             withdrawal.ShadowDecoration.CustomizableEdges = customizableEdges38;
             withdrawal.Size = new Size(124, 36);
@@ -1164,13 +1164,12 @@ namespace ElectronicServices
             addWalletExcelBtn.Font = new Font("Segoe UI", 15F);
             addWalletExcelBtn.ForeColor = Color.White;
             addWalletExcelBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addWalletExcelBtn.Location = new Point(22, 86);
+            addWalletExcelBtn.Location = new Point(179, 86);
             addWalletExcelBtn.Name = "addWalletExcelBtn";
             addWalletExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges50;
-            addWalletExcelBtn.Size = new Size(102, 35);
+            addWalletExcelBtn.Size = new Size(210, 35);
             addWalletExcelBtn.TabIndex = 20;
-            addWalletExcelBtn.Text = "إضافة";
-            addWalletExcelBtn.Visible = false;
+            addWalletExcelBtn.Text = "إضافة من إكسل";
             addWalletExcelBtn.Click += AddWalletExcelBtn_Click;
             // 
             // walletSaveBtn
@@ -1233,15 +1232,14 @@ namespace ElectronicServices
             walletComment.Font = new Font("Segoe UI", 12F);
             walletComment.ForeColor = Color.Black;
             walletComment.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            walletComment.Location = new Point(156, 45);
-            walletComment.Multiline = true;
+            walletComment.Location = new Point(137, 45);
             walletComment.Name = "walletComment";
             walletComment.PlaceholderForeColor = Color.Gray;
             walletComment.PlaceholderText = "تعليق ";
             walletComment.RightToLeft = RightToLeft.Yes;
             walletComment.SelectedText = "";
             walletComment.ShadowDecoration.CustomizableEdges = customizableEdges56;
-            walletComment.Size = new Size(263, 77);
+            walletComment.Size = new Size(289, 36);
             walletComment.TabIndex = 13;
             // 
             // balanceLabel
@@ -1284,7 +1282,7 @@ namespace ElectronicServices
             depositRemaining.Enabled = false;
             depositRemaining.Font = new Font("Segoe UI", 12F);
             depositRemaining.Location = new Point(438, 86);
-            depositRemaining.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            depositRemaining.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             depositRemaining.Name = "depositRemaining";
             depositRemaining.ShadowDecoration.CustomizableEdges = customizableEdges60;
             depositRemaining.Size = new Size(124, 36);
@@ -1300,7 +1298,7 @@ namespace ElectronicServices
             withdrawalRemaining.Enabled = false;
             withdrawalRemaining.Font = new Font("Segoe UI", 12F);
             withdrawalRemaining.Location = new Point(438, 45);
-            withdrawalRemaining.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            withdrawalRemaining.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             withdrawalRemaining.Name = "withdrawalRemaining";
             withdrawalRemaining.ShadowDecoration.CustomizableEdges = customizableEdges62;
             withdrawalRemaining.Size = new Size(124, 36);
@@ -1316,7 +1314,7 @@ namespace ElectronicServices
             balance.DecimalPlaces = 2;
             balance.Font = new Font("Segoe UI", 12F);
             balance.Location = new Point(196, 4);
-            balance.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            balance.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             balance.Name = "balance";
             balance.ShadowDecoration.CustomizableEdges = customizableEdges64;
             balance.Size = new Size(124, 36);
@@ -1332,7 +1330,7 @@ namespace ElectronicServices
             maxDeposit.DecimalPlaces = 2;
             maxDeposit.Font = new Font("Segoe UI", 12F);
             maxDeposit.Location = new Point(692, 86);
-            maxDeposit.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            maxDeposit.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             maxDeposit.Name = "maxDeposit";
             maxDeposit.ShadowDecoration.CustomizableEdges = customizableEdges66;
             maxDeposit.Size = new Size(124, 36);
@@ -1347,7 +1345,7 @@ namespace ElectronicServices
             maxWithdrawal.DecimalPlaces = 2;
             maxWithdrawal.Font = new Font("Segoe UI", 12F);
             maxWithdrawal.Location = new Point(692, 45);
-            maxWithdrawal.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            maxWithdrawal.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             maxWithdrawal.Name = "maxWithdrawal";
             maxWithdrawal.ShadowDecoration.CustomizableEdges = customizableEdges68;
             maxWithdrawal.Size = new Size(124, 36);
@@ -1632,7 +1630,7 @@ namespace ElectronicServices
             takeAmount.DecimalPlaces = 2;
             takeAmount.Font = new Font("Segoe UI", 12F);
             takeAmount.Location = new Point(464, 51);
-            takeAmount.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            takeAmount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             takeAmount.Name = "takeAmount";
             takeAmount.ShadowDecoration.CustomizableEdges = customizableEdges88;
             takeAmount.Size = new Size(120, 36);
@@ -1649,7 +1647,7 @@ namespace ElectronicServices
             payAmount.DecimalPlaces = 2;
             payAmount.Font = new Font("Segoe UI", 12F);
             payAmount.Location = new Point(464, 9);
-            payAmount.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            payAmount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             payAmount.Name = "payAmount";
             payAmount.ShadowDecoration.CustomizableEdges = customizableEdges90;
             payAmount.Size = new Size(120, 36);
@@ -1831,7 +1829,7 @@ namespace ElectronicServices
             custDebitAmount.DecimalPlaces = 2;
             custDebitAmount.Font = new Font("Segoe UI", 12F);
             custDebitAmount.Location = new Point(345, 52);
-            custDebitAmount.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            custDebitAmount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             custDebitAmount.Name = "custDebitAmount";
             custDebitAmount.ShadowDecoration.CustomizableEdges = customizableEdges100;
             custDebitAmount.Size = new Size(120, 36);
@@ -1847,7 +1845,7 @@ namespace ElectronicServices
             custCreditAmount.DecimalPlaces = 2;
             custCreditAmount.Font = new Font("Segoe UI", 12F);
             custCreditAmount.Location = new Point(594, 52);
-            custCreditAmount.Maximum = new decimal(new int[] { 500000, 0, 0, 0 });
+            custCreditAmount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             custCreditAmount.Name = "custCreditAmount";
             custCreditAmount.ShadowDecoration.CustomizableEdges = customizableEdges102;
             custCreditAmount.Size = new Size(120, 36);
