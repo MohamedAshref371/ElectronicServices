@@ -1,5 +1,4 @@
-﻿using System.Data.Entity;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 
 namespace ElectronicServices
 {
@@ -84,6 +83,7 @@ namespace ElectronicServices
                     command.ExecuteNonQuery();
                     command.CommandText = "SELECT version, create_date, comment FROM metadata";
                     reader = command.ExecuteReader();
+                    reader.Read();
                     Version = reader.GetInt32(0);
                 }
                 if (Version != classVersion) return;
