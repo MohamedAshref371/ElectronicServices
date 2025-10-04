@@ -183,8 +183,6 @@ namespace ElectronicServices
             exitBtn = new Guna2Button();
             formTitle = new Label();
             mainPanel = new Guna2GradientPanel();
-            expense = new Label();
-            expenseLabel = new Label();
             addExpensesPanel = new Guna2GradientPanel();
             expenseSearchBtn = new Guna2GradientButton();
             addExpenseBtn = new Guna2GradientButton();
@@ -294,6 +292,8 @@ namespace ElectronicServices
             toLabel = new Label();
             dateTo = new Guna2DateTimePicker();
             dateFrom = new Guna2DateTimePicker();
+            expense = new Label();
+            expenseLabel = new Label();
             customersBtn = new Guna2GradientButton();
             footerPanel = new Guna2GradientPanel();
             expensesBtn = new Guna2GradientButton();
@@ -508,28 +508,6 @@ namespace ElectronicServices
             mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges134;
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
-            // 
-            // expense
-            // 
-            expense.Font = new Font("Segoe UI", 16F);
-            expense.Location = new Point(303, 342);
-            expense.Name = "expense";
-            expense.RightToLeft = RightToLeft.Yes;
-            expense.Size = new Size(156, 30);
-            expense.TabIndex = 51;
-            expense.Text = "0";
-            expense.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // expenseLabel
-            // 
-            expenseLabel.AutoSize = true;
-            expenseLabel.Font = new Font("Segoe UI", 16F);
-            expenseLabel.Location = new Point(305, 300);
-            expenseLabel.Name = "expenseLabel";
-            expenseLabel.RightToLeft = RightToLeft.Yes;
-            expenseLabel.Size = new Size(151, 30);
-            expenseLabel.TabIndex = 50;
-            expenseLabel.Text = "مصروفات اليوم";
             // 
             // addExpensesPanel
             // 
@@ -1313,6 +1291,7 @@ namespace ElectronicServices
             walletTypeComboBox.ShadowDecoration.CustomizableEdges = customizableEdges58;
             walletTypeComboBox.Size = new Size(140, 36);
             walletTypeComboBox.TabIndex = 10;
+            walletTypeComboBox.SelectedIndexChanged += WalletTypeComboBox_SelectedIndexChanged;
             // 
             // depositRemaining
             // 
@@ -2399,6 +2378,28 @@ namespace ElectronicServices
             dateFrom.Size = new Size(149, 42);
             dateFrom.TabIndex = 47;
             dateFrom.Value = new DateTime(2025, 8, 30, 10, 19, 11, 901);
+            // 
+            // expense
+            // 
+            expense.Font = new Font("Segoe UI", 16F);
+            expense.Location = new Point(303, 342);
+            expense.Name = "expense";
+            expense.RightToLeft = RightToLeft.Yes;
+            expense.Size = new Size(156, 30);
+            expense.TabIndex = 51;
+            expense.Text = "0";
+            expense.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // expenseLabel
+            // 
+            expenseLabel.AutoSize = true;
+            expenseLabel.Font = new Font("Segoe UI", 16F);
+            expenseLabel.Location = new Point(305, 300);
+            expenseLabel.Name = "expenseLabel";
+            expenseLabel.RightToLeft = RightToLeft.Yes;
+            expenseLabel.Size = new Size(151, 30);
+            expenseLabel.TabIndex = 50;
+            expenseLabel.Text = "مصروفات اليوم";
             // 
             // customersBtn
             // 

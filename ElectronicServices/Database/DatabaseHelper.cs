@@ -76,16 +76,6 @@ namespace ElectronicServices
                 reader = command.ExecuteReader();
                 if (!reader.Read()) return;
                 Version = reader.GetInt32(0);
-                if (Version == 4)
-                {
-                    reader.Close();
-                    command.CommandText = "CREATE TABLE expenses ( id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, title TEXT NOT NULL, amount REAL NOT NULL, attachment TEXT NOT NULL, comment TEXT NOT NULL ); UPDATE metadata SET version = 5";
-                    command.ExecuteNonQuery();
-                    command.CommandText = "SELECT version, create_date, comment FROM metadata";
-                    reader = command.ExecuteReader();
-                    reader.Read();
-                    Version = reader.GetInt32(0);
-                }
                 if (Version != classVersion) return;
                 CreateDate = new DateTime(reader.GetInt64(1));
                 Comment = reader.GetString(2);
@@ -245,7 +235,7 @@ namespace ElectronicServices
         }
 
         public static float[] ExpenseAmount(string date)
-            => SelectRow($"SELECT COUNT(amount), SUM(amount) FROM expenses WHERE date LIKE '{date}%'", () => new float[] {reader.GetFloat(0), reader.GetFloat(1) }); 
+            => SelectRow($"SELECT COALESCE(COUNT(amount), 0), COALESCE(SUM(amount), 0) FROM expenses WHERE date LIKE '{date}%'", () => new float[] {reader.GetFloat(0), reader.GetFloat(1) }); 
 
         public static FieldData[] ExpenseFieldSearch()
             => SelectMultiRows($"SELECT title, COUNT(title) FROM expenses GROUP BY title ORDER BY title", GetFieldData);

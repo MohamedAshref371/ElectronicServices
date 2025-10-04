@@ -1082,6 +1082,16 @@ namespace ElectronicServices
             RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
             AddRecordsInPanel(records);
         }
+
+        private void WalletTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (walletTypeComboBox.SelectedIndex <= 0) return;
+            WalletRowData[] data = DatabaseHelper.GetWallets(walletTypeComboBox.SelectedIndex);
+            if (data is null) return;
+
+            phoneNumber.Text = "";
+            AddWalletsInPanel(data);
+        }
         #endregion
 
         #region Expenses
@@ -1733,5 +1743,6 @@ namespace ElectronicServices
             extraExcelBtn.Image = Properties.Resources.confused_face;
         }
         #endregion
+
     }
 }
