@@ -320,7 +320,7 @@ namespace ElectronicServices
 
         private void AddCustomerBtn_Click(object sender, EventArgs e)
         {
-            string custName = customerName.Text.Trim();
+            string custName = customerName.Text.Trim().Replace("'", "");
 
             if (custName == "") return;
 
