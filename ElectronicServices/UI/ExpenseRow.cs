@@ -13,35 +13,32 @@ namespace ElectronicServices
             deleteBtn.Visible = false;
         }
 
-        private int id;
-        private readonly string attachmentPath;
-        private readonly string comment;
+        private readonly ExpenseRowData data;
         public ExpenseRow(ExpenseRowData data)
         {
             InitializeComponent();
-            id = data.Id;
+            this.data = data;
             title.Text = data.Title;
             date.Text = data.Date;
             amount.Text = data.Amount.ToString();
-            attachmentPath = data.Attachment;
-            amount.Tag = (decimal)data.Amount;
-            comment = data.Comment;
+            if (data.Attachment == "")
+                attachmentBtn.Image = null;
         }
 
         private void Title_DoubleClick(object sender, EventArgs e)
         {
-            if (comment != "")
-                MessageBox.Show(comment, "ملاحظة", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (data.Comment != "")
+                MessageBox.Show(data.Comment, "ملاحظة", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void AttachmentBtn_MouseClick(object sender, MouseEventArgs e)
         {
-            if (attachmentPath == "")
+            if (data.Attachment == "")
             {
                 MessageBox.Show("لا يوجد مرفق لهذا البند", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (!File.Exists(attachmentPath))
+            if (!File.Exists(data.Attachment))
             {
                 MessageBox.Show("تعذر العثور على المرفق. قد يكون قد تم نقله أو حذفه.", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -50,11 +47,11 @@ namespace ElectronicServices
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    ProcessStartInfo psi = new() { FileName = attachmentPath, UseShellExecute = true };
+                    ProcessStartInfo psi = new() { FileName = data.Attachment, UseShellExecute = true };
                     Process.Start(psi);
                 }
                 else
-                    Process.Start("explorer.exe", $"/select,\"{attachmentPath}\"");
+                    Process.Start("explorer.exe", $"/select,\"{data.Attachment}\"");
             }
             catch (Exception ex)
             {
@@ -67,7 +64,7 @@ namespace ElectronicServices
         {
             if (amount.Visible)
             {
-                amountEdit.Value = (decimal)amount.Tag;
+                amountEdit.Value = (decimal)data.Amount;
                 amount.Visible = false;
                 amountEdit.Visible = true;
                 editBtn.Image = Properties.Resources.check_mark_button;
@@ -79,12 +76,13 @@ namespace ElectronicServices
                 editBtn.Image = Properties.Resources.editIcon;
 
                 float val = (float)amountEdit.Value;
-                if (!DatabaseHelper.EditExpense(id, val))
+                if (!DatabaseHelper.EditExpense(data.Id, val))
                 {
                     MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
+                data.Amount = val;
                 amount.Text = val.ToString();
             }
         }
@@ -94,13 +92,13 @@ namespace ElectronicServices
             if (MessageBox.Show("هل أنت متأكد من حذف هذا البند ؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
 
-            if (!DatabaseHelper.DeleteExpense(id))
+            if (!DatabaseHelper.DeleteExpense(data.Id))
             {
                 MessageBox.Show("حدث خطأ أثناء حذف البند. يرجى المحاولة مرة أخرى.");
                 return;
             }
 
-            id = 0;
+            data.Id = 0;
             this.Enabled = false;
         }
 
