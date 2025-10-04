@@ -35,9 +35,23 @@ namespace ElectronicServices
         {
             if (data.Attachment == "")
             {
-                MessageBox.Show("لا يوجد مرفق لهذا البند", "تنبيه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (MessageBox.Show("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    data.Attachment = Program.Form.AttachmentPath();
+                    if (data.Attachment != "")
+                    {
+                        if (!DatabaseHelper.EditExpense(data.Id, data.Attachment))
+                        {
+                            MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            data.Attachment = "";
+                        }
+                        else
+                            attachmentBtn.Image = Properties.Resources.Folder_Explorer;
+                    }
+                }
                 return;
             }
+
             if (!File.Exists(data.Attachment))
             {
                 MessageBox.Show("تعذر العثور على المرفق. قد يكون قد تم نقله أو حذفه.", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);

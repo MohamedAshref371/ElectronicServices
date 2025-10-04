@@ -682,6 +682,9 @@ namespace ElectronicServices
         public static bool EditExpense(int id, float amount)
             => ExecuteNonQuery($"UPDATE expenses SET amount = {amount} WHERE id = {id}") >= 0;
 
+        public static bool EditExpense(int id, string attachment)
+            => ExecuteNonQuery($"UPDATE expenses SET attachment = '{attachment.Replace("'", "''")}' WHERE id = {id}") >= 0;
+
         public static bool DeleteExpense(int id)
             => ExecuteNonQuery($"DELETE FROM expenses WHERE id = {id}") >= 0;
 

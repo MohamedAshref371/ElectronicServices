@@ -189,6 +189,7 @@
             customerName.Size = new Size(380, 40);
             customerName.TabIndex = 8;
             customerName.Visible = false;
+            customerName.KeyPress += TextBox_KeyPress;
             // 
             // CustomerRow
             // 

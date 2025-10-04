@@ -47,7 +47,7 @@ namespace ElectronicServices
 
         public void SetPayTakePlus(float payP, float takeP)
             => SetCustomerRowData(pay + payP, take + takeP);
-        
+
 
         private void CustomerTransactionsBtn_Click(object sender, EventArgs e)
             => Program.Form.CustomerTransactionsBtnInCustomerRow(Id);
@@ -156,6 +156,12 @@ namespace ElectronicServices
             customerTransactionsBtn.ImageSize = newSize;
             editBtn.ImageSize = newSize;
             deleteCustomerBtn.ImageSize = newSize;
+        }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\'')
+                e.Handled = true;
         }
     }
 }

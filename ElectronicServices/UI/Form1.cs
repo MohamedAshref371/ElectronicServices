@@ -156,6 +156,12 @@ namespace ElectronicServices
             string time = now.ToString("hh:mm:ss tt", ar);
             dateNow.Text = $"{date}\n{month}\n{day}\n{time}";
         }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\'')
+                e.Handled = true;
+        }
         #endregion
 
         #region Footer Panel
@@ -1076,6 +1082,13 @@ namespace ElectronicServices
         {
             if (attachmentDialog.ShowDialog() == DialogResult.OK)
                 attachmentPath.Text = Path.GetFullPath(attachmentDialog.FileName);
+        }
+
+        public string AttachmentPath()
+        {
+            if (attachmentDialog.ShowDialog() == DialogResult.OK)
+                return Path.GetFullPath(attachmentDialog.FileName);
+            return "";
         }
 
         private void ExpenseSearchBtn_Click(object sender, EventArgs e)

@@ -637,6 +637,7 @@ namespace ElectronicServices
             expenseComment.ShadowDecoration.CustomizableEdges = customizableEdges24;
             expenseComment.Size = new Size(617, 36);
             expenseComment.TabIndex = 28;
+            expenseComment.KeyPress += TextBox_KeyPress;
             // 
             // expenseAmount
             // 
@@ -678,6 +679,7 @@ namespace ElectronicServices
             expenseTitle.ShadowDecoration.CustomizableEdges = customizableEdges28;
             expenseTitle.Size = new Size(294, 36);
             expenseTitle.TabIndex = 1;
+            expenseTitle.KeyPress += TextBox_KeyPress;
             // 
             // titleLabel
             // 
@@ -967,6 +969,7 @@ namespace ElectronicServices
             operComment.ShadowDecoration.CustomizableEdges = customizableEdges42;
             operComment.Size = new Size(261, 36);
             operComment.TabIndex = 13;
+            operComment.KeyPress += TextBox_KeyPress;
             // 
             // balance2Label
             // 
@@ -1241,6 +1244,7 @@ namespace ElectronicServices
             walletComment.ShadowDecoration.CustomizableEdges = customizableEdges56;
             walletComment.Size = new Size(289, 36);
             walletComment.TabIndex = 13;
+            walletComment.KeyPress += TextBox_KeyPress;
             // 
             // balanceLabel
             // 
@@ -1578,6 +1582,7 @@ namespace ElectronicServices
             transNote.ShadowDecoration.CustomizableEdges = customizableEdges82;
             transNote.Size = new Size(147, 36);
             transNote.TabIndex = 25;
+            transNote.KeyPress += TextBox_KeyPress;
             // 
             // transDate
             // 
@@ -1941,6 +1946,7 @@ namespace ElectronicServices
             customerName.ShadowDecoration.CustomizableEdges = customizableEdges108;
             customerName.Size = new Size(251, 40);
             customerName.TabIndex = 3;
+            customerName.KeyPress += TextBox_KeyPress;
             // 
             // customerNameLabel
             // 
@@ -2053,6 +2059,7 @@ namespace ElectronicServices
             payApp.ShadowDecoration.CustomizableEdges = customizableEdges114;
             payApp.Size = new Size(225, 40);
             payApp.TabIndex = 6;
+            payApp.KeyPress += TextBox_KeyPress;
             // 
             // payappLabel
             // 
@@ -2261,6 +2268,7 @@ namespace ElectronicServices
             walletType.ShadowDecoration.CustomizableEdges = customizableEdges128;
             walletType.Size = new Size(225, 40);
             walletType.TabIndex = 40;
+            walletType.KeyPress += TextBox_KeyPress;
             // 
             // walletTypeLabel
             // 

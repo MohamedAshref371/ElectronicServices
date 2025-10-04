@@ -11,6 +11,6 @@ namespace ElectronicServices
         public string Comment;
 
         public override string ToString()
-            => $"'{Date}', '{Title}', {Amount}, '{Attachment}', '{Comment}'";
+            => $"'{Date}', '{Title}', {Amount}, '{Attachment.Replace("'","''")}', '{Comment}'";
     }
 }
