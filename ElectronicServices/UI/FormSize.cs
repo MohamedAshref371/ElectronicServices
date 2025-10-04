@@ -20,7 +20,7 @@ class FormSize(int oldSizeX, int oldSizeY, int newSizeX, int newSizeY)
         for (int i = 0; i < controls.Count; i++)
         {
             SetControl(controls[i]);
-            if (controls[i] is Panel || controls[i] is CustomerRow || controls[i] is TransactionRow || controls[i] is WalletRow || controls[i] is RecordRow)
+            if (controls[i] is Panel || controls[i] is CustomerRow || controls[i] is TransactionRow || controls[i] is WalletRow || controls[i] is RecordRow || controls[i] is ExpenseRow)
                 SetControls(controls[i].Controls);
         }
     }
