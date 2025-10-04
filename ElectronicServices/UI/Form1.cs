@@ -1630,7 +1630,7 @@ namespace ElectronicServices
             recordsSheet.Column(6).Width = 15; recordsSheet.Cell(2, 6).Value = "مبلغ السحب";
             recordsSheet.Column(7).Width = 15; recordsSheet.Cell(2, 7).Value = "مبلغ الإيداع";
             recordsSheet.Column(8).Width = 15; recordsSheet.Cell(2, 8).Value = "الرصيد";
-            recordsSheet.Column(9).Width = 30; recordsSheet.Cell(2, 9).Value = "تعليق";
+            recordsSheet.Column(9).Width = 30; recordsSheet.Cell(2, 9).Value = "ملاحظة";
             RecordRowData[] records = DatabaseHelper.GetRecords();
             for (int i = 0; i < records.Length; i++)
             {
@@ -1648,12 +1648,17 @@ namespace ElectronicServices
 
 
             IXLWorksheet expensesSheet = workbook.Worksheets.Add("Expenses");
-            expensesSheet.Range("A1:E1").Merge().Value = "المصروفات";
+            expensesSheet.Range("A1:F1").Merge().Value = "المصروفات";
+            expensesSheet.Row(1).Height = 30;
+            expensesSheet.Cell("A1").Style.Font.Bold = true;
+            expensesSheet.Cell("A1").Style.Font.FontSize = 18;
+            expensesSheet.Cell("A1").Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+            expensesSheet.Cell("A1").Style.Alignment.Vertical = XLAlignmentVerticalValues.Center;
             expensesSheet.Column(1).Width = 14; expensesSheet.Cell(2, 1).Value = "التاريخ";
             expensesSheet.Column(2).Width = 13; expensesSheet.Cell(2, 2).Value = "الوقت";
             expensesSheet.Column(3).Width = 30; expensesSheet.Cell(2, 3).Value = "العنوان";
             expensesSheet.Column(4).Width = 15; expensesSheet.Cell(2, 4).Value = "المبلغ";
-            expensesSheet.Column(5).Width = 30; expensesSheet.Cell(2, 6).Value = "مسار المرفق";
+            expensesSheet.Column(5).Width = 30; expensesSheet.Cell(2, 5).Value = "مسار المرفق";
             expensesSheet.Column(6).Width = 30; expensesSheet.Cell(2, 6).Value = "ملاحظة";
             ExpenseRowData[] expenses = DatabaseHelper.GetExpenses();
             for (int i = 0; i < expenses.Length; i++)
