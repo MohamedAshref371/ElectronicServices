@@ -137,6 +137,12 @@ namespace ElectronicServices
             return SelectMultiRows(sql, GetTransactionData);
         }
 
+        public static TransactionRowData[] GetTransactions(string from, string to)
+        {
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id WHERE t.date >= '{from}' AND t.date <= '{to}' ORDER BY t.date DESC";
+            return SelectMultiRows(sql, GetTransactionData);
+        }
+
         public static TransactionRowData[] GetTransactions(int custId, string date, int method)
         {
             string dt = method switch
@@ -179,6 +185,9 @@ namespace ElectronicServices
             return SelectMultiRows($"SELECT * FROM records {phone} ORDER BY date DESC", GetRecordData);
         }
 
+        public static RecordRowData[] GetRecords(string from, string to)
+            => SelectMultiRows($"SELECT * FROM records WHERE date >= '{from}' AND date <= '{to}' ORDER BY date DESC", GetRecordData);
+        
         public static RecordRowData[] GetRecords(int type)
         {
             string cond = "";
@@ -201,6 +210,9 @@ namespace ElectronicServices
             if (title != "") title = $"WHERE title LIKE '%{title}%'";
             return SelectMultiRows($"SELECT * FROM expenses {title} ORDER BY date DESC", GetExpenseData);
         }
+
+        public static ExpenseRowData[] GetExpenses(string from, string to)
+            => SelectMultiRows($"SELECT * FROM expenses WHERE date >= '{from}' AND date <= '{to}' ORDER BY date DESC", GetExpenseData);
 
         public static ExpenseRowData[] GetExpensesWithDate(string date)
             => SelectMultiRows($"SELECT * FROM expenses WHERE date LIKE '{date}%' ORDER BY date DESC", GetExpenseData);
@@ -532,8 +544,11 @@ namespace ElectronicServices
         public static DailyClosureData? GetDailyClosure(string date)
             => SelectRow($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit, closure_id FROM daily_closures WHERE date = '{date}'", GetDailyClosureData);
 
-        public static DailyClosureData[] GetDailyClosure()
-            => SelectMultiRows($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit, closure_id FROM daily_closures", GetDailyClosureData);
+        public static DailyClosureData[] GetDailyClosure(bool isDated, string from, string to)
+        { 
+            string cond = isDated ? $"WHERE date >= '{from}' AND date <= '{to}'" : "";
+            return SelectMultiRows($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit, closure_id FROM daily_closures {cond} ORDER BY DESC", GetDailyClosureData); 
+        }
 
         public static float GetSumPrevDailyClosure(string date)
             => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = (SELECT MAX(date) FROM daily_closures WHERE date < '{date}')", () => reader.GetFloat(0));
@@ -545,14 +560,15 @@ namespace ElectronicServices
             => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = '{date}'", () => reader.GetFloat(0));
 
 
-        public static (string Date, float[] Balances)[] GetPayappClosureDetails()
+        public static (string Date, float[] Balances)[] GetPayappClosureDetails(bool isDated, string from, string to)
         {
             int payappCount = GetPayappNextId() - 1;
             if (payappCount < 1) return [];
+            string cond = isDated ? $"AND c.date >= '{from}' AND c.date <= '{to}'" : "";
             string sql = "SELECT c.date ";
             for (int i = 1; i <= payappCount; i++)
                 sql += $",COALESCE( MAX( CASE WHEN cd.payapp_id = {i} THEN cd.balance END ), 0)";
-            sql += " FROM payapp_closures c JOIN payapp_closures_details cd ON c.id = cd.closure_id WHERE cd.payapp_id >= 1 GROUP BY c.date";
+            sql += $" FROM payapp_closures c JOIN payapp_closures_details cd ON c.id = cd.closure_id WHERE cd.payapp_id >= 1 {cond} GROUP BY c.date ORDER BY c.date DESC";
 
             return SelectMultiRows(sql, () =>
             {

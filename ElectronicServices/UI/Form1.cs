@@ -99,7 +99,12 @@ namespace ElectronicServices
             expense.Location = new Point(expense.Location.X + rowPadding, 5);
             expensesPanel.Controls.Add(expense);
 
-            excelDate.Value = DateTime.Now;
+            DateTime now = DateTime.Now;
+            DateTime firstDay = new(now.Year, now.Month, 1);
+            excelDate.Value = now;
+            dateFrom.Value = firstDay;
+            dateTo.Value = firstDay.AddMonths(1).AddDays(-1);
+
             UpdateCreditAndDept();
             walletData = new WalletRowData { Phone = "", Type = 0 };
             Timer1_Tick(null, null);
@@ -1424,6 +1429,12 @@ namespace ElectronicServices
             }
         }
 
+        private void DateChoose_CheckedChanged(object sender, EventArgs e)
+        {
+            dateFrom.Enabled = dateChoose.Checked;
+            dateTo.Enabled = dateChoose.Checked;
+        }
+
         private void ExtraExcelBtn_Click(object sender, EventArgs e)
         {
             if (!File.Exists("ClosedXML.dll"))
@@ -1434,17 +1445,38 @@ namespace ElectronicServices
             isRunning = true;
             extraExcelBtn.Image = Properties.Resources.head_bandage;
             Invalidate(); Update();
-            saveExcelFileDialog.FileName = DateTime.Now.ToCompleteStandardString().Replace(":", "");
+            
+            if (dateChoose.Checked && dateFrom.Value > dateTo.Value)
+            {
+                MessageBox.Show("تاريخ البداية أكبر من تاريخ النهاية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                extraExcelBtn.Image = Properties.Resources.neutral_face;
+                isRunning = false;
+                return;
+            }
+
+            string from, to;
+            if (dateChoose.Checked)
+            {
+                from = dateFrom.Value.ToStandardString();
+                to = dateTo.Value.ToStandardString();
+                saveExcelFileDialog.FileName = $"{from} - {to}";
+            }
+            else
+            {
+                from = "";
+                to = "";
+                saveExcelFileDialog.FileName = DateTime.Now.ToCompleteStandardString().Replace(":", "");
+            }
 
             if (saveExcelFileDialog.ShowDialog() == DialogResult.OK)
-                ExtractExtraExcel(saveExcelFileDialog.FileName);
+                ExtractExtraExcel(saveExcelFileDialog.FileName, from, to);
 
             extraExcelBtn.Image = Properties.Resources.neutral_face;
             isRunning = false;
         }
         bool isRunning = false;
 
-        private void ExtractExtraExcel(string path)
+        private void ExtractExtraExcel(string path, string from, string to)
         {
             using XLWorkbook workbook = new();
             workbook.RightToLeft = true;
@@ -1493,7 +1525,7 @@ namespace ElectronicServices
 
             string[] payApps = DatabaseHelper.GetPayappsNames();
             string[] datetime;
-            TransactionRowData[] transactions = DatabaseHelper.GetTransactions(0);
+            TransactionRowData[] transactions = dateChoose.Checked ? DatabaseHelper.GetTransactions(from, to) : DatabaseHelper.GetTransactions(0);
             for (int i = 0; i < transactions.Length; i++)
             {
                 transSheet.Cell(i + 3, 1).Value = transactions[i].Name;
@@ -1529,7 +1561,7 @@ namespace ElectronicServices
             elecSheet.Column(payApps.Length + 2).Width = 15;
             elecSheet.Cell(2, payApps.Length + 2).Value = "المجموع";
             elecSheet.Cell(2, payApps.Length + 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
-            var details = DatabaseHelper.GetPayappClosureDetails();
+            var details = DatabaseHelper.GetPayappClosureDetails(dateChoose.Checked, from, to);
             float total, val;
             for (int i = 0; i < details.Length; i++)
             {
@@ -1565,7 +1597,7 @@ namespace ElectronicServices
             dailySheet.Column(9).Width = 15; dailySheet.Cell(2, 9).Value = "المجموع";
             dailySheet.Column(10).Width = 15; dailySheet.Cell(2, 10).Value = "الفرق";
 
-            DailyClosureData[] data = DatabaseHelper.GetDailyClosure();
+            DailyClosureData[] data = DatabaseHelper.GetDailyClosure(dateChoose.Checked, from, to);
             float Sum, prevSum = 0;
             System.Globalization.CultureInfo ar = new("ar-EG");
             for (int i = 0; i < data.Length; i++)
@@ -1631,7 +1663,7 @@ namespace ElectronicServices
             recordsSheet.Column(7).Width = 15; recordsSheet.Cell(2, 7).Value = "مبلغ الإيداع";
             recordsSheet.Column(8).Width = 15; recordsSheet.Cell(2, 8).Value = "الرصيد";
             recordsSheet.Column(9).Width = 30; recordsSheet.Cell(2, 9).Value = "ملاحظة";
-            RecordRowData[] records = DatabaseHelper.GetRecords();
+            RecordRowData[] records = dateChoose.Checked ? DatabaseHelper.GetRecords(from, to) : DatabaseHelper.GetRecords();
             for (int i = 0; i < records.Length; i++)
             {
                 datetime = records[i].Date.Split(' ');
@@ -1660,7 +1692,7 @@ namespace ElectronicServices
             expensesSheet.Column(4).Width = 15; expensesSheet.Cell(2, 4).Value = "المبلغ";
             expensesSheet.Column(5).Width = 30; expensesSheet.Cell(2, 5).Value = "مسار المرفق";
             expensesSheet.Column(6).Width = 30; expensesSheet.Cell(2, 6).Value = "ملاحظة";
-            ExpenseRowData[] expenses = DatabaseHelper.GetExpenses();
+            ExpenseRowData[] expenses = dateChoose.Checked ? DatabaseHelper.GetExpenses(from, to) : DatabaseHelper.GetExpenses();
             for (int i = 0; i < expenses.Length; i++)
             {
                 datetime = expenses[i].Date.Split(' ');
