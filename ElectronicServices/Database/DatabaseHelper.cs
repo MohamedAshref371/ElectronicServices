@@ -550,7 +550,7 @@ namespace ElectronicServices
         public static DailyClosureData[] GetDailyClosure(bool isDated, string from, string to)
         { 
             string cond = isDated ? $"WHERE date >= '{from} 00:00:00' AND date <= '{to} 23:59:59'" : "";
-            return SelectMultiRows($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit, closure_id FROM daily_closures {cond} ORDER BY DESC", GetDailyClosureData); 
+            return SelectMultiRows($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit, closure_id FROM daily_closures {cond} ORDER BY date DESC", GetDailyClosureData); 
         }
 
         public static float GetSumPrevDailyClosure(string date)
