@@ -1089,7 +1089,6 @@ namespace ElectronicServices
             WalletRowData[] data = DatabaseHelper.GetWallets(walletTypeComboBox.SelectedIndex);
             if (data is null) return;
 
-            phoneNumber.Text = "";
             AddWalletsInPanel(data);
         }
         #endregion
