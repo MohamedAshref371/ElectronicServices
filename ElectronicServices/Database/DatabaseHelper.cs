@@ -139,7 +139,7 @@ namespace ElectronicServices
 
         public static TransactionRowData[] GetTransactions(string from, string to)
         {
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id WHERE t.date >= '{from}' AND t.date <= '{to}' ORDER BY t.date DESC";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id WHERE t.date >= '{from} 00:00:00' AND t.date <= '{to} 23:59:59' ORDER BY t.date DESC";
             return SelectMultiRows(sql, GetTransactionData);
         }
 
@@ -186,7 +186,7 @@ namespace ElectronicServices
         }
 
         public static RecordRowData[] GetRecords(string from, string to)
-            => SelectMultiRows($"SELECT * FROM records WHERE date >= '{from}' AND date <= '{to}' ORDER BY date DESC", GetRecordData);
+            => SelectMultiRows($"SELECT * FROM records WHERE date >= '{from} 00:00:00' AND date <= '{to} 23:59:59' ORDER BY date DESC", GetRecordData);
         
         public static RecordRowData[] GetRecords(int type)
         {
@@ -212,7 +212,7 @@ namespace ElectronicServices
         }
 
         public static ExpenseRowData[] GetExpenses(string from, string to)
-            => SelectMultiRows($"SELECT * FROM expenses WHERE date >= '{from}' AND date <= '{to}' ORDER BY date DESC", GetExpenseData);
+            => SelectMultiRows($"SELECT * FROM expenses WHERE date >= '{from} 00:00:00' AND date <= '{to} 23:59:59' ORDER BY date DESC", GetExpenseData);
 
         public static ExpenseRowData[] GetExpensesWithDate(string date)
             => SelectMultiRows($"SELECT * FROM expenses WHERE date LIKE '{date}%' ORDER BY date DESC", GetExpenseData);
@@ -546,7 +546,7 @@ namespace ElectronicServices
 
         public static DailyClosureData[] GetDailyClosure(bool isDated, string from, string to)
         { 
-            string cond = isDated ? $"WHERE date >= '{from}' AND date <= '{to}'" : "";
+            string cond = isDated ? $"WHERE date >= '{from} 00:00:00' AND date <= '{to} 23:59:59'" : "";
             return SelectMultiRows($"SELECT date, total_wallets, total_cash, total_electronic, credit, debit, closure_id FROM daily_closures {cond} ORDER BY DESC", GetDailyClosureData); 
         }
 
@@ -564,7 +564,7 @@ namespace ElectronicServices
         {
             int payappCount = GetPayappNextId() - 1;
             if (payappCount < 1) return [];
-            string cond = isDated ? $"AND c.date >= '{from}' AND c.date <= '{to}'" : "";
+            string cond = isDated ? $"AND c.date >= '{from} 00:00:00' AND c.date <= '{to} 23:59:59'" : "";
             string sql = "SELECT c.date ";
             for (int i = 1; i <= payappCount; i++)
                 sql += $",COALESCE( MAX( CASE WHEN cd.payapp_id = {i} THEN cd.balance END ), 0)";
