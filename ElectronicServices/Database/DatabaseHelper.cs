@@ -211,6 +211,9 @@ namespace ElectronicServices
             return SelectMultiRows($"SELECT * FROM expenses {title} ORDER BY date DESC", GetExpenseData);
         }
 
+        public static float GetExpensesAmount(string date)
+            => SelectRow($"SELECT COALESCE(SUM(amount), 0) FROM expenses WHERE date LIKE '{date}%'", () => reader.GetFloat(0));
+
         public static ExpenseRowData[] GetExpenses(string from, string to)
             => SelectMultiRows($"SELECT * FROM expenses WHERE date >= '{from} 00:00:00' AND date <= '{to} 23:59:59' ORDER BY date DESC", GetExpenseData);
 

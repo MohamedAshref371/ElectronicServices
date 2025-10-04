@@ -183,6 +183,8 @@ namespace ElectronicServices
             exitBtn = new Guna2Button();
             formTitle = new Label();
             mainPanel = new Guna2GradientPanel();
+            expense = new Label();
+            expenseLabel = new Label();
             addExpensesPanel = new Guna2GradientPanel();
             expenseSearchBtn = new Guna2GradientButton();
             addExpenseBtn = new Guna2GradientButton();
@@ -495,6 +497,8 @@ namespace ElectronicServices
             mainPanel.Controls.Add(toLabel);
             mainPanel.Controls.Add(dateTo);
             mainPanel.Controls.Add(dateFrom);
+            mainPanel.Controls.Add(expense);
+            mainPanel.Controls.Add(expenseLabel);
             mainPanel.CustomizableEdges = customizableEdges133;
             mainPanel.FillColor = Color.FromArgb(255, 192, 192);
             mainPanel.FillColor2 = Color.FromArgb(255, 224, 192);
@@ -504,6 +508,28 @@ namespace ElectronicServices
             mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges134;
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
+            // 
+            // expense
+            // 
+            expense.Font = new Font("Segoe UI", 16F);
+            expense.Location = new Point(303, 342);
+            expense.Name = "expense";
+            expense.RightToLeft = RightToLeft.Yes;
+            expense.Size = new Size(156, 30);
+            expense.TabIndex = 51;
+            expense.Text = "0";
+            expense.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // expenseLabel
+            // 
+            expenseLabel.AutoSize = true;
+            expenseLabel.Font = new Font("Segoe UI", 16F);
+            expenseLabel.Location = new Point(305, 300);
+            expenseLabel.Name = "expenseLabel";
+            expenseLabel.RightToLeft = RightToLeft.Yes;
+            expenseLabel.Size = new Size(151, 30);
+            expenseLabel.TabIndex = 50;
+            expenseLabel.Text = "مصروفات اليوم";
             // 
             // addExpensesPanel
             // 
@@ -2007,7 +2033,7 @@ namespace ElectronicServices
             // debitAmount
             // 
             debitAmount.Font = new Font("Segoe UI", 16F);
-            debitAmount.Location = new Point(468, 328);
+            debitAmount.Location = new Point(648, 345);
             debitAmount.Name = "debitAmount";
             debitAmount.RightToLeft = RightToLeft.Yes;
             debitAmount.Size = new Size(125, 30);
@@ -2018,7 +2044,7 @@ namespace ElectronicServices
             // creditAmount
             // 
             creditAmount.Font = new Font("Segoe UI", 16F);
-            creditAmount.Location = new Point(468, 283);
+            creditAmount.Location = new Point(648, 300);
             creditAmount.Name = "creditAmount";
             creditAmount.RightToLeft = RightToLeft.Yes;
             creditAmount.Size = new Size(125, 30);
@@ -2088,7 +2114,7 @@ namespace ElectronicServices
             // 
             debitLabel.AutoSize = true;
             debitLabel.Font = new Font("Segoe UI", 16F);
-            debitLabel.Location = new Point(599, 328);
+            debitLabel.Location = new Point(779, 345);
             debitLabel.Name = "debitLabel";
             debitLabel.RightToLeft = RightToLeft.Yes;
             debitLabel.Size = new Size(70, 30);
@@ -2099,7 +2125,7 @@ namespace ElectronicServices
             // 
             creditLabel.AutoSize = true;
             creditLabel.Font = new Font("Segoe UI", 16F);
-            creditLabel.Location = new Point(610, 283);
+            creditLabel.Location = new Point(790, 300);
             creditLabel.Name = "creditLabel";
             creditLabel.RightToLeft = RightToLeft.Yes;
             creditLabel.Size = new Size(50, 30);
@@ -2737,5 +2763,7 @@ namespace ElectronicServices
         private Label toLabel;
         private Guna2DateTimePicker dateTo;
         private Guna2DateTimePicker dateFrom;
+        private Label expense;
+        private Label expenseLabel;
     }
 }

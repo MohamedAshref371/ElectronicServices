@@ -12,7 +12,7 @@ namespace ElectronicServices
             editBtn.Visible = false;
             deleteBtn.Visible = false;
         }
-
+        
         private readonly ExpenseRowData data;
         public ExpenseRow(ExpenseRowData data)
         {
@@ -35,7 +35,7 @@ namespace ElectronicServices
         {
             if (data.Attachment == "")
             {
-                if (MessageBox.Show("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     data.Attachment = Program.Form.AttachmentPath();
                     if (data.Attachment != "")
@@ -74,8 +74,30 @@ namespace ElectronicServices
             }
         }
 
-        private void EditBtn_Click(object sender, EventArgs e)
+        private void EditBtn_MouseClick(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Right && amount.Visible)
+            {
+                if (MessageBox.Show("هل تريد تحديث مسار المرفق لهذا البند ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+
+                string att = Program.Form.AttachmentPath();
+                if (att != "")
+                {
+                    if (DatabaseHelper.EditExpense(data.Id, att))
+                    {
+                        attachmentBtn.Image = Properties.Resources.Folder_Explorer;
+                        data.Attachment = att;
+                    }
+                    else
+                        MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return;
+            }
+
+            if (e.Button == MouseButtons.Right)
+                return;
+
             if (amount.Visible)
             {
                 amountEdit.Value = (decimal)data.Amount;

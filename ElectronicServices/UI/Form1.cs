@@ -95,9 +95,9 @@ namespace ElectronicServices
             record.Location = new Point(record.Location.X + rowPadding, 5);
             recordsPanel.Controls.Add(record);
 
-            ExpenseRow expense = new();
-            expense.Location = new Point(expense.Location.X + rowPadding, 5);
-            expensesPanel.Controls.Add(expense);
+            ExpenseRow expenseR = new();
+            expenseR.Location = new Point(expenseR.Location.X + rowPadding, 5);
+            expensesPanel.Controls.Add(expenseR);
 
             DateTime now = DateTime.Now;
             DateTime firstDay = new(now.Year, now.Month, 1);
@@ -106,6 +106,7 @@ namespace ElectronicServices
             dateTo.Value = firstDay.AddMonths(1).AddDays(-1);
 
             UpdateCreditAndDept();
+            expense.Text = DatabaseHelper.GetExpensesAmount(now.ToStandardString()).ToString();
             walletData = new WalletRowData { Phone = "", Type = 0 };
             Timer1_Tick(null, null);
             timer1.Start();
@@ -175,6 +176,7 @@ namespace ElectronicServices
             timer1.Stop();
             Timer1_Tick(null, null);
             timer1.Start();
+            expense.Text = DatabaseHelper.GetExpensesAmount(DateTime.Now.ToStandardString()).ToString();
             UpdateCreditAndDept();
             customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
@@ -1445,7 +1447,7 @@ namespace ElectronicServices
             isRunning = true;
             extraExcelBtn.Image = Properties.Resources.head_bandage;
             Invalidate(); Update();
-            
+
             if (dateChoose.Checked && dateFrom.Value > dateTo.Value)
             {
                 MessageBox.Show("تاريخ البداية أكبر من تاريخ النهاية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1731,6 +1733,5 @@ namespace ElectronicServices
             extraExcelBtn.Image = Properties.Resources.confused_face;
         }
         #endregion
-
     }
 }

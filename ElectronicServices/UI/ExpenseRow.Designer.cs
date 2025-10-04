@@ -89,7 +89,7 @@
             editBtn.ShadowDecoration.CustomizableEdges = customizableEdges2;
             editBtn.Size = new Size(40, 40);
             editBtn.TabIndex = 6;
-            editBtn.Click += EditBtn_Click;
+            editBtn.MouseClick += EditBtn_MouseClick;
             // 
             // deleteBtn
             // 
