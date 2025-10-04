@@ -1238,7 +1238,7 @@ namespace ElectronicServices
             walletComment.Location = new Point(137, 45);
             walletComment.Name = "walletComment";
             walletComment.PlaceholderForeColor = Color.Gray;
-            walletComment.PlaceholderText = "تعليق ";
+            walletComment.PlaceholderText = "ملاحظة ";
             walletComment.RightToLeft = RightToLeft.Yes;
             walletComment.SelectedText = "";
             walletComment.ShadowDecoration.CustomizableEdges = customizableEdges56;
