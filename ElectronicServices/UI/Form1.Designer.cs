@@ -2382,7 +2382,7 @@ namespace ElectronicServices
             // expense
             // 
             expense.Font = new Font("Segoe UI", 16F);
-            expense.Location = new Point(303, 342);
+            expense.Location = new Point(305, 342);
             expense.Name = "expense";
             expense.RightToLeft = RightToLeft.Yes;
             expense.Size = new Size(156, 30);
@@ -2392,14 +2392,14 @@ namespace ElectronicServices
             // 
             // expenseLabel
             // 
-            expenseLabel.AutoSize = true;
             expenseLabel.Font = new Font("Segoe UI", 16F);
             expenseLabel.Location = new Point(305, 300);
             expenseLabel.Name = "expenseLabel";
             expenseLabel.RightToLeft = RightToLeft.Yes;
-            expenseLabel.Size = new Size(151, 30);
+            expenseLabel.Size = new Size(156, 30);
             expenseLabel.TabIndex = 50;
             expenseLabel.Text = "مصروفات اليوم";
+            expenseLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // customersBtn
             // 

@@ -13,6 +13,7 @@ class FormSize(int oldSizeX, int oldSizeY, int newSizeX, int newSizeY)
         control.Font = new Font(control.Font.FontFamily, Roundf(control.Font.Size * ((xDiv < yDiv && xDiv > 1 || xDiv > yDiv && xDiv < 1) ? xDiv : yDiv)));
         control.Location = new Point(Round(point.X * xDiv), Round(point.Y * yDiv));
         control.Size = new Size(Round(size.Width * xDiv), Round(size.Height * yDiv));
+        if (control is Guna2ComboBox box) box.ItemHeight = Round(box.ItemHeight * yDiv);
     }
 
     public void SetControls(Control.ControlCollection controls)
