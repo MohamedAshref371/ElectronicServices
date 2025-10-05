@@ -31,6 +31,14 @@ namespace ElectronicServices
             balance.Text = data.Balance.ToString();
         }
 
+        public void ResetRemaining()
+        {
+            data.WithdrawalRemaining = data.MaximumWithdrawal;
+            data.DepositRemaining = data.DepositRemaining < 0 ? data.DepositRemaining + data.MaximumDeposit : data.MaximumDeposit;
+            withdrawal.Text = data.WithdrawalRemaining.ToString();
+            deposit.Text = data.DepositRemaining.ToString();
+        }
+
         private void ChooseBtn_Click(object sender, EventArgs e)
             => Program.Form.ChooseWalletBtn(data);
 

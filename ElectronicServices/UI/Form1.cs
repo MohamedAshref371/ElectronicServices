@@ -919,6 +919,10 @@ namespace ElectronicServices
                 AddRecordsInPanel(records);
                 RecordsBtn_Click(null, null);
             }
+            else if (e.KeyCode == Keys.F5)
+            {
+                ResetWalletsRemaning();
+            }
         }
 
         WalletRowData walletData;
@@ -963,6 +967,34 @@ namespace ElectronicServices
             fs?.SetControl(row);
             fs?.SetControls(row.Controls);
             recordsPanel.Controls.Add(row);
+        }
+
+        public void ResetWalletsRemaining()
+        {
+            DialogResult res = MessageBox.Show("هل أنت متأكد من إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.No) return;
+
+            if (!DatabaseHelper.ResetWalletsRemaining())
+            {
+                MessageBox.Show("حدث خطأ أثناء إعادة تعيين المتبقي للسحب والإيداع\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            for (int i = 1; i < walletsPanel.Controls.Count; i++)
+                if (walletsPanel.Controls[i] is WalletRow wr)
+                    wr.ResetRemaining();
+
+            phoneNumber.Text = "";
+
+            if (walletData.Phone != "")
+            {
+                walletData.WithdrawalRemaining = walletData.MaximumWithdrawal;
+                walletData.DepositRemaining = walletData.DepositRemaining < 0 ? walletData.DepositRemaining + walletData.MaximumDeposit : walletData.MaximumDeposit;
+                withdRema.Text = walletData.WithdrawalRemaining.ToString();
+                depoRema.Text = walletData.DepositRemaining.ToString();
+            }
+
+            MessageBox.Show("تمت إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         public void CheckWallet(string phone)
@@ -1026,11 +1058,9 @@ namespace ElectronicServices
                 MessageBox.Show("قيمة السحب أكبر من المتبقي للسحب", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if ((float)deposit.Value > walletData.DepositRemaining)
-            {
-                MessageBox.Show("قيمة الإيداع أكبر من المتبقي للإيداع", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if ((float)deposit.Value > walletData.DepositRemaining && MessageBox.Show("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "خطأ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
-            }
+            
             if (walletData.Balance - (float)withdrawal.Value + (float)deposit.Value < 0)
             {
                 MessageBox.Show("الرصيد لا يمكن أن يكون سالباً", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);

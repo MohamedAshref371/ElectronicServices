@@ -1304,6 +1304,7 @@ namespace ElectronicServices
             depositRemaining.Font = new Font("Segoe UI", 12F);
             depositRemaining.Location = new Point(438, 86);
             depositRemaining.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            depositRemaining.Minimum = new decimal(new int[] { 999999, 0, 0, int.MinValue });
             depositRemaining.Name = "depositRemaining";
             depositRemaining.ShadowDecoration.CustomizableEdges = customizableEdges60;
             depositRemaining.Size = new Size(124, 36);

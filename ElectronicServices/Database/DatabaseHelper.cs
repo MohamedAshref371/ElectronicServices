@@ -678,6 +678,9 @@ namespace ElectronicServices
         public static bool ResetWallet(string phone)
             => ExecuteNonQuery($"DELETE FROM records WHERE phone = '{phone}'") >= 0;
 
+        public static bool ResetWalletsRemaining()
+            => ExecuteNonQuery($"UPDATE wallets SET withdrawal_remaining = maximum_withdrawal, deposit_remaining = CASE WHEN deposit_remaining < 0 THEN deposit_remaining + maximum_deposit ELSE maximum_deposit END") >= 0;
+
         public static bool DeleteWallet(string phone)
             => ExecuteNonQuery($"DELETE FROM wallets WHERE phone = '{phone}'") >= 0;
 
