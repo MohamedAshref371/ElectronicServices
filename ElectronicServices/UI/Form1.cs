@@ -919,9 +919,9 @@ namespace ElectronicServices
                 AddRecordsInPanel(records);
                 RecordsBtn_Click(null, null);
             }
-            else if (e.KeyCode == Keys.F5)
+            else if (e.KeyCode == Keys.F12)
             {
-                ResetWalletsRemaning();
+                ResetWalletsRemaining();
             }
         }
 
@@ -945,6 +945,7 @@ namespace ElectronicServices
             RecordsBtn_Click(null, null);
         }
 
+        bool isWalletEdit = false;
         public void SetWalletData(WalletRowData data)
         {
             phoneNumber.Text = data.Phone;
@@ -954,7 +955,9 @@ namespace ElectronicServices
             withdrawalRemaining.Value = (decimal)data.WithdrawalRemaining;
             depositRemaining.Value = (decimal)data.DepositRemaining;
             balance.Value = (decimal)data.Balance;
+            isWalletEdit = true;
             walletTypeComboBox.SelectedIndex = data.Type;
+            isWalletEdit = false;
             walletComment.Text = data.Comment;
         }
 
@@ -984,7 +987,7 @@ namespace ElectronicServices
                 if (walletsPanel.Controls[i] is WalletRow wr)
                     wr.ResetRemaining();
 
-            phoneNumber.Text = "";
+            isEqualMax.Checked = true;
 
             if (walletData.Phone != "")
             {
@@ -1115,7 +1118,7 @@ namespace ElectronicServices
 
         private void WalletTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (walletTypeComboBox.SelectedIndex <= 0) return;
+            if (walletTypeComboBox.SelectedIndex <= 0 || isWalletEdit) return;
             WalletRowData[] data = DatabaseHelper.GetWallets(walletTypeComboBox.SelectedIndex);
             if (data is null) return;
 
