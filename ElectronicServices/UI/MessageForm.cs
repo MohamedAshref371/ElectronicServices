@@ -28,6 +28,7 @@ namespace ElectronicServices
                 case MessageBoxButtons.YesNo:
                     CancelButton = noBtn;
                     cancelBtn.Visible = false;
+                    noBtn.ForeColor = Color.Maroon;
                     break;
             }
 
