@@ -77,7 +77,7 @@
             // 
             // text
             // 
-            text.Font = new Font("Segoe UI", 14F);
+            text.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             text.ImeMode = ImeMode.NoControl;
             text.Location = new Point(12, 7);
             text.Name = "text";

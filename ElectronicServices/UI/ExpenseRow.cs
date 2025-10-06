@@ -28,14 +28,14 @@ namespace ElectronicServices
         private void Title_DoubleClick(object sender, EventArgs e)
         {
             if (data.Comment != "")
-                MessageBox.Show(data.Comment, "ملاحظة", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Form1.MessageForm(data.Comment, "ملاحظة", MessageBoxButtons.OK, MessageBoxIconV2.Information);
         }
 
         private void AttachmentBtn_MouseClick(object sender, MouseEventArgs e)
         {
             if (data.Attachment == "")
             {
-                if (MessageBox.Show("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+                if (Form1.MessageForm("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) == DialogResult.No)
                     return;
                 
                 data.Attachment = Program.Form.AttachmentPath();
@@ -43,7 +43,7 @@ namespace ElectronicServices
                 {
                     if (!DatabaseHelper.EditExpense(data.Id, data.Attachment))
                     {
-                        MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Form1.MessageForm("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                         data.Attachment = "";
                     }
                     else
@@ -54,7 +54,7 @@ namespace ElectronicServices
 
             if (!File.Exists(data.Attachment))
             {
-                MessageBox.Show("تعذر العثور على المرفق. قد يكون قد تم نقله أو حذفه.", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Form1.MessageForm("تعذر العثور على المرفق. قد يكون قد تم نقله أو حذفه.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
             try
@@ -69,7 +69,7 @@ namespace ElectronicServices
             }
             catch (Exception ex)
             {
-                MessageBox.Show("حدث خطأ أثناء فتح المرفق:\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Form1.MessageForm("حدث خطأ أثناء فتح المرفق:\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
         }
@@ -78,7 +78,7 @@ namespace ElectronicServices
         {
             if (e.Button == MouseButtons.Right && amount.Visible)
             {
-                if (MessageBox.Show("هل تريد تحديث مسار المرفق لهذا البند ؟", "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+                if (Form1.MessageForm("هل تريد تحديث مسار المرفق لهذا البند ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) == DialogResult.No)
                     return;
 
                 string att = Program.Form.AttachmentPath();
@@ -90,7 +90,7 @@ namespace ElectronicServices
                         data.Attachment = att;
                     }
                     else
-                        MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Form1.MessageForm("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 }
                 return;
             }
@@ -114,7 +114,7 @@ namespace ElectronicServices
                 float val = (float)amountEdit.Value;
                 if (!DatabaseHelper.EditExpense(data.Id, val))
                 {
-                    MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Form1.MessageForm("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                     return;
                 }
 
@@ -125,12 +125,12 @@ namespace ElectronicServices
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("هل أنت متأكد من حذف هذا البند ؟", "تأكيد الحذف", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+            if (Form1.MessageForm("هل أنت متأكد من حذف هذا البند ؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) == DialogResult.No)
                 return;
 
             if (!DatabaseHelper.DeleteExpense(data.Id))
             {
-                MessageBox.Show("حدث خطأ أثناء حذف البند. يرجى المحاولة مرة أخرى.");
+                Form1.MessageForm("حدث خطأ أثناء حذف البند. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 

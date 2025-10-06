@@ -38,6 +38,12 @@ namespace ElectronicServices
                 Expenses_KeyUp(e);
         }
 
+        public static DialogResult MessageForm(string text, string caption, MessageBoxButtons buttons, MessageBoxIconV2 icon)
+        {
+            MessageForm mf = new(text, caption, buttons, icon);
+            return mf.ShowDialog();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             System.Windows.Forms.Timer timer = new() { Interval = 10 };
@@ -297,14 +303,14 @@ namespace ElectronicServices
         {
             if (!File.Exists("ClosedXML.dll"))
             {
-                MessageBox.Show("مكتبات الايكسل غير موجودة");
+                MessageBox.Show("ClosedXML.dll file is missing.\ngithub.com/MohamedAshref371/ElectronicServices");
                 return;
             }
 
             if (openExcelFileDialog.ShowDialog() != DialogResult.OK) return;
 
             ReadCustomerExcelFile();
-            MessageBox.Show("تمت إضافة العملاء من ملف الايكسل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageForm("تمت إضافة العملاء من ملف الايكسل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
         }
 
         private void ReadCustomerExcelFile()
@@ -334,18 +340,18 @@ namespace ElectronicServices
             int res = DatabaseHelper.SearchWithExactCustomerName(custName);
             if (res < 0)
             {
-                MessageBox.Show("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
             if (res >= 1)
             {
-                MessageBox.Show($"لقد تمت إضافة هذا العميل من قبل\n{custName}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm($"لقد تمت إضافة هذا العميل من قبل\n{custName}", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
             if (!DatabaseHelper.AddCustomer(custName))
             {
-                MessageBox.Show("حدث خطأ أثناء إضافة العميل\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء إضافة العميل\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 
@@ -383,7 +389,7 @@ namespace ElectronicServices
                 };
 
                 if (!DatabaseHelper.AddTransaction(data))
-                    MessageBox.Show("حدث خطأ اثناء إضافة القيم الابتدائية للعميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageForm("حدث خطأ اثناء إضافة القيم الابتدائية للعميل", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
 
                 addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             }
@@ -459,13 +465,13 @@ namespace ElectronicServices
 
             if (customersComboBox.SelectedIndex <= 0)
             {
-                MessageBox.Show("الرجاء اختيار عميل من القائمة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("الرجاء اختيار عميل من القائمة", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
             if (payAmount.Value == 0 && takeAmount.Value == 0)
             {
-                MessageBox.Show("الرجاء إدخال قيمة الدفع أو السحب", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("الرجاء إدخال قيمة الدفع أو السحب", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
@@ -485,7 +491,7 @@ namespace ElectronicServices
 
             if (!DatabaseHelper.AddTransaction(data))
             {
-                MessageBox.Show("حدث خطأ أثناء إضافة المعاملة.\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء إضافة المعاملة.\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 
@@ -642,18 +648,18 @@ namespace ElectronicServices
             int res = DatabaseHelper.SearchWithExactPayappName(payappName);
             if (res < 0)
             {
-                MessageBox.Show("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
             if (res >= 1)
             {
-                MessageBox.Show("لقد تمت إضافة تطبيق الدفع هذا من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("لقد تمت إضافة تطبيق الدفع هذا من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
             if (!DatabaseHelper.AddPayapp(payappName))
             {
-                MessageBox.Show("حدث خطأ أثناء إضافة تطبيق الدفع\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء إضافة تطبيق الدفع\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 
@@ -671,18 +677,18 @@ namespace ElectronicServices
             int res = DatabaseHelper.SearchWithExactWalletType(type);
             if (res < 0)
             {
-                MessageBox.Show("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
             if (res >= 1)
             {
-                MessageBox.Show("لقد تمت إضافة نوع المحفظة هذا من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("لقد تمت إضافة نوع المحفظة هذا من قبل", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
             if (!DatabaseHelper.AddWalletType(type))
             {
-                MessageBox.Show("حدث خطأ أثناء إضافة نوع المحفظة\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء إضافة نوع المحفظة\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 
@@ -731,7 +737,7 @@ namespace ElectronicServices
 
             if (walletTypeComboBox.SelectedIndex <= 0)
             {
-                MessageBox.Show("الرجاء اختيار نوع المحفظة من القائمة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("الرجاء اختيار نوع المحفظة من القائمة", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
@@ -757,17 +763,17 @@ namespace ElectronicServices
 
             if (res)
             {
-                if (MessageBox.Show($"هل تريد تحديث بيانات هذه المحفظة ؟\n{data.Phone}", "تأكيد", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+                if (MessageForm($"هل تريد تحديث بيانات هذه المحفظة ؟\n{data.Phone}", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) == DialogResult.No)
                     return;
                 if (!DatabaseHelper.EditWallet(data))
                 {
-                    MessageBox.Show("حدث خطأ أثناء تحديث بيانات المحفظة\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageForm("حدث خطأ أثناء تحديث بيانات المحفظة\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                     return;
                 }
             }
             else if (!DatabaseHelper.AddWallet(data))
             {
-                MessageBox.Show("حدث خطأ أثناء إضافة المحفظة\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء إضافة المحفظة\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 
@@ -822,13 +828,13 @@ namespace ElectronicServices
         {
             if (!File.Exists("ClosedXML.dll"))
             {
-                MessageBox.Show("مكتبات الايكسل غير موجودة");
+                MessageBox.Show("ClosedXML.dll file is missing.\ngithub.com/MohamedAshref371/ElectronicServices");
                 return;
             }
 
             if (walletTypeComboBox.SelectedIndex <= 0)
             {
-                MessageBox.Show("الرجاء اختيار نوع المحفظة من القائمة", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("الرجاء اختيار نوع المحفظة من القائمة", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
@@ -838,7 +844,7 @@ namespace ElectronicServices
             walletComment.Text = "تمت الإضافة من ملف الايكسل";
 
             ReadWalletExcelFile();
-            MessageBox.Show("تمت إضافة المحافظ من ملف الايكسل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageForm("تمت إضافة المحافظ من ملف الايكسل بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
         }
 
         private void ReadWalletExcelFile()
@@ -974,12 +980,12 @@ namespace ElectronicServices
 
         public void ResetWalletsRemaining()
         {
-            DialogResult res = MessageBox.Show("هل أنت متأكد من إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ ؟", "تأكيد", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-            if (res == DialogResult.Cancel) return;
+            if (MessageForm("هل أنت متأكد من إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) == DialogResult.No)
+                return;
 
             if (!DatabaseHelper.ResetWalletsRemaining())
             {
-                MessageBox.Show("حدث خطأ أثناء إعادة تعيين المتبقي للسحب والإيداع\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء إعادة تعيين المتبقي للسحب والإيداع\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 
@@ -997,7 +1003,7 @@ namespace ElectronicServices
                 depoRema.Text = walletData.DepositRemaining.ToString();
             }
 
-            MessageBox.Show("تمت إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageForm("تمت إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ بنجاح", "نجاح", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
         }
 
         public void CheckWallet(string phone)
@@ -1052,21 +1058,21 @@ namespace ElectronicServices
         {
             if (withdrawal.Value == 0 && deposit.Value == 0)
             {
-                MessageBox.Show("الرجاء إدخال قيمة السحب أو الإيداع", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("الرجاء إدخال قيمة السحب أو الإيداع", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
             if ((float)withdrawal.Value > walletData.WithdrawalRemaining)
             {
-                MessageBox.Show("قيمة السحب أكبر من المتبقي للسحب", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("قيمة السحب أكبر من المتبقي للسحب", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
-            if ((float)deposit.Value > walletData.DepositRemaining && MessageBox.Show("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "خطأ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+            if ((float)deposit.Value > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) == DialogResult.No)
                 return;
             
             if (walletData.Balance - (float)withdrawal.Value + (float)deposit.Value < 0)
             {
-                MessageBox.Show("الرصيد لا يمكن أن يكون سالباً", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("الرصيد لا يمكن أن يكون سالباً", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
@@ -1080,7 +1086,7 @@ namespace ElectronicServices
 
             if (!DatabaseHelper.EditWallet(walletData))
             {
-                MessageBox.Show("حدث خطأ أثناء تحديث بيانات المحفظة\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء تحديث بيانات المحفظة\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
             for (int i = 1; i < walletsPanel.Controls.Count; i++)
@@ -1109,7 +1115,7 @@ namespace ElectronicServices
 
             if (!DatabaseHelper.AddRecord(data))
             {
-                MessageBox.Show("حدث خطأ أثناء إضافة العملية\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء إضافة العملية\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
             RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
@@ -1199,7 +1205,7 @@ namespace ElectronicServices
             string title = expenseTitle.Text.Trim();
             if (title == "") return;
 
-            if (expenseAmount.Value == 0 && MessageBox.Show("قيمة المصروف صفر\nهل انت متأكد من الاستمرار ؟", "خطأ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+            if (expenseAmount.Value == 0 && MessageForm("قيمة المصروف صفر\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) == DialogResult.No)
                 return;
 
             string attachment = attachmentPath.Text == attachmentPathReset ? "" : attachmentPath.Text;
@@ -1214,7 +1220,7 @@ namespace ElectronicServices
 
             if (!DatabaseHelper.AddExpense(data))
             {
-                MessageBox.Show("حدث خطأ أثناء إضافة المصروفات.\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء إضافة المصروفات.\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 
@@ -1240,7 +1246,7 @@ namespace ElectronicServices
         {
             if (!File.Exists("ClosedXML.dll"))
             {
-                MessageBox.Show("مكتبات الايكسل غير موجودة");
+                MessageBox.Show("ClosedXML.dll file is missing.\ngithub.com/MohamedAshref371/ElectronicServices");
                 return;
             }
 
@@ -1323,11 +1329,11 @@ namespace ElectronicServices
             try
             {
                 workbook.SaveAs(path);
-                MessageBox.Show("تم استخراج البيانات بنجاح");
+                MessageForm("تم استخراج البيانات بنجاح", "رسالة", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("حدث خطأ أثناء حفظ الملف\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء حفظ الملف\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
             }
         }
         #endregion
@@ -1337,7 +1343,7 @@ namespace ElectronicServices
         {
             if (!File.Exists("ClosedXML.dll"))
             {
-                MessageBox.Show("مكتبات الايكسل غير موجودة");
+                MessageBox.Show("ClosedXML.dll file is missing.\ngithub.com/MohamedAshref371/ElectronicServices");
                 return;
             }
 
@@ -1465,11 +1471,11 @@ namespace ElectronicServices
             try
             {
                 workbook.SaveAs(path);
-                MessageBox.Show("تم استخراج البيانات بنجاح");
+                MessageForm("تم استخراج البيانات بنجاح", "رسالة", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("حدث خطأ أثناء حفظ الملف\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء حفظ الملف\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
             }
         }
 
@@ -1483,7 +1489,7 @@ namespace ElectronicServices
         {
             if (!File.Exists("ClosedXML.dll"))
             {
-                MessageBox.Show("مكتبات الايكسل غير موجودة");
+                MessageBox.Show("ClosedXML.dll file is missing.\ngithub.com/MohamedAshref371/ElectronicServices");
                 return;
             }
             isRunning = true;
@@ -1492,7 +1498,7 @@ namespace ElectronicServices
 
             if (dateChoose.Checked && dateFrom.Value > dateTo.Value)
             {
-                MessageBox.Show("تاريخ البداية أكبر من تاريخ النهاية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageForm("تاريخ البداية أكبر من تاريخ النهاية", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 extraExcelBtn.Image = Properties.Resources.neutral_face;
                 isRunning = false;
                 return;
@@ -1752,11 +1758,11 @@ namespace ElectronicServices
             try
             {
                 workbook.SaveAs(path);
-                MessageBox.Show("تم استخراج البيانات بنجاح");
+                MessageForm("تم استخراج البيانات بنجاح", "رسالة", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("حدث خطأ أثناء حفظ الملف\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageForm("حدث خطأ أثناء حفظ الملف\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
             }
         }
 

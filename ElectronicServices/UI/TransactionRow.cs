@@ -52,7 +52,7 @@ namespace ElectronicServices
             {
                 float? before = DatabaseHelper.GetTransactionBefore(data.Id, data.CustomerId);
                 if (before is null)
-                    MessageBox.Show("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Form1.MessageForm("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 else
                 {
                     string text;
@@ -73,7 +73,7 @@ namespace ElectronicServices
                     else
                         text2 = "صفر";
 
-                    MessageBox.Show($"الرصيد قبل المعاملة : {text}\nالرصيد بعد المعاملة : {text2}", "معلومات المعاملة", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Form1.MessageForm($"الرصيد قبل المعاملة : {text}\nالرصيد بعد المعاملة : {text2}", "معلومات المعاملة", MessageBoxButtons.OK, MessageBoxIconV2.Information);
 
 
                 }
@@ -83,7 +83,7 @@ namespace ElectronicServices
                 string time = "";
                 if (data.Date[11..] != "00:00:00")
                     time = "\nوقت العملية : " + data.Date[11..];
-                MessageBox.Show($"نتيجة المعاملة : {result}{time}\n{data.Note}", "ملاحظات", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Form1.MessageForm($"نتيجة المعاملة : {result}{time}\n{data.Note}", "ملاحظات", MessageBoxButtons.OK, MessageBoxIconV2.Information);
             }
         }
 
@@ -109,7 +109,7 @@ namespace ElectronicServices
 
                 if (!DatabaseHelper.EditTransaction(data.Id, (float)payEdit.Value, (float)takeEdit.Value))
                 {
-                    MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Form1.MessageForm("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                     return;
                 }
 
@@ -127,12 +127,12 @@ namespace ElectronicServices
 
         private void DeleteTransactionBtn_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("هل أنت متأكد من حذف هذه المعاملة؟", "تأكيد الحذف", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+            if (Form1.MessageForm("هل أنت متأكد من حذف هذه المعاملة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) == DialogResult.No)
                 return;
 
             if (!DatabaseHelper.DeleteTransaction(data.Id))
             {
-                MessageBox.Show("حدث خطأ أثناء حذف المعاملة\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Form1.MessageForm("حدث خطأ أثناء حذف المعاملة\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 

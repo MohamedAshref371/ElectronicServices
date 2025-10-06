@@ -73,18 +73,18 @@ namespace ElectronicServices
                 int res = DatabaseHelper.SearchWithExactCustomerName(customerName.Text);
                 if (res < 0)
                 {
-                    MessageBox.Show("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Form1.MessageForm("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                     return;
                 }
                 if (res >= 1)
                 {
-                    MessageBox.Show("هذا العميل موجود بالفعل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Form1.MessageForm("هذا العميل موجود بالفعل", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                     return;
                 }
 
                 if (!DatabaseHelper.EditCustomer(Id, customerName.Text))
                 {
-                    MessageBox.Show("حدث خطأ أثناء حفظ البيانات. يرجى المحاولة مرة أخرى.");
+                    Form1.MessageForm("حدث خطأ أثناء حفظ البيانات. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                     return;
                 }
 
@@ -96,14 +96,14 @@ namespace ElectronicServices
         {
             bool res = DatabaseHelper.IsThereTransactions(Id);
 
-            if (res && MessageBox.Show("لا يمكن حذف هذا العميل لأنه مرتبط بمعاملات\nهل تريد تصفير هذا العميل أولا؟", "تحذير", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+            if (res && Form1.MessageForm("لا يمكن حذف هذا العميل لأنه مرتبط بمعاملات\nهل تريد تصفير هذا العميل أولا؟", "تأكيد تصفير العميل", MessageBoxButtons.OKCancel, MessageBoxIconV2.Delete) == DialogResult.Cancel)
                 return;
 
             if (res)
             {
                 if (!DatabaseHelper.ResetCustomer(Id))
                 {
-                    MessageBox.Show("حدث خطأ أثناء تصفير العميل. يرجى المحاولة مرة أخرى.");
+                    Form1.MessageForm("حدث خطأ أثناء تصفير العميل. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                     return;
                 }
 
@@ -114,12 +114,12 @@ namespace ElectronicServices
                 return;
             }
 
-            if (MessageBox.Show("هل أنت متأكد من حذف هذا العميل؟", "تأكيد الحذف", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+            if (Form1.MessageForm("هل أنت متأكد من حذف هذا العميل؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) == DialogResult.No)
                 return;
 
             if (!DatabaseHelper.DeleteCustomer(Id))
             {
-                MessageBox.Show("حدث خطأ أثناء حذف العميل. يرجى المحاولة مرة أخرى.");
+                Form1.MessageForm("حدث خطأ أثناء حذف العميل. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 

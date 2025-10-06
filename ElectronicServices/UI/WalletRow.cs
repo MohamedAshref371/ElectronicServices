@@ -49,26 +49,26 @@ namespace ElectronicServices
         {
             bool res = DatabaseHelper.IsThereRecords(data.Phone);
 
-            if (res && MessageBox.Show("لا يمكن حذف هذه المحفظة لأنها مرتبطة بعمليات\nهل تريد تصفير هذه المحفظة أولا ؟", "تحذير", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+            if (res && Form1.MessageForm("لا يمكن حذف هذه المحفظة لأنها مرتبطة بعمليات\nهل تريد حذف معاملات هذه المحفظة أولا ؟", "تأكيد حذف المعاملات", MessageBoxButtons.OKCancel, MessageBoxIconV2.Delete) == DialogResult.Cancel)
                 return;
 
             if (res)
             {
                 if (!DatabaseHelper.ResetWallet(data.Phone))
                 {
-                    MessageBox.Show("حدث خطأ أثناء حذف عمليات المحفظة. يرجى المحاولة مرة أخرى.");
+                    Form1.MessageForm("حدث خطأ أثناء حذف عمليات المحفظة. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                     return;
                 }
                 Program.Form.ResetWallet(data.Phone);
                 return;
             }
 
-            if (MessageBox.Show("هل أنت متأكد من حذف هذه المحفظة ؟", "تأكيد الحذف", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+            if (Form1.MessageForm("هل أنت متأكد من حذف هذه المحفظة ؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) == DialogResult.No)
                 return;
 
             if (!DatabaseHelper.DeleteWallet(data.Phone))
             {
-                MessageBox.Show("حدث خطأ أثناء حذف المحفظة. يرجى المحاولة مرة أخرى.");
+                Form1.MessageForm("حدث خطأ أثناء حذف المحفظة. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 

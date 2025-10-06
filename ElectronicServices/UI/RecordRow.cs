@@ -48,12 +48,12 @@ namespace ElectronicServices
         {
             string comment = phoneNumber.Tag.ToString();
             if (comment == "") return;
-            MessageBox.Show(phoneNumber.Tag.ToString(), "ملاحظات العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Form1.MessageForm(phoneNumber.Tag.ToString(), "ملاحظات العملية", MessageBoxButtons.OK, MessageBoxIconV2.Information);
         }
 
         private void Date_DoubleClick(object sender, EventArgs e)
         {
-            MessageBox.Show(date.Tag.ToString(), "وقت العملية", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Form1.MessageForm(date.Tag.ToString(), "وقت العملية", MessageBoxButtons.OK, MessageBoxIconV2.Information);
         }
     }
 }
