@@ -292,7 +292,7 @@ namespace ElectronicServices
 
         private void DateLabel_DoubleClick(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("هل تريد حذف آخر تقفيل يومي ؟!", "?!؟", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RtlReading);
+            DialogResult res = MessageBox.Show("هل تريد حذف آخر تقفيل يومي ؟!", "?!؟", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
             if (res == DialogResult.Cancel) return;
 
