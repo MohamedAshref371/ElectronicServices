@@ -160,7 +160,7 @@ namespace ElectronicServices
                 int id = DatabaseHelper.FindDayInPayappClosure(date[..10]);
                 if (id == 0)
                 {
-                    if (MessageBox.Show("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا اليوم\nهل تريد الإستمرار ؟.", "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                    if (MessageBox.Show("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا اليوم\nهل تريد الإستمرار ؟.", "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
                     {
                         Close();
                         return;
@@ -168,7 +168,7 @@ namespace ElectronicServices
                 }
                 else if (!DatabaseHelper.IsNotUsed(id))
                 {
-                    DialogResult res = MessageBox.Show("هناك اقفال يومي بالفعل لآخر إقفال لتطبيقات الدفع الإلكتروني\nهل تريد استعماله لهذا الإقفال أيضا ؟.", "تنبيه", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    DialogResult res = MessageBox.Show("هناك اقفال يومي بالفعل لآخر إقفال لتطبيقات الدفع الإلكتروني\nهل تريد استعماله لهذا الإقفال أيضا ؟.", "تنبيه", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button3);
                     if (res == DialogResult.Cancel)
                     {
                         Close();
@@ -292,9 +292,9 @@ namespace ElectronicServices
 
         private void DateLabel_DoubleClick(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("هل تريد حذف آخر تقفيل يومي ؟!", "?!؟", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RtlReading);
+            DialogResult res = MessageBox.Show("هل تريد حذف آخر تقفيل يومي ؟!", "?!؟", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2, MessageBoxOptions.RtlReading);
 
-            if (res == DialogResult.No) return;
+            if (res == DialogResult.Cancel) return;
 
             DatabaseHelper.DeleteLastDailyClosure();
 

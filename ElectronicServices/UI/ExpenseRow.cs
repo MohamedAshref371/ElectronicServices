@@ -35,19 +35,19 @@ namespace ElectronicServices
         {
             if (data.Attachment == "")
             {
-                if (MessageBox.Show("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
+                    return;
+                
+                data.Attachment = Program.Form.AttachmentPath();
+                if (data.Attachment != "")
                 {
-                    data.Attachment = Program.Form.AttachmentPath();
-                    if (data.Attachment != "")
+                    if (!DatabaseHelper.EditExpense(data.Id, data.Attachment))
                     {
-                        if (!DatabaseHelper.EditExpense(data.Id, data.Attachment))
-                        {
-                            MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            data.Attachment = "";
-                        }
-                        else
-                            attachmentBtn.Image = Properties.Resources.Folder_Explorer;
+                        MessageBox.Show("حدث خطأ أثناء حفظ البيانات\nيرجى المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        data.Attachment = "";
                     }
+                    else
+                        attachmentBtn.Image = Properties.Resources.Folder_Explorer;
                 }
                 return;
             }
@@ -78,7 +78,7 @@ namespace ElectronicServices
         {
             if (e.Button == MouseButtons.Right && amount.Visible)
             {
-                if (MessageBox.Show("هل تريد تحديث مسار المرفق لهذا البند ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show("هل تريد تحديث مسار المرفق لهذا البند ؟", "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
                     return;
 
                 string att = Program.Form.AttachmentPath();
@@ -125,7 +125,7 @@ namespace ElectronicServices
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("هل أنت متأكد من حذف هذا البند ؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            if (MessageBox.Show("هل أنت متأكد من حذف هذا البند ؟", "تأكيد الحذف", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
                 return;
 
             if (!DatabaseHelper.DeleteExpense(data.Id))

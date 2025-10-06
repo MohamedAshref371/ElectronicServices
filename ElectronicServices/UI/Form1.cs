@@ -757,7 +757,7 @@ namespace ElectronicServices
 
             if (res)
             {
-                if (MessageBox.Show($"هل تريد تحديث بيانات هذه المحفظة ؟\n{data.Phone}", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show($"هل تريد تحديث بيانات هذه المحفظة ؟\n{data.Phone}", "تأكيد", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
                     return;
                 if (!DatabaseHelper.EditWallet(data))
                 {
@@ -974,8 +974,8 @@ namespace ElectronicServices
 
         public void ResetWalletsRemaining()
         {
-            DialogResult res = MessageBox.Show("هل أنت متأكد من إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (res == DialogResult.No) return;
+            DialogResult res = MessageBox.Show("هل أنت متأكد من إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ ؟", "تأكيد", MessageBoxButtons.OKCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (res == DialogResult.Cancel) return;
 
             if (!DatabaseHelper.ResetWalletsRemaining())
             {
@@ -1061,7 +1061,7 @@ namespace ElectronicServices
                 MessageBox.Show("قيمة السحب أكبر من المتبقي للسحب", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if ((float)deposit.Value > walletData.DepositRemaining && MessageBox.Show("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "خطأ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            if ((float)deposit.Value > walletData.DepositRemaining && MessageBox.Show("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "خطأ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
                 return;
             
             if (walletData.Balance - (float)withdrawal.Value + (float)deposit.Value < 0)
@@ -1199,7 +1199,7 @@ namespace ElectronicServices
             string title = expenseTitle.Text.Trim();
             if (title == "") return;
 
-            if (expenseAmount.Value == 0 && MessageBox.Show("قيمة المصروف صفر\nهل انت متأكد من الاستمرار ؟", "خطأ", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+            if (expenseAmount.Value == 0 && MessageBox.Show("قيمة المصروف صفر\nهل انت متأكد من الاستمرار ؟", "خطأ", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Cancel)
                 return;
 
             string attachment = attachmentPath.Text == attachmentPathReset ? "" : attachmentPath.Text;
