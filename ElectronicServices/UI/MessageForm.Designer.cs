@@ -118,7 +118,7 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
             Text = "تأكيد";
-            Load += MessageForm_Load;
+            FormClosing += Form1_FormClosing;
             ((System.ComponentModel.ISupportInitialize)iconBox).EndInit();
             ResumeLayout(false);
         }

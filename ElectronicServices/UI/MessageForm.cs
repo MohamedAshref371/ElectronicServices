@@ -65,9 +65,10 @@ namespace ElectronicServices
             }
         }
 
-        private void MessageForm_Load(object sender, EventArgs e)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (this.DialogResult == DialogResult.Cancel && !cancelBtn.Visible)
+                this.DialogResult = DialogResult.No;
         }
     }
 }
