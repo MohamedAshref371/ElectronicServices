@@ -35,7 +35,7 @@ namespace ElectronicServices
         {
             if (data.Attachment == "")
             {
-                if (Form1.MessageForm("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) == DialogResult.No)
+                if (Form1.MessageForm("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
                     return;
                 
                 data.Attachment = Program.Form.AttachmentPath();
@@ -78,7 +78,7 @@ namespace ElectronicServices
         {
             if (e.Button == MouseButtons.Right && amount.Visible)
             {
-                if (Form1.MessageForm("هل تريد تحديث مسار المرفق لهذا البند ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) == DialogResult.No)
+                if (Form1.MessageForm("هل تريد تحديث مسار المرفق لهذا البند ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
                     return;
 
                 string att = Program.Form.AttachmentPath();
@@ -125,7 +125,7 @@ namespace ElectronicServices
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            if (Form1.MessageForm("هل أنت متأكد من حذف هذا البند ؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) == DialogResult.No)
+            if (Form1.MessageForm("هل أنت متأكد من حذف هذا البند ؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) != DialogResult.Yes)
                 return;
 
             if (!DatabaseHelper.DeleteExpense(data.Id))

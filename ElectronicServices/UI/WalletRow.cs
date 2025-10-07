@@ -49,7 +49,7 @@ namespace ElectronicServices
         {
             bool res = DatabaseHelper.IsThereRecords(data.Phone);
 
-            if (res && Form1.MessageForm("لا يمكن حذف هذه المحفظة لأنها مرتبطة بعمليات\nهل تريد حذف معاملات هذه المحفظة أولا ؟", "تأكيد حذف المعاملات", MessageBoxButtons.OKCancel, MessageBoxIconV2.Delete) == DialogResult.Cancel)
+            if (res && Form1.MessageForm("لا يمكن حذف هذه المحفظة لأنها مرتبطة بعمليات\nهل تريد حذف معاملات هذه المحفظة أولا ؟", "تأكيد حذف المعاملات", MessageBoxButtons.OKCancel, MessageBoxIconV2.Delete) != DialogResult.OK)
                 return;
 
             if (res)
@@ -63,7 +63,7 @@ namespace ElectronicServices
                 return;
             }
 
-            if (Form1.MessageForm("هل أنت متأكد من حذف هذه المحفظة ؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) == DialogResult.No)
+            if (Form1.MessageForm("هل أنت متأكد من حذف هذه المحفظة ؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) != DialogResult.Yes)
                 return;
 
             if (!DatabaseHelper.DeleteWallet(data.Phone))

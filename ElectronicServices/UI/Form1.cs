@@ -763,7 +763,7 @@ namespace ElectronicServices
 
             if (res)
             {
-                if (MessageForm($"هل تريد تحديث بيانات هذه المحفظة ؟\n{data.Phone}", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) == DialogResult.No)
+                if (MessageForm($"هل تريد تحديث بيانات هذه المحفظة ؟\n{data.Phone}", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
                     return;
                 if (!DatabaseHelper.EditWallet(data))
                 {
@@ -980,7 +980,7 @@ namespace ElectronicServices
 
         public void ResetWalletsRemaining()
         {
-            if (MessageForm("هل أنت متأكد من إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) == DialogResult.No)
+            if (MessageForm("هل أنت متأكد من إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
                 return;
 
             if (!DatabaseHelper.ResetWalletsRemaining())
@@ -1067,7 +1067,7 @@ namespace ElectronicServices
                 MessageForm("قيمة السحب أكبر من المتبقي للسحب", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
-            if ((float)deposit.Value > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) == DialogResult.No)
+            if ((float)deposit.Value > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
                 return;
             
             if (walletData.Balance - (float)withdrawal.Value + (float)deposit.Value < 0)
@@ -1205,7 +1205,7 @@ namespace ElectronicServices
             string title = expenseTitle.Text.Trim();
             if (title == "") return;
 
-            if (expenseAmount.Value == 0 && MessageForm("قيمة المصروف صفر\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) == DialogResult.No)
+            if (expenseAmount.Value == 0 && MessageForm("قيمة المصروف صفر\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
                 return;
 
             string attachment = attachmentPath.Text == attachmentPathReset ? "" : attachmentPath.Text;

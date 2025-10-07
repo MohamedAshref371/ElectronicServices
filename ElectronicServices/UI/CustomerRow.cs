@@ -96,7 +96,7 @@ namespace ElectronicServices
         {
             bool res = DatabaseHelper.IsThereTransactions(Id);
 
-            if (res && Form1.MessageForm("لا يمكن حذف هذا العميل لأنه مرتبط بمعاملات\nهل تريد تصفير هذا العميل أولا؟", "تأكيد تصفير العميل", MessageBoxButtons.OKCancel, MessageBoxIconV2.Delete) == DialogResult.Cancel)
+            if (res && Form1.MessageForm("لا يمكن حذف هذا العميل لأنه مرتبط بمعاملات\nهل تريد تصفير هذا العميل أولا؟", "تأكيد تصفير العميل", MessageBoxButtons.OKCancel, MessageBoxIconV2.Delete) != DialogResult.OK)
                 return;
 
             if (res)
@@ -114,7 +114,7 @@ namespace ElectronicServices
                 return;
             }
 
-            if (Form1.MessageForm("هل أنت متأكد من حذف هذا العميل؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) == DialogResult.No)
+            if (Form1.MessageForm("هل أنت متأكد من حذف هذا العميل؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) != DialogResult.Yes)
                 return;
 
             if (!DatabaseHelper.DeleteCustomer(Id))

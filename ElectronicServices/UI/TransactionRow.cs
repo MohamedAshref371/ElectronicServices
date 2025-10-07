@@ -127,7 +127,7 @@ namespace ElectronicServices
 
         private void DeleteTransactionBtn_Click(object sender, EventArgs e)
         {
-            if (Form1.MessageForm("هل أنت متأكد من حذف هذه المعاملة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) == DialogResult.No)
+            if (Form1.MessageForm("هل أنت متأكد من حذف هذه المعاملة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) != DialogResult.Yes)
                 return;
 
             if (!DatabaseHelper.DeleteTransaction(data.Id))

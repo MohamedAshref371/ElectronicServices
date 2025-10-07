@@ -160,7 +160,7 @@ namespace ElectronicServices
                 int id = DatabaseHelper.FindDayInPayappClosure(date[..10]);
                 if (id == 0)
                 {
-                    if (Form1.MessageForm("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا اليوم\nهل تريد الإستمرار ؟.", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) == DialogResult.No)
+                    if (Form1.MessageForm("لم يتم إقفال تطبيقات الدفع الإلكتروني لهذا اليوم\nهل تريد الإستمرار ؟.", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
                     {
                         Close();
                         return;
@@ -294,7 +294,7 @@ namespace ElectronicServices
         {
             DialogResult res = Form1.MessageForm("هل تريد حذف آخر تقفيل يومي ؟!", "؟!?", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete);
 
-            if (res == DialogResult.No) return;
+            if (res != DialogResult.Yes) return;
 
             DatabaseHelper.DeleteLastDailyClosure();
 
