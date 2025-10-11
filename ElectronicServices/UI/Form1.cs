@@ -32,8 +32,7 @@ namespace ElectronicServices
             else if (addWalletsPanel.Visible)
                 Wallets_KeyUp(e);
             else if (addRecordsPanel.Visible)
-                /*Records_KeyUp(e)*/
-                ;
+                /*Records_KeyUp(e)*/;
             else if (addExpensesPanel.Visible)
                 Expenses_KeyUp(e);
         }
