@@ -562,14 +562,14 @@ namespace ElectronicServices
             }
         }
 
-        public void CustomerBtnClickInTransactionRow(string custName)
+        public void TransactionRowCustomer(string custName)
         {
             CustomersBtn_Click(null, null);
             customerName.Text = custName;
             CustomerSearchBtn_Click(null, null);
         }
 
-        public void CustomerTransactionsBtnInCustomerRow(int custId)
+        public void CustomerRowTransactions(int custId)
         {
             TransactionsBtn_Click(null, null);
             customersComboBox.SelectedItem = customersComboBox.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(c => c.Key == custId);
@@ -925,6 +925,10 @@ namespace ElectronicServices
                 AddRecordsInPanel(records);
                 RecordsBtn_Click(null, null);
             }
+            else if (e.KeyCode == Keys.F11)
+            {
+                ResetWallets();
+            }
             else if (e.KeyCode == Keys.F12)
             {
                 ResetWalletsRemaining();
@@ -978,6 +982,27 @@ namespace ElectronicServices
             recordsPanel.Controls.Add(row);
         }
 
+        public void ResetWallets()
+        {
+            if (MessageForm("هل أنت متأكد من حذف جميع عمليات المحافظ ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
+                return;
+
+            if (!DatabaseHelper.ResetWallets())
+            {
+                MessageForm("حدث خطأ أثناء حذف عمليات المحافظ\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
+                return;
+            }
+
+            recordsPanel.Controls.Clear();
+            RecordRow row = new();
+            row.Location = new Point(row.Location.X + rowPadding, 5);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
+            recordsPanel.Controls.Add(row);
+
+            MessageForm("تم حذف جميع عمليات المحافظ", "نجاح", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
+        }
+
         public void ResetWalletsRemaining()
         {
             if (MessageForm("هل أنت متأكد من إعادة تعيين المتبقي للسحب والإيداع لجميع المحافظ ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
@@ -998,7 +1023,7 @@ namespace ElectronicServices
             if (walletData.Phone != "")
             {
                 walletData.WithdrawalRemaining = walletData.MaximumWithdrawal;
-                walletData.DepositRemaining = walletData.DepositRemaining < 0 ? walletData.DepositRemaining + walletData.MaximumDeposit : walletData.MaximumDeposit;
+                walletData.DepositRemaining = walletData.MaximumDeposit - walletData.Balance;
                 withdRema.Text = walletData.WithdrawalRemaining.ToString();
                 depoRema.Text = walletData.DepositRemaining.ToString();
             }

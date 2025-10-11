@@ -50,7 +50,7 @@ namespace ElectronicServices
 
 
         private void CustomerTransactionsBtn_Click(object sender, EventArgs e)
-            => Program.Form.CustomerTransactionsBtnInCustomerRow(Id);
+            => Program.Form.CustomerRowTransactions(Id);
 
         private void EditBtn_Click(object sender, EventArgs e)
         {

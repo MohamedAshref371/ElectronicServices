@@ -7,7 +7,7 @@ namespace ElectronicServices
         public TransactionRow()
         {
             InitializeComponent();
-            deleteTransactionBtn.Visible = false;
+            deleteBtn.Visible = false;
             customerBtn.Visible = false;
             editBtn.Visible = false;
             infoBtn.Visible = false;
@@ -123,9 +123,9 @@ namespace ElectronicServices
         }
 
         private void CustomerBtn_Click(object sender, EventArgs e)
-            => Program.Form.CustomerBtnClickInTransactionRow(data.Name);
+            => Program.Form.TransactionRowCustomer(data.Name);
 
-        private void DeleteTransactionBtn_Click(object sender, EventArgs e)
+        private void DeleteBtn_Click(object sender, EventArgs e)
         {
             if (Form1.MessageForm("هل أنت متأكد من حذف هذه المعاملة؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) != DialogResult.Yes)
                 return;
@@ -170,7 +170,7 @@ namespace ElectronicServices
             infoBtn.ImageSize = newSize;
             editBtn.ImageSize = newSize;
             customerBtn.ImageSize = newSize;
-            deleteTransactionBtn.ImageSize = newSize;
+            deleteBtn.ImageSize = newSize;
         }
     }
 }
