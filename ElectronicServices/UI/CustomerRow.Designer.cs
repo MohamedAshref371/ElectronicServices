@@ -198,7 +198,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(50, 255, 255, 255);
+            BackColor = Color.FromArgb(180, 240, 180);
             Controls.Add(customerName);
             Controls.Add(deleteCustomerBtn);
             Controls.Add(editBtn);

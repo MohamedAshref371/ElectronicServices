@@ -171,7 +171,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(50, 192, 192, 192);
+            BackColor = Color.FromArgb(245, 230, 230);
             Controls.Add(walletType);
             Controls.Add(deleteBtn);
             Controls.Add(editBtn);

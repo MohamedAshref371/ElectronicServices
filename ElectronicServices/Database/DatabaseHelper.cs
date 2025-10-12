@@ -116,7 +116,14 @@ namespace ElectronicServices
         public static CustomerRowData[] GetCustomers(string name = "")
         {
             if (name != "") name = $"WHERE c.name LIKE '%{name}%'";
-            string sql = $"SELECT c.id, c.name, COALESCE(SUM(t.credit), 0) AS Pay, COALESCE(SUM(t.debit), 0) AS Take FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id {name} GROUP BY c.id, c.name";
+            string sql = $"SELECT c.id, c.name, COALESCE(SUM(t.credit), 0) AS Pay, COALESCE(SUM(t.debit), 0) AS Take FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id {name} GROUP BY c.id";
+            return SelectMultiRows(sql, GetCustomerData);
+        }
+
+        public static CustomerRowData[] GetCustomers(bool pay)
+        {
+            string sql = pay ? $"Pay - Take" : $"Take - Pay";
+            sql = $"SELECT c.id, c.name, COALESCE(SUM(t.credit), 0) AS Pay, COALESCE(SUM(t.debit), 0) AS Take FROM customers c LEFT JOIN transactions t ON t.customer_id = c.id GROUP BY c.id HAVING {sql} > 0 ORDER BY {sql} DESC";
             return SelectMultiRows(sql, GetCustomerData);
         }
 

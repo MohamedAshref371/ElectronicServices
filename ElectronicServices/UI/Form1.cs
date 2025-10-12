@@ -403,7 +403,11 @@ namespace ElectronicServices
         private void CustomerSearchBtn_Click(object sender, EventArgs e)
         {
             CustomerRowData[] customers = DatabaseHelper.GetCustomers(customerName.Text.Trim() == "" ? "" : customerName.Text);
+            AddCustomersInPanel(customers);
+        }
 
+        private void AddCustomersInPanel(CustomerRowData[] customers)
+        {
             customersPanel.Controls.Clear();
             CustomerRow row = new();
             row.Location = new Point(row.Location.X + rowPadding, 5);
@@ -585,6 +589,16 @@ namespace ElectronicServices
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
                 customerName.Text = data[lvd.SelectedIndex].Text;
+            }
+            else if (e.KeyCode == Keys.F9)
+            {
+                CustomerRowData[] customers = DatabaseHelper.GetCustomers(true);
+                AddCustomersInPanel(customers);
+            }
+            else if (e.KeyCode == Keys.F10)
+            {
+                CustomerRowData[] customers = DatabaseHelper.GetCustomers(false);
+                AddCustomersInPanel(customers);
             }
         }
 

@@ -222,7 +222,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(50, 255, 255, 255);
+            BackColor = Color.FromArgb(250, 245, 225);
             Controls.Add(takeEdit);
             Controls.Add(payEdit);
             Controls.Add(infoBtn);
