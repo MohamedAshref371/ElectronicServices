@@ -530,7 +530,7 @@ namespace ElectronicServices
             addExpensesPanel.FillColor = Color.FromArgb(225, 255, 192);
             addExpensesPanel.FillColor2 = SystemColors.Info;
             addExpensesPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addExpensesPanel.Location = new Point(-900, 0);
+            addExpensesPanel.Location = new Point(-1, 0);
             addExpensesPanel.Name = "addExpensesPanel";
             addExpensesPanel.ShadowDecoration.CustomizableEdges = customizableEdges30;
             addExpensesPanel.Size = new Size(951, 128);
@@ -814,7 +814,7 @@ namespace ElectronicServices
             addRecordsPanel.FillColor = Color.Azure;
             addRecordsPanel.FillColor2 = Color.Honeydew;
             addRecordsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addRecordsPanel.Location = new Point(-870, 0);
+            addRecordsPanel.Location = new Point(-1, 0);
             addRecordsPanel.Name = "addRecordsPanel";
             addRecordsPanel.ShadowDecoration.CustomizableEdges = customizableEdges44;
             addRecordsPanel.Size = new Size(951, 128);
