@@ -83,7 +83,7 @@
             // 
             balance.BackColor = Color.Transparent;
             balance.Font = new Font("Segoe UI", 12F);
-            balance.ForeColor = Color.Green;
+            balance.ForeColor = Color.FromArgb(0, 64, 0);
             balance.Location = new Point(141, 0);
             balance.Name = "balance";
             balance.Size = new Size(130, 40);
