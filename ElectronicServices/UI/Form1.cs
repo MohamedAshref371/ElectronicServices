@@ -47,30 +47,13 @@ namespace ElectronicServices
         private void Form1_Load(object sender, EventArgs e)
         {
             System.Windows.Forms.Timer timer = new() { Interval = 10 };
-
             timer.Tick += (s, e1) =>
             {
                 timer.Stop();
 
-                if (customersPanel.Visible)
-                    customersPanel.Invalidate();
-
-                if (transactionsPanel.Visible)
-                    transactionsPanel.Invalidate();
-
-                if (walletsPanel.Visible)
-                    walletsPanel.Invalidate();
-
-                if (recordsPanel.Visible)
-                    recordsPanel.Invalidate();
-
-                if (expensesPanel.Visible)
-                    expensesPanel.Invalidate();
-
                 if (Control.MouseButtons == MouseButtons.None)
                     this.Opacity = 1.0;
             };
-
 
             MouseEventHandler meh = (s, e1) =>
             {
@@ -89,8 +72,29 @@ namespace ElectronicServices
             formTitle.MouseDown += meh;
             CompanyPhone.MouseDown += meh;
 
-            ScrollEventHandler scroll = (s, e1) => { timer.Stop(); timer.Start(); };
-            MouseEventHandler wheel = (s, e1) => { timer.Stop(); timer.Start(); };
+            System.Windows.Forms.Timer timer2 = new() { Interval = 200 };
+            timer2.Tick += (s, e1) =>
+            {
+                timer2.Stop();
+
+                if (customersPanel.Visible)
+                    customersPanel.Invalidate();
+
+                else if (transactionsPanel.Visible)
+                    transactionsPanel.Invalidate();
+
+                else if (walletsPanel.Visible)
+                    walletsPanel.Invalidate();
+
+                else if (recordsPanel.Visible)
+                    recordsPanel.Invalidate();
+
+                else if (expensesPanel.Visible)
+                    expensesPanel.Invalidate();
+            };
+
+            ScrollEventHandler scroll = (s, e1) => { timer2.Stop(); timer2.Start(); };
+            MouseEventHandler wheel = (s, e1) => { timer2.Stop(); timer2.Start(); };
 
             customersPanel.Scroll += scroll;
             customersPanel.MouseWheel += wheel;
