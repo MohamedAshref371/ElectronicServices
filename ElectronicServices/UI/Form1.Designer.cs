@@ -193,9 +193,9 @@ namespace ElectronicServices
             expenseTitle = new Guna2TextBox();
             titleLabel = new Label();
             attachmentLabel = new Label();
-            attachmentPath = new Label();
             commentLabel = new Label();
             amountLabel = new Label();
+            attachmentPath = new Label();
             expensesPanel = new Guna2Panel();
             recordsPanel = new Guna2Panel();
             addRecordsPanel = new Guna2GradientPanel();
@@ -523,9 +523,9 @@ namespace ElectronicServices
             addExpensesPanel.Controls.Add(expenseTitle);
             addExpensesPanel.Controls.Add(titleLabel);
             addExpensesPanel.Controls.Add(attachmentLabel);
-            addExpensesPanel.Controls.Add(attachmentPath);
             addExpensesPanel.Controls.Add(commentLabel);
             addExpensesPanel.Controls.Add(amountLabel);
+            addExpensesPanel.Controls.Add(attachmentPath);
             addExpensesPanel.CustomizableEdges = customizableEdges29;
             addExpensesPanel.FillColor = Color.FromArgb(225, 255, 192);
             addExpensesPanel.FillColor2 = SystemColors.Info;
@@ -719,18 +719,6 @@ namespace ElectronicServices
             attachmentLabel.TabIndex = 26;
             attachmentLabel.Text = "المرفق : ";
             // 
-            // attachmentPath
-            // 
-            attachmentPath.AutoEllipsis = true;
-            attachmentPath.Font = new Font("Segoe UI", 12F);
-            attachmentPath.Location = new Point(23, 53);
-            attachmentPath.Name = "attachmentPath";
-            attachmentPath.RightToLeft = RightToLeft.No;
-            attachmentPath.Size = new Size(501, 21);
-            attachmentPath.TabIndex = 30;
-            attachmentPath.Text = "... لم يتم اختيار مرفق";
-            attachmentPath.TextAlign = ContentAlignment.MiddleRight;
-            // 
             // commentLabel
             // 
             commentLabel.AutoSize = true;
@@ -752,6 +740,18 @@ namespace ElectronicServices
             amountLabel.Size = new Size(58, 21);
             amountLabel.TabIndex = 25;
             amountLabel.Text = "المبلغ : ";
+            // 
+            // attachmentPath
+            // 
+            attachmentPath.AutoEllipsis = true;
+            attachmentPath.Font = new Font("Segoe UI", 12F);
+            attachmentPath.Location = new Point(23, 53);
+            attachmentPath.Name = "attachmentPath";
+            attachmentPath.RightToLeft = RightToLeft.No;
+            attachmentPath.Size = new Size(501, 24);
+            attachmentPath.TabIndex = 30;
+            attachmentPath.Text = "... لم يتم اختيار مرفق";
+            attachmentPath.TextAlign = ContentAlignment.MiddleRight;
             // 
             // expensesPanel
             // 
@@ -824,7 +824,7 @@ namespace ElectronicServices
             // balance2
             // 
             balance2.Font = new Font("Segoe UI", 12F);
-            balance2.ForeColor = Color.Green;
+            balance2.ForeColor = Color.FromArgb(0, 64, 0);
             balance2.Location = new Point(336, 73);
             balance2.Name = "balance2";
             balance2.RightToLeft = RightToLeft.Yes;
@@ -985,15 +985,15 @@ namespace ElectronicServices
             // 
             // balance2Label
             // 
-            balance2Label.AutoSize = true;
             balance2Label.Font = new Font("Segoe UI", 12F);
-            balance2Label.ForeColor = Color.Green;
-            balance2Label.Location = new Point(365, 42);
+            balance2Label.ForeColor = Color.FromArgb(0, 64, 0);
+            balance2Label.Location = new Point(336, 42);
             balance2Label.Name = "balance2Label";
             balance2Label.RightToLeft = RightToLeft.Yes;
-            balance2Label.Size = new Size(54, 21);
+            balance2Label.Size = new Size(112, 24);
             balance2Label.TabIndex = 12;
             balance2Label.Text = "الرصيد";
+            balance2Label.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // typeLabel
             // 
