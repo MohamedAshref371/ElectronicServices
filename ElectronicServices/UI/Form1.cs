@@ -52,6 +52,21 @@ namespace ElectronicServices
             {
                 timer.Stop();
 
+                if (customersPanel.Visible)
+                    customersPanel.Invalidate();
+
+                if (transactionsPanel.Visible)
+                    transactionsPanel.Invalidate();
+
+                if (walletsPanel.Visible)
+                    walletsPanel.Invalidate();
+
+                if (recordsPanel.Visible)
+                    recordsPanel.Invalidate();
+
+                if (expensesPanel.Visible)
+                    expensesPanel.Invalidate();
+
                 if (Control.MouseButtons == MouseButtons.None)
                     this.Opacity = 1.0;
             };
@@ -73,6 +88,24 @@ namespace ElectronicServices
             formIcon.MouseDown += meh;
             formTitle.MouseDown += meh;
             CompanyPhone.MouseDown += meh;
+
+            ScrollEventHandler scroll = (s, e1) => { timer.Stop(); timer.Start(); };
+            MouseEventHandler wheel = (s, e1) => { timer.Stop(); timer.Start(); };
+
+            customersPanel.Scroll += scroll;
+            customersPanel.MouseWheel += wheel;
+
+            transactionsPanel.Scroll += scroll;
+            transactionsPanel.MouseWheel += wheel;
+
+            walletsPanel.Scroll += scroll;
+            walletsPanel.MouseWheel += wheel;
+
+            recordsPanel.Scroll += scroll;
+            recordsPanel.MouseWheel += wheel;
+
+            expensesPanel.Scroll += scroll;
+            expensesPanel.MouseWheel += wheel;
 
 
             CustomerRow cust = new();
