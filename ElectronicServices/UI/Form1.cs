@@ -130,7 +130,9 @@ namespace ElectronicServices
                 WindowState = FormWindowState.Normal;
                 maximizeBtn.Image = Properties.Resources.Fullscreen;
                 fs = new FormSize(NewSizeX, NewSizeY, SizeX, SizeY);
+                mainPanel.Visible = false;
                 fs.SetControls(Controls);
+                mainPanel.Visible = true;
                 fs = null;
             }
             else if (WindowState == FormWindowState.Normal)
@@ -139,7 +141,9 @@ namespace ElectronicServices
                 maximizeBtn.Image = Properties.Resources.FullscreenExit;
                 NewSizeX = Size.Width; NewSizeY = Size.Height;
                 fs = new FormSize(SizeX, SizeY, NewSizeX, NewSizeY);
+                mainPanel.Visible = false;
                 fs.SetControls(Controls);
+                mainPanel.Visible = true;
             }
 
             if (WindowState != FormWindowState.Minimized)
