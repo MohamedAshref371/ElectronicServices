@@ -32,7 +32,8 @@ namespace ElectronicServices
             else if (addWalletsPanel.Visible)
                 Wallets_KeyUp(e);
             else if (addRecordsPanel.Visible)
-                /*Records_KeyUp(e)*/;
+                /*Records_KeyUp(e)*/
+                ;
             else if (addExpensesPanel.Visible)
                 Expenses_KeyUp(e);
         }
@@ -583,6 +584,18 @@ namespace ElectronicServices
             TransSearchBtn_Click(null, null);
         }
 
+        private void CustPayLabel_DoubleClick(object sender, EventArgs e)
+        {
+            CustomerRowData[] customers = DatabaseHelper.GetCustomers(true);
+            AddCustomersInPanel(customers);
+        }
+
+        private void CustTakeLabel_DoubleClick(object sender, EventArgs e)
+        {
+            CustomerRowData[] customers = DatabaseHelper.GetCustomers(false);
+            AddCustomersInPanel(customers);
+        }
+
         private void Customers_KeyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
@@ -596,13 +609,11 @@ namespace ElectronicServices
             }
             else if (e.KeyCode == Keys.F9)
             {
-                CustomerRowData[] customers = DatabaseHelper.GetCustomers(true);
-                AddCustomersInPanel(customers);
+                CustPayLabel_DoubleClick(null, null);
             }
             else if (e.KeyCode == Keys.F10)
             {
-                CustomerRowData[] customers = DatabaseHelper.GetCustomers(false);
-                AddCustomersInPanel(customers);
+                CustTakeLabel_DoubleClick(null, null);
             }
         }
 
@@ -893,6 +904,27 @@ namespace ElectronicServices
             }
         }
 
+        private void BalanceLabel_DoubleClick(object sender, EventArgs e)
+        {
+            int type = walletTypeComboBox.SelectedIndex;
+            float totalBalance = DatabaseHelper.GetTotalWalletsBalance(type);
+            RecordRowData[] records = DatabaseHelper.GetRecords(type);
+            walletData = new WalletRowData { Phone = "", Type = type };
+            phoneNumber2.Text = "";
+            maxWithd.Text = "";
+            maxDepo.Text = "";
+            withdRema.Text = "";
+            depoRema.Text = "";
+            balance2.Text = totalBalance.ToString();
+            walletType2.Text = type == 0 ? "" : GetWalletType(type);
+            withdrawal.Value = 0;
+            deposit.Value = 0;
+            operComment.Text = "";
+            operSaveBtn.Enabled = false;
+            AddRecordsInPanel(records);
+            RecordsBtn_Click(null, null);
+        }
+
         private void Wallets_KeyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.F1)
@@ -924,23 +956,7 @@ namespace ElectronicServices
             }
             else if (e.KeyCode == Keys.F4)
             {
-                int type = walletTypeComboBox.SelectedIndex;
-                float totalBalance = DatabaseHelper.GetTotalWalletsBalance(type);
-                RecordRowData[] records = DatabaseHelper.GetRecords(type);
-                walletData = new WalletRowData { Phone = "", Type = type };
-                phoneNumber2.Text = "";
-                maxWithd.Text = "";
-                maxDepo.Text = "";
-                withdRema.Text = "";
-                depoRema.Text = "";
-                balance2.Text = totalBalance.ToString();
-                walletType2.Text = type == 0 ? "" : GetWalletType(type);
-                withdrawal.Value = 0;
-                deposit.Value = 0;
-                operComment.Text = "";
-                operSaveBtn.Enabled = false;
-                AddRecordsInPanel(records);
-                RecordsBtn_Click(null, null);
+                BalanceLabel_DoubleClick(null, null);
             }
             else if (e.KeyCode == Keys.F11)
             {
@@ -1111,7 +1127,7 @@ namespace ElectronicServices
             }
             if ((float)deposit.Value > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
                 return;
-            
+
             if (walletData.Balance - (float)withdrawal.Value + (float)deposit.Value < 0)
             {
                 MessageForm("الرصيد لا يمكن أن يكون سالباً", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);

@@ -259,10 +259,10 @@ namespace ElectronicServices
             customersPanel = new Guna2Panel();
             addCustomersPanel = new Guna2GradientPanel();
             addCustExcelBtn = new Guna2GradientButton();
-            label4 = new Label();
+            custTakeLabel = new Label();
             custDebitAmount = new Guna2NumericUpDown();
             custCreditAmount = new Guna2NumericUpDown();
-            label3 = new Label();
+            custPayLabel = new Label();
             initValLabel = new Label();
             customerSearchBtn = new Guna2GradientButton();
             addCustomerBtn = new Guna2GradientButton();
@@ -530,7 +530,7 @@ namespace ElectronicServices
             addExpensesPanel.FillColor = Color.FromArgb(225, 255, 192);
             addExpensesPanel.FillColor2 = SystemColors.Info;
             addExpensesPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addExpensesPanel.Location = new Point(-1, 0);
+            addExpensesPanel.Location = new Point(-900, 0);
             addExpensesPanel.Name = "addExpensesPanel";
             addExpensesPanel.ShadowDecoration.CustomizableEdges = customizableEdges30;
             addExpensesPanel.Size = new Size(951, 128);
@@ -759,10 +759,12 @@ namespace ElectronicServices
             expensesPanel.BorderColor = Color.Silver;
             expensesPanel.BorderRadius = 10;
             expensesPanel.BorderThickness = 1;
+            expensesPanel.CustomizableEdges = customizableEdges31;
             expensesPanel.FillColor = Color.FromArgb(225, 225, 255);
             expensesPanel.Font = new Font("Segoe UI", 9F);
             expensesPanel.Location = new Point(-1, 128);
             expensesPanel.Name = "expensesPanel";
+            expensesPanel.ShadowDecoration.CustomizableEdges = customizableEdges32;
             expensesPanel.Size = new Size(951, 476);
             expensesPanel.TabIndex = 44;
             expensesPanel.Visible = false;
@@ -773,10 +775,12 @@ namespace ElectronicServices
             recordsPanel.BorderColor = Color.Silver;
             recordsPanel.BorderRadius = 10;
             recordsPanel.BorderThickness = 1;
+            recordsPanel.CustomizableEdges = customizableEdges33;
             recordsPanel.FillColor = Color.FromArgb(192, 220, 255);
             recordsPanel.Font = new Font("Segoe UI", 9F);
             recordsPanel.Location = new Point(-1, 128);
             recordsPanel.Name = "recordsPanel";
+            recordsPanel.ShadowDecoration.CustomizableEdges = customizableEdges34;
             recordsPanel.Size = new Size(951, 476);
             recordsPanel.TabIndex = 44;
             recordsPanel.Visible = false;
@@ -810,7 +814,7 @@ namespace ElectronicServices
             addRecordsPanel.FillColor = Color.Azure;
             addRecordsPanel.FillColor2 = Color.Honeydew;
             addRecordsPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addRecordsPanel.Location = new Point(-1, 0);
+            addRecordsPanel.Location = new Point(-870, 0);
             addRecordsPanel.Name = "addRecordsPanel";
             addRecordsPanel.ShadowDecoration.CustomizableEdges = customizableEdges44;
             addRecordsPanel.Size = new Size(951, 128);
@@ -1091,10 +1095,12 @@ namespace ElectronicServices
             walletsPanel.BorderColor = Color.Silver;
             walletsPanel.BorderRadius = 10;
             walletsPanel.BorderThickness = 1;
+            walletsPanel.CustomizableEdges = customizableEdges45;
             walletsPanel.FillColor = Color.FromArgb(255, 240, 240);
             walletsPanel.Font = new Font("Segoe UI", 9F);
             walletsPanel.Location = new Point(-1, 128);
             walletsPanel.Name = "walletsPanel";
+            walletsPanel.ShadowDecoration.CustomizableEdges = customizableEdges46;
             walletsPanel.Size = new Size(951, 476);
             walletsPanel.TabIndex = 42;
             walletsPanel.Visible = false;
@@ -1260,6 +1266,7 @@ namespace ElectronicServices
             balanceLabel.Size = new Size(65, 21);
             balanceLabel.TabIndex = 12;
             balanceLabel.Text = "الرصيد : ";
+            balanceLabel.DoubleClick += BalanceLabel_DoubleClick;
             // 
             // walletTypeComboBox
             // 
@@ -1459,10 +1466,12 @@ namespace ElectronicServices
             transactionsPanel.BorderColor = Color.Silver;
             transactionsPanel.BorderRadius = 10;
             transactionsPanel.BorderThickness = 1;
+            transactionsPanel.CustomizableEdges = customizableEdges73;
             transactionsPanel.FillColor = Color.AntiqueWhite;
             transactionsPanel.Font = new Font("Segoe UI", 9F);
             transactionsPanel.Location = new Point(-1, 96);
             transactionsPanel.Name = "transactionsPanel";
+            transactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges74;
             transactionsPanel.Size = new Size(951, 510);
             transactionsPanel.TabIndex = 6;
             transactionsPanel.Visible = false;
@@ -1754,9 +1763,11 @@ namespace ElectronicServices
             customersPanel.BorderColor = Color.Silver;
             customersPanel.BorderRadius = 10;
             customersPanel.BorderThickness = 1;
+            customersPanel.CustomizableEdges = customizableEdges95;
             customersPanel.FillColor = Color.FromArgb(160, 225, 160);
             customersPanel.Location = new Point(-1, 96);
             customersPanel.Name = "customersPanel";
+            customersPanel.ShadowDecoration.CustomizableEdges = customizableEdges96;
             customersPanel.Size = new Size(951, 508);
             customersPanel.TabIndex = 4;
             customersPanel.Visible = false;
@@ -1767,10 +1778,10 @@ namespace ElectronicServices
             addCustomersPanel.BorderRadius = 10;
             addCustomersPanel.BorderThickness = 1;
             addCustomersPanel.Controls.Add(addCustExcelBtn);
-            addCustomersPanel.Controls.Add(label4);
+            addCustomersPanel.Controls.Add(custTakeLabel);
             addCustomersPanel.Controls.Add(custDebitAmount);
             addCustomersPanel.Controls.Add(custCreditAmount);
-            addCustomersPanel.Controls.Add(label3);
+            addCustomersPanel.Controls.Add(custPayLabel);
             addCustomersPanel.Controls.Add(initValLabel);
             addCustomersPanel.Controls.Add(customerSearchBtn);
             addCustomersPanel.Controls.Add(addCustomerBtn);
@@ -1812,16 +1823,17 @@ namespace ElectronicServices
             addCustExcelBtn.Text = "إضافة من إكسل";
             addCustExcelBtn.Click += AddCustExcelBtn_Click;
             // 
-            // label4
+            // custTakeLabel
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 15F);
-            label4.Location = new Point(471, 55);
-            label4.Name = "label4";
-            label4.RightToLeft = RightToLeft.Yes;
-            label4.Size = new Size(62, 28);
-            label4.TabIndex = 20;
-            label4.Text = "عليه : ";
+            custTakeLabel.AutoSize = true;
+            custTakeLabel.Font = new Font("Segoe UI", 15F);
+            custTakeLabel.Location = new Point(471, 55);
+            custTakeLabel.Name = "custTakeLabel";
+            custTakeLabel.RightToLeft = RightToLeft.Yes;
+            custTakeLabel.Size = new Size(62, 28);
+            custTakeLabel.TabIndex = 20;
+            custTakeLabel.Text = "عليه : ";
+            custTakeLabel.DoubleClick += CustTakeLabel_DoubleClick;
             // 
             // custDebitAmount
             // 
@@ -1854,16 +1866,17 @@ namespace ElectronicServices
             custCreditAmount.Size = new Size(120, 36);
             custCreditAmount.TabIndex = 18;
             // 
-            // label3
+            // custPayLabel
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 15F);
-            label3.Location = new Point(720, 55);
-            label3.Name = "label3";
-            label3.RightToLeft = RightToLeft.Yes;
-            label3.Size = new Size(43, 28);
-            label3.TabIndex = 7;
-            label3.Text = "له : ";
+            custPayLabel.AutoSize = true;
+            custPayLabel.Font = new Font("Segoe UI", 15F);
+            custPayLabel.Location = new Point(720, 55);
+            custPayLabel.Name = "custPayLabel";
+            custPayLabel.RightToLeft = RightToLeft.Yes;
+            custPayLabel.Size = new Size(43, 28);
+            custPayLabel.TabIndex = 7;
+            custPayLabel.Text = "له : ";
+            custPayLabel.DoubleClick += CustPayLabel_DoubleClick;
             // 
             // initValLabel
             // 
@@ -2658,10 +2671,10 @@ namespace ElectronicServices
         private Guna.UI2.WinForms.Guna2TextBox payApp;
         private Label creditAmount;
         private Label debitAmount;
-        private Label label4;
+        private Label custTakeLabel;
         private Guna.UI2.WinForms.Guna2NumericUpDown custDebitAmount;
         private Guna.UI2.WinForms.Guna2NumericUpDown custCreditAmount;
-        private Label label3;
+        private Label custPayLabel;
         private Label initValLabel;
         private SaveFileDialog saveExcelFileDialog;
         private Guna.UI2.WinForms.Guna2DateTimePicker excelDate;
