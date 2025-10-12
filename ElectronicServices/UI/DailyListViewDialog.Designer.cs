@@ -48,7 +48,7 @@
             listView1.Name = "listView1";
             listView1.RightToLeft = RightToLeft.Yes;
             listView1.RightToLeftLayout = true;
-            listView1.Size = new Size(520, 601);
+            listView1.Size = new Size(620, 601);
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
@@ -58,7 +58,7 @@
             // 
             dateLabel.AutoSize = true;
             dateLabel.Font = new Font("Tahoma", 15.6F);
-            dateLabel.Location = new Point(422, 13);
+            dateLabel.Location = new Point(531, 14);
             dateLabel.Name = "dateLabel";
             dateLabel.RightToLeft = RightToLeft.Yes;
             dateLabel.Size = new Size(86, 25);
@@ -68,19 +68,19 @@
             // 
             // datePicker
             // 
-            datePicker.CustomFormat = "  yyyy - MM MMM - dd ddd     HH : mm : ss";
+            datePicker.CustomFormat = "  yyyy - MM MMMM - dd dddd     hh : mm : ss tt";
             datePicker.Font = new Font("Segoe UI", 11.7F);
             datePicker.Format = DateTimePickerFormat.Custom;
-            datePicker.Location = new Point(92, 12);
+            datePicker.Location = new Point(89, 12);
             datePicker.Name = "datePicker";
-            datePicker.Size = new Size(333, 28);
+            datePicker.Size = new Size(447, 28);
             datePicker.TabIndex = 3;
             datePicker.Value = new DateTime(2025, 9, 11, 15, 46, 5, 0);
             // 
             // saveDataBtn
             // 
             saveDataBtn.Font = new Font("Segoe UI", 11.7F);
-            saveDataBtn.Location = new Point(12, 7);
+            saveDataBtn.Location = new Point(9, 7);
             saveDataBtn.Name = "saveDataBtn";
             saveDataBtn.Size = new Size(74, 36);
             saveDataBtn.TabIndex = 4;
@@ -92,7 +92,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(520, 650);
+            ClientSize = new Size(620, 650);
             Controls.Add(saveDataBtn);
             Controls.Add(datePicker);
             Controls.Add(dateLabel);

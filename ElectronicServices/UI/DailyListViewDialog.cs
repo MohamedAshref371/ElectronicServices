@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+
 namespace ElectronicServices
 {
     public partial class DailyListViewDialog : Form
@@ -17,12 +19,18 @@ namespace ElectronicServices
                 saveDataBtn.Text = "إضافة";
 
                 listView1.Columns.Add("            التاريخ", 300, HorizontalAlignment.Center);
-                listView1.Columns.Add("المجموع", listView1.ClientSize.Width - 301, HorizontalAlignment.Center);
+                listView1.Columns.Add("اليوم", 120, HorizontalAlignment.Center);
+                listView1.Columns.Add("المجموع", listView1.ClientSize.Width - 301 - 120, HorizontalAlignment.Center);
 
                 AddDailyClosures();
             }
             else
             {
+                ClientSize = new Size(ClientSize.Width - 100, ClientSize.Height);
+                listView1.Width -= 100;
+                dateLabel.Location = new Point(422, 14);
+                datePicker.CustomFormat = "  yyyy - MM MMM - dd ddd     HH : mm : ss";
+                datePicker.Size = new Size(333, 28);
                 isDated = true;
                 datePicker.Value = (DateTime)date;
                 datePicker.ValueChanged += DatePicker_ValueChanged;
@@ -102,7 +110,7 @@ namespace ElectronicServices
             elvd.ShowDialog();
 
             float sum = DatabaseHelper.GetSumDailyClosure(date);
-            itm.SubItems[1].Text = sum.ToString();
+            itm.SubItems[2].Text = sum.ToString();
         }
 
         private void ListView1_KeyPress(object sender, KeyPressEventArgs e)
@@ -238,6 +246,7 @@ namespace ElectronicServices
             for (int i = 0; i < dates.Length; i++)
             {
                 item = new ListViewItem("    \u200E" + dates[i].Date.Replace(" ", "   "));
+                item.SubItems.Add(dates[i].Date[..10].GetArabic(true));
                 item.SubItems.Add(dates[i].Sum.ToString());
                 listView1.Items.Add(item);
             }

@@ -67,7 +67,7 @@ namespace ElectronicServices
                 }
             };
 
-            headerPanel.MouseDown += meh; ;
+            headerPanel.MouseDown += meh;
             formIcon.MouseDown += meh;
             formTitle.MouseDown += meh;
             CompanyPhone.MouseDown += meh;
