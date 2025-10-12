@@ -18,16 +18,16 @@ namespace ElectronicServices
 
                 saveDataBtn.Text = "إضافة";
 
-                listView1.Columns.Add("            التاريخ", 300, HorizontalAlignment.Center);
-                listView1.Columns.Add("اليوم", 120, HorizontalAlignment.Center);
-                listView1.Columns.Add("المجموع", listView1.ClientSize.Width - 301 - 120, HorizontalAlignment.Center);
+                listView1.Columns.Add("            التاريخ", 270, HorizontalAlignment.Center);
+                listView1.Columns.Add("اليوم", 100, HorizontalAlignment.Center);
+                listView1.Columns.Add("المجموع", listView1.ClientSize.Width - 271 - 100, HorizontalAlignment.Center);
 
                 AddDailyClosures();
             }
             else
             {
-                ClientSize = new Size(ClientSize.Width - 100, ClientSize.Height);
-                listView1.Width -= 100;
+                ClientSize = new Size(ClientSize.Width - 50, ClientSize.Height);
+                listView1.Width -= 50;
                 dateLabel.Location = new Point(422, 14);
                 datePicker.CustomFormat = "  yyyy - MM MMM - dd ddd     HH : mm : ss";
                 datePicker.Size = new Size(333, 28);
