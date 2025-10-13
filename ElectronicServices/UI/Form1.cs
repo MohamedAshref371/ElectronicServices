@@ -202,11 +202,10 @@ namespace ElectronicServices
         private void Timer1_Tick(object sender, EventArgs e)
         {
             DateTime now = DateTime.Now;
-            System.Globalization.CultureInfo ar = new("ar-EG");
             string date = now.ToStandardString();
-            string month = now.ToString("MMMM", ar);
-            string day = now.ToString("dddd", ar);
-            string time = now.ToString("hh:mm:ss tt", ar);
+            string month = now.ToString("MMMM", DateTimeExtensions.Arabic);
+            string day = now.ToString("dddd", DateTimeExtensions.Arabic);
+            string time = now.ToString("hh:mm:ss tt", DateTimeExtensions.Arabic);
             dateNow.Text = $"{date}\n{month}\n{day}\n{time}";
         }
 
@@ -1538,19 +1537,19 @@ namespace ElectronicServices
 
             float[] withDepo = DatabaseHelper.GetWalletsWithdDepo(date);
             sheet.Cell(16, 1).Value = "المحافظ";
-            sheet.Cell(16, 2).Value = "سحب";
-            sheet.Cell(16, 3).Value = "إيداع";
+            sheet.Cell(16, 2).Value = "إيداع";
+            sheet.Cell(16, 3).Value = "سحب";
             sheet.Cell(16, 2).Style.Fill.BackgroundColor = XLColor.LightBlue;
             sheet.Cell(16, 3).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(17, 2).Value = withDepo[0];
-            sheet.Cell(17, 3).Value = withDepo[1];
+            sheet.Cell(17, 2).Value = withDepo[1];
+            sheet.Cell(17, 3).Value = withDepo[0];
 
             sheet.Cell(16, 4).Value = "المجموع";
             sheet.Cell(16, 5).Value = "الفرق";
             sheet.Cell(16, 4).Style.Fill.BackgroundColor = XLColor.LightBlue;
             sheet.Cell(16, 5).Style.Fill.BackgroundColor = XLColor.LightSkyBlue;
-            sheet.Cell(17, 4).Value = withDepo[0] + withDepo[1];
-            sheet.Cell(17, 5).Value = withDepo[0] - withDepo[1];
+            sheet.Cell(17, 4).Value = withDepo[1] + withDepo[0];
+            sheet.Cell(17, 5).Value = withDepo[1] - withDepo[0];
 
 
             float[] expense = DatabaseHelper.ExpenseAmount(date);
