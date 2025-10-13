@@ -20,7 +20,6 @@ namespace ElectronicServices
         public static readonly CultureInfo Arabic = new ("ar-EG");
         public static string GetArabic(this string dateStr, bool day)
         {
-            
             if (DateTime.TryParseExact(dateStr, day ? "yyyy-MM-dd" : "yyyy-MM", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime result))
                 return result.ToString(day ? "dddd" : "MMMM", Arabic);
 

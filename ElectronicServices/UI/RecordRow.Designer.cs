@@ -47,7 +47,7 @@
             phoneNumber.TabIndex = 1;
             phoneNumber.Text = "رقم الهاتف";
             phoneNumber.TextAlign = ContentAlignment.MiddleCenter;
-            phoneNumber.Click += PhoneNumber_Click;
+            phoneNumber.DoubleClick += PhoneNumber_DoubleClick;
             // 
             // deposit
             // 

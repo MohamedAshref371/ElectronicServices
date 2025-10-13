@@ -9,11 +9,11 @@ namespace ElectronicServices
             InitializeComponent();
         }
 
+        private readonly string comment;
         public RecordRow(RecordRowData data)
         {
             InitializeComponent();
             phoneNumber.Text = data.Phone;
-            phoneNumber.Tag = data.Comment;
             date.Text = data.Date[..10];
             date.Tag = data.Date[11..];
             withdRema.Text = data.WithdrawalRemaining.ToString();
@@ -21,6 +21,7 @@ namespace ElectronicServices
             withdrawal.Text = data.Withdrawal.ToString();
             deposit.Text = data.Deposit.ToString();
             balance.Text = data.Balance.ToString();
+            comment = data.Comment;
         }
 
         #region Border Radius
@@ -44,18 +45,16 @@ namespace ElectronicServices
         }
         #endregion
 
-        private void PhoneNumber_Click(object sender, EventArgs e)
+        private void PhoneNumber_DoubleClick(object sender, EventArgs e)
         {
-            if (phoneNumber.Tag == null) return;
-            string comment = phoneNumber.Tag.ToString();
-            if (comment == "") return;
-            Form1.MessageForm(phoneNumber.Tag.ToString(), "ملاحظات العملية", MessageBoxButtons.OK, MessageBoxIconV2.Information);
+            if (comment != null && comment != "")
+                Form1.MessageForm(comment, "ملاحظات العملية", MessageBoxButtons.OK, MessageBoxIconV2.Information);
         }
 
         private void Date_DoubleClick(object sender, EventArgs e)
         {
-            if (date.Tag == null) return;
-            Form1.MessageForm(date.Tag.ToString(), "وقت العملية", MessageBoxButtons.OK, MessageBoxIconV2.Information);
+            if (date.Tag is string dt && dt != null)
+                Form1.MessageForm(dt, "وقت العملية", MessageBoxButtons.OK, MessageBoxIconV2.Information);
         }
     }
 }

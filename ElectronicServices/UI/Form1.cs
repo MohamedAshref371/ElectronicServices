@@ -1200,7 +1200,7 @@ namespace ElectronicServices
                 Withdrawal = (float)withdrawal.Value,
                 Deposit = (float)deposit.Value,
                 Balance = walletData.Balance,
-                Comment = walletComment.Text.Trim(),
+                Comment = operComment.Text.Trim(),
             };
 
             withdrawal.Value = 0;
@@ -1211,8 +1211,19 @@ namespace ElectronicServices
                 MessageForm("حدث خطأ أثناء إضافة العملية\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
-            RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
-            AddRecordsInPanel(records);
+
+            int count = recordsPanel.Controls.Count, bottom;
+            if (count > 0)
+                bottom = recordsPanel.Controls[count - 1].Bottom;
+            else
+                bottom = 2;
+
+            RecordRow row = new(data);
+            row.Location = new Point(row.Location.X + rowPadding, 0);
+            fs?.SetControl(row);
+            fs?.SetControls(row.Controls);
+            row.Location = new Point(row.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
+            recordsPanel.Controls.Add(row);
         }
 
         private void WalletTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
