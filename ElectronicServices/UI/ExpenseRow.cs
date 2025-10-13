@@ -27,7 +27,7 @@ namespace ElectronicServices
 
         private void Title_DoubleClick(object sender, EventArgs e)
         {
-            if (data.Comment != "")
+            if (data != null && data.Comment != "")
                 Form1.MessageForm(data.Comment, "ملاحظة", MessageBoxButtons.OK, MessageBoxIconV2.Information);
         }
 

@@ -46,6 +46,7 @@ namespace ElectronicServices
 
         private void PhoneNumber_Click(object sender, EventArgs e)
         {
+            if (phoneNumber.Tag == null) return;
             string comment = phoneNumber.Tag.ToString();
             if (comment == "") return;
             Form1.MessageForm(phoneNumber.Tag.ToString(), "ملاحظات العملية", MessageBoxButtons.OK, MessageBoxIconV2.Information);
@@ -53,6 +54,7 @@ namespace ElectronicServices
 
         private void Date_DoubleClick(object sender, EventArgs e)
         {
+            if (date.Tag == null) return;
             Form1.MessageForm(date.Tag.ToString(), "وقت العملية", MessageBoxButtons.OK, MessageBoxIconV2.Information);
         }
     }
