@@ -19,6 +19,11 @@ namespace ElectronicServices
         public TransactionRow(TransactionRowData data)
         {
             InitializeComponent();
+            SetData(data);
+        }
+
+        public void SetData(TransactionRowData data)
+        {
             this.data = data;
             nameLabel.Text = data.Name;
             dateLabel.Text = data.Date[..10];

@@ -13,10 +13,15 @@ namespace ElectronicServices
             deleteBtn.Visible = false;
         }
         
-        private readonly ExpenseRowData data;
+        private ExpenseRowData data;
         public ExpenseRow(ExpenseRowData data)
         {
             InitializeComponent();
+            SetData(data);
+        }
+
+        public void SetData(ExpenseRowData data)
+        {
             this.data = data;
             title.Text = data.Title;
             date.Text = data.Date;

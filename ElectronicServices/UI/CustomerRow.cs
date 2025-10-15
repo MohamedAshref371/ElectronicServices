@@ -18,6 +18,11 @@ namespace ElectronicServices
         public CustomerRow(CustomerRowData data)
         {
             InitializeComponent();
+            SetData(data);
+        }
+
+        public void SetData(CustomerRowData data)
+        {
             this.Id = data.Id;
             codeLabel.Text = data.Id.ToString();
             nameLabel.Text = data.Name;

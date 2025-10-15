@@ -9,10 +9,15 @@ namespace ElectronicServices
             InitializeComponent();
         }
 
-        private readonly string comment;
         public RecordRow(RecordRowData data)
         {
             InitializeComponent();
+            SetData(data);
+        }
+
+        private string comment;
+        public void SetData(RecordRowData data)
+        {
             phoneNumber.Text = data.Phone;
             date.Text = data.Date[..10];
             date.Tag = data.Date[11..];

@@ -16,12 +16,12 @@ namespace ElectronicServices
         public WalletRow(WalletRowData data)
         {
             InitializeComponent();
-            SetWalletRowData(data);
+            SetData(data);
         }
 
         public string Phone => data.Phone;
 
-        public void SetWalletRowData(WalletRowData data)
+        public void SetData(WalletRowData data)
         {
             this.data = data;
             phoneNumber.Text = data.Phone;
