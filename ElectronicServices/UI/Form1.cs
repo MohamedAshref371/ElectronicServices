@@ -75,25 +75,18 @@ namespace ElectronicServices
             timer2.Tick += (s, e1) =>
             {
                 timer2.Stop();
-
-                if (customersPanel.Visible)
-                    customersPanel.Invalidate();
-
-                else if (transactionsPanel.Visible)
-                    transactionsPanel.Invalidate();
-
-                else if (walletsPanel.Visible)
-                    walletsPanel.Invalidate();
-
-                else if (recordsPanel.Visible)
-                    recordsPanel.Invalidate();
-
-                else if (expensesPanel.Visible)
-                    expensesPanel.Invalidate();
+                panel?.Invalidate();
             };
 
-            ScrollEventHandler scroll = (s, e1) => { timer2.Stop(); timer2.Start(); };
-            MouseEventHandler wheel = (s, e1) => { timer2.Stop(); timer2.Start(); };
+            System.Windows.Forms.Timer timer3 = new() { Interval = 10 };
+            timer3.Tick += (s, e1) =>
+            {
+                timer3.Stop();
+                Panel_Scroll();
+            };
+
+            ScrollEventHandler scroll = (s, e1) => { timer2.Stop(); timer3.Stop(); timer2.Start(); timer3.Start(); };
+            MouseEventHandler wheel = (s, e1) => { timer2.Stop(); timer3.Stop(); timer2.Start(); timer3.Start(); };
 
             customersPanel.Scroll += scroll;
             customersPanel.MouseWheel += wheel;
@@ -213,6 +206,19 @@ namespace ElectronicServices
             if (e.KeyChar == '\'')
                 e.Handled = true;
         }
+
+        Guna.UI2.WinForms.Guna2Panel panel;
+        private void Panel_Scroll()
+        {
+            if (panel is null) return;
+            for (int i = 1; i < panel.Controls.Count - 1; i++)
+            {
+                int top = panel.Controls[i].Top;
+                int bottom = top + panel.Controls[i].Height;
+
+                panel.Controls[i].Visible = bottom > 0 && top < panel.ClientSize.Height;
+            }
+        }
         #endregion
 
         #region Footer Panel
@@ -223,6 +229,7 @@ namespace ElectronicServices
             timer1.Start();
             expense.Text = DatabaseHelper.GetExpensesAmount(DateTime.Now.ToStandardString()).ToString();
             UpdateCreditAndDept();
+            panel = null;
             addCustomersPanel.Visible = false;
             customersPanel.Visible = false;
             addTransactionsPanel.Visible = false;
@@ -238,6 +245,7 @@ namespace ElectronicServices
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            panel = customersPanel;
             addCustomersPanel.Visible = true;
             customersPanel.Visible = true;
             addTransactionsPanel.Visible = false;
@@ -253,6 +261,7 @@ namespace ElectronicServices
         private void TransactionsBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            panel = transactionsPanel;
             addTransactionsPanel.Visible = true;
             transactionsPanel.Visible = true;
             addCustomersPanel.Visible = false;
@@ -268,6 +277,7 @@ namespace ElectronicServices
         private void WalletsBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            panel = walletsPanel;
             addWalletsPanel.Visible = true;
             walletsPanel.Visible = true;
             addCustomersPanel.Visible = false;
@@ -286,6 +296,7 @@ namespace ElectronicServices
                 balance2.Text = DatabaseHelper.GetTotalWalletsBalance(walletData.Type).ToString();
 
             timer1.Stop();
+            panel = recordsPanel;
             addRecordsPanel.Visible = true;
             recordsPanel.Visible = true;
             addCustomersPanel.Visible = false;
@@ -301,6 +312,7 @@ namespace ElectronicServices
         private void ExpensesBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            panel = expensesPanel;
             addExpensesPanel.Visible = true;
             expensesPanel.Visible = true;
             addCustomersPanel.Visible = false;
