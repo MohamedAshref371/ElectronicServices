@@ -1,6 +1,4 @@
 ﻿
-using System.Globalization;
-
 namespace ElectronicServices
 {
     public partial class DailyListViewDialog : Form

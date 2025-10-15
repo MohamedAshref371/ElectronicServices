@@ -7,9 +7,9 @@ namespace ElectronicServices
         public CustomerRow()
         {
             InitializeComponent();
-            customerTransactionsBtn.Visible = false;
+            transBtn.Visible = false;
             editBtn.Visible = false;
-            deleteCustomerBtn.Visible = false;
+            deleteBtn.Visible = false;
         }
 
         public int Id { get; private set; }
@@ -49,7 +49,7 @@ namespace ElectronicServices
             => SetCustomerRowData(pay + payP, take + takeP);
 
 
-        private void CustomerTransactionsBtn_Click(object sender, EventArgs e)
+        private void TransBtn_Click(object sender, EventArgs e)
             => Program.Form.CustomerRowTransactions(Id);
 
         private void EditBtn_Click(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace ElectronicServices
             }
         }
 
-        private void DeleteCustomerBtn_Click(object sender, EventArgs e)
+        private void DeleteBtn_Click(object sender, EventArgs e)
         {
             bool res = DatabaseHelper.IsThereTransactions(Id);
 
@@ -148,14 +148,14 @@ namespace ElectronicServices
         }
         #endregion
 
-        private void CustomerTransactionsBtn_SizeChanged(object sender, EventArgs e)
+        private void TransBtn_SizeChanged(object sender, EventArgs e)
         {
-            int minSize = Math.Min(customerTransactionsBtn.Width, customerTransactionsBtn.Height);
+            int minSize = Math.Min(transBtn.Width, transBtn.Height);
             Size newSize = new(minSize, minSize);
 
-            customerTransactionsBtn.ImageSize = newSize;
+            transBtn.ImageSize = newSize;
             editBtn.ImageSize = newSize;
-            deleteCustomerBtn.ImageSize = newSize;
+            deleteBtn.ImageSize = newSize;
         }
 
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)

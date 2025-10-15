@@ -48,7 +48,6 @@
             // 
             // title
             // 
-            title.BackColor = Color.Transparent;
             title.Font = new Font("Segoe UI", 12F);
             title.Location = new Point(463, 0);
             title.Name = "title";
@@ -60,7 +59,6 @@
             // 
             // amount
             // 
-            amount.BackColor = Color.Transparent;
             amount.Font = new Font("Segoe UI", 12F);
             amount.ForeColor = Color.Maroon;
             amount.Location = new Point(141, 0);
@@ -114,7 +112,6 @@
             // 
             // date
             // 
-            date.BackColor = Color.Transparent;
             date.Font = new Font("Segoe UI", 12F);
             date.ForeColor = Color.Black;
             date.Location = new Point(277, 0);

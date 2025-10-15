@@ -98,7 +98,6 @@
             // 
             // dateLabel
             // 
-            dateLabel.BackColor = Color.Transparent;
             dateLabel.Font = new Font("Segoe UI", 12F);
             dateLabel.Location = new Point(399, 0);
             dateLabel.Name = "dateLabel";
@@ -109,7 +108,6 @@
             // 
             // takeLabel
             // 
-            takeLabel.BackColor = Color.Transparent;
             takeLabel.Font = new Font("Segoe UI", 12F);
             takeLabel.ForeColor = Color.Maroon;
             takeLabel.Location = new Point(187, -1);
@@ -121,7 +119,6 @@
             // 
             // payLabel
             // 
-            payLabel.BackColor = Color.Transparent;
             payLabel.Font = new Font("Segoe UI", 12F);
             payLabel.ForeColor = Color.Navy;
             payLabel.Location = new Point(293, -1);
@@ -133,7 +130,6 @@
             // 
             // nameLabel
             // 
-            nameLabel.BackColor = Color.Transparent;
             nameLabel.Font = new Font("Segoe UI", 12F);
             nameLabel.Location = new Point(535, 0);
             nameLabel.Name = "nameLabel";

@@ -46,7 +46,6 @@
             // 
             // phoneNumber
             // 
-            phoneNumber.BackColor = Color.Transparent;
             phoneNumber.Font = new Font("Segoe UI", 12F);
             phoneNumber.Location = new Point(650, 0);
             phoneNumber.Name = "phoneNumber";
@@ -57,7 +56,6 @@
             // 
             // deposit
             // 
-            deposit.BackColor = Color.Transparent;
             deposit.Font = new Font("Segoe UI", 12F);
             deposit.ForeColor = Color.Navy;
             deposit.Location = new Point(277, 0);
@@ -69,7 +67,6 @@
             // 
             // withdrawal
             // 
-            withdrawal.BackColor = Color.Transparent;
             withdrawal.Font = new Font("Segoe UI", 12F);
             withdrawal.ForeColor = Color.Maroon;
             withdrawal.Location = new Point(413, 0);
@@ -81,7 +78,6 @@
             // 
             // balance
             // 
-            balance.BackColor = Color.Transparent;
             balance.Font = new Font("Segoe UI", 12F);
             balance.ForeColor = Color.FromArgb(0, 64, 0);
             balance.Location = new Point(141, 0);
@@ -157,7 +153,6 @@
             // 
             // walletType
             // 
-            walletType.BackColor = Color.Transparent;
             walletType.Font = new Font("Segoe UI", 12F);
             walletType.ForeColor = Color.Black;
             walletType.Location = new Point(549, 0);
