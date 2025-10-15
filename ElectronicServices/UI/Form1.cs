@@ -619,16 +619,18 @@ namespace ElectronicServices
 
         public void TransactionRowCustomer(string custName)
         {
-            CustomersBtn_Click(null, null);
             customerName.Text = custName;
             CustomerSearchBtn_Click(null, null);
+            customersBtn.Focus();
+            CustomersBtn_Click(null, null);
         }
 
         public void CustomerRowTransactions(int custId)
         {
-            TransactionsBtn_Click(null, null);
             customersComboBox.SelectedItem = customersComboBox.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(c => c.Key == custId);
             TransSearchBtn_Click(null, null);
+            transactionsBtn.Focus();
+            TransactionsBtn_Click(null, null);
         }
 
         private void CustPayLabel_DoubleClick(object sender, EventArgs e)
@@ -969,6 +971,7 @@ namespace ElectronicServices
             operComment.Text = "";
             operSaveBtn.Enabled = false;
             AddRecordsInPanel(records);
+            recordsBtn.Focus();
             RecordsBtn_Click(null, null);
         }
 
@@ -1032,6 +1035,7 @@ namespace ElectronicServices
             operSaveBtn.Enabled = true;
             RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
             AddRecordsInPanel(records);
+            recordsBtn.Focus();
             RecordsBtn_Click(null, null);
         }
 
