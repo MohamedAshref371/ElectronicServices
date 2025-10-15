@@ -1688,6 +1688,7 @@ namespace ElectronicServices
             customersComboBox.ShadowDecoration.CustomizableEdges = customizableEdges92;
             customersComboBox.Size = new Size(228, 36);
             customersComboBox.TabIndex = 0;
+            customersComboBox.SelectedIndexChanged += CustomersComboBox_SelectedIndexChanged;
             // 
             // takeLabel
             // 

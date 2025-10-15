@@ -155,6 +155,20 @@ namespace ElectronicServices
         FormSize? fs;
         private void MaximizeBtn_Click(object sender, EventArgs e)
         {
+            customersPanel.VerticalScroll.Value = 0;
+            transactionsPanel.VerticalScroll.Value = 0;
+            walletsPanel.VerticalScroll.Value = 0;
+            recordsPanel.VerticalScroll.Value = 0;
+            expensesPanel.VerticalScroll.Value = 0;
+
+            customersPanel.PerformLayout();
+            transactionsPanel.PerformLayout();
+            walletsPanel.PerformLayout();
+            recordsPanel.PerformLayout();
+            expensesPanel.PerformLayout();
+
+            Panel_Scroll();
+
             if (WindowState == FormWindowState.Maximized)
             {
                 WindowState = FormWindowState.Normal;
@@ -216,7 +230,16 @@ namespace ElectronicServices
                 int top = panel.Controls[i].Top;
                 int bottom = top + panel.Controls[i].Height;
 
-                panel.Controls[i].Visible = bottom > 0 && top < panel.ClientSize.Height;
+                panel.Controls[i].Visible = (bool)panel.Controls[i].Tag && bottom > 0 && top < panel.ClientSize.Height;
+            }
+
+            for (int i = panel.Controls.Count - 1; i > 1; i--)
+            {
+                if ((bool)panel.Controls[i].Tag)
+                {
+                    panel.Controls[i].Visible = true;
+                    break;
+                }
             }
         }
         #endregion
@@ -414,16 +437,9 @@ namespace ElectronicServices
                 Pay = (float)custCreditAmount.Value,
                 Take = (float)custDebitAmount.Value,
             });
-            if (count > 0)
-                bottom = customersPanel.Controls[count - 1].Bottom;
-            else
-                bottom = 2;
 
-            cust.Location = new Point(cust.Location.X + rowPadding, 0);
-            fs?.SetControl(cust);
-            fs?.SetControls(cust.Controls);
-            cust.Location = new Point(cust.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
-            customersPanel.Controls.Add(cust);
+            CustomerSearchBtn_Click(null, null);
+
             UpdateCustomersComboBox();
 
             if (custCreditAmount.Value > 0 || custDebitAmount.Value > 0)
@@ -460,31 +476,50 @@ namespace ElectronicServices
 
         private void AddCustomersInPanel(CustomerRowData[] customers)
         {
-            customersPanel.Controls.Clear();
-            CustomerRow row = new();
-            row.Location = new Point(row.Location.X + rowPadding, 5);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            customersPanel.Controls.Add(row);
-
-            for (int i = 0; i < customers.Length; i++)
+            int i;
+            Control ctrl;
+            for (i = 0; i < customers.Length && i < customersPanel.Controls.Count - 1; i++)
             {
-                row = new(customers[i]);
-                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
-                fs?.SetControl(row);
-                fs?.SetControls(row.Controls);
-                customersPanel.Controls.Add(row);
+                ctrl = customersPanel.Controls[i + 1];
+                ((CustomerRow)ctrl).SetData(customers[i]);
+                ctrl.Tag = true; ctrl.Visible = true;
+            }
+
+            if (i < customersPanel.Controls.Count - 1)
+            {
+                for (; i < customersPanel.Controls.Count - 1; i++)
+                {
+                    ctrl = customersPanel.Controls[i + 1];
+                    ctrl.Tag = false; ctrl.Visible = false;
+                }
+            }
+            else if (i < customers.Length)
+            {
+                CustomerRow row;
+                for (; i < customers.Length; i++)
+                {
+                    row = new(customers[i]);
+                    row.Location = new Point(rowPadding, 0);
+                    fs?.SetControl(row);
+                    fs?.SetControls(row.Controls);
+                    row.Location = new Point(row.Location.X, customersPanel.Controls[customersPanel.Controls.Count - 1].Bottom + 3);
+                    row.Tag = true;
+                    customersPanel.Controls.Add(row);
+                }
             }
         }
 
+        bool isCustomerEdit = false;
         private void UpdateCustomersComboBox()
         {
+            isCustomerEdit = true;
             customersComboBox.Items.Clear();
             customersComboBox.Items.Add(new KeyValuePair<int, string>(0, "اختر من القائمة"));
             var customers = DatabaseHelper.GetCustomersNames();
             foreach (var customer in customers)
                 customersComboBox.Items.Add(customer);
             customersComboBox.SelectedIndex = 0;
+            isCustomerEdit = false;
         }
 
         private void CustomerLabel_DoubleClick(object sender, EventArgs e)
@@ -550,18 +585,7 @@ namespace ElectronicServices
                 return;
             }
 
-            int count = transactionsPanel.Controls.Count, bottom;
-            if (count > 0)
-                bottom = transactionsPanel.Controls[count - 1].Bottom;
-            else
-                bottom = 2;
-
-            TransactionRow row = new(data);
-            row.Location = new Point(row.Location.X + rowPadding, 0);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            row.Location = new Point(row.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
-            transactionsPanel.Controls.Add(row);
+            TransSearchBtn_Click(null, null);
 
             addTransactionsPanel.Tag = DatabaseHelper.GetTransactionNextId();
             payAmount.Value = 0; takeAmount.Value = 0;
@@ -595,26 +619,48 @@ namespace ElectronicServices
             int custId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key;
             TransactionRowData[] transactions = DatabaseHelper.GetTransactions(custId);
 
-            AddTransactionsRows(transactions);
+            AddTransactionsInPanel(transactions);
         }
 
-        private void AddTransactionsRows(TransactionRowData[] transactions)
+        private void AddTransactionsInPanel(TransactionRowData[] transactions)
         {
-            transactionsPanel.Controls.Clear();
-            TransactionRow row = new();
-            row.Location = new Point(row.Location.X + rowPadding, 5);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            transactionsPanel.Controls.Add(row);
-
-            for (int i = 0; i < transactions.Length; i++)
+            int i;
+            Control ctrl;
+            for (i = 0; i < transactions.Length && i < transactionsPanel.Controls.Count - 1; i++)
             {
-                row = new(transactions[i]);
-                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
-                fs?.SetControl(row);
-                fs?.SetControls(row.Controls);
-                transactionsPanel.Controls.Add(row);
+                ctrl = transactionsPanel.Controls[i + 1];
+                ((TransactionRow)ctrl).SetData(transactions[i]);
+                ctrl.Tag = true; ctrl.Visible = true;
             }
+
+            if (i < transactionsPanel.Controls.Count - 1)
+            {
+                for (; i < transactionsPanel.Controls.Count - 1; i++)
+                {
+                    ctrl = transactionsPanel.Controls[i + 1];
+                    ctrl.Tag = false; ctrl.Visible = false;
+                }
+            }
+            else if (i < transactions.Length)
+            {
+                TransactionRow row;
+                for (; i < transactions.Length; i++)
+                {
+                    row = new(transactions[i]);
+                    row.Location = new Point(rowPadding, 0);
+                    fs?.SetControl(row);
+                    fs?.SetControls(row.Controls);
+                    row.Location = new Point(row.Location.X, transactionsPanel.Controls[transactionsPanel.Controls.Count - 1].Bottom + 3);
+                    row.Tag = true;
+                    transactionsPanel.Controls.Add(row);
+                }
+            }
+        }
+
+        private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!isCustomerEdit)
+                TransSearchBtn_Click(null, null);
         }
 
         public void TransactionRowCustomer(string custName)
@@ -628,7 +674,6 @@ namespace ElectronicServices
         public void CustomerRowTransactions(int custId)
         {
             customersComboBox.SelectedItem = customersComboBox.Items.Cast<KeyValuePair<int, string>>().FirstOrDefault(c => c.Key == custId);
-            TransSearchBtn_Click(null, null);
             transactionsBtn.Focus();
             TransactionsBtn_Click(null, null);
         }
@@ -689,7 +734,7 @@ namespace ElectronicServices
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
                 TransactionRowData[] transactions = DatabaseHelper.GetTransactions(custId, data[lvd.SelectedIndex].Text, key);
-                AddTransactionsRows(transactions);
+                AddTransactionsInPanel(transactions);
             }
         }
 
@@ -775,12 +820,14 @@ namespace ElectronicServices
 
         private void UpdateWalletTypeComboBox()
         {
+            isWalletEdit = true;
             walletTypeComboBox.Items.Clear();
             walletTypeComboBox.Items.Add("اختر من القائمة");
             string[] types = DatabaseHelper.GetWalletTypes();
             foreach (string type in types)
                 walletTypeComboBox.Items.Add(type);
             walletTypeComboBox.SelectedIndex = 0;
+            isWalletEdit = false;
         }
 
         private void WalletSearchBtn_Click(object sender, EventArgs e)
@@ -791,20 +838,36 @@ namespace ElectronicServices
 
         private void AddWalletsInPanel(WalletRowData[] wallets)
         {
-            walletsPanel.Controls.Clear();
-            WalletRow row = new();
-            row.Location = new Point(row.Location.X + rowPadding, 5);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            walletsPanel.Controls.Add(row);
-
-            for (int i = 0; i < wallets.Length; i++)
+            int i;
+            Control ctrl;
+            for (i = 0; i < wallets.Length && i < walletsPanel.Controls.Count - 1; i++)
             {
-                row = new(wallets[i]);
-                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
-                fs?.SetControl(row);
-                fs?.SetControls(row.Controls);
-                walletsPanel.Controls.Add(row);
+                ctrl = walletsPanel.Controls[i + 1];
+                ((WalletRow)ctrl).SetData(wallets[i]);
+                ctrl.Tag = true; ctrl.Visible = true;
+            }
+
+            if (i < walletsPanel.Controls.Count - 1)
+            {
+                for (; i < walletsPanel.Controls.Count - 1; i++)
+                {
+                    ctrl = walletsPanel.Controls[i + 1];
+                    ctrl.Tag = false; ctrl.Visible = false;
+                }
+            }
+            else if (i < wallets.Length)
+            {
+                WalletRow row;
+                for (; i < wallets.Length; i++)
+                {
+                    row = new(wallets[i]);
+                    row.Location = new Point(rowPadding, 0);
+                    fs?.SetControl(row);
+                    fs?.SetControls(row.Controls);
+                    row.Location = new Point(row.Location.X, walletsPanel.Controls[walletsPanel.Controls.Count - 1].Bottom + 3);
+                    row.Tag = true;
+                    walletsPanel.Controls.Add(row);
+                }
             }
         }
 
@@ -869,23 +932,12 @@ namespace ElectronicServices
             {
                 if (walletsPanel.Controls[i] is WalletRow wr && wr.Phone == data.Phone)
                 {
-                    wr.SetWalletRowData(data);
+                    wr.SetData(data);
                     return;
                 }
             }
 
-            int count = walletsPanel.Controls.Count, bottom;
-            if (count > 0)
-                bottom = walletsPanel.Controls[count - 1].Bottom;
-            else
-                bottom = 2;
-
-            WalletRow row = new(data);
-            row.Location = new Point(row.Location.X + rowPadding, 0);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            row.Location = new Point(row.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
-            walletsPanel.Controls.Add(row);
+            WalletTypeComboBox_SelectedIndexChanged(null, null);
         }
 
         private void WalletEmptyBtn_Click(object sender, EventArgs e)
@@ -1058,12 +1110,7 @@ namespace ElectronicServices
         public void ResetWallet(string phone)
         {
             if (walletData.Phone != phone) return;
-            recordsPanel.Controls.Clear();
-            RecordRow row = new();
-            row.Location = new Point(row.Location.X + rowPadding, 5);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            recordsPanel.Controls.Add(row);
+            AddWalletsInPanel([]);
         }
 
         public void ResetWallets()
@@ -1077,12 +1124,7 @@ namespace ElectronicServices
                 return;
             }
 
-            recordsPanel.Controls.Clear();
-            RecordRow row = new();
-            row.Location = new Point(row.Location.X + rowPadding, 5);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            recordsPanel.Controls.Add(row);
+            AddWalletsInPanel([]);
 
             MessageForm("تم حذف جميع عمليات المحافظ", "نجاح", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
         }
@@ -1146,20 +1188,36 @@ namespace ElectronicServices
 
         private void AddRecordsInPanel(RecordRowData[] records)
         {
-            recordsPanel.Controls.Clear();
-            RecordRow row = new();
-            row.Location = new Point(row.Location.X + rowPadding, 5);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            recordsPanel.Controls.Add(row);
-
-            for (int i = 0; i < records.Length; i++)
+            int i;
+            Control ctrl;
+            for (i = 0; i < records.Length && i < recordsPanel.Controls.Count - 1; i++)
             {
-                row = new(records[i]);
-                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
-                fs?.SetControl(row);
-                fs?.SetControls(row.Controls);
-                recordsPanel.Controls.Add(row);
+                ctrl = recordsPanel.Controls[i + 1];
+                ((RecordRow)ctrl).SetData(records[i]);
+                ctrl.Tag = true; ctrl.Visible = true;
+            }
+
+            if (i < recordsPanel.Controls.Count - 1)
+            {
+                for (; i < recordsPanel.Controls.Count - 1; i++)
+                {
+                    ctrl = recordsPanel.Controls[i + 1];
+                    ctrl.Tag = false; ctrl.Visible = false;
+                }
+            }
+            else if (i < records.Length)
+            {
+                RecordRow row;
+                for (; i < records.Length; i++)
+                {
+                    row = new(records[i]);
+                    row.Location = new Point(rowPadding, 0);
+                    fs?.SetControl(row);
+                    fs?.SetControls(row.Controls);
+                    row.Location = new Point(row.Location.X, recordsPanel.Controls[recordsPanel.Controls.Count - 1].Bottom + 3);
+                    row.Tag = true;
+                    recordsPanel.Controls.Add(row);
+                }
             }
         }
 
@@ -1211,7 +1269,7 @@ namespace ElectronicServices
             {
                 if (walletsPanel.Controls[i] is WalletRow wr && wr.Phone == walletData.Phone)
                 {
-                    wr.SetWalletRowData(walletData);
+                    wr.SetData(walletData);
                     break;
                 }
             }
@@ -1237,23 +1295,13 @@ namespace ElectronicServices
                 return;
             }
 
-            int count = recordsPanel.Controls.Count, bottom;
-            if (count > 0)
-                bottom = recordsPanel.Controls[count - 1].Bottom;
-            else
-                bottom = 2;
-
-            RecordRow row = new(data);
-            row.Location = new Point(row.Location.X + rowPadding, 0);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            row.Location = new Point(row.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
-            recordsPanel.Controls.Add(row);
+            RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
+            AddRecordsInPanel(records);
         }
 
         private void WalletTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (walletTypeComboBox.SelectedIndex <= 0 || isWalletEdit) return;
+            if (isWalletEdit || walletTypeComboBox.SelectedIndex <= 0) return;
             WalletRowData[] data = DatabaseHelper.GetWallets(walletTypeComboBox.SelectedIndex);
             if (data is null) return;
 
@@ -1279,25 +1327,41 @@ namespace ElectronicServices
         {
             ExpenseRowData[] expenses = DatabaseHelper.GetExpenses(expenseTitle.Text.Trim() == "" ? "" : expenseTitle.Text);
 
-            AddExpensesRows(expenses);
+            AddExpensesInPanel(expenses);
         }
 
-        private void AddExpensesRows(ExpenseRowData[] expenses)
+        private void AddExpensesInPanel(ExpenseRowData[] expenses)
         {
-            expensesPanel.Controls.Clear();
-            ExpenseRow row = new();
-            row.Location = new Point(row.Location.X + rowPadding, 5);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            expensesPanel.Controls.Add(row);
-
-            for (int i = 0; i < expenses.Length; i++)
+            int i;
+            Control ctrl;
+            for (i = 0; i < expenses.Length && i < expensesPanel.Controls.Count - 1; i++)
             {
-                row = new(expenses[i]);
-                row.Location = new Point(row.Location.X + rowPadding, (row.Size.Height + 3) * (i + 1) + 5);
-                fs?.SetControl(row);
-                fs?.SetControls(row.Controls);
-                expensesPanel.Controls.Add(row);
+                ctrl = expensesPanel.Controls[i + 1];
+                ((ExpenseRow)ctrl).SetData(expenses[i]);
+                ctrl.Tag = true; ctrl.Visible = true;
+            }
+
+            if (i < expensesPanel.Controls.Count - 1)
+            {
+                for (; i < expensesPanel.Controls.Count - 1; i++)
+                {
+                    ctrl = expensesPanel.Controls[i + 1];
+                    ctrl.Tag = false; ctrl.Visible = false;
+                }
+            }
+            else if (i < expenses.Length)
+            {
+                ExpenseRow row;
+                for (; i < expenses.Length; i++)
+                {
+                    row = new(expenses[i]);
+                    row.Location = new Point(rowPadding, 0);
+                    fs?.SetControl(row);
+                    fs?.SetControls(row.Controls);
+                    row.Location = new Point(row.Location.X, expensesPanel.Controls[expensesPanel.Controls.Count - 1].Bottom + 3);
+                    row.Tag = true;
+                    expensesPanel.Controls.Add(row);
+                }
             }
         }
 
@@ -1324,7 +1388,7 @@ namespace ElectronicServices
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
                 ExpenseRowData[] expenses = DatabaseHelper.GetExpensesWithDate(data[lvd.SelectedIndex].Text);
-                AddExpensesRows(expenses);
+                AddExpensesInPanel(expenses);
             }
         }
 
@@ -1357,18 +1421,8 @@ namespace ElectronicServices
             expenseAmount.Value = 0;
             attachmentPath.Text = attachmentPathReset;
 
-            int count = expensesPanel.Controls.Count, bottom;
-            if (count > 0)
-                bottom = expensesPanel.Controls[count - 1].Bottom;
-            else
-                bottom = 2;
-
-            ExpenseRow row = new(data);
-            row.Location = new Point(row.Location.X + rowPadding, 0);
-            fs?.SetControl(row);
-            fs?.SetControls(row.Controls);
-            row.Location = new Point(row.Location.X, bottom + (fs?.GetNewY(3) ?? 3));
-            expensesPanel.Controls.Add(row);
+            ExpenseRowData[] expenses = DatabaseHelper.GetExpensesWithDate(DateTime.Now.ToStandardString());
+            AddExpensesInPanel(expenses);
         }
 
         private void StatisticsExcelBtn_Click(object sender, EventArgs e)
