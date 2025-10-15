@@ -32,7 +32,7 @@ namespace ElectronicServices
             else if (addWalletsPanel.Visible)
                 Wallets_KeyUp(e);
             else if (addRecordsPanel.Visible)
-                /*Records_KeyUp(e)*/;
+                Records_KeyUp(e);
             else if (addExpensesPanel.Visible)
                 Expenses_KeyUp(e);
         }
@@ -223,14 +223,14 @@ namespace ElectronicServices
             timer1.Start();
             expense.Text = DatabaseHelper.GetExpensesAmount(DateTime.Now.ToStandardString()).ToString();
             UpdateCreditAndDept();
-            customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
-            transactionsPanel.Visible = false;
+            customersPanel.Visible = false;
             addTransactionsPanel.Visible = false;
-            walletsPanel.Visible = false;
+            transactionsPanel.Visible = false;
             addWalletsPanel.Visible = false;
-            recordsPanel.Visible = false;
+            walletsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+            recordsPanel.Visible = false;
             addExpensesPanel.Visible = false;
             expensesPanel.Visible = false;
         }
@@ -238,14 +238,14 @@ namespace ElectronicServices
         private void CustomersBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
-            customersPanel.Visible = true;
             addCustomersPanel.Visible = true;
-            transactionsPanel.Visible = false;
+            customersPanel.Visible = true;
             addTransactionsPanel.Visible = false;
-            walletsPanel.Visible = false;
+            transactionsPanel.Visible = false;
             addWalletsPanel.Visible = false;
-            recordsPanel.Visible = false;
+            walletsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+            recordsPanel.Visible = false;
             addExpensesPanel.Visible = false;
             expensesPanel.Visible = false;
         }
@@ -253,14 +253,14 @@ namespace ElectronicServices
         private void TransactionsBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
-            transactionsPanel.Visible = true;
             addTransactionsPanel.Visible = true;
-            customersPanel.Visible = false;
+            transactionsPanel.Visible = true;
             addCustomersPanel.Visible = false;
-            walletsPanel.Visible = false;
+            customersPanel.Visible = false;
             addWalletsPanel.Visible = false;
-            recordsPanel.Visible = false;
+            walletsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+            recordsPanel.Visible = false;
             addExpensesPanel.Visible = false;
             expensesPanel.Visible = false;
         }
@@ -268,14 +268,14 @@ namespace ElectronicServices
         private void WalletsBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
-            walletsPanel.Visible = true;
             addWalletsPanel.Visible = true;
-            customersPanel.Visible = false;
+            walletsPanel.Visible = true;
             addCustomersPanel.Visible = false;
-            transactionsPanel.Visible = false;
+            customersPanel.Visible = false;
             addTransactionsPanel.Visible = false;
-            recordsPanel.Visible = false;
+            transactionsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+            recordsPanel.Visible = false;
             addExpensesPanel.Visible = false;
             expensesPanel.Visible = false;
         }
@@ -286,14 +286,14 @@ namespace ElectronicServices
                 balance2.Text = DatabaseHelper.GetTotalWalletsBalance(walletData.Type).ToString();
 
             timer1.Stop();
-            recordsPanel.Visible = true;
             addRecordsPanel.Visible = true;
-            customersPanel.Visible = false;
+            recordsPanel.Visible = true;
             addCustomersPanel.Visible = false;
-            transactionsPanel.Visible = false;
+            customersPanel.Visible = false;
             addTransactionsPanel.Visible = false;
-            walletsPanel.Visible = false;
+            transactionsPanel.Visible = false;
             addWalletsPanel.Visible = false;
+            walletsPanel.Visible = false;
             addExpensesPanel.Visible = false;
             expensesPanel.Visible = false;
         }
@@ -303,14 +303,14 @@ namespace ElectronicServices
             timer1.Stop();
             addExpensesPanel.Visible = true;
             expensesPanel.Visible = true;
-            customersPanel.Visible = false;
             addCustomersPanel.Visible = false;
-            transactionsPanel.Visible = false;
+            customersPanel.Visible = false;
             addTransactionsPanel.Visible = false;
-            walletsPanel.Visible = false;
+            transactionsPanel.Visible = false;
             addWalletsPanel.Visible = false;
-            recordsPanel.Visible = false;
+            walletsPanel.Visible = false;
             addRecordsPanel.Visible = false;
+            recordsPanel.Visible = false;
         }
         #endregion
 
@@ -1147,6 +1147,15 @@ namespace ElectronicServices
             }
         }
 
+        private void Records_KeyUp(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+                ;
+
+            else if (e.KeyCode == Keys.F2)
+                ;
+        }
+
         private void OperSaveBtn_Click(object sender, EventArgs e)
         {
             if (withdrawal.Value == 0 && deposit.Value == 0)
@@ -1160,7 +1169,7 @@ namespace ElectronicServices
                 MessageForm("قيمة السحب أكبر من المتبقي للسحب", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
-            if ((float)deposit.Value > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
+            if ((float)deposit.Value != 0 && (float)deposit.Value > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
                 return;
 
             if (walletData.Balance - (float)withdrawal.Value + (float)deposit.Value < 0)
