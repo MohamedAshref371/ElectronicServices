@@ -89,7 +89,7 @@
             customerBtn.ForeColor = Color.White;
             customerBtn.Image = Properties.Resources.board;
             customerBtn.ImageSize = new Size(40, 40);
-            customerBtn.Location = new Point(49, 0);
+            customerBtn.Location = new Point(95, 0);
             customerBtn.Name = "customerBtn";
             customerBtn.ShadowDecoration.CustomizableEdges = customizableEdges4;
             customerBtn.Size = new Size(40, 40);
@@ -152,7 +152,7 @@
             editBtn.ForeColor = Color.White;
             editBtn.Image = Properties.Resources.editIcon;
             editBtn.ImageSize = new Size(40, 40);
-            editBtn.Location = new Point(95, 0);
+            editBtn.Location = new Point(49, 0);
             editBtn.Name = "editBtn";
             editBtn.ShadowDecoration.CustomizableEdges = customizableEdges6;
             editBtn.Size = new Size(40, 40);
