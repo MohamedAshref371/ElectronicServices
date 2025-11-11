@@ -1205,12 +1205,15 @@ namespace ElectronicServices
                 return;
             }
 
-            if (walletData.Phone == "")
-                records = DatabaseHelper.GetRecords(walletTypeComboBox.SelectedIndex);
-            else
-                records = DatabaseHelper.GetRecords(walletData.Phone);
-            recordsPage = 1;
-            AddRecordsInPanel();
+            if (records.Length > 0)
+            {
+                if (walletData.Phone == "")
+                    records = DatabaseHelper.GetRecords(walletTypeComboBox.SelectedIndex);
+                else
+                    records = DatabaseHelper.GetRecords(walletData.Phone);
+                recordsPage = 1;
+                AddRecordsInPanel();
+            }
 
             MessageForm("تم حذف عمليات المحافظ القديمة", "نجاح", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
         }
