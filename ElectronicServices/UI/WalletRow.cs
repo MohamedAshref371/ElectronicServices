@@ -4,12 +4,14 @@ namespace ElectronicServices
 {
     public partial class WalletRow : UserControl
     {
+        private static float maxDailyWithdrawal = 60000f, maxDailyDeposit = 60000f;
         public WalletRow()
         {
             InitializeComponent();
             chooseBtn.Visible = false;
             editBtn.Visible = false;
             deleteBtn.Visible = false;
+            page.Visible = true;
         }
 
         private WalletRowData data;
@@ -31,6 +33,16 @@ namespace ElectronicServices
             balance.Text = data.Balance.ToString();
         }
 
+        public void SetPage(int current, int max)
+        {
+            page.Text = $"{current} / {max}";
+        }
+
+        private void Page_MouseClick(object sender, MouseEventArgs e)
+        {
+            Program.Form.SetPage(e.Button == MouseButtons.Left);
+        }
+
         public void ResetRemaining()
         {
             data.WithdrawalRemaining = data.MaximumWithdrawal;
@@ -40,7 +52,27 @@ namespace ElectronicServices
         }
 
         private void ChooseBtn_Click(object sender, EventArgs e)
-            => Program.Form.ChooseWalletBtn(data);
+        {
+            float[] withdDepo = DatabaseHelper.GetWalletsWithdDepo(data.Phone, DateTime.Now.ToStandardString());
+            if (withdDepo is null)
+            {
+                Form1.MessageForm("حدث خطأ أثناء قراءة بيانات المحفظة. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
+                return;
+            }
+
+            string message = "";
+            if (withdDepo[0] >= maxDailyWithdrawal)
+                message += $"المحفظة تخطت السحب اليومي المسموح به";
+            if (withdDepo[1] >= maxDailyDeposit)
+            {
+                message += message == "" ? "المحفظة " : "\nو";
+                message += $"تخطت الإيداع اليومي المسموح به";
+            }
+            if (message != "" && Form1.MessageForm(message, "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIconV2.Warning) != DialogResult.OK)
+                return;
+            
+            Program.Form.ChooseWalletBtn(data);
+        }
 
         private void EditBtn_Click(object sender, EventArgs e)
             => Program.Form.SetWalletData(data);
