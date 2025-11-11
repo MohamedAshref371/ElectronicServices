@@ -1188,14 +1188,15 @@ namespace ElectronicServices
         {
             if (walletData.Phone == phone)
             {
-                records = []; recordsPage = 1;
+                records = DatabaseHelper.GetRecords(phone);
+                recordsPage = 1;
                 AddRecordsInPanel();
             }
         }
 
         public void ResetWallets()
         {
-            if (MessageForm("هل أنت متأكد من حذف جميع عمليات المحافظ ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
+            if (MessageForm("هل أنت متأكد من حذف عمليات المحافظ القديمة ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
                 return;
 
             if (!DatabaseHelper.ResetWallets())
@@ -1204,10 +1205,14 @@ namespace ElectronicServices
                 return;
             }
 
-            records = []; recordsPage = 1;
+            if (walletData.Phone == "")
+                records = DatabaseHelper.GetRecords(walletTypeComboBox.SelectedIndex);
+            else
+                records = DatabaseHelper.GetRecords(walletData.Phone);
+            recordsPage = 1;
             AddRecordsInPanel();
 
-            MessageForm("تم حذف جميع عمليات المحافظ", "نجاح", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
+            MessageForm("تم حذف عمليات المحافظ القديمة", "نجاح", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
         }
 
         public void ResetWalletsRemaining()
