@@ -31,16 +31,16 @@ namespace ElectronicServices
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges141 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges142 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges135 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges136 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges143 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges144 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges137 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges138 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges139 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges140 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges133 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges134 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges141 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges142 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges135 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges136 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -159,6 +159,8 @@ namespace ElectronicServices
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges130 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges131 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges132 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges133 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges134 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -294,6 +296,7 @@ namespace ElectronicServices
             dateFrom = new Guna2DateTimePicker();
             expense = new Label();
             expenseLabel = new Label();
+            dateHelper = new Guna2ComboBox();
             customersBtn = new Guna2GradientButton();
             footerPanel = new Guna2GradientPanel();
             expensesBtn = new Guna2GradientButton();
@@ -350,13 +353,13 @@ namespace ElectronicServices
             headerPanel.Controls.Add(maximizeBtn);
             headerPanel.Controls.Add(exitBtn);
             headerPanel.Controls.Add(formTitle);
-            headerPanel.CustomizableEdges = customizableEdges141;
+            headerPanel.CustomizableEdges = customizableEdges143;
             headerPanel.FillColor = Color.FromArgb(192, 192, 255);
             headerPanel.FillColor2 = Color.FromArgb(128, 128, 255);
             headerPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             headerPanel.Location = new Point(-1, -1);
             headerPanel.Name = "headerPanel";
-            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges142;
+            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges144;
             headerPanel.Size = new Size(951, 45);
             headerPanel.TabIndex = 0;
             // 
@@ -387,7 +390,7 @@ namespace ElectronicServices
             minimizeBtn.BackColor = Color.Transparent;
             minimizeBtn.BorderColor = Color.Transparent;
             minimizeBtn.BorderRadius = 8;
-            minimizeBtn.CustomizableEdges = customizableEdges135;
+            minimizeBtn.CustomizableEdges = customizableEdges137;
             minimizeBtn.DisabledState.BorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -399,7 +402,7 @@ namespace ElectronicServices
             minimizeBtn.ImageSize = new Size(32, 32);
             minimizeBtn.Location = new Point(88, 6);
             minimizeBtn.Name = "minimizeBtn";
-            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges136;
+            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges138;
             minimizeBtn.Size = new Size(32, 32);
             minimizeBtn.TabIndex = 4;
             minimizeBtn.Click += MinimizeBtn_Click;
@@ -409,7 +412,7 @@ namespace ElectronicServices
             maximizeBtn.BackColor = Color.Transparent;
             maximizeBtn.BorderColor = Color.Transparent;
             maximizeBtn.BorderRadius = 8;
-            maximizeBtn.CustomizableEdges = customizableEdges137;
+            maximizeBtn.CustomizableEdges = customizableEdges139;
             maximizeBtn.DisabledState.BorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -421,7 +424,7 @@ namespace ElectronicServices
             maximizeBtn.ImageSize = new Size(32, 32);
             maximizeBtn.Location = new Point(50, 6);
             maximizeBtn.Name = "maximizeBtn";
-            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges138;
+            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges140;
             maximizeBtn.Size = new Size(32, 32);
             maximizeBtn.TabIndex = 3;
             maximizeBtn.Click += MaximizeBtn_Click;
@@ -431,7 +434,7 @@ namespace ElectronicServices
             exitBtn.BackColor = Color.Transparent;
             exitBtn.BorderColor = Color.Transparent;
             exitBtn.BorderRadius = 8;
-            exitBtn.CustomizableEdges = customizableEdges139;
+            exitBtn.CustomizableEdges = customizableEdges141;
             exitBtn.DisabledState.BorderColor = Color.DarkGray;
             exitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             exitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -443,7 +446,7 @@ namespace ElectronicServices
             exitBtn.ImageSize = new Size(32, 32);
             exitBtn.Location = new Point(12, 6);
             exitBtn.Name = "exitBtn";
-            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges140;
+            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges142;
             exitBtn.Size = new Size(32, 32);
             exitBtn.TabIndex = 2;
             exitBtn.Click += ExitBtn_Click;
@@ -499,13 +502,14 @@ namespace ElectronicServices
             mainPanel.Controls.Add(dateFrom);
             mainPanel.Controls.Add(expense);
             mainPanel.Controls.Add(expenseLabel);
-            mainPanel.CustomizableEdges = customizableEdges133;
+            mainPanel.Controls.Add(dateHelper);
+            mainPanel.CustomizableEdges = customizableEdges135;
             mainPanel.FillColor = Color.FromArgb(255, 192, 192);
             mainPanel.FillColor2 = Color.FromArgb(255, 224, 192);
             mainPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             mainPanel.Location = new Point(-1, 47);
             mainPanel.Name = "mainPanel";
-            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges134;
+            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges136;
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
             // 
@@ -1523,11 +1527,11 @@ namespace ElectronicServices
             takeWith.Font = new Font("Segoe UI", 10F);
             takeWith.ForeColor = Color.Black;
             takeWith.ItemHeight = 30;
-            takeWith.Location = new Point(297, 51);
+            takeWith.Location = new Point(192, 46);
             takeWith.Name = "takeWith";
             takeWith.RightToLeft = RightToLeft.Yes;
             takeWith.ShadowDecoration.CustomizableEdges = customizableEdges76;
-            takeWith.Size = new Size(137, 36);
+            takeWith.Size = new Size(171, 36);
             takeWith.TabIndex = 30;
             // 
             // payWith
@@ -1543,11 +1547,11 @@ namespace ElectronicServices
             payWith.Font = new Font("Segoe UI", 10F);
             payWith.ForeColor = Color.Black;
             payWith.ItemHeight = 30;
-            payWith.Location = new Point(297, 9);
+            payWith.Location = new Point(192, 4);
             payWith.Name = "payWith";
             payWith.RightToLeft = RightToLeft.Yes;
             payWith.ShadowDecoration.CustomizableEdges = customizableEdges78;
-            payWith.Size = new Size(137, 36);
+            payWith.Size = new Size(171, 36);
             payWith.TabIndex = 29;
             // 
             // transSearchBtn
@@ -1565,7 +1569,7 @@ namespace ElectronicServices
             transSearchBtn.Font = new Font("Segoe UI", 15F);
             transSearchBtn.ForeColor = Color.Black;
             transSearchBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            transSearchBtn.Location = new Point(13, 54);
+            transSearchBtn.Location = new Point(23, 70);
             transSearchBtn.Name = "transSearchBtn";
             transSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges80;
             transSearchBtn.Size = new Size(125, 35);
@@ -1586,14 +1590,14 @@ namespace ElectronicServices
             transNote.Font = new Font("Segoe UI", 9F);
             transNote.ForeColor = Color.Black;
             transNote.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            transNote.Location = new Point(144, 32);
+            transNote.Location = new Point(192, 88);
             transNote.Name = "transNote";
             transNote.PlaceholderForeColor = Color.Gray;
             transNote.PlaceholderText = "ملاحظة";
             transNote.RightToLeft = RightToLeft.Yes;
             transNote.SelectedText = "";
             transNote.ShadowDecoration.CustomizableEdges = customizableEdges82;
-            transNote.Size = new Size(147, 36);
+            transNote.Size = new Size(357, 36);
             transNote.TabIndex = 25;
             transNote.KeyPress += TextBox_KeyPress;
             // 
@@ -1606,7 +1610,7 @@ namespace ElectronicServices
             transDate.FillColor = Color.FromArgb(255, 192, 192);
             transDate.Font = new Font("Segoe UI", 9F);
             transDate.Format = DateTimePickerFormat.Long;
-            transDate.Location = new Point(642, 51);
+            transDate.Location = new Point(634, 48);
             transDate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             transDate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             transDate.Name = "transDate";
@@ -1631,7 +1635,7 @@ namespace ElectronicServices
             addTransactionBtn.Font = new Font("Segoe UI", 15F);
             addTransactionBtn.ForeColor = Color.White;
             addTransactionBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addTransactionBtn.Location = new Point(13, 10);
+            addTransactionBtn.Location = new Point(23, 21);
             addTransactionBtn.Name = "addTransactionBtn";
             addTransactionBtn.ShadowDecoration.CustomizableEdges = customizableEdges86;
             addTransactionBtn.Size = new Size(125, 35);
@@ -1647,11 +1651,11 @@ namespace ElectronicServices
             takeAmount.CustomizableEdges = customizableEdges87;
             takeAmount.DecimalPlaces = 2;
             takeAmount.Font = new Font("Segoe UI", 12F);
-            takeAmount.Location = new Point(464, 51);
+            takeAmount.Location = new Point(403, 46);
             takeAmount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             takeAmount.Name = "takeAmount";
             takeAmount.ShadowDecoration.CustomizableEdges = customizableEdges88;
-            takeAmount.Size = new Size(120, 36);
+            takeAmount.Size = new Size(146, 36);
             takeAmount.TabIndex = 17;
             takeAmount.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
             takeAmount.ValueChanged += TakeAmount_ValueChanged;
@@ -1664,11 +1668,11 @@ namespace ElectronicServices
             payAmount.CustomizableEdges = customizableEdges89;
             payAmount.DecimalPlaces = 2;
             payAmount.Font = new Font("Segoe UI", 12F);
-            payAmount.Location = new Point(464, 9);
+            payAmount.Location = new Point(403, 4);
             payAmount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             payAmount.Name = "payAmount";
             payAmount.ShadowDecoration.CustomizableEdges = customizableEdges90;
-            payAmount.Size = new Size(120, 36);
+            payAmount.Size = new Size(146, 36);
             payAmount.TabIndex = 16;
             payAmount.ValueChanged += PayAmount_ValueChanged;
             // 
@@ -1684,7 +1688,7 @@ namespace ElectronicServices
             customersComboBox.Font = new Font("Segoe UI", 10F);
             customersComboBox.ForeColor = Color.Black;
             customersComboBox.ItemHeight = 30;
-            customersComboBox.Location = new Point(642, 9);
+            customersComboBox.Location = new Point(634, 5);
             customersComboBox.Name = "customersComboBox";
             customersComboBox.RightToLeft = RightToLeft.Yes;
             customersComboBox.ShadowDecoration.CustomizableEdges = customizableEdges92;
@@ -1696,7 +1700,7 @@ namespace ElectronicServices
             // 
             takeLabel.AutoSize = true;
             takeLabel.Font = new Font("Segoe UI", 12F);
-            takeLabel.Location = new Point(587, 60);
+            takeLabel.Location = new Point(552, 55);
             takeLabel.Name = "takeLabel";
             takeLabel.RightToLeft = RightToLeft.Yes;
             takeLabel.Size = new Size(42, 21);
@@ -1707,7 +1711,7 @@ namespace ElectronicServices
             // 
             payLabel.AutoSize = true;
             payLabel.Font = new Font("Segoe UI", 12F);
-            payLabel.Location = new Point(583, 17);
+            payLabel.Location = new Point(548, 12);
             payLabel.Name = "payLabel";
             payLabel.RightToLeft = RightToLeft.Yes;
             payLabel.Size = new Size(46, 21);
@@ -1718,7 +1722,7 @@ namespace ElectronicServices
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(440, 60);
+            label2.Location = new Point(369, 55);
             label2.Name = "label2";
             label2.RightToLeft = RightToLeft.Yes;
             label2.Size = new Size(18, 21);
@@ -1729,7 +1733,7 @@ namespace ElectronicServices
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(440, 17);
+            label1.Location = new Point(369, 12);
             label1.Name = "label1";
             label1.RightToLeft = RightToLeft.Yes;
             label1.Size = new Size(18, 21);
@@ -1740,7 +1744,7 @@ namespace ElectronicServices
             // 
             dateLabel.AutoSize = true;
             dateLabel.Font = new Font("Segoe UI", 12F);
-            dateLabel.Location = new Point(879, 60);
+            dateLabel.Location = new Point(871, 57);
             dateLabel.Name = "dateLabel";
             dateLabel.RightToLeft = RightToLeft.Yes;
             dateLabel.Size = new Size(61, 21);
@@ -1752,7 +1756,7 @@ namespace ElectronicServices
             // 
             customerLabel.AutoSize = true;
             customerLabel.Font = new Font("Segoe UI", 12F);
-            customerLabel.Location = new Point(876, 17);
+            customerLabel.Location = new Point(868, 13);
             customerLabel.Name = "customerLabel";
             customerLabel.RightToLeft = RightToLeft.Yes;
             customerLabel.Size = new Size(64, 21);
@@ -1818,7 +1822,7 @@ namespace ElectronicServices
             addCustExcelBtn.Font = new Font("Segoe UI", 15F);
             addCustExcelBtn.ForeColor = Color.White;
             addCustExcelBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addCustExcelBtn.Location = new Point(103, 52);
+            addCustExcelBtn.Location = new Point(77, 77);
             addCustExcelBtn.Name = "addCustExcelBtn";
             addCustExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges98;
             addCustExcelBtn.Size = new Size(180, 35);
@@ -1830,7 +1834,7 @@ namespace ElectronicServices
             // 
             custTakeLabel.AutoSize = true;
             custTakeLabel.Font = new Font("Segoe UI", 15F);
-            custTakeLabel.Location = new Point(471, 55);
+            custTakeLabel.Location = new Point(470, 77);
             custTakeLabel.Name = "custTakeLabel";
             custTakeLabel.RightToLeft = RightToLeft.Yes;
             custTakeLabel.Size = new Size(62, 28);
@@ -1846,7 +1850,7 @@ namespace ElectronicServices
             custDebitAmount.CustomizableEdges = customizableEdges99;
             custDebitAmount.DecimalPlaces = 2;
             custDebitAmount.Font = new Font("Segoe UI", 12F);
-            custDebitAmount.Location = new Point(345, 52);
+            custDebitAmount.Location = new Point(344, 74);
             custDebitAmount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             custDebitAmount.Name = "custDebitAmount";
             custDebitAmount.ShadowDecoration.CustomizableEdges = customizableEdges100;
@@ -1862,7 +1866,7 @@ namespace ElectronicServices
             custCreditAmount.CustomizableEdges = customizableEdges101;
             custCreditAmount.DecimalPlaces = 2;
             custCreditAmount.Font = new Font("Segoe UI", 12F);
-            custCreditAmount.Location = new Point(594, 52);
+            custCreditAmount.Location = new Point(593, 74);
             custCreditAmount.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             custCreditAmount.Name = "custCreditAmount";
             custCreditAmount.ShadowDecoration.CustomizableEdges = customizableEdges102;
@@ -1873,7 +1877,7 @@ namespace ElectronicServices
             // 
             custPayLabel.AutoSize = true;
             custPayLabel.Font = new Font("Segoe UI", 15F);
-            custPayLabel.Location = new Point(720, 55);
+            custPayLabel.Location = new Point(719, 77);
             custPayLabel.Name = "custPayLabel";
             custPayLabel.RightToLeft = RightToLeft.Yes;
             custPayLabel.Size = new Size(43, 28);
@@ -1885,7 +1889,7 @@ namespace ElectronicServices
             // 
             initValLabel.AutoSize = true;
             initValLabel.Font = new Font("Segoe UI", 15F);
-            initValLabel.Location = new Point(794, 55);
+            initValLabel.Location = new Point(793, 77);
             initValLabel.Name = "initValLabel";
             initValLabel.RightToLeft = RightToLeft.Yes;
             initValLabel.Size = new Size(142, 28);
@@ -1907,7 +1911,7 @@ namespace ElectronicServices
             customerSearchBtn.Font = new Font("Segoe UI", 15F);
             customerSearchBtn.ForeColor = Color.Black;
             customerSearchBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            customerSearchBtn.Location = new Point(72, 9);
+            customerSearchBtn.Location = new Point(46, 10);
             customerSearchBtn.Name = "customerSearchBtn";
             customerSearchBtn.ShadowDecoration.CustomizableEdges = customizableEdges104;
             customerSearchBtn.Size = new Size(114, 35);
@@ -1930,7 +1934,7 @@ namespace ElectronicServices
             addCustomerBtn.Font = new Font("Segoe UI", 15F);
             addCustomerBtn.ForeColor = Color.White;
             addCustomerBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addCustomerBtn.Location = new Point(211, 9);
+            addCustomerBtn.Location = new Point(185, 10);
             addCustomerBtn.Name = "addCustomerBtn";
             addCustomerBtn.ShadowDecoration.CustomizableEdges = customizableEdges106;
             addCustomerBtn.Size = new Size(114, 35);
@@ -1951,14 +1955,14 @@ namespace ElectronicServices
             customerName.Font = new Font("Segoe UI", 12F);
             customerName.ForeColor = Color.Black;
             customerName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            customerName.Location = new Point(384, 5);
+            customerName.Location = new Point(344, 5);
             customerName.Margin = new Padding(4);
             customerName.Name = "customerName";
             customerName.PlaceholderText = "";
             customerName.RightToLeft = RightToLeft.Yes;
             customerName.SelectedText = "";
             customerName.ShadowDecoration.CustomizableEdges = customizableEdges108;
-            customerName.Size = new Size(251, 40);
+            customerName.Size = new Size(291, 40);
             customerName.TabIndex = 3;
             customerName.KeyPress += TextBox_KeyPress;
             // 
@@ -2009,7 +2013,7 @@ namespace ElectronicServices
             // debitAmount
             // 
             debitAmount.Font = new Font("Segoe UI", 16F);
-            debitAmount.Location = new Point(648, 345);
+            debitAmount.Location = new Point(648, 329);
             debitAmount.Name = "debitAmount";
             debitAmount.RightToLeft = RightToLeft.Yes;
             debitAmount.Size = new Size(125, 30);
@@ -2020,7 +2024,7 @@ namespace ElectronicServices
             // creditAmount
             // 
             creditAmount.Font = new Font("Segoe UI", 16F);
-            creditAmount.Location = new Point(648, 300);
+            creditAmount.Location = new Point(648, 284);
             creditAmount.Name = "creditAmount";
             creditAmount.RightToLeft = RightToLeft.Yes;
             creditAmount.Size = new Size(125, 30);
@@ -2043,7 +2047,7 @@ namespace ElectronicServices
             addPayappBtn.Font = new Font("Segoe UI", 15F);
             addPayappBtn.ForeColor = Color.White;
             addPayappBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addPayappBtn.Location = new Point(262, 27);
+            addPayappBtn.Location = new Point(286, 27);
             addPayappBtn.Name = "addPayappBtn";
             addPayappBtn.ShadowDecoration.CustomizableEdges = customizableEdges112;
             addPayappBtn.Size = new Size(114, 40);
@@ -2064,7 +2068,7 @@ namespace ElectronicServices
             payApp.Font = new Font("Segoe UI", 12F);
             payApp.ForeColor = Color.Black;
             payApp.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            payApp.Location = new Point(392, 27);
+            payApp.Location = new Point(416, 27);
             payApp.Margin = new Padding(4);
             payApp.Name = "payApp";
             payApp.PlaceholderText = "مثال: انستا باي";
@@ -2079,7 +2083,7 @@ namespace ElectronicServices
             // 
             payappLabel.AutoSize = true;
             payappLabel.Font = new Font("Segoe UI", 14F);
-            payappLabel.Location = new Point(624, 34);
+            payappLabel.Location = new Point(648, 34);
             payappLabel.Name = "payappLabel";
             payappLabel.RightToLeft = RightToLeft.Yes;
             payappLabel.Size = new Size(202, 25);
@@ -2090,7 +2094,7 @@ namespace ElectronicServices
             // 
             debitLabel.AutoSize = true;
             debitLabel.Font = new Font("Segoe UI", 16F);
-            debitLabel.Location = new Point(779, 345);
+            debitLabel.Location = new Point(779, 329);
             debitLabel.Name = "debitLabel";
             debitLabel.RightToLeft = RightToLeft.Yes;
             debitLabel.Size = new Size(70, 30);
@@ -2101,7 +2105,7 @@ namespace ElectronicServices
             // 
             creditLabel.AutoSize = true;
             creditLabel.Font = new Font("Segoe UI", 16F);
-            creditLabel.Location = new Point(790, 300);
+            creditLabel.Location = new Point(790, 284);
             creditLabel.Name = "creditLabel";
             creditLabel.RightToLeft = RightToLeft.Yes;
             creditLabel.Size = new Size(50, 30);
@@ -2112,7 +2116,7 @@ namespace ElectronicServices
             // 
             inventoryTitle.AutoSize = true;
             inventoryTitle.Font = new Font("Segoe UI", 16F);
-            inventoryTitle.Location = new Point(707, 214);
+            inventoryTitle.Location = new Point(652, 211);
             inventoryTitle.Name = "inventoryTitle";
             inventoryTitle.RightToLeft = RightToLeft.Yes;
             inventoryTitle.Size = new Size(142, 30);
@@ -2124,16 +2128,17 @@ namespace ElectronicServices
             excelDate.BorderRadius = 7;
             excelDate.BorderThickness = 1;
             excelDate.Checked = true;
+            excelDate.CustomFormat = "dd dddd - MM MMMM";
             excelDate.CustomizableEdges = customizableEdges115;
             excelDate.FillColor = Color.FromArgb(192, 255, 192);
             excelDate.Font = new Font("Segoe UI", 9F);
-            excelDate.Format = DateTimePickerFormat.Long;
-            excelDate.Location = new Point(463, 207);
+            excelDate.Format = DateTimePickerFormat.Custom;
+            excelDate.Location = new Point(440, 204);
             excelDate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             excelDate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             excelDate.Name = "excelDate";
             excelDate.ShadowDecoration.CustomizableEdges = customizableEdges116;
-            excelDate.Size = new Size(225, 42);
+            excelDate.Size = new Size(197, 42);
             excelDate.TabIndex = 7;
             excelDate.Value = new DateTime(2025, 8, 30, 10, 19, 11, 901);
             // 
@@ -2152,7 +2157,7 @@ namespace ElectronicServices
             excelBtn.Font = new Font("Segoe UI", 15F);
             excelBtn.ForeColor = Color.Black;
             excelBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            excelBtn.Location = new Point(333, 206);
+            excelBtn.Location = new Point(307, 204);
             excelBtn.Name = "excelBtn";
             excelBtn.ShadowDecoration.CustomizableEdges = customizableEdges118;
             excelBtn.Size = new Size(114, 43);
@@ -2178,7 +2183,7 @@ namespace ElectronicServices
             extraExcelBtn.Image = Properties.Resources.neutral_face;
             extraExcelBtn.ImageAlign = HorizontalAlignment.Right;
             extraExcelBtn.ImageSize = new Size(96, 96);
-            extraExcelBtn.Location = new Point(317, 472);
+            extraExcelBtn.Location = new Point(317, 475);
             extraExcelBtn.Name = "extraExcelBtn";
             extraExcelBtn.RightToLeft = RightToLeft.Yes;
             extraExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges120;
@@ -2205,7 +2210,7 @@ namespace ElectronicServices
             inventoryBtn.Font = new Font("Segoe UI", 15F);
             inventoryBtn.ForeColor = Color.Black;
             inventoryBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            inventoryBtn.Location = new Point(371, 149);
+            inventoryBtn.Location = new Point(371, 145);
             inventoryBtn.Name = "inventoryBtn";
             inventoryBtn.ShadowDecoration.CustomizableEdges = customizableEdges122;
             inventoryBtn.Size = new Size(162, 35);
@@ -2229,7 +2234,7 @@ namespace ElectronicServices
             elecPayBtn.Font = new Font("Segoe UI", 15F);
             elecPayBtn.ForeColor = Color.Black;
             elecPayBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            elecPayBtn.Location = new Point(555, 149);
+            elecPayBtn.Location = new Point(555, 145);
             elecPayBtn.Name = "elecPayBtn";
             elecPayBtn.ShadowDecoration.CustomizableEdges = customizableEdges124;
             elecPayBtn.Size = new Size(189, 35);
@@ -2252,7 +2257,7 @@ namespace ElectronicServices
             addWalletTypeBtn.Font = new Font("Segoe UI", 15F);
             addWalletTypeBtn.ForeColor = Color.White;
             addWalletTypeBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            addWalletTypeBtn.Location = new Point(262, 80);
+            addWalletTypeBtn.Location = new Point(286, 80);
             addWalletTypeBtn.Name = "addWalletTypeBtn";
             addWalletTypeBtn.ShadowDecoration.CustomizableEdges = customizableEdges126;
             addWalletTypeBtn.Size = new Size(114, 40);
@@ -2273,7 +2278,7 @@ namespace ElectronicServices
             walletType.Font = new Font("Segoe UI", 12F);
             walletType.ForeColor = Color.Black;
             walletType.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            walletType.Location = new Point(392, 80);
+            walletType.Location = new Point(416, 80);
             walletType.Margin = new Padding(4);
             walletType.Name = "walletType";
             walletType.PlaceholderText = "مثال: اورانج";
@@ -2288,7 +2293,7 @@ namespace ElectronicServices
             // 
             walletTypeLabel.AutoSize = true;
             walletTypeLabel.Font = new Font("Segoe UI", 14F);
-            walletTypeLabel.Location = new Point(669, 87);
+            walletTypeLabel.Location = new Point(693, 87);
             walletTypeLabel.Name = "walletTypeLabel";
             walletTypeLabel.RightToLeft = RightToLeft.Yes;
             walletTypeLabel.Size = new Size(128, 25);
@@ -2313,7 +2318,7 @@ namespace ElectronicServices
             dateChoose.CheckedState.BorderThickness = 1;
             dateChoose.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             dateChoose.Font = new Font("Segoe UI", 14F);
-            dateChoose.Location = new Point(697, 433);
+            dateChoose.Location = new Point(697, 436);
             dateChoose.Name = "dateChoose";
             dateChoose.RightToLeft = RightToLeft.Yes;
             dateChoose.Size = new Size(142, 29);
@@ -2329,7 +2334,7 @@ namespace ElectronicServices
             // 
             toLabel.AutoSize = true;
             toLabel.Font = new Font("Segoe UI", 14F);
-            toLabel.Location = new Point(480, 437);
+            toLabel.Location = new Point(480, 440);
             toLabel.Name = "toLabel";
             toLabel.RightToLeft = RightToLeft.Yes;
             toLabel.Size = new Size(39, 25);
@@ -2347,7 +2352,7 @@ namespace ElectronicServices
             dateTo.FillColor = Color.FromArgb(192, 255, 225);
             dateTo.Font = new Font("Segoe UI", 9F);
             dateTo.Format = DateTimePickerFormat.Custom;
-            dateTo.Location = new Point(325, 424);
+            dateTo.Location = new Point(325, 427);
             dateTo.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dateTo.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dateTo.Name = "dateTo";
@@ -2355,6 +2360,7 @@ namespace ElectronicServices
             dateTo.Size = new Size(149, 42);
             dateTo.TabIndex = 48;
             dateTo.Value = new DateTime(2025, 8, 30, 10, 19, 11, 901);
+            dateTo.ValueChanged += DateTo_ValueChanged;
             // 
             // dateFrom
             // 
@@ -2367,7 +2373,7 @@ namespace ElectronicServices
             dateFrom.FillColor = Color.FromArgb(225, 255, 192);
             dateFrom.Font = new Font("Segoe UI", 9F);
             dateFrom.Format = DateTimePickerFormat.Custom;
-            dateFrom.Location = new Point(542, 424);
+            dateFrom.Location = new Point(542, 427);
             dateFrom.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dateFrom.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dateFrom.Name = "dateFrom";
@@ -2375,11 +2381,12 @@ namespace ElectronicServices
             dateFrom.Size = new Size(149, 42);
             dateFrom.TabIndex = 47;
             dateFrom.Value = new DateTime(2025, 8, 30, 10, 19, 11, 901);
+            dateFrom.ValueChanged += DateFrom_ValueChanged;
             // 
             // expense
             // 
             expense.Font = new Font("Segoe UI", 16F);
-            expense.Location = new Point(305, 342);
+            expense.Location = new Point(297, 326);
             expense.Name = "expense";
             expense.RightToLeft = RightToLeft.Yes;
             expense.Size = new Size(156, 30);
@@ -2390,13 +2397,37 @@ namespace ElectronicServices
             // expenseLabel
             // 
             expenseLabel.Font = new Font("Segoe UI", 16F);
-            expenseLabel.Location = new Point(305, 300);
+            expenseLabel.Location = new Point(297, 284);
             expenseLabel.Name = "expenseLabel";
             expenseLabel.RightToLeft = RightToLeft.Yes;
             expenseLabel.Size = new Size(156, 30);
             expenseLabel.TabIndex = 50;
             expenseLabel.Text = "مصروفات اليوم";
             expenseLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // dateHelper
+            // 
+            dateHelper.BackColor = Color.Transparent;
+            dateHelper.BorderColor = Color.Silver;
+            dateHelper.BorderRadius = 15;
+            dateHelper.CustomizableEdges = customizableEdges133;
+            dateHelper.DrawMode = DrawMode.OwnerDrawFixed;
+            dateHelper.DropDownStyle = ComboBoxStyle.DropDownList;
+            dateHelper.Enabled = false;
+            dateHelper.FocusedColor = Color.FromArgb(94, 148, 255);
+            dateHelper.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            dateHelper.Font = new Font("Segoe UI", 12F);
+            dateHelper.ForeColor = Color.Black;
+            dateHelper.ItemHeight = 30;
+            dateHelper.Items.AddRange(new object[] { "هذا اليوم", "هذا الأسبوع", "هذا الشهر", "هذا الربع سنوي", "هذه السنة", "afi-soft.com ملهم من", "يوم أمس", "الأسبوع الماضي", "الشهر الماضي", "الربع سنوي الماضي", "السنة الماضية" });
+            dateHelper.Location = new Point(406, 386);
+            dateHelper.Name = "dateHelper";
+            dateHelper.ShadowDecoration.CustomizableEdges = customizableEdges134;
+            dateHelper.Size = new Size(203, 36);
+            dateHelper.TabIndex = 52;
+            dateHelper.Tag = "This feature was inspired by afi-soft.com";
+            dateHelper.TextAlign = HorizontalAlignment.Center;
+            dateHelper.SelectedIndexChanged += DateHelper_SelectedIndexChanged;
             // 
             // customersBtn
             // 
@@ -2714,7 +2745,7 @@ namespace ElectronicServices
         private Guna2GradientPanel addExpensesPanel;
         private Guna2GradientButton operSaveBtn;
         private Guna2TextBox operComment;
-        private Guna2ComboBox guna2ComboBox1;
+        private Guna2ComboBox dateHelper;
         private Guna2NumericUpDown guna2NumericUpDown3;
         private Guna2NumericUpDown guna2NumericUpDown4;
         private Guna2NumericUpDown guna2NumericUpDown5;

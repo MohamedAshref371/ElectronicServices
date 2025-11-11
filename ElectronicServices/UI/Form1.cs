@@ -47,7 +47,7 @@ namespace ElectronicServices
         {
             if (down)
                 SetKeyUpCode(Keys.PageDown);
-            else 
+            else
                 SetKeyUpCode(Keys.PageUp);
         }
 
@@ -108,7 +108,7 @@ namespace ElectronicServices
             recordsPanel.Scroll += scroll;
             expensesPanel.Scroll += scroll;*/
 
-            MouseEventHandler wheel = (s, e1) => 
+            MouseEventHandler wheel = (s, e1) =>
             {
                 if (e1.Delta > 0)
                     SetKeyUpCode(Keys.PageUp);
@@ -154,10 +154,8 @@ namespace ElectronicServices
             expensesPanel.Controls.Add(expenseR);
 
             DateTime now = DateTime.Now;
-            DateTime firstDay = new(now.Year, now.Month, 1);
             excelDate.Value = now;
-            dateFrom.Value = firstDay;
-            dateTo.Value = firstDay.AddMonths(1).AddDays(-1);
+            dateHelper.SelectedIndex = 2;
 
             UpdateCreditAndDept();
             expense.Text = DatabaseHelper.GetExpensesAmount(now.ToStandardString()).ToString();
@@ -1778,10 +1776,103 @@ namespace ElectronicServices
             }
         }
 
+        bool isDateHelperChanging = false;
+        private void DateHelper_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isDateHelperChanging) return;
+            isDateHelperChanging = true;
+            DateTime now = DateTime.Now;
+
+            if (dateHelper.SelectedIndex == 0) // هذا اليوم
+            {
+                dateFrom.Value = now;
+                dateTo.Value = now;
+            }
+            else if (dateHelper.SelectedIndex == 1) // هذا الأسبوع
+            {
+                int diff = (7 + (now.DayOfWeek - DayOfWeek.Saturday)) % 7;
+                DateTime firstDay = now.AddDays(-1 * diff);
+                dateFrom.Value = firstDay;
+                dateTo.Value = firstDay.AddDays(6);
+            }
+            else if (dateHelper.SelectedIndex == 2) // هذا الشهر
+            {
+                DateTime firstDay = new(now.Year, now.Month, 1);
+                dateFrom.Value = firstDay;
+                dateTo.Value = firstDay.AddMonths(1).AddDays(-1);
+            }
+            else if (dateHelper.SelectedIndex == 3) // هذا الربع سنوي
+            {
+                int currentQuarter = (now.Month - 1) / 3 + 1;
+                DateTime firstDay = new(now.Year, (currentQuarter - 1) * 3 + 1, 1);
+                dateFrom.Value = firstDay;
+                dateTo.Value = firstDay.AddMonths(3).AddDays(-1);
+            }
+            else if (dateHelper.SelectedIndex == 4) // هذه السنة
+            {
+                dateFrom.Value = new DateTime(now.Year, 1, 1);
+                dateTo.Value = new DateTime(now.Year, 12, 31);
+            }
+            else if (dateHelper.SelectedIndex == 5) // afi-sost.com
+            {
+                dateFrom.Value = new DateTime(1996, 1, 1);
+                dateTo.Value = now;
+            }
+            else if (dateHelper.SelectedIndex == 6) // يوم أمس
+            {
+                DateTime yesterday = now.AddDays(-1);
+                dateFrom.Value = yesterday;
+                dateTo.Value = yesterday;
+            }
+            else if (dateHelper.SelectedIndex == 7) // الأسبوع الماضي
+            {
+                int diff = (7 + (now.DayOfWeek - DayOfWeek.Saturday)) % 7;
+                DateTime firstDay = now.AddDays(-1 * diff - 7);
+                dateFrom.Value = firstDay;
+                dateTo.Value = firstDay.AddDays(6);
+            }
+            else if (dateHelper.SelectedIndex == 8) // الشهر الماضي
+            {
+                DateTime firstDay = new DateTime(now.Year, now.Month, 1).AddMonths(-1);
+                dateFrom.Value = firstDay;
+                dateTo.Value = firstDay.AddMonths(1).AddDays(-1);
+            }
+            else if (dateHelper.SelectedIndex == 9) // الربع السنوي الماضي
+            {
+                int currentQuarter = (now.Month - 1) / 3 + 1;
+                DateTime firstDay = new(now.Year, (currentQuarter - 2) * 3 + 1, 1);
+                dateFrom.Value = firstDay;
+                dateTo.Value = firstDay.AddMonths(3).AddDays(-1);
+            }
+            else if (dateHelper.SelectedIndex == 10) // السنة الماضية
+            {
+                dateFrom.Value = new DateTime(now.Year - 1, 1, 1);
+                dateTo.Value = new DateTime(now.Year - 1, 12, 31);
+            }
+            isDateHelperChanging = false;
+        }
+
+        private void DateFrom_ValueChanged(object sender, EventArgs e)
+        {
+            if (isDateHelperChanging) return;
+            isDateHelperChanging = true;
+            dateHelper.SelectedIndex = -1;
+            isDateHelperChanging = false;
+        }
+
+        private void DateTo_ValueChanged(object sender, EventArgs e)
+        {
+            if (isDateHelperChanging) return;
+            isDateHelperChanging = true;
+            dateHelper.SelectedIndex = -1;
+            isDateHelperChanging = false;
+        }
+
         private void DateChoose_CheckedChanged(object sender, EventArgs e)
         {
             dateFrom.Enabled = dateChoose.Checked;
             dateTo.Enabled = dateChoose.Checked;
+            dateHelper.Enabled = dateChoose.Checked;
         }
 
         private void ExtraExcelBtn_Click(object sender, EventArgs e)
