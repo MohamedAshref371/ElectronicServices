@@ -206,8 +206,8 @@ namespace ElectronicServices
             phoneNumber2 = new Label();
             depoRema = new Label();
             withdRema = new Label();
-            maxDepo = new Label();
-            maxWithd = new Label();
+            dailyDepo = new Label();
+            dailyWithd = new Label();
             deposit = new Guna2NumericUpDown();
             withdrawal = new Guna2NumericUpDown();
             operSaveBtn = new Guna2GradientButton();
@@ -794,13 +794,8 @@ namespace ElectronicServices
             addRecordsPanel.BorderColor = Color.Silver;
             addRecordsPanel.BorderRadius = 10;
             addRecordsPanel.BorderThickness = 1;
-            addRecordsPanel.Controls.Add(balance2);
             addRecordsPanel.Controls.Add(walletType2);
             addRecordsPanel.Controls.Add(phoneNumber2);
-            addRecordsPanel.Controls.Add(depoRema);
-            addRecordsPanel.Controls.Add(withdRema);
-            addRecordsPanel.Controls.Add(maxDepo);
-            addRecordsPanel.Controls.Add(maxWithd);
             addRecordsPanel.Controls.Add(deposit);
             addRecordsPanel.Controls.Add(withdrawal);
             addRecordsPanel.Controls.Add(operSaveBtn);
@@ -814,6 +809,11 @@ namespace ElectronicServices
             addRecordsPanel.Controls.Add(phone2Label);
             addRecordsPanel.Controls.Add(label5);
             addRecordsPanel.Controls.Add(label6);
+            addRecordsPanel.Controls.Add(balance2);
+            addRecordsPanel.Controls.Add(depoRema);
+            addRecordsPanel.Controls.Add(withdRema);
+            addRecordsPanel.Controls.Add(dailyDepo);
+            addRecordsPanel.Controls.Add(dailyWithd);
             addRecordsPanel.CustomizableEdges = customizableEdges43;
             addRecordsPanel.FillColor = Color.Azure;
             addRecordsPanel.FillColor2 = Color.Honeydew;
@@ -863,7 +863,7 @@ namespace ElectronicServices
             // 
             depoRema.Font = new Font("Segoe UI", 12F);
             depoRema.ForeColor = Color.Navy;
-            depoRema.Location = new Point(495, 93);
+            depoRema.Location = new Point(732, 93);
             depoRema.Name = "depoRema";
             depoRema.RightToLeft = RightToLeft.Yes;
             depoRema.Size = new Size(112, 21);
@@ -875,7 +875,7 @@ namespace ElectronicServices
             // 
             withdRema.Font = new Font("Segoe UI", 12F);
             withdRema.ForeColor = Color.Maroon;
-            withdRema.Location = new Point(495, 53);
+            withdRema.Location = new Point(732, 53);
             withdRema.Name = "withdRema";
             withdRema.RightToLeft = RightToLeft.Yes;
             withdRema.Size = new Size(112, 21);
@@ -883,29 +883,29 @@ namespace ElectronicServices
             withdRema.Text = "0";
             withdRema.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // maxDepo
+            // dailyDepo
             // 
-            maxDepo.Font = new Font("Segoe UI", 12F);
-            maxDepo.ForeColor = Color.Navy;
-            maxDepo.Location = new Point(721, 93);
-            maxDepo.Name = "maxDepo";
-            maxDepo.RightToLeft = RightToLeft.Yes;
-            maxDepo.Size = new Size(112, 21);
-            maxDepo.TabIndex = 27;
-            maxDepo.Text = "0";
-            maxDepo.TextAlign = ContentAlignment.MiddleCenter;
+            dailyDepo.Font = new Font("Segoe UI", 12F);
+            dailyDepo.ForeColor = Color.Navy;
+            dailyDepo.Location = new Point(490, 93);
+            dailyDepo.Name = "dailyDepo";
+            dailyDepo.RightToLeft = RightToLeft.Yes;
+            dailyDepo.Size = new Size(112, 21);
+            dailyDepo.TabIndex = 27;
+            dailyDepo.Text = "0";
+            dailyDepo.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // maxWithd
+            // dailyWithd
             // 
-            maxWithd.Font = new Font("Segoe UI", 12F);
-            maxWithd.ForeColor = Color.Maroon;
-            maxWithd.Location = new Point(721, 53);
-            maxWithd.Name = "maxWithd";
-            maxWithd.RightToLeft = RightToLeft.Yes;
-            maxWithd.Size = new Size(112, 21);
-            maxWithd.TabIndex = 26;
-            maxWithd.Text = "0";
-            maxWithd.TextAlign = ContentAlignment.MiddleCenter;
+            dailyWithd.Font = new Font("Segoe UI", 12F);
+            dailyWithd.ForeColor = Color.Maroon;
+            dailyWithd.Location = new Point(490, 53);
+            dailyWithd.Name = "dailyWithd";
+            dailyWithd.RightToLeft = RightToLeft.Yes;
+            dailyWithd.Size = new Size(112, 21);
+            dailyWithd.TabIndex = 26;
+            dailyWithd.Text = "0";
+            dailyWithd.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // deposit
             // 
@@ -1039,24 +1039,24 @@ namespace ElectronicServices
             maxDepoLabel.AutoSize = true;
             maxDepoLabel.Font = new Font("Segoe UI", 12F);
             maxDepoLabel.ForeColor = Color.Navy;
-            maxDepoLabel.Location = new Point(835, 93);
+            maxDepoLabel.Location = new Point(842, 93);
             maxDepoLabel.Name = "maxDepoLabel";
             maxDepoLabel.RightToLeft = RightToLeft.Yes;
-            maxDepoLabel.Size = new Size(101, 21);
+            maxDepoLabel.Size = new Size(93, 21);
             maxDepoLabel.TabIndex = 3;
-            maxDepoLabel.Text = "أقصى الإيداع : ";
+            maxDepoLabel.Text = "باقي الإيداع : ";
             // 
             // maxWithdLabel
             // 
             maxWithdLabel.AutoSize = true;
             maxWithdLabel.Font = new Font("Segoe UI", 12F);
             maxWithdLabel.ForeColor = Color.Maroon;
-            maxWithdLabel.Location = new Point(831, 53);
+            maxWithdLabel.Location = new Point(838, 53);
             maxWithdLabel.Name = "maxWithdLabel";
             maxWithdLabel.RightToLeft = RightToLeft.Yes;
-            maxWithdLabel.Size = new Size(109, 21);
+            maxWithdLabel.Size = new Size(101, 21);
             maxWithdLabel.TabIndex = 2;
-            maxWithdLabel.Text = "أقصى السحب : ";
+            maxWithdLabel.Text = "باقي السحب : ";
             // 
             // phone2Label
             // 
@@ -1074,24 +1074,24 @@ namespace ElectronicServices
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F);
             label5.ForeColor = Color.Navy;
-            label5.Location = new Point(605, 93);
+            label5.Location = new Point(603, 93);
             label5.Name = "label5";
             label5.RightToLeft = RightToLeft.Yes;
-            label5.Size = new Size(93, 21);
+            label5.Size = new Size(107, 21);
             label5.TabIndex = 21;
-            label5.Text = "باقي الإيداع : ";
+            label5.Text = "الإيداع اليومي : ";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F);
             label6.ForeColor = Color.Maroon;
-            label6.Location = new Point(601, 53);
+            label6.Location = new Point(599, 53);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.Yes;
-            label6.Size = new Size(101, 21);
+            label6.Size = new Size(115, 21);
             label6.TabIndex = 20;
-            label6.Text = "باقي السحب : ";
+            label6.Text = "السحب اليومي : ";
             // 
             // walletsPanel
             // 
@@ -2760,8 +2760,8 @@ namespace ElectronicServices
         private Label phoneNumber2;
         private Label depoRema;
         private Label withdRema;
-        private Label maxDepo;
-        private Label maxWithd;
+        private Label dailyDepo;
+        private Label dailyWithd;
         private Label walletType2;
         private Guna2CheckBox dateChoose;
         private Label balance2Label;

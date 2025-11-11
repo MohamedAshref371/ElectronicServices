@@ -984,8 +984,8 @@ namespace ElectronicServices
             if (walletData.Phone == data.Phone)
             {
                 walletData = data;
-                maxWithd.Text = data.MaximumWithdrawal.ToString();
-                maxDepo.Text = data.MaximumDeposit.ToString();
+                //dailyWithd.Text = data.MaximumWithdrawal.ToString();
+                //dailyDepo.Text = data.MaximumDeposit.ToString();
                 withdRema.Text = data.WithdrawalRemaining.ToString();
                 depoRema.Text = data.DepositRemaining.ToString();
                 balance2.Text = data.Balance.ToString();
@@ -1077,8 +1077,8 @@ namespace ElectronicServices
             recordsPage = 1;
             walletData = new WalletRowData { Phone = "", Type = type };
             phoneNumber2.Text = "";
-            maxWithd.Text = "";
-            maxDepo.Text = "";
+            dailyWithd.Text = "";
+            dailyDepo.Text = "";
             withdRema.Text = "";
             depoRema.Text = "";
             balance2.Text = totalBalance.ToString();
@@ -1151,8 +1151,8 @@ namespace ElectronicServices
         {
             walletData = data; this.withdDepo = withdDepo;
             phoneNumber2.Text = data.Phone;
-            maxWithd.Text = data.MaximumWithdrawal.ToString();
-            maxDepo.Text = data.MaximumDeposit.ToString();
+            dailyWithd.Text = (WalletRow.MaxDailyWithdrawal - withdDepo[0]).ToString();
+            dailyDepo.Text = (WalletRow.MaxDailyDeposit - withdDepo[1]).ToString();
             withdRema.Text = data.WithdrawalRemaining.ToString();
             depoRema.Text = data.DepositRemaining.ToString();
             balance2.Text = data.Balance.ToString();
@@ -1244,8 +1244,8 @@ namespace ElectronicServices
             {
                 walletData.Phone = "";
                 phoneNumber2.Text = "";
-                maxWithd.Text = "";
-                maxDepo.Text = "";
+                dailyWithd.Text = "";
+                dailyDepo.Text = "";
                 withdRema.Text = "";
                 depoRema.Text = "";
                 operSaveBtn.Enabled = false;
