@@ -11,6 +11,7 @@ namespace ElectronicServices
             customerBtn.Visible = false;
             editBtn.Visible = false;
             infoBtn.Visible = false;
+            page.Visible = true;
         }
 
         private TransactionRowData data;
@@ -29,6 +30,16 @@ namespace ElectronicServices
             dateLabel.Text = data.Date[..10];
             if (data.Note != "") data.Note = "\nملاحظات : " + data.Note;
             SetTransactionRowData(data);
+        }
+
+        public void SetPage(int current, int max)
+        {
+            page.Text = $"{current} / {max}";
+        }
+
+        private void Page_MouseClick(object sender, MouseEventArgs e)
+        {
+            Program.Form.SetPage(e.Button == MouseButtons.Left);
         }
 
         string result;

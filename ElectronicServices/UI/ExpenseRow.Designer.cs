@@ -43,6 +43,7 @@
             date = new Label();
             amountEdit = new Guna.UI2.WinForms.Guna2NumericUpDown();
             attachmentBtn = new Guna.UI2.WinForms.Guna2Button();
+            page = new Label();
             ((System.ComponentModel.ISupportInitialize)amountEdit).BeginInit();
             SuspendLayout();
             // 
@@ -160,6 +161,18 @@
             attachmentBtn.SizeChanged += AttachmentBtn_SizeChanged;
             attachmentBtn.MouseClick += AttachmentBtn_MouseClick;
             // 
+            // page
+            // 
+            page.Font = new Font("Segoe UI", 12F);
+            page.ForeColor = Color.Black;
+            page.Location = new Point(0, 0);
+            page.Name = "page";
+            page.Size = new Size(135, 40);
+            page.TabIndex = 25;
+            page.TextAlign = ContentAlignment.MiddleCenter;
+            page.Visible = false;
+            page.MouseClick += Page_MouseClick;
+            // 
             // ExpenseRow
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -172,6 +185,7 @@
             Controls.Add(editBtn);
             Controls.Add(amount);
             Controls.Add(title);
+            Controls.Add(page);
             Name = "ExpenseRow";
             Size = new Size(920, 40);
             ((System.ComponentModel.ISupportInitialize)amountEdit).EndInit();
@@ -186,5 +200,6 @@
         private Label date;
         private Guna.UI2.WinForms.Guna2NumericUpDown amountEdit;
         private Guna.UI2.WinForms.Guna2Button attachmentBtn;
+        private Label page;
     }
 }

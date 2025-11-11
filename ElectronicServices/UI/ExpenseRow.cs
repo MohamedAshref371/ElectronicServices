@@ -11,8 +11,9 @@ namespace ElectronicServices
             attachmentBtn.Visible = false;
             editBtn.Visible = false;
             deleteBtn.Visible = false;
+            page.Visible = true;
         }
-        
+
         private ExpenseRowData data;
         public ExpenseRow(ExpenseRowData data)
         {
@@ -28,6 +29,17 @@ namespace ElectronicServices
             amount.Text = data.Amount.ToString();
             if (data.Attachment == "")
                 attachmentBtn.Image = null;
+            this.Enabled = data.Id > 0;
+        }
+
+        public void SetPage(int current, int max)
+        {
+            page.Text = $"{current} / {max}";
+        }
+
+        private void Page_MouseClick(object sender, MouseEventArgs e)
+        {
+            Program.Form.SetPage(e.Button == MouseButtons.Left);
         }
 
         private void Title_DoubleClick(object sender, EventArgs e)
@@ -42,7 +54,7 @@ namespace ElectronicServices
             {
                 if (Form1.MessageForm("لا يوجد مرفق لهذا البند\nهل تريد إضافة مرفق له ؟", "تنبيه", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
                     return;
-                
+
                 data.Attachment = Program.Form.AttachmentPath();
                 if (data.Attachment != "")
                 {

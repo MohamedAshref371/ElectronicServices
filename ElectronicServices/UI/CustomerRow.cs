@@ -10,6 +10,7 @@ namespace ElectronicServices
             transBtn.Visible = false;
             editBtn.Visible = false;
             deleteBtn.Visible = false;
+            page.Visible = true;
         }
 
         public int Id { get; private set; }
@@ -27,6 +28,16 @@ namespace ElectronicServices
             codeLabel.Text = data.Id.ToString();
             nameLabel.Text = data.Name;
             SetCustomerRowData(data.Pay, data.Take);
+        }
+
+        public void SetPage(int current, int max)
+        {
+            page.Text = $"{current} / {max}";
+        }
+
+        private void Page_MouseClick(object sender, MouseEventArgs e)
+        {
+            Program.Form.SetPage(e.Button == MouseButtons.Left);
         }
 
         private void SetCustomerRowData(float pay, float take)
