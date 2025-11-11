@@ -1,11 +1,12 @@
 ﻿using ClosedXML.Excel;
+using static System.Windows.Forms.AxHost;
 
 namespace ElectronicServices
 {
     public partial class Form1 : Form
     {
         #region Form
-        private int rowPadding = 7;
+        private int rowPadding = 7, pageRows = 10;
         private readonly int SizeX = 950, SizeY = 700;
         private int NewSizeX = 950, NewSizeY = 700;
 
@@ -25,16 +26,29 @@ namespace ElectronicServices
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
+            SetKeyUpCode(e.KeyCode);
+        }
+
+        private void SetKeyUpCode(Keys k)
+        {
             if (addCustomersPanel.Visible)
-                Customers_KeyUp(e);
+                Customers_KeyUp(k);
             else if (addTransactionsPanel.Visible)
-                Transactions_KeyUp(e);
+                Transactions_KeyUp(k);
             else if (addWalletsPanel.Visible)
-                Wallets_KeyUp(e);
+                Wallets_KeyUp(k);
             else if (addRecordsPanel.Visible)
-                Records_KeyUp(e);
+                Records_KeyUp(k);
             else if (addExpensesPanel.Visible)
-                Expenses_KeyUp(e);
+                Expenses_KeyUp(k);
+        }
+
+        public void SetPage(bool down)
+        {
+            if (down)
+                SetKeyUpCode(Keys.PageDown);
+            else 
+                SetKeyUpCode(Keys.PageUp);
         }
 
         public static DialogResult MessageForm(string text, string caption, MessageBoxButtons buttons, MessageBoxIconV2 icon)
@@ -71,7 +85,7 @@ namespace ElectronicServices
             formTitle.MouseDown += meh;
             CompanyPhone.MouseDown += meh;
 
-            System.Windows.Forms.Timer timer2 = new() { Interval = 200 };
+            /*System.Windows.Forms.Timer timer2 = new() { Interval = 200 };
             timer2.Tick += (s, e1) =>
             {
                 timer2.Stop();
@@ -87,20 +101,25 @@ namespace ElectronicServices
 
             ScrollEventHandler scroll = (s, e1) => { timer2.Stop(); timer3.Stop(); timer2.Start(); timer3.Start(); };
             MouseEventHandler wheel = (s, e1) => { timer2.Stop(); timer3.Stop(); timer2.Start(); timer3.Start(); };
-
+            
             customersPanel.Scroll += scroll;
-            customersPanel.MouseWheel += wheel;
-
             transactionsPanel.Scroll += scroll;
-            transactionsPanel.MouseWheel += wheel;
-
             walletsPanel.Scroll += scroll;
-            walletsPanel.MouseWheel += wheel;
-
             recordsPanel.Scroll += scroll;
-            recordsPanel.MouseWheel += wheel;
+            expensesPanel.Scroll += scroll;*/
 
-            expensesPanel.Scroll += scroll;
+            MouseEventHandler wheel = (s, e1) => 
+            {
+                if (e1.Delta > 0)
+                    SetKeyUpCode(Keys.PageUp);
+                else if (e1.Delta < 0)
+                    SetKeyUpCode(Keys.PageDown);
+            };
+
+            customersPanel.MouseWheel += wheel;
+            transactionsPanel.MouseWheel += wheel;
+            walletsPanel.MouseWheel += wheel;
+            recordsPanel.MouseWheel += wheel;
             expensesPanel.MouseWheel += wheel;
 
 
@@ -470,20 +489,26 @@ namespace ElectronicServices
 
         private void CustomerSearchBtn_Click(object sender, EventArgs e)
         {
-            CustomerRowData[] customers = DatabaseHelper.GetCustomers(customerName.Text.Trim() == "" ? "" : customerName.Text);
-            AddCustomersInPanel(customers);
+            customers = DatabaseHelper.GetCustomers(customerName.Text.Trim() == "" ? "" : customerName.Text);
+            customersPage = 1;
+            AddCustomersInPanel();
         }
 
-        private void AddCustomersInPanel(CustomerRowData[] customers)
+        CustomerRowData[] customers = []; int customersPage = 1;
+        private void AddCustomersInPanel()
         {
+            ((CustomerRow)customersPanel.Controls[0]).SetPage(customersPage, (int)Math.Ceiling(customers.Length / (decimal)pageRows));
+
             int i;
-            Control ctrl;
-            for (i = 0; i < customers.Length && i < customersPanel.Controls.Count - 1; i++)
+            Control ctrl; int start = (customersPage - 1) * pageRows;
+            for (i = 0; i < pageRows && i < customers.Length - start && i < customersPanel.Controls.Count - 1; i++)
             {
                 ctrl = customersPanel.Controls[i + 1];
-                ((CustomerRow)ctrl).SetData(customers[i]);
+                ((CustomerRow)ctrl).SetData(customers[start + i]);
                 ctrl.Tag = true; ctrl.Visible = true;
             }
+
+            if (i == pageRows) return;
 
             if (i < customersPanel.Controls.Count - 1)
             {
@@ -496,7 +521,7 @@ namespace ElectronicServices
             else if (i < customers.Length)
             {
                 CustomerRow row;
-                for (; i < customers.Length; i++)
+                for (; i < pageRows && i < customers.Length; i++)
                 {
                     row = new(customers[i]);
                     row.Location = new Point(rowPadding, 0);
@@ -617,21 +642,26 @@ namespace ElectronicServices
         private void TransSearchBtn_Click(object sender, EventArgs e)
         {
             int custId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key;
-            TransactionRowData[] transactions = DatabaseHelper.GetTransactions(custId);
-
-            AddTransactionsInPanel(transactions);
+            transactions = DatabaseHelper.GetTransactions(custId);
+            transactionsPage = 1;
+            AddTransactionsInPanel();
         }
 
-        private void AddTransactionsInPanel(TransactionRowData[] transactions)
+        TransactionRowData[] transactions = []; int transactionsPage = 1;
+        private void AddTransactionsInPanel()
         {
-            int i;
+            ((TransactionRow)transactionsPanel.Controls[0]).SetPage(transactionsPage, (int)Math.Ceiling(transactions.Length / (decimal)pageRows));
+
+            int i; int start = (transactionsPage - 1) * pageRows;
             Control ctrl;
-            for (i = 0; i < transactions.Length && i < transactionsPanel.Controls.Count - 1; i++)
+            for (i = 0; i < pageRows && i < transactions.Length - start && i < transactionsPanel.Controls.Count - 1; i++)
             {
                 ctrl = transactionsPanel.Controls[i + 1];
-                ((TransactionRow)ctrl).SetData(transactions[i]);
+                ((TransactionRow)ctrl).SetData(transactions[start + i]);
                 ctrl.Tag = true; ctrl.Visible = true;
             }
+
+            if (i == pageRows) return;
 
             if (i < transactionsPanel.Controls.Count - 1)
             {
@@ -644,7 +674,7 @@ namespace ElectronicServices
             else if (i < transactions.Length)
             {
                 TransactionRow row;
-                for (; i < transactions.Length; i++)
+                for (; i < pageRows && i < transactions.Length; i++)
                 {
                     row = new(transactions[i]);
                     row.Location = new Point(rowPadding, 0);
@@ -680,19 +710,33 @@ namespace ElectronicServices
 
         private void CustPayLabel_DoubleClick(object sender, EventArgs e)
         {
-            CustomerRowData[] customers = DatabaseHelper.GetCustomers(true);
-            AddCustomersInPanel(customers);
+            customers = DatabaseHelper.GetCustomers(true);
+            customersPage = 1;
+            AddCustomersInPanel();
         }
 
         private void CustTakeLabel_DoubleClick(object sender, EventArgs e)
         {
-            CustomerRowData[] customers = DatabaseHelper.GetCustomers(false);
-            AddCustomersInPanel(customers);
+            customers = DatabaseHelper.GetCustomers(false);
+            customersPage = 1;
+            AddCustomersInPanel();
         }
 
-        private void Customers_KeyUp(KeyEventArgs e)
+        private void Customers_KeyUp(Keys k)
         {
-            if (e.KeyCode == Keys.F1)
+            if (k == Keys.PageUp)
+            {
+                if (customersPage == 1) return;
+                customersPage--;
+                AddCustomersInPanel();
+            }
+            else if (k == Keys.PageDown)
+            {
+                if (customersPage * pageRows >= customers.Length) return;
+                customersPage++;
+                AddCustomersInPanel();
+            }
+            else if (k == Keys.F1)
             {
                 FieldData[] data = DatabaseHelper.CustomerFieldSearch();
                 if (data is null) return;
@@ -701,19 +745,34 @@ namespace ElectronicServices
 
                 customerName.Text = data[lvd.SelectedIndex].Text;
             }
-            else if (e.KeyCode == Keys.F9)
+            else if (k == Keys.F9)
             {
                 CustPayLabel_DoubleClick(null, null);
             }
-            else if (e.KeyCode == Keys.F10)
+            else if (k == Keys.F10)
             {
                 CustTakeLabel_DoubleClick(null, null);
             }
         }
 
-        private void Transactions_KeyUp(KeyEventArgs e)
+        private void Transactions_KeyUp(Keys k)
         {
-            int key = (int)e.KeyCode - 111;
+            if (k == Keys.PageUp)
+            {
+                if (transactionsPage == 1) return;
+                transactionsPage--;
+                AddTransactionsInPanel();
+                return;
+            }
+            else if (k == Keys.PageDown)
+            {
+                if (transactionsPage * pageRows >= transactions.Length) return;
+                transactionsPage++;
+                AddTransactionsInPanel();
+                return;
+            }
+
+            int key = (int)k - 111;
             FieldData[] data;
             ListViewDialog lvd;
             if (key == 1)
@@ -733,8 +792,9 @@ namespace ElectronicServices
                 lvd = new("تاريخ المعاملة", data);
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
-                TransactionRowData[] transactions = DatabaseHelper.GetTransactions(custId, data[lvd.SelectedIndex].Text, key);
-                AddTransactionsInPanel(transactions);
+                transactions = DatabaseHelper.GetTransactions(custId, data[lvd.SelectedIndex].Text, key);
+                transactionsPage = 1;
+                AddTransactionsInPanel();
             }
         }
 
@@ -832,20 +892,26 @@ namespace ElectronicServices
 
         private void WalletSearchBtn_Click(object sender, EventArgs e)
         {
-            WalletRowData[] wallets = DatabaseHelper.GetWallets(phoneNumber.Text);
-            AddWalletsInPanel(wallets);
+            wallets = DatabaseHelper.GetWallets(phoneNumber.Text);
+            walletsPage = 1;
+            AddWalletsInPanel();
         }
 
-        private void AddWalletsInPanel(WalletRowData[] wallets)
+        WalletRowData[] wallets = []; int walletsPage = 1;
+        private void AddWalletsInPanel()
         {
+            ((WalletRow)walletsPanel.Controls[0]).SetPage(walletsPage, (int)Math.Ceiling(wallets.Length / (decimal)pageRows));
+
             int i;
-            Control ctrl;
-            for (i = 0; i < wallets.Length && i < walletsPanel.Controls.Count - 1; i++)
+            Control ctrl; int start = (walletsPage - 1) * pageRows;
+            for (i = 0; i < pageRows && i < wallets.Length - start && i < walletsPanel.Controls.Count - 1; i++)
             {
                 ctrl = walletsPanel.Controls[i + 1];
-                ((WalletRow)ctrl).SetData(wallets[i]);
+                ((WalletRow)ctrl).SetData(wallets[start + i]);
                 ctrl.Tag = true; ctrl.Visible = true;
             }
+
+            if (i == pageRows) return;
 
             if (i < walletsPanel.Controls.Count - 1)
             {
@@ -858,7 +924,7 @@ namespace ElectronicServices
             else if (i < wallets.Length)
             {
                 WalletRow row;
-                for (; i < wallets.Length; i++)
+                for (; i < pageRows && i < wallets.Length; i++)
                 {
                     row = new(wallets[i]);
                     row.Location = new Point(rowPadding, 0);
@@ -1009,7 +1075,8 @@ namespace ElectronicServices
         {
             int type = walletTypeComboBox.SelectedIndex;
             float totalBalance = DatabaseHelper.GetTotalWalletsBalance(type);
-            RecordRowData[] records = DatabaseHelper.GetRecords(type);
+            records = DatabaseHelper.GetRecords(type);
+            recordsPage = 1;
             walletData = new WalletRowData { Phone = "", Type = type };
             phoneNumber2.Text = "";
             maxWithd.Text = "";
@@ -1022,14 +1089,26 @@ namespace ElectronicServices
             deposit.Value = 0;
             operComment.Text = "";
             operSaveBtn.Enabled = false;
-            AddRecordsInPanel(records);
+            AddRecordsInPanel();
             recordsBtn.Focus();
             RecordsBtn_Click(null, null);
         }
 
-        private void Wallets_KeyUp(KeyEventArgs e)
+        private void Wallets_KeyUp(Keys k)
         {
-            if (e.KeyCode == Keys.F1)
+            if (k == Keys.PageUp)
+            {
+                if (walletsPage == 1) return;
+                walletsPage--;
+                AddWalletsInPanel();
+            }
+            else if (k == Keys.PageDown)
+            {
+                if (walletsPage * pageRows >= wallets.Length) return;
+                walletsPage++;
+                AddWalletsInPanel();
+            }
+            else if (k == Keys.F1)
             {
                 FieldData[] data = DatabaseHelper.WalletFieldSearch();
                 if (data is null) return;
@@ -1038,7 +1117,7 @@ namespace ElectronicServices
 
                 phoneNumber.Text = data[lvd.SelectedIndex].Text;
             }
-            else if (e.KeyCode == Keys.F2)
+            else if (k == Keys.F2)
             {
                 FieldData[] data = DatabaseHelper.WalletTypeFieldSearch();
                 if (data is null) return;
@@ -1048,23 +1127,22 @@ namespace ElectronicServices
                 phoneNumber.Text = "";
                 walletTypeComboBox.SelectedItem = data[lvd.SelectedIndex].Text;
             }
-            else if (e.KeyCode == Keys.F3)
+            else if (k == Keys.F3)
             {
-                WalletRowData[] data = DatabaseHelper.GetWallets(walletTypeComboBox.SelectedIndex);
-                if (data is null) return;
-
+                wallets = DatabaseHelper.GetWallets(walletTypeComboBox.SelectedIndex);
+                walletsPage = 1;
                 phoneNumber.Text = "";
-                AddWalletsInPanel(data);
+                AddWalletsInPanel();
             }
-            else if (e.KeyCode == Keys.F4)
+            else if (k == Keys.F4)
             {
                 BalanceLabel_DoubleClick(null, null);
             }
-            else if (e.KeyCode == Keys.F11)
+            else if (k == Keys.F11)
             {
                 ResetWallets();
             }
-            else if (e.KeyCode == Keys.F12)
+            else if (k == Keys.F12)
             {
                 ResetWalletsRemaining();
             }
@@ -1085,8 +1163,9 @@ namespace ElectronicServices
             deposit.Value = 0;
             operComment.Text = "";
             operSaveBtn.Enabled = true;
-            RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
-            AddRecordsInPanel(records);
+            records = DatabaseHelper.GetRecords(data.Phone);
+            recordsPage = 1;
+            AddRecordsInPanel();
             recordsBtn.Focus();
             RecordsBtn_Click(null, null);
         }
@@ -1109,8 +1188,11 @@ namespace ElectronicServices
 
         public void ResetWallet(string phone)
         {
-            if (walletData.Phone != phone) return;
-            AddWalletsInPanel([]);
+            if (walletData.Phone == phone)
+            {
+                records = []; recordsPage = 1;
+                AddRecordsInPanel();
+            }
         }
 
         public void ResetWallets()
@@ -1124,7 +1206,8 @@ namespace ElectronicServices
                 return;
             }
 
-            AddWalletsInPanel([]);
+            records = []; recordsPage = 1;
+            AddRecordsInPanel();
 
             MessageForm("تم حذف جميع عمليات المحافظ", "نجاح", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
         }
@@ -1186,16 +1269,19 @@ namespace ElectronicServices
             depositRemaining.Enabled = !isEqualMax.Checked;
         }
 
-        private void AddRecordsInPanel(RecordRowData[] records)
+        RecordRowData[] records = []; int recordsPage = 1;
+        private void AddRecordsInPanel()
         {
-            int i;
+            int i; int start = (recordsPage - 1) * pageRows;
             Control ctrl;
-            for (i = 0; i < records.Length && i < recordsPanel.Controls.Count - 1; i++)
+            for (i = 0; i < pageRows && i < records.Length - start && i < recordsPanel.Controls.Count - 1; i++)
             {
                 ctrl = recordsPanel.Controls[i + 1];
-                ((RecordRow)ctrl).SetData(records[i]);
+                ((RecordRow)ctrl).SetData(records[start + i]);
                 ctrl.Tag = true; ctrl.Visible = true;
             }
+
+            if (i == pageRows) return;
 
             if (i < recordsPanel.Controls.Count - 1)
             {
@@ -1208,7 +1294,7 @@ namespace ElectronicServices
             else if (i < records.Length)
             {
                 RecordRow row;
-                for (; i < records.Length; i++)
+                for (; i < pageRows && i < records.Length; i++)
                 {
                     row = new(records[i]);
                     row.Location = new Point(rowPadding, 0);
@@ -1221,13 +1307,20 @@ namespace ElectronicServices
             }
         }
 
-        private void Records_KeyUp(KeyEventArgs e)
+        private void Records_KeyUp(Keys k)
         {
-            if (e.KeyCode == Keys.F1)
-                ;
-
-            else if (e.KeyCode == Keys.F2)
-                ;
+            if (k == Keys.PageUp)
+            {
+                if (recordsPage == 1) return;
+                recordsPage--;
+                AddRecordsInPanel();
+            }
+            else if (k == Keys.PageDown)
+            {
+                if (recordsPage * pageRows >= records.Length) return;
+                recordsPage++;
+                AddRecordsInPanel();
+            }
         }
 
         private void OperSaveBtn_Click(object sender, EventArgs e)
@@ -1295,17 +1388,17 @@ namespace ElectronicServices
                 return;
             }
 
-            RecordRowData[] records = DatabaseHelper.GetRecords(data.Phone);
-            AddRecordsInPanel(records);
+            records = DatabaseHelper.GetRecords(data.Phone);
+            recordsPage = 1;
+            AddRecordsInPanel();
         }
 
         private void WalletTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (isWalletEdit || walletTypeComboBox.SelectedIndex <= 0) return;
-            WalletRowData[] data = DatabaseHelper.GetWallets(walletTypeComboBox.SelectedIndex);
-            if (data is null) return;
-
-            AddWalletsInPanel(data);
+            wallets = DatabaseHelper.GetWallets(walletTypeComboBox.SelectedIndex);
+            walletsPage = 1;
+            AddWalletsInPanel();
         }
         #endregion
 
@@ -1325,21 +1418,27 @@ namespace ElectronicServices
 
         private void ExpenseSearchBtn_Click(object sender, EventArgs e)
         {
-            ExpenseRowData[] expenses = DatabaseHelper.GetExpenses(expenseTitle.Text.Trim() == "" ? "" : expenseTitle.Text);
+            expenses = DatabaseHelper.GetExpenses(expenseTitle.Text.Trim() == "" ? "" : expenseTitle.Text);
+            expensesPage = 1;
 
-            AddExpensesInPanel(expenses);
+            AddExpensesInPanel();
         }
 
-        private void AddExpensesInPanel(ExpenseRowData[] expenses)
+        ExpenseRowData[] expenses = []; int expensesPage = 1;
+        private void AddExpensesInPanel()
         {
-            int i;
+            ((ExpenseRow)expensesPanel.Controls[0]).SetPage(expensesPage, (int)Math.Ceiling(expenses.Length / (decimal)pageRows));
+
+            int i; int start = (expensesPage - 1) * pageRows; //int end = Math.Min(start + pageRows, expenses.Length);
             Control ctrl;
-            for (i = 0; i < expenses.Length && i < expensesPanel.Controls.Count - 1; i++)
+            for (i = 0; i < pageRows && i < expenses.Length - start && i < expensesPanel.Controls.Count - 1; i++)
             {
                 ctrl = expensesPanel.Controls[i + 1];
-                ((ExpenseRow)ctrl).SetData(expenses[i]);
+                ((ExpenseRow)ctrl).SetData(expenses[start + i]);
                 ctrl.Tag = true; ctrl.Visible = true;
             }
+
+            if (i == pageRows) return;
 
             if (i < expensesPanel.Controls.Count - 1)
             {
@@ -1352,7 +1451,7 @@ namespace ElectronicServices
             else if (i < expenses.Length)
             {
                 ExpenseRow row;
-                for (; i < expenses.Length; i++)
+                for (; i < pageRows && i < expenses.Length; i++)
                 {
                     row = new(expenses[i]);
                     row.Location = new Point(rowPadding, 0);
@@ -1365,9 +1464,24 @@ namespace ElectronicServices
             }
         }
 
-        private void Expenses_KeyUp(KeyEventArgs e)
+        private void Expenses_KeyUp(Keys k)
         {
-            int key = (int)e.KeyCode - 111;
+            if (k == Keys.PageUp)
+            {
+                if (expensesPage == 1) return;
+                expensesPage--;
+                AddExpensesInPanel();
+                return;
+            }
+            else if (k == Keys.PageDown)
+            {
+                if (expensesPage * pageRows >= expenses.Length) return;
+                expensesPage++;
+                AddExpensesInPanel();
+                return;
+            }
+
+            int key = (int)k - 111;
             FieldData[] data;
             ListViewDialog lvd;
 
@@ -1387,8 +1501,9 @@ namespace ElectronicServices
                 lvd = new("تاريخ المصروفات", data);
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
-                ExpenseRowData[] expenses = DatabaseHelper.GetExpensesWithDate(data[lvd.SelectedIndex].Text);
-                AddExpensesInPanel(expenses);
+                expenses = DatabaseHelper.GetExpensesWithDate(data[lvd.SelectedIndex].Text);
+                expensesPage = 1;
+                AddExpensesInPanel();
             }
         }
 
@@ -1421,8 +1536,9 @@ namespace ElectronicServices
             expenseAmount.Value = 0;
             attachmentPath.Text = attachmentPathReset;
 
-            ExpenseRowData[] expenses = DatabaseHelper.GetExpensesWithDate(DateTime.Now.ToStandardString());
-            AddExpensesInPanel(expenses);
+            expenses = DatabaseHelper.GetExpensesWithDate(DateTime.Now.ToStandardString());
+            expensesPage = 1;
+            AddExpensesInPanel();
         }
 
         private void StatisticsExcelBtn_Click(object sender, EventArgs e)

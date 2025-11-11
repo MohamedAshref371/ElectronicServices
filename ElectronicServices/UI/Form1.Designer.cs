@@ -533,7 +533,7 @@ namespace ElectronicServices
             addExpensesPanel.Location = new Point(-1, 0);
             addExpensesPanel.Name = "addExpensesPanel";
             addExpensesPanel.ShadowDecoration.CustomizableEdges = customizableEdges30;
-            addExpensesPanel.Size = new Size(951, 128);
+            addExpensesPanel.Size = new Size(951, 127);
             addExpensesPanel.TabIndex = 43;
             addExpensesPanel.Visible = false;
             // 
@@ -762,10 +762,10 @@ namespace ElectronicServices
             expensesPanel.CustomizableEdges = customizableEdges31;
             expensesPanel.FillColor = Color.FromArgb(225, 225, 255);
             expensesPanel.Font = new Font("Segoe UI", 9F);
-            expensesPanel.Location = new Point(-1, 128);
+            expensesPanel.Location = new Point(-1, 127);
             expensesPanel.Name = "expensesPanel";
             expensesPanel.ShadowDecoration.CustomizableEdges = customizableEdges32;
-            expensesPanel.Size = new Size(951, 476);
+            expensesPanel.Size = new Size(951, 478);
             expensesPanel.TabIndex = 44;
             expensesPanel.Visible = false;
             // 
@@ -778,10 +778,10 @@ namespace ElectronicServices
             recordsPanel.CustomizableEdges = customizableEdges33;
             recordsPanel.FillColor = Color.FromArgb(192, 220, 255);
             recordsPanel.Font = new Font("Segoe UI", 9F);
-            recordsPanel.Location = new Point(-1, 128);
+            recordsPanel.Location = new Point(-1, 127);
             recordsPanel.Name = "recordsPanel";
             recordsPanel.ShadowDecoration.CustomizableEdges = customizableEdges34;
-            recordsPanel.Size = new Size(951, 476);
+            recordsPanel.Size = new Size(951, 478);
             recordsPanel.TabIndex = 44;
             recordsPanel.Visible = false;
             // 
@@ -817,7 +817,7 @@ namespace ElectronicServices
             addRecordsPanel.Location = new Point(-1, 0);
             addRecordsPanel.Name = "addRecordsPanel";
             addRecordsPanel.ShadowDecoration.CustomizableEdges = customizableEdges44;
-            addRecordsPanel.Size = new Size(951, 128);
+            addRecordsPanel.Size = new Size(951, 127);
             addRecordsPanel.TabIndex = 43;
             addRecordsPanel.Visible = false;
             // 
@@ -1098,10 +1098,10 @@ namespace ElectronicServices
             walletsPanel.CustomizableEdges = customizableEdges45;
             walletsPanel.FillColor = Color.FromArgb(255, 240, 240);
             walletsPanel.Font = new Font("Segoe UI", 9F);
-            walletsPanel.Location = new Point(-1, 128);
+            walletsPanel.Location = new Point(-1, 127);
             walletsPanel.Name = "walletsPanel";
             walletsPanel.ShadowDecoration.CustomizableEdges = customizableEdges46;
-            walletsPanel.Size = new Size(951, 476);
+            walletsPanel.Size = new Size(951, 478);
             walletsPanel.TabIndex = 42;
             walletsPanel.Visible = false;
             // 
@@ -1135,7 +1135,7 @@ namespace ElectronicServices
             addWalletsPanel.Location = new Point(-1, 0);
             addWalletsPanel.Name = "addWalletsPanel";
             addWalletsPanel.ShadowDecoration.CustomizableEdges = customizableEdges72;
-            addWalletsPanel.Size = new Size(951, 128);
+            addWalletsPanel.Size = new Size(951, 127);
             addWalletsPanel.TabIndex = 0;
             addWalletsPanel.Visible = false;
             // 
@@ -1352,6 +1352,7 @@ namespace ElectronicServices
             maxDeposit.ShadowDecoration.CustomizableEdges = customizableEdges66;
             maxDeposit.Size = new Size(124, 36);
             maxDeposit.TabIndex = 5;
+            maxDeposit.Value = new decimal(new int[] { 200000, 0, 0, 0 });
             // 
             // maxWithdrawal
             // 
@@ -1368,6 +1369,7 @@ namespace ElectronicServices
             maxWithdrawal.Size = new Size(124, 36);
             maxWithdrawal.TabIndex = 4;
             maxWithdrawal.UpDownButtonFillColor = Color.FromArgb(255, 148, 94);
+            maxWithdrawal.Value = new decimal(new int[] { 200000, 0, 0, 0 });
             // 
             // phoneNumber
             // 
@@ -1469,10 +1471,10 @@ namespace ElectronicServices
             transactionsPanel.CustomizableEdges = customizableEdges73;
             transactionsPanel.FillColor = Color.AntiqueWhite;
             transactionsPanel.Font = new Font("Segoe UI", 9F);
-            transactionsPanel.Location = new Point(-1, 96);
+            transactionsPanel.Location = new Point(-1, 127);
             transactionsPanel.Name = "transactionsPanel";
             transactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges74;
-            transactionsPanel.Size = new Size(951, 510);
+            transactionsPanel.Size = new Size(951, 478);
             transactionsPanel.TabIndex = 6;
             transactionsPanel.Visible = false;
             // 
@@ -1504,7 +1506,7 @@ namespace ElectronicServices
             addTransactionsPanel.Location = new Point(-1, 0);
             addTransactionsPanel.Name = "addTransactionsPanel";
             addTransactionsPanel.ShadowDecoration.CustomizableEdges = customizableEdges94;
-            addTransactionsPanel.Size = new Size(951, 96);
+            addTransactionsPanel.Size = new Size(951, 127);
             addTransactionsPanel.TabIndex = 5;
             addTransactionsPanel.Visible = false;
             // 
@@ -1766,10 +1768,10 @@ namespace ElectronicServices
             customersPanel.BorderThickness = 1;
             customersPanel.CustomizableEdges = customizableEdges95;
             customersPanel.FillColor = Color.FromArgb(160, 225, 160);
-            customersPanel.Location = new Point(-1, 96);
+            customersPanel.Location = new Point(-1, 127);
             customersPanel.Name = "customersPanel";
             customersPanel.ShadowDecoration.CustomizableEdges = customizableEdges96;
-            customersPanel.Size = new Size(951, 508);
+            customersPanel.Size = new Size(951, 478);
             customersPanel.TabIndex = 4;
             customersPanel.Visible = false;
             // 
@@ -1797,7 +1799,7 @@ namespace ElectronicServices
             addCustomersPanel.Location = new Point(-1, 0);
             addCustomersPanel.Name = "addCustomersPanel";
             addCustomersPanel.ShadowDecoration.CustomizableEdges = customizableEdges110;
-            addCustomersPanel.Size = new Size(951, 96);
+            addCustomersPanel.Size = new Size(951, 127);
             addCustomersPanel.TabIndex = 3;
             addCustomersPanel.Visible = false;
             // 
