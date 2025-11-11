@@ -4,7 +4,7 @@ namespace ElectronicServices
 {
     public partial class WalletRow : UserControl
     {
-        private static float maxDailyWithdrawal = 60000f, maxDailyDeposit = 60000f;
+        public const float MaxDailyWithdrawal = 60000f, MaxDailyDeposit = 60000f;
         public WalletRow()
         {
             InitializeComponent();
@@ -61,9 +61,9 @@ namespace ElectronicServices
             }
 
             string message = "";
-            if (withdDepo[0] >= maxDailyWithdrawal)
+            if (withdDepo[0] >= MaxDailyWithdrawal)
                 message += $"المحفظة تخطت السحب اليومي المسموح به";
-            if (withdDepo[1] >= maxDailyDeposit)
+            if (withdDepo[1] >= MaxDailyDeposit)
             {
                 message += message == "" ? "المحفظة " : "\nو";
                 message += $"تخطت الإيداع اليومي المسموح به";
@@ -71,7 +71,7 @@ namespace ElectronicServices
             if (message != "" && Form1.MessageForm(message, "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIconV2.Warning) != DialogResult.OK)
                 return;
             
-            Program.Form.ChooseWalletBtn(data);
+            Program.Form.ChooseWalletBtn(data, withdDepo);
         }
 
         private void EditBtn_Click(object sender, EventArgs e)

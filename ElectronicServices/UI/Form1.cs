@@ -1146,10 +1146,10 @@ namespace ElectronicServices
             }
         }
 
-        WalletRowData walletData;
-        public void ChooseWalletBtn(WalletRowData data)
+        WalletRowData walletData; float[] withdDepo;
+        public void ChooseWalletBtn(WalletRowData data, float[] withdDepo)
         {
-            walletData = data;
+            walletData = data; this.withdDepo = withdDepo;
             phoneNumber2.Text = data.Phone;
             maxWithd.Text = data.MaximumWithdrawal.ToString();
             maxDepo.Text = data.MaximumDeposit.ToString();
@@ -1323,29 +1323,39 @@ namespace ElectronicServices
 
         private void OperSaveBtn_Click(object sender, EventArgs e)
         {
-            if (withdrawal.Value == 0 && deposit.Value == 0)
+            float w = (float)withdrawal.Value, d = (float)deposit.Value;
+
+            if (w == 0 && d == 0)
             {
                 MessageForm("الرجاء إدخال قيمة السحب أو الإيداع", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
-            if ((float)withdrawal.Value > walletData.WithdrawalRemaining)
-            {
-                MessageForm("قيمة السحب أكبر من المتبقي للسحب", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
-                return;
-            }
-            if ((float)deposit.Value != 0 && (float)deposit.Value > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
-                return;
-
-            if (walletData.Balance - (float)withdrawal.Value + (float)deposit.Value < 0)
+            if (walletData.Balance - w + d < 0)
             {
                 MessageForm("الرصيد لا يمكن أن يكون سالباً", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
                 return;
             }
 
-            walletData.WithdrawalRemaining -= (float)withdrawal.Value;
-            walletData.DepositRemaining -= (float)deposit.Value;
-            walletData.Balance = walletData.Balance - (float)withdrawal.Value + (float)deposit.Value;
+            if (w > walletData.WithdrawalRemaining)
+            {
+                MessageForm("قيمة السحب أكبر من المتبقي للسحب", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
+                return;
+            }
+
+            if (d != 0 && d > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
+                return;
+
+            if (w != 0 && w + withdDepo[0] > WalletRow.MaxDailyWithdrawal && MessageForm("ستتخطى المتبقي من السحب اليومي المسموح به", "تحذير", MessageBoxButtons.OKCancel, MessageBoxIconV2.Warning) != DialogResult.OK)
+                return;
+
+            if (d != 0 && d + withdDepo[1] > WalletRow.MaxDailyDeposit && MessageForm("ستتخطى المتبقي من الإيداع اليومي المسموح به", "تحذير", MessageBoxButtons.OKCancel, MessageBoxIconV2.Warning) != DialogResult.OK)
+                return;
+
+
+            walletData.WithdrawalRemaining -= w;
+            walletData.DepositRemaining -= d;
+            walletData.Balance = walletData.Balance - w + d;
 
             withdRema.Text = walletData.WithdrawalRemaining.ToString();
             depoRema.Text = walletData.DepositRemaining.ToString();
