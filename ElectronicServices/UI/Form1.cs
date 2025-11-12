@@ -983,9 +983,10 @@ namespace ElectronicServices
 
             if (walletData.Phone == data.Phone)
             {
+                withdDepo[1] = withdDepo[0] + data.Balance;
                 walletData = data;
-                //dailyWithd.Text = data.MaximumWithdrawal.ToString();
-                //dailyDepo.Text = data.MaximumDeposit.ToString();
+                dailyWithd.Text = (WalletRow.MaxDailyWithdrawal - withdDepo[0]).ToString();
+                dailyDepo.Text = (WalletRow.MaxDailyDeposit - withdDepo[1]).ToString();
                 withdRema.Text = data.WithdrawalRemaining.ToString();
                 depoRema.Text = data.DepositRemaining.ToString();
                 balance2.Text = data.Balance.ToString();
@@ -1364,9 +1365,12 @@ namespace ElectronicServices
             walletData.WithdrawalRemaining -= w;
             walletData.DepositRemaining -= d;
             walletData.Balance = walletData.Balance - w + d;
+            withdDepo[0] += w; withdDepo[1] += d;
 
             withdRema.Text = walletData.WithdrawalRemaining.ToString();
             depoRema.Text = walletData.DepositRemaining.ToString();
+            dailyWithd.Text = (WalletRow.MaxDailyWithdrawal - withdDepo[0]).ToString();
+            dailyDepo.Text = (WalletRow.MaxDailyDeposit - withdDepo[1]).ToString();
             balance2.Text = walletData.Balance.ToString();
 
             if (!DatabaseHelper.EditWallet(walletData))
