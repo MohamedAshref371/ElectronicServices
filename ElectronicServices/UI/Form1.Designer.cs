@@ -201,13 +201,8 @@ namespace ElectronicServices
             expensesPanel = new Guna2Panel();
             recordsPanel = new Guna2Panel();
             addRecordsPanel = new Guna2GradientPanel();
-            balance2 = new Label();
             walletType2 = new Label();
             phoneNumber2 = new Label();
-            depoRema = new Label();
-            withdRema = new Label();
-            dailyDepo = new Label();
-            dailyWithd = new Label();
             deposit = new Guna2NumericUpDown();
             withdrawal = new Guna2NumericUpDown();
             operSaveBtn = new Guna2GradientButton();
@@ -221,6 +216,11 @@ namespace ElectronicServices
             phone2Label = new Label();
             label5 = new Label();
             label6 = new Label();
+            balance2 = new Label();
+            depoRema = new Label();
+            withdRema = new Label();
+            dailyDepo = new Label();
+            dailyWithd = new Label();
             walletsPanel = new Guna2Panel();
             addWalletsPanel = new Guna2GradientPanel();
             walletEmptyBtn = new Guna2GradientButton();
@@ -825,18 +825,6 @@ namespace ElectronicServices
             addRecordsPanel.TabIndex = 43;
             addRecordsPanel.Visible = false;
             // 
-            // balance2
-            // 
-            balance2.Font = new Font("Segoe UI", 12F);
-            balance2.ForeColor = Color.FromArgb(0, 64, 0);
-            balance2.Location = new Point(336, 73);
-            balance2.Name = "balance2";
-            balance2.RightToLeft = RightToLeft.Yes;
-            balance2.Size = new Size(112, 21);
-            balance2.TabIndex = 32;
-            balance2.Text = "0";
-            balance2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // walletType2
             // 
             walletType2.Font = new Font("Segoe UI", 12F);
@@ -858,54 +846,6 @@ namespace ElectronicServices
             phoneNumber2.Size = new Size(148, 21);
             phoneNumber2.TabIndex = 30;
             phoneNumber2.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // depoRema
-            // 
-            depoRema.Font = new Font("Segoe UI", 12F);
-            depoRema.ForeColor = Color.Navy;
-            depoRema.Location = new Point(732, 93);
-            depoRema.Name = "depoRema";
-            depoRema.RightToLeft = RightToLeft.Yes;
-            depoRema.Size = new Size(112, 21);
-            depoRema.TabIndex = 29;
-            depoRema.Text = "0";
-            depoRema.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // withdRema
-            // 
-            withdRema.Font = new Font("Segoe UI", 12F);
-            withdRema.ForeColor = Color.Maroon;
-            withdRema.Location = new Point(732, 53);
-            withdRema.Name = "withdRema";
-            withdRema.RightToLeft = RightToLeft.Yes;
-            withdRema.Size = new Size(112, 21);
-            withdRema.TabIndex = 28;
-            withdRema.Text = "0";
-            withdRema.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // dailyDepo
-            // 
-            dailyDepo.Font = new Font("Segoe UI", 12F);
-            dailyDepo.ForeColor = Color.Navy;
-            dailyDepo.Location = new Point(490, 93);
-            dailyDepo.Name = "dailyDepo";
-            dailyDepo.RightToLeft = RightToLeft.Yes;
-            dailyDepo.Size = new Size(112, 21);
-            dailyDepo.TabIndex = 27;
-            dailyDepo.Text = "0";
-            dailyDepo.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // dailyWithd
-            // 
-            dailyWithd.Font = new Font("Segoe UI", 12F);
-            dailyWithd.ForeColor = Color.Maroon;
-            dailyWithd.Location = new Point(490, 53);
-            dailyWithd.Name = "dailyWithd";
-            dailyWithd.RightToLeft = RightToLeft.Yes;
-            dailyWithd.Size = new Size(112, 21);
-            dailyWithd.TabIndex = 26;
-            dailyWithd.Text = "0";
-            dailyWithd.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // deposit
             // 
@@ -1077,9 +1017,9 @@ namespace ElectronicServices
             label5.Location = new Point(603, 93);
             label5.Name = "label5";
             label5.RightToLeft = RightToLeft.Yes;
-            label5.Size = new Size(107, 21);
+            label5.Size = new Size(108, 21);
             label5.TabIndex = 21;
-            label5.Text = "الإيداع اليومي : ";
+            label5.Text = "الباقي اليومي : ";
             // 
             // label6
             // 
@@ -1089,9 +1029,69 @@ namespace ElectronicServices
             label6.Location = new Point(599, 53);
             label6.Name = "label6";
             label6.RightToLeft = RightToLeft.Yes;
-            label6.Size = new Size(115, 21);
+            label6.Size = new Size(108, 21);
             label6.TabIndex = 20;
-            label6.Text = "السحب اليومي : ";
+            label6.Text = "الباقي اليومي : ";
+            // 
+            // balance2
+            // 
+            balance2.Font = new Font("Segoe UI", 12F);
+            balance2.ForeColor = Color.FromArgb(0, 64, 0);
+            balance2.Location = new Point(336, 73);
+            balance2.Name = "balance2";
+            balance2.RightToLeft = RightToLeft.Yes;
+            balance2.Size = new Size(112, 21);
+            balance2.TabIndex = 32;
+            balance2.Text = "0";
+            balance2.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // depoRema
+            // 
+            depoRema.Font = new Font("Segoe UI", 12F);
+            depoRema.ForeColor = Color.Navy;
+            depoRema.Location = new Point(732, 93);
+            depoRema.Name = "depoRema";
+            depoRema.RightToLeft = RightToLeft.Yes;
+            depoRema.Size = new Size(112, 21);
+            depoRema.TabIndex = 29;
+            depoRema.Text = "0";
+            depoRema.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // withdRema
+            // 
+            withdRema.Font = new Font("Segoe UI", 12F);
+            withdRema.ForeColor = Color.Maroon;
+            withdRema.Location = new Point(732, 53);
+            withdRema.Name = "withdRema";
+            withdRema.RightToLeft = RightToLeft.Yes;
+            withdRema.Size = new Size(112, 21);
+            withdRema.TabIndex = 28;
+            withdRema.Text = "0";
+            withdRema.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // dailyDepo
+            // 
+            dailyDepo.Font = new Font("Segoe UI", 12F);
+            dailyDepo.ForeColor = Color.Navy;
+            dailyDepo.Location = new Point(490, 93);
+            dailyDepo.Name = "dailyDepo";
+            dailyDepo.RightToLeft = RightToLeft.Yes;
+            dailyDepo.Size = new Size(112, 21);
+            dailyDepo.TabIndex = 27;
+            dailyDepo.Text = "0";
+            dailyDepo.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // dailyWithd
+            // 
+            dailyWithd.Font = new Font("Segoe UI", 12F);
+            dailyWithd.ForeColor = Color.Maroon;
+            dailyWithd.Location = new Point(490, 53);
+            dailyWithd.Name = "dailyWithd";
+            dailyWithd.RightToLeft = RightToLeft.Yes;
+            dailyWithd.Size = new Size(112, 21);
+            dailyWithd.TabIndex = 26;
+            dailyWithd.Text = "0";
+            dailyWithd.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // walletsPanel
             // 
