@@ -686,10 +686,10 @@ namespace ElectronicServices
             => ExecuteNonQuery($"UPDATE wallets SET ({WalletsTableColumnsNames}) = ({data}) WHERE phone = '{data.Phone}'") >= 0;
 
         public static bool ResetWallet(string phone)
-            => ExecuteNonQuery($"DELETE FROM records WHERE phone = '{phone}' AND date NOT LIKE '{DateTime.Now.ToStandardString()}%'") >= 0;
+            => ExecuteNonQuery($"DELETE FROM records WHERE phone = '{phone}' AND DATE(date) < (SELECT DATE(MAX(date)) FROM records)") >= 0;
 
         public static bool ResetWallets()
-            => ExecuteNonQuery($"DELETE FROM records WHERE date NOT LIKE '{DateTime.Now.ToStandardString()}%'") >= 0;
+            => ExecuteNonQuery($"DELETE FROM records WHERE DATE(date) < (SELECT DATE(MAX(date)) FROM records)") >= 0;
 
         public static bool ResetWalletsRemaining()
             => ExecuteNonQuery($"UPDATE wallets SET withdrawal_remaining = maximum_withdrawal, deposit_remaining = maximum_deposit - balance") >= 0;
