@@ -195,8 +195,8 @@ namespace ElectronicServices
         public static float[] GetWalletsWithdDepo(string date)
             => SelectRow($"SELECT COALESCE(SUM(withdrawal_amount), 0), COALESCE(SUM(deposit_amount), 0) FROM records WHERE date LIKE '{date}%'", () => new float[] { reader.GetFloat(0), reader.GetFloat(1) });
 
-        public static float[] GetWalletsWithdDepo(string phone, string date)
-            => SelectRow($"SELECT COALESCE(SUM(withdrawal_amount), 0), COALESCE(SUM(deposit_amount), 0) FROM records WHERE phone = '{phone}' AND date LIKE '{date}%'", () => new float[] { reader.GetFloat(0), reader.GetFloat(1) });
+        public static float GetWalletsWithdrawal(string phone, string date)
+            => SelectRow($"SELECT COALESCE(SUM(withdrawal_amount), 0) FROM records WHERE phone = '{phone}' AND date LIKE '{date}%'", () => reader.GetFloat(0));
 
         public static float GetTotalWalletsBalance(int type)
         {

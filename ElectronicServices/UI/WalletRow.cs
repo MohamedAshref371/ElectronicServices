@@ -53,25 +53,22 @@ namespace ElectronicServices
 
         private void ChooseBtn_Click(object sender, EventArgs e)
         {
-            float[] withdDepo = DatabaseHelper.GetWalletsWithdDepo(data.Phone, DateTime.Now.ToStandardString());
-            if (withdDepo is null)
-            {
-                Form1.MessageForm("حدث خطأ أثناء قراءة بيانات المحفظة. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
-                return;
-            }
+            float withd = DatabaseHelper.GetWalletsWithdrawal(data.Phone, DateTime.Now.ToStandardString());
+            
+            float depo = data.Balance + withd;
 
             string message = "";
-            if (withdDepo[0] >= MaxDailyWithdrawal)
+            if (withd >= MaxDailyWithdrawal)
                 message += $"المحفظة تخطت السحب اليومي المسموح به";
-            if (withdDepo[1] >= MaxDailyDeposit)
+            if (depo >= MaxDailyDeposit)
             {
                 message += message == "" ? "المحفظة " : "\nو";
                 message += $"تخطت الإيداع اليومي المسموح به";
             }
             if (message != "" && Form1.MessageForm(message, "تنبيه", MessageBoxButtons.OKCancel, MessageBoxIconV2.Warning) != DialogResult.OK)
                 return;
-            
-            Program.Form.ChooseWalletBtn(data, withdDepo);
+
+            Program.Form.ChooseWalletBtn(data, [withd, depo]);
         }
 
         private void EditBtn_Click(object sender, EventArgs e)
