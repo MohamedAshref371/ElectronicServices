@@ -31,6 +31,7 @@ namespace ElectronicServices
             withdrawal.Text = data.WithdrawalRemaining.ToString();
             deposit.Text = data.DepositRemaining.ToString();
             balance.Text = data.Balance.ToString();
+            this.Enabled = data.Phone != "";
         }
 
         public void SetPage(int current, int max)
@@ -102,6 +103,7 @@ namespace ElectronicServices
             }
 
             Program.Form.CheckWallet(data.Phone);
+
             data.Phone = "";
             this.Enabled = false;
         }

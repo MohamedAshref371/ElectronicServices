@@ -13,7 +13,7 @@ namespace ElectronicServices
             page.Visible = true;
         }
 
-        public int Id { get; private set; }
+        public int Id => data.Id;
         float pay, take;
 
         public CustomerRow(CustomerRowData data)
@@ -22,12 +22,14 @@ namespace ElectronicServices
             SetData(data);
         }
 
+        private CustomerRowData data;
         public void SetData(CustomerRowData data)
         {
-            this.Id = data.Id;
+            this.data = data;
             codeLabel.Text = data.Id.ToString();
             nameLabel.Text = data.Name;
             SetCustomerRowData(data.Pay, data.Take);
+            this.Enabled = data.Id > 0;
         }
 
         public void SetPage(int current, int max)
@@ -66,7 +68,7 @@ namespace ElectronicServices
 
 
         private void TransBtn_Click(object sender, EventArgs e)
-            => Program.Form.CustomerRowTransactions(Id);
+            => Program.Form.CustomerRowTransactions(data.Id);
 
         private void EditBtn_Click(object sender, EventArgs e)
         {
@@ -98,7 +100,7 @@ namespace ElectronicServices
                     return;
                 }
 
-                if (!DatabaseHelper.EditCustomer(Id, customerName.Text))
+                if (!DatabaseHelper.EditCustomer(data.Id, customerName.Text))
                 {
                     Form1.MessageForm("حدث خطأ أثناء حفظ البيانات. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                     return;
@@ -110,14 +112,14 @@ namespace ElectronicServices
 
         private void DeleteBtn_Click(object sender, EventArgs e)
         {
-            bool res = DatabaseHelper.IsThereTransactions(Id);
+            bool res = DatabaseHelper.IsThereTransactions(data.Id);
 
             if (res && Form1.MessageForm("لا يمكن حذف هذا العميل لأنه مرتبط بمعاملات\nهل تريد تصفير هذا العميل أولا؟", "تأكيد تصفير العميل", MessageBoxButtons.OKCancel, MessageBoxIconV2.Delete) != DialogResult.OK)
                 return;
 
             if (res)
             {
-                if (!DatabaseHelper.ResetCustomer(Id))
+                if (!DatabaseHelper.ResetCustomer(data.Id))
                 {
                     Form1.MessageForm("حدث خطأ أثناء تصفير العميل. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                     return;
@@ -126,21 +128,21 @@ namespace ElectronicServices
                 payLabel.Text = 0.ToString();
                 takeLabel.Text = 0.ToString();
                 resultLabel.Text = "صفر";
-                Program.Form.DeleteTransactions(Id);
+                Program.Form.DeleteTransactions(data.Id);
                 return;
             }
 
             if (Form1.MessageForm("هل أنت متأكد من حذف هذا العميل؟", "تأكيد الحذف", MessageBoxButtons.YesNo, MessageBoxIconV2.Delete) != DialogResult.Yes)
                 return;
 
-            if (!DatabaseHelper.DeleteCustomer(Id))
+            if (!DatabaseHelper.DeleteCustomer(data.Id))
             {
                 Form1.MessageForm("حدث خطأ أثناء حذف العميل. يرجى المحاولة مرة أخرى.", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
 
             this.Enabled = false;
-            Id = 0;
+            data.Id = 0;
         }
 
         #region Border Radius

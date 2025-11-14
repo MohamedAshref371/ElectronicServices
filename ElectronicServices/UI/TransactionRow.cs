@@ -30,6 +30,7 @@ namespace ElectronicServices
             dateLabel.Text = data.Date[..10];
             if (data.Note != "") data.Note = "\nملاحظات : " + data.Note;
             SetTransactionRowData(data);
+            this.Enabled = data.Id > 0;
         }
 
         public void SetPage(int current, int max)
@@ -153,6 +154,8 @@ namespace ElectronicServices
             }
 
             Program.Form.UpdateCustomerRow(data.CustomerId, -data.Pay, -data.Take);
+
+            data.Id = 0;
             this.Enabled = false;
         }
 
