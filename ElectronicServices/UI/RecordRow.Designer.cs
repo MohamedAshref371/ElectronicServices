@@ -58,6 +58,7 @@
             deposit.TabIndex = 2;
             deposit.Text = "قيمة الإيداع";
             deposit.TextAlign = ContentAlignment.MiddleCenter;
+            deposit.DoubleClick += Deposit_DoubleClick;
             // 
             // withdrawal
             // 
@@ -69,6 +70,7 @@
             withdrawal.TabIndex = 3;
             withdrawal.Text = "قيمة السحب";
             withdrawal.TextAlign = ContentAlignment.MiddleCenter;
+            withdrawal.DoubleClick += Withdrawal_DoubleClick;
             // 
             // balance
             // 

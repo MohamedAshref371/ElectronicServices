@@ -1,5 +1,4 @@
 ﻿using ClosedXML.Excel;
-using static System.Windows.Forms.AxHost;
 
 namespace ElectronicServices
 {
@@ -1329,6 +1328,9 @@ namespace ElectronicServices
                 AddRecordsInPanel();
             }
         }
+
+        public void SetWithdrawal(float num) => withdrawal.Value = (decimal)num;
+        public void SetDeposit(float num) => deposit.Value = (decimal)num;
 
         private void OperSaveBtn_Click(object sender, EventArgs e)
         {

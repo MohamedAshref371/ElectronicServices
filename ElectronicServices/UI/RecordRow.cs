@@ -16,8 +16,10 @@ namespace ElectronicServices
         }
 
         private string comment;
+        private RecordRowData data;
         public void SetData(RecordRowData data)
         {
+            this.data = data;
             phoneNumber.Text = data.Phone;
             date.Text = data.Date[..10];
             date.Tag = data.Date[11..];
@@ -61,5 +63,12 @@ namespace ElectronicServices
             if (date.Tag is string dt && dt != null)
                 Form1.MessageForm(dt, "وقت العملية", MessageBoxButtons.OK, MessageBoxIconV2.Information);
         }
+
+        private void Withdrawal_DoubleClick(object sender, EventArgs e)
+            => Program.Form.SetWithdrawal(data.Withdrawal);
+
+        private void Deposit_DoubleClick(object sender, EventArgs e)
+            => Program.Form.SetDeposit(data.Deposit);
+
     }
 }
