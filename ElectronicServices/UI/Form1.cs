@@ -705,14 +705,14 @@ namespace ElectronicServices
             TransactionsBtn_Click(null, null);
         }
 
-        private void CustPayLabel_DoubleClick(object sender, EventArgs e)
+        private void CustPayBtn_Click(object sender, EventArgs e)
         {
             customers = DatabaseHelper.GetCustomers(true);
             customersPage = 1;
             AddCustomersInPanel();
         }
 
-        private void CustTakeLabel_DoubleClick(object sender, EventArgs e)
+        private void CustTakeBtn_Click(object sender, EventArgs e)
         {
             customers = DatabaseHelper.GetCustomers(false);
             customersPage = 1;
@@ -744,11 +744,11 @@ namespace ElectronicServices
             }
             else if (k == Keys.F9)
             {
-                CustPayLabel_DoubleClick(null, null);
+                CustPayBtn_Click(null, null);
             }
             else if (k == Keys.F10)
             {
-                CustTakeLabel_DoubleClick(null, null);
+                CustTakeBtn_Click(null, null);
             }
         }
 
@@ -1069,7 +1069,7 @@ namespace ElectronicServices
             }
         }
 
-        private void BalanceLabel_DoubleClick(object sender, EventArgs e)
+        private void TotalBalanceBtn_Click(object sender, EventArgs e)
         {
             int type = walletTypeComboBox.SelectedIndex;
             float totalBalance = DatabaseHelper.GetTotalWalletsBalance(type);
@@ -1134,7 +1134,7 @@ namespace ElectronicServices
             }
             else if (k == Keys.F4)
             {
-                BalanceLabel_DoubleClick(null, null);
+                TotalBalanceBtn_Click(null, null);
             }
             else if (k == Keys.F11)
             {
@@ -1329,12 +1329,27 @@ namespace ElectronicServices
             }
         }
 
-        public void SetWithdrawal(float num) => withdrawal.Value = (decimal)num;
-        public void SetDeposit(float num) => deposit.Value = (decimal)num;
+        public void SetWithdrawal(float num) => withdrawal.Value = Math.Abs((decimal)num);
+
+        public void SetDeposit(float num) => deposit.Value = Math.Abs((decimal)num);
+
+        private void ReverseBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (reverseBox.Checked)
+                operComment.Text = "قيد عكسي";
+            else if (operComment.Text == "قيد عكسي")
+                operComment.Text = "";
+        }
+
+        private void OperComment_TextChanged(object sender, EventArgs e)
+        {
+            reverseBox.Checked = operComment.Text == "قيد عكسي";
+        }
 
         private void OperSaveBtn_Click(object sender, EventArgs e)
         {
             float w = (float)withdrawal.Value, d = (float)deposit.Value;
+            if (reverseBox.Checked) { w = -w;  d = -d; }
 
             if (w == 0 && d == 0)
             {
@@ -1354,13 +1369,13 @@ namespace ElectronicServices
                 return;
             }
 
-            if (d != 0 && d > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
+            if (d > 0 && d > walletData.DepositRemaining && MessageForm("قيمة الإيداع أكبر من المتبقي للإيداع\nهل انت متأكد من الاستمرار ؟", "تحذير", MessageBoxButtons.YesNo, MessageBoxIconV2.Warning) != DialogResult.Yes)
                 return;
 
-            if (w != 0 && w + withdDepo[0] > WalletRow.MaxDailyWithdrawal && MessageForm("ستتخطى المتبقي من السحب اليومي المسموح به", "تحذير", MessageBoxButtons.OKCancel, MessageBoxIconV2.Warning) != DialogResult.OK)
+            if (w > 0 && w + withdDepo[0] > WalletRow.MaxDailyWithdrawal && MessageForm("ستتخطى المتبقي من السحب اليومي المسموح به", "تحذير", MessageBoxButtons.OKCancel, MessageBoxIconV2.Warning) != DialogResult.OK)
                 return;
 
-            if (d != 0 && d + withdDepo[1] > WalletRow.MaxDailyDeposit && MessageForm("ستتخطى المتبقي من الإيداع اليومي المسموح به", "تحذير", MessageBoxButtons.OKCancel, MessageBoxIconV2.Warning) != DialogResult.OK)
+            if (d > 0 && d + withdDepo[1] > WalletRow.MaxDailyDeposit && MessageForm("ستتخطى المتبقي من الإيداع اليومي المسموح به", "تحذير", MessageBoxButtons.OKCancel, MessageBoxIconV2.Warning) != DialogResult.OK)
                 return;
 
 
@@ -1395,20 +1410,21 @@ namespace ElectronicServices
                 Date = DateTime.Now.ToCompleteStandardString(),
                 WithdrawalRemaining = walletData.WithdrawalRemaining,
                 DepositRemaining = walletData.DepositRemaining,
-                Withdrawal = (float)withdrawal.Value,
-                Deposit = (float)deposit.Value,
+                Withdrawal = w,
+                Deposit = d,
                 Balance = walletData.Balance,
                 Comment = operComment.Text.Trim(),
             };
-
-            withdrawal.Value = 0;
-            deposit.Value = 0;
 
             if (!DatabaseHelper.AddRecord(data))
             {
                 MessageForm("حدث خطأ أثناء إضافة العملية\nالرجاء المحاولة مرة أخرى", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
                 return;
             }
+
+            withdrawal.Value = 0;
+            deposit.Value = 0;
+            reverseBox.Checked = false;
 
             records = DatabaseHelper.GetRecords(data.Phone);
             recordsPage = 1;
