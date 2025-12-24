@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ElectronicServices
 {
@@ -37,6 +38,14 @@ namespace ElectronicServices
                 return result;
 
             return DateTime.MinValue;
+        }
+
+        public static string ToExtraCompleteStandard(this string dateStr)
+        {
+            if (!long.TryParse(dateStr, out long ticks)) return dateStr;
+
+            DateTime dt = new(ticks);
+            return dt.ToString("yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
         }
     }
 }

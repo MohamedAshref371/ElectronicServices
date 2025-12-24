@@ -12,11 +12,13 @@ namespace ElectronicServices
         private static SQLiteDataReader reader;
         private static bool copyData;
 
+        private static string WalletsTableColumnsNames = "maximum_withdrawal, maximum_deposit, withdrawal_remaining, deposit_remaining, balance, type, comment";
+
         public static int Version { get; private set; }
         public static DateTime CreateDate { get; private set; }
         public static string Comment { get; private set; }
 
-        private static string WalletsTableColumnsNames = "maximum_withdrawal, maximum_deposit, withdrawal_remaining, deposit_remaining, balance, type, comment";
+        public static string DataBackupFolder = $"{dataFolder}\\backup";
 
         static DatabaseHelper() => SafetyExamination();
 
@@ -740,15 +742,35 @@ namespace ElectronicServices
             }
         }
 
-        private static void DatabaseBackup()
+        public static bool DatabaseBackup()
         {
-            if (!success) return;
+            if (!success) return false;
 
-            if (!Directory.Exists($"{dataFolder}\\backup"))
-                Directory.CreateDirectory($"{dataFolder}\\backup");
+            if (!Directory.Exists(DataBackupFolder))
+                Directory.CreateDirectory(DataBackupFolder);
 
             if (File.Exists(databaseFile))
-                File.Copy(databaseFile, $"{dataFolder}\\backup\\{DateTime.Now.Ticks}.ds");
+                File.Copy(databaseFile, $"{DataBackupFolder}\\{DateTime.Now.Ticks}.ds");
+
+            return true;
+        }
+
+        public static bool DatabaseRestore(string name)
+        {
+            if (!success) return false;
+
+            if (!File.Exists($"{DataBackupFolder}\\{name}.ds"))
+                return false;
+
+            if (!Directory.Exists($"{dataFolder}\\deleted"))
+                Directory.CreateDirectory($"{dataFolder}\\deleted");
+
+            command.Dispose(); conn.Dispose();
+            File.Move(databaseFile, $"{dataFolder}\\deleted\\{DateTime.Now.Ticks}.ds");
+
+            File.Copy($"{DataBackupFolder}\\{name}.ds", databaseFile);
+
+            return true;
         }
 
         public static void LogError(Exception ex, bool inTryCatch = false)

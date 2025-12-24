@@ -1349,7 +1349,7 @@ namespace ElectronicServices
         private void OperSaveBtn_Click(object sender, EventArgs e)
         {
             float w = (float)withdrawal.Value, d = (float)deposit.Value;
-            if (reverseBox.Checked) { w = -w;  d = -d; }
+            if (reverseBox.Checked) { w = -w; d = -d; }
 
             if (w == 0 && d == 0)
             {
@@ -2212,5 +2212,41 @@ namespace ElectronicServices
         }
         #endregion
 
+        private void BackupBtn_Click(object sender, EventArgs e)
+        {
+            if (DatabaseHelper.DatabaseBackup())
+                MessageForm("تم أخذ نسخة إحتياطية بنجاح", "معلومة", MessageBoxButtons.OK, MessageBoxIconV2.Correct);
+        }
+
+        private void RestoreBtn_Click(object sender, EventArgs e)
+        {
+            if (!Directory.Exists(DatabaseHelper.DataBackupFolder))
+            {
+                MessageForm("لا يوجد نسخ احتياطية", "404", MessageBoxButtons.OK, MessageBoxIconV2.Information);
+                return;
+            }
+            string[] files = [.. Directory.GetFiles(DatabaseHelper.DataBackupFolder).Select(f => Path.GetFileNameWithoutExtension(f)).OrderByDescending(s => s)];
+
+            if (files.Length == 0)
+            {
+                MessageForm("لا يوجد نسخ احتياطية", "404", MessageBoxButtons.OK, MessageBoxIconV2.Information);
+                return;
+            }
+
+            ListViewDialog lvd = new("التاريخ", [.. files.Select(n => "    \u200E" + n.ToExtraCompleteStandard().Replace(" ", "   "))]);
+            if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
+
+            if (MessageForm("هل انت متأكد من استرجاع هذه النسخة الإحتياطية ؟", "سؤال", MessageBoxButtons.YesNo, MessageBoxIconV2.Question) != DialogResult.Yes)
+                return;
+
+            if (!DatabaseHelper.DatabaseRestore(files[lvd.SelectedIndex]))
+            {
+                MessageForm("فشل استرجاع النسخة الاحتياطية", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
+                return;
+            }
+
+            MessageForm("سيتم الخروج من البرنامج", "معلومة", MessageBoxButtons.OK, MessageBoxIconV2.Information);
+            Application.Exit();
+        }
     }
 }

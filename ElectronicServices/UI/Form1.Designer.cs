@@ -31,16 +31,20 @@ namespace ElectronicServices
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges146 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges147 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges140 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges141 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges142 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges143 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges150 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges151 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges144 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges145 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges146 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges147 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges148 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges149 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges142 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges143 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges138 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges139 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges140 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges141 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -188,6 +192,8 @@ namespace ElectronicServices
             exitBtn = new Guna2Button();
             formTitle = new Label();
             mainPanel = new Guna2GradientPanel();
+            restoreBtn = new Guna2GradientButton();
+            backupBtn = new Guna2GradientButton();
             addExpensesPanel = new Guna2GradientPanel();
             expenseSearchBtn = new Guna2GradientButton();
             addExpenseBtn = new Guna2GradientButton();
@@ -360,13 +366,13 @@ namespace ElectronicServices
             headerPanel.Controls.Add(maximizeBtn);
             headerPanel.Controls.Add(exitBtn);
             headerPanel.Controls.Add(formTitle);
-            headerPanel.CustomizableEdges = customizableEdges146;
+            headerPanel.CustomizableEdges = customizableEdges150;
             headerPanel.FillColor = Color.FromArgb(192, 192, 255);
             headerPanel.FillColor2 = Color.FromArgb(128, 128, 255);
             headerPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             headerPanel.Location = new Point(-1, -1);
             headerPanel.Name = "headerPanel";
-            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges147;
+            headerPanel.ShadowDecoration.CustomizableEdges = customizableEdges151;
             headerPanel.Size = new Size(951, 45);
             headerPanel.TabIndex = 0;
             // 
@@ -397,7 +403,7 @@ namespace ElectronicServices
             minimizeBtn.BackColor = Color.Transparent;
             minimizeBtn.BorderColor = Color.Transparent;
             minimizeBtn.BorderRadius = 8;
-            minimizeBtn.CustomizableEdges = customizableEdges140;
+            minimizeBtn.CustomizableEdges = customizableEdges144;
             minimizeBtn.DisabledState.BorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             minimizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -409,7 +415,7 @@ namespace ElectronicServices
             minimizeBtn.ImageSize = new Size(32, 32);
             minimizeBtn.Location = new Point(88, 6);
             minimizeBtn.Name = "minimizeBtn";
-            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges141;
+            minimizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges145;
             minimizeBtn.Size = new Size(32, 32);
             minimizeBtn.TabIndex = 4;
             minimizeBtn.Click += MinimizeBtn_Click;
@@ -419,7 +425,7 @@ namespace ElectronicServices
             maximizeBtn.BackColor = Color.Transparent;
             maximizeBtn.BorderColor = Color.Transparent;
             maximizeBtn.BorderRadius = 8;
-            maximizeBtn.CustomizableEdges = customizableEdges142;
+            maximizeBtn.CustomizableEdges = customizableEdges146;
             maximizeBtn.DisabledState.BorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             maximizeBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -431,7 +437,7 @@ namespace ElectronicServices
             maximizeBtn.ImageSize = new Size(32, 32);
             maximizeBtn.Location = new Point(50, 6);
             maximizeBtn.Name = "maximizeBtn";
-            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges143;
+            maximizeBtn.ShadowDecoration.CustomizableEdges = customizableEdges147;
             maximizeBtn.Size = new Size(32, 32);
             maximizeBtn.TabIndex = 3;
             maximizeBtn.Click += MaximizeBtn_Click;
@@ -441,7 +447,7 @@ namespace ElectronicServices
             exitBtn.BackColor = Color.Transparent;
             exitBtn.BorderColor = Color.Transparent;
             exitBtn.BorderRadius = 8;
-            exitBtn.CustomizableEdges = customizableEdges144;
+            exitBtn.CustomizableEdges = customizableEdges148;
             exitBtn.DisabledState.BorderColor = Color.DarkGray;
             exitBtn.DisabledState.CustomBorderColor = Color.DarkGray;
             exitBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -453,7 +459,7 @@ namespace ElectronicServices
             exitBtn.ImageSize = new Size(32, 32);
             exitBtn.Location = new Point(12, 6);
             exitBtn.Name = "exitBtn";
-            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges145;
+            exitBtn.ShadowDecoration.CustomizableEdges = customizableEdges149;
             exitBtn.Size = new Size(32, 32);
             exitBtn.TabIndex = 2;
             exitBtn.Click += ExitBtn_Click;
@@ -510,15 +516,63 @@ namespace ElectronicServices
             mainPanel.Controls.Add(expense);
             mainPanel.Controls.Add(expenseLabel);
             mainPanel.Controls.Add(dateHelper);
-            mainPanel.CustomizableEdges = customizableEdges138;
+            mainPanel.Controls.Add(restoreBtn);
+            mainPanel.Controls.Add(backupBtn);
+            mainPanel.CustomizableEdges = customizableEdges142;
             mainPanel.FillColor = Color.FromArgb(255, 192, 192);
             mainPanel.FillColor2 = Color.FromArgb(255, 224, 192);
             mainPanel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
             mainPanel.Location = new Point(-1, 47);
             mainPanel.Name = "mainPanel";
-            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges139;
+            mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges143;
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
+            // 
+            // restoreBtn
+            // 
+            restoreBtn.BorderRadius = 10;
+            restoreBtn.BorderThickness = 1;
+            restoreBtn.CustomizableEdges = customizableEdges138;
+            restoreBtn.DisabledState.BorderColor = Color.DarkGray;
+            restoreBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            restoreBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            restoreBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            restoreBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            restoreBtn.FillColor = Color.FromArgb(192, 255, 255);
+            restoreBtn.FillColor2 = Color.White;
+            restoreBtn.Font = new Font("Segoe UI", 15F);
+            restoreBtn.ForeColor = Color.Black;
+            restoreBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            restoreBtn.Location = new Point(780, 534);
+            restoreBtn.Name = "restoreBtn";
+            restoreBtn.ShadowDecoration.CustomizableEdges = customizableEdges139;
+            restoreBtn.Size = new Size(159, 41);
+            restoreBtn.TabIndex = 54;
+            restoreBtn.Text = "استرجاع نسخة";
+            restoreBtn.Click += RestoreBtn_Click;
+            // 
+            // backupBtn
+            // 
+            backupBtn.BorderRadius = 10;
+            backupBtn.BorderThickness = 1;
+            backupBtn.CustomizableEdges = customizableEdges140;
+            backupBtn.DisabledState.BorderColor = Color.DarkGray;
+            backupBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            backupBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            backupBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            backupBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            backupBtn.FillColor = Color.White;
+            backupBtn.FillColor2 = Color.FromArgb(192, 192, 255);
+            backupBtn.Font = new Font("Segoe UI", 15F);
+            backupBtn.ForeColor = Color.Black;
+            backupBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            backupBtn.Location = new Point(780, 487);
+            backupBtn.Name = "backupBtn";
+            backupBtn.ShadowDecoration.CustomizableEdges = customizableEdges141;
+            backupBtn.Size = new Size(159, 41);
+            backupBtn.TabIndex = 53;
+            backupBtn.Text = "نسخ احتياطي";
+            backupBtn.Click += BackupBtn_Click;
             // 
             // addExpensesPanel
             // 
@@ -2265,7 +2319,7 @@ namespace ElectronicServices
             extraExcelBtn.Image = Properties.Resources.neutral_face;
             extraExcelBtn.ImageAlign = HorizontalAlignment.Right;
             extraExcelBtn.ImageSize = new Size(96, 96);
-            extraExcelBtn.Location = new Point(317, 475);
+            extraExcelBtn.Location = new Point(251, 472);
             extraExcelBtn.Name = "extraExcelBtn";
             extraExcelBtn.RightToLeft = RightToLeft.Yes;
             extraExcelBtn.ShadowDecoration.CustomizableEdges = customizableEdges123;
@@ -2400,7 +2454,7 @@ namespace ElectronicServices
             dateChoose.CheckedState.BorderThickness = 1;
             dateChoose.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
             dateChoose.Font = new Font("Segoe UI", 14F);
-            dateChoose.Location = new Point(697, 436);
+            dateChoose.Location = new Point(631, 433);
             dateChoose.Name = "dateChoose";
             dateChoose.RightToLeft = RightToLeft.Yes;
             dateChoose.Size = new Size(142, 29);
@@ -2416,7 +2470,7 @@ namespace ElectronicServices
             // 
             toLabel.AutoSize = true;
             toLabel.Font = new Font("Segoe UI", 14F);
-            toLabel.Location = new Point(480, 440);
+            toLabel.Location = new Point(414, 437);
             toLabel.Name = "toLabel";
             toLabel.RightToLeft = RightToLeft.Yes;
             toLabel.Size = new Size(39, 25);
@@ -2434,7 +2488,7 @@ namespace ElectronicServices
             dateTo.FillColor = Color.FromArgb(192, 255, 225);
             dateTo.Font = new Font("Segoe UI", 9F);
             dateTo.Format = DateTimePickerFormat.Custom;
-            dateTo.Location = new Point(325, 427);
+            dateTo.Location = new Point(259, 424);
             dateTo.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dateTo.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dateTo.Name = "dateTo";
@@ -2455,7 +2509,7 @@ namespace ElectronicServices
             dateFrom.FillColor = Color.FromArgb(225, 255, 192);
             dateFrom.Font = new Font("Segoe UI", 9F);
             dateFrom.Format = DateTimePickerFormat.Custom;
-            dateFrom.Location = new Point(542, 427);
+            dateFrom.Location = new Point(476, 424);
             dateFrom.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dateFrom.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dateFrom.Name = "dateFrom";
@@ -2502,7 +2556,7 @@ namespace ElectronicServices
             dateHelper.ForeColor = Color.Black;
             dateHelper.ItemHeight = 30;
             dateHelper.Items.AddRange(new object[] { "هذا اليوم", "هذا الأسبوع", "هذا الشهر", "هذا الربع سنوي", "هذه السنة", "afi-soft.com ملهم من", "يوم أمس", "الأسبوع الماضي", "الشهر الماضي", "الربع سنوي الماضي", "السنة الماضية" });
-            dateHelper.Location = new Point(406, 386);
+            dateHelper.Location = new Point(340, 383);
             dateHelper.Name = "dateHelper";
             dateHelper.ShadowDecoration.CustomizableEdges = customizableEdges137;
             dateHelper.Size = new Size(203, 36);
@@ -2880,5 +2934,7 @@ namespace ElectronicServices
         private Guna2CircleButton totalBalanceBtn;
         private Guna2CircleButton custTakeBtn;
         private Guna2CircleButton custPayBtn;
+        private Guna2GradientButton backupBtn;
+        private Guna2GradientButton restoreBtn;
     }
 }
