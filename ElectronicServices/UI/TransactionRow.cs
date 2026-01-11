@@ -68,7 +68,7 @@ namespace ElectronicServices
             if (e.Button == MouseButtons.Right)
             {
                 float? before = DatabaseHelper.GetTransactionBefore(data.Id, data.CustomerId);
-                float? before2 = DatabaseHelper.GetTransactionBefore(data.Date, data.CustomerId);
+                float? before2 = DatabaseHelper.GetTransactionBefore(data.Id, data.Date, data.CustomerId);
 
                 if (before is null || before2 is null)
                     Form1.MessageForm("حدث خطأ أثناء قراءة البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
@@ -91,6 +91,7 @@ namespace ElectronicServices
                         text2 = "له " + ((float)after).ToString();
                     else
                         text2 = "صفر";
+
 
                     string text3;
                     if (before2 < 0f)
