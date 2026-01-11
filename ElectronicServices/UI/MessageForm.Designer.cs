@@ -38,6 +38,7 @@
             // 
             // yesBtn
             // 
+            yesBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             yesBtn.DialogResult = DialogResult.Yes;
             yesBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             yesBtn.ForeColor = Color.Navy;
@@ -51,6 +52,7 @@
             // 
             // noBtn
             // 
+            noBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             noBtn.DialogResult = DialogResult.No;
             noBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             noBtn.ForeColor = Color.Green;
@@ -64,6 +66,7 @@
             // 
             // cancelBtn
             // 
+            cancelBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             cancelBtn.DialogResult = DialogResult.Cancel;
             cancelBtn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             cancelBtn.ForeColor = Color.Maroon;
@@ -89,6 +92,7 @@
             // 
             // iconBox
             // 
+            iconBox.Anchor = AnchorStyles.Left;
             iconBox.BackgroundImageLayout = ImageLayout.Zoom;
             iconBox.Location = new Point(378, 35);
             iconBox.Name = "iconBox";

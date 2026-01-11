@@ -9,6 +9,13 @@ namespace ElectronicServices
             this.text.Text = text;
             this.Text = caption == "" ? "رسالة" : caption;
 
+            int lineCount = this.text.Text.Split('\n', StringSplitOptions.None).Length;
+            if (lineCount > 4)
+            {
+                this.text.Height += (lineCount - 4) * 40;
+                this.Height += (lineCount - 4) * 40;
+            }
+
             switch (buttons)
             {
                 case MessageBoxButtons.OK:

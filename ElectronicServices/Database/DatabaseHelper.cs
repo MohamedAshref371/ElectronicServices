@@ -499,6 +499,29 @@ namespace ElectronicServices
             }
         }
 
+        public static float? GetTransactionBefore(string date, int customerId)
+        {
+            if (!success) return null;
+            try
+            {
+                conn.Open();
+                command.CommandText = $"SELECT SUM(credit - debit) FROM transactions WHERE customer_id = {customerId} AND date < '{date}'";
+                reader = command.ExecuteReader();
+                if (!reader.Read()) return 0f;
+                return reader.IsDBNull(0) ? 0f : reader.GetFloat(0);
+            }
+            catch (Exception ex)
+            {
+                Program.LogError(ex, true);
+                return null;
+            }
+            finally
+            {
+                reader.Close();
+                conn.Close();
+            }
+        }
+
         public static float[] GetCreditAndDept(string date = "", bool prev = false)
         {
             if (!success) return [0f, 0f];
