@@ -132,13 +132,13 @@ namespace ElectronicServices
         public static TransactionRowData[] GetTransactions(int custId)
         {
             string cond = custId >= 1 ? $"WHERE customer_id = {custId}" : "";
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date DESC";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date DESC, t.id DESC";
             return SelectMultiRows(sql, GetTransactionData);
         }
 
         public static TransactionRowData[] GetTransactions(string from, string to)
         {
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id WHERE t.date >= '{from} 00:00:00' AND t.date <= '{to} 23:59:59' ORDER BY t.date DESC";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id WHERE t.date >= '{from} 00:00:00' AND t.date <= '{to} 23:59:59' ORDER BY t.date DESC, t.id DESC";
             return SelectMultiRows(sql, GetTransactionData);
         }
 
@@ -155,7 +155,7 @@ namespace ElectronicServices
             else cond += " AND";
             cond += $" strftime('{dt}', date) = '{date}'";
 
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date DESC";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date DESC, t.id DESC";
             return SelectMultiRows(sql, GetTransactionData);
         }
 
