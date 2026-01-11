@@ -129,24 +129,24 @@ namespace ElectronicServices
             return SelectMultiRows(sql, GetCustomerData);
         }
 
-        public static TransactionRowData[] GetTransactions(int custId)
+        public static TransactionRowData[] GetTransactions(int custId, bool orderById)
         {
             string cond = custId >= 1 ? $"WHERE customer_id = {custId}" : "";
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date DESC, t.id DESC";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY {(orderById ? "" : "t.date DESC, ")} t.id DESC";
             return SelectMultiRows(sql, GetTransactionData);
         }
 
-        public static TransactionRowData[] GetTransactions(string from, string to)
+        public static TransactionRowData[] GetTransactions(string from, string to, bool orderById)
         {
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id WHERE t.date >= '{from} 00:00:00' AND t.date <= '{to} 23:59:59' ORDER BY t.date DESC, t.id DESC";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id WHERE t.date >= '{from} 00:00:00' AND t.date <= '{to} 23:59:59' ORDER BY {(orderById ? "" : "t.date DESC, ")} t.id DESC";
             return SelectMultiRows(sql, GetTransactionData);
         }
 
-        public static TransactionRowData[] GetTransactions(int custId, string date, int method)
+        public static TransactionRowData[] GetTransactions(int custId, string date, int method, bool orderById)
         {
             string dt = method switch
             {
-                6 => "%Y-%m-%d",
+                6 => " %Y-%m-%d",
                 7 => "%Y-%m",
                 _ => "%Y"
             };
@@ -155,7 +155,7 @@ namespace ElectronicServices
             else cond += " AND";
             cond += $" strftime('{dt}', date) = '{date}'";
 
-            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY t.date DESC, t.id DESC";
+            string sql = $"SELECT t.id, t.customer_id, c.name, t.date, t.credit, t.debit, t.credit_payapp, t.debit_payapp, t.note FROM customers c INNER JOIN transactions t ON t.customer_id = c.id {cond} ORDER BY {(orderById ? "" : "t.date DESC, ")} t.id DESC";
             return SelectMultiRows(sql, GetTransactionData);
         }
 

@@ -639,7 +639,7 @@ namespace ElectronicServices
         private void TransSearchBtn_Click(object sender, EventArgs e)
         {
             int custId = ((KeyValuePair<int, string>)customersComboBox.Items[customersComboBox.SelectedIndex]).Key;
-            transactions = DatabaseHelper.GetTransactions(custId);
+            transactions = DatabaseHelper.GetTransactions(custId, orderByBox.Checked);
             transactionsPage = 1;
             AddTransactionsInPanel();
         }
@@ -789,7 +789,7 @@ namespace ElectronicServices
                 lvd = new("تاريخ المعاملة", data);
                 if (lvd.ShowDialog() != DialogResult.OK || lvd.SelectedIndex == -1) return;
 
-                transactions = DatabaseHelper.GetTransactions(custId, data[lvd.SelectedIndex].Text, key);
+                transactions = DatabaseHelper.GetTransactions(custId, data[lvd.SelectedIndex].Text, key, orderByBox.Checked);
                 transactionsPage = 1;
                 AddTransactionsInPanel();
             }
@@ -2005,7 +2005,7 @@ namespace ElectronicServices
 
             string[] payApps = DatabaseHelper.GetPayappsNames();
             string[] datetime;
-            TransactionRowData[] transactions = dateChoose.Checked ? DatabaseHelper.GetTransactions(from, to) : DatabaseHelper.GetTransactions(0);
+            TransactionRowData[] transactions = dateChoose.Checked ? DatabaseHelper.GetTransactions(from, to, orderByBox.Checked) : DatabaseHelper.GetTransactions(0, orderByBox.Checked);
             for (int i = 0; i < transactions.Length; i++)
             {
                 transSheet.Cell(i + 3, 1).Value = transactions[i].Name;

@@ -41,10 +41,6 @@ namespace ElectronicServices
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges149 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges142 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges143 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges138 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges139 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges140 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges141 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -168,6 +164,10 @@ namespace ElectronicServices
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges135 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges136 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges137 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges138 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges139 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges140 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges141 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -192,8 +192,6 @@ namespace ElectronicServices
             exitBtn = new Guna2Button();
             formTitle = new Label();
             mainPanel = new Guna2GradientPanel();
-            restoreBtn = new Guna2GradientButton();
-            backupBtn = new Guna2GradientButton();
             addExpensesPanel = new Guna2GradientPanel();
             expenseSearchBtn = new Guna2GradientButton();
             addExpenseBtn = new Guna2GradientButton();
@@ -310,6 +308,8 @@ namespace ElectronicServices
             expense = new Label();
             expenseLabel = new Label();
             dateHelper = new Guna2ComboBox();
+            restoreBtn = new Guna2GradientButton();
+            backupBtn = new Guna2GradientButton();
             customersBtn = new Guna2GradientButton();
             footerPanel = new Guna2GradientPanel();
             expensesBtn = new Guna2GradientButton();
@@ -321,6 +321,7 @@ namespace ElectronicServices
             timer1 = new System.Windows.Forms.Timer(components);
             openExcelFileDialog = new OpenFileDialog();
             attachmentDialog = new OpenFileDialog();
+            orderByBox = new Guna2CheckBox();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)CompanyPhone).BeginInit();
             ((System.ComponentModel.ISupportInitialize)formIcon).BeginInit();
@@ -527,52 +528,6 @@ namespace ElectronicServices
             mainPanel.ShadowDecoration.CustomizableEdges = customizableEdges143;
             mainPanel.Size = new Size(951, 604);
             mainPanel.TabIndex = 1;
-            // 
-            // restoreBtn
-            // 
-            restoreBtn.BorderRadius = 10;
-            restoreBtn.BorderThickness = 1;
-            restoreBtn.CustomizableEdges = customizableEdges138;
-            restoreBtn.DisabledState.BorderColor = Color.DarkGray;
-            restoreBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            restoreBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            restoreBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            restoreBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            restoreBtn.FillColor = Color.FromArgb(192, 255, 255);
-            restoreBtn.FillColor2 = Color.White;
-            restoreBtn.Font = new Font("Segoe UI", 15F);
-            restoreBtn.ForeColor = Color.Black;
-            restoreBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            restoreBtn.Location = new Point(780, 534);
-            restoreBtn.Name = "restoreBtn";
-            restoreBtn.ShadowDecoration.CustomizableEdges = customizableEdges139;
-            restoreBtn.Size = new Size(159, 41);
-            restoreBtn.TabIndex = 54;
-            restoreBtn.Text = "استرجاع نسخة";
-            restoreBtn.Click += RestoreBtn_Click;
-            // 
-            // backupBtn
-            // 
-            backupBtn.BorderRadius = 10;
-            backupBtn.BorderThickness = 1;
-            backupBtn.CustomizableEdges = customizableEdges140;
-            backupBtn.DisabledState.BorderColor = Color.DarkGray;
-            backupBtn.DisabledState.CustomBorderColor = Color.DarkGray;
-            backupBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            backupBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
-            backupBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            backupBtn.FillColor = Color.White;
-            backupBtn.FillColor2 = Color.FromArgb(192, 192, 255);
-            backupBtn.Font = new Font("Segoe UI", 15F);
-            backupBtn.ForeColor = Color.Black;
-            backupBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
-            backupBtn.Location = new Point(780, 487);
-            backupBtn.Name = "backupBtn";
-            backupBtn.ShadowDecoration.CustomizableEdges = customizableEdges141;
-            backupBtn.Size = new Size(159, 41);
-            backupBtn.TabIndex = 53;
-            backupBtn.Text = "نسخ احتياطي";
-            backupBtn.Click += BackupBtn_Click;
             // 
             // addExpensesPanel
             // 
@@ -1587,6 +1542,7 @@ namespace ElectronicServices
             addTransactionsPanel.BorderColor = Color.Silver;
             addTransactionsPanel.BorderRadius = 10;
             addTransactionsPanel.BorderThickness = 1;
+            addTransactionsPanel.Controls.Add(orderByBox);
             addTransactionsPanel.Controls.Add(takeWith);
             addTransactionsPanel.Controls.Add(payWith);
             addTransactionsPanel.Controls.Add(transSearchBtn);
@@ -2565,6 +2521,52 @@ namespace ElectronicServices
             dateHelper.TextAlign = HorizontalAlignment.Center;
             dateHelper.SelectedIndexChanged += DateHelper_SelectedIndexChanged;
             // 
+            // restoreBtn
+            // 
+            restoreBtn.BorderRadius = 10;
+            restoreBtn.BorderThickness = 1;
+            restoreBtn.CustomizableEdges = customizableEdges138;
+            restoreBtn.DisabledState.BorderColor = Color.DarkGray;
+            restoreBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            restoreBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            restoreBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            restoreBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            restoreBtn.FillColor = Color.FromArgb(192, 255, 255);
+            restoreBtn.FillColor2 = Color.White;
+            restoreBtn.Font = new Font("Segoe UI", 15F);
+            restoreBtn.ForeColor = Color.Black;
+            restoreBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            restoreBtn.Location = new Point(780, 534);
+            restoreBtn.Name = "restoreBtn";
+            restoreBtn.ShadowDecoration.CustomizableEdges = customizableEdges139;
+            restoreBtn.Size = new Size(159, 41);
+            restoreBtn.TabIndex = 54;
+            restoreBtn.Text = "استرجاع نسخة";
+            restoreBtn.Click += RestoreBtn_Click;
+            // 
+            // backupBtn
+            // 
+            backupBtn.BorderRadius = 10;
+            backupBtn.BorderThickness = 1;
+            backupBtn.CustomizableEdges = customizableEdges140;
+            backupBtn.DisabledState.BorderColor = Color.DarkGray;
+            backupBtn.DisabledState.CustomBorderColor = Color.DarkGray;
+            backupBtn.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            backupBtn.DisabledState.FillColor2 = Color.FromArgb(169, 169, 169);
+            backupBtn.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            backupBtn.FillColor = Color.White;
+            backupBtn.FillColor2 = Color.FromArgb(192, 192, 255);
+            backupBtn.Font = new Font("Segoe UI", 15F);
+            backupBtn.ForeColor = Color.Black;
+            backupBtn.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.ForwardDiagonal;
+            backupBtn.Location = new Point(780, 487);
+            backupBtn.Name = "backupBtn";
+            backupBtn.ShadowDecoration.CustomizableEdges = customizableEdges141;
+            backupBtn.Size = new Size(159, 41);
+            backupBtn.TabIndex = 53;
+            backupBtn.Text = "نسخ احتياطي";
+            backupBtn.Click += BackupBtn_Click;
+            // 
             // customersBtn
             // 
             customersBtn.BorderRadius = 10;
@@ -2743,6 +2745,25 @@ namespace ElectronicServices
             // attachmentDialog
             // 
             attachmentDialog.Filter = "Attachment files|*.xlsx;*.docx;*.txt;*.pdf;*.jpg;*.png;*.bmp|All files|*.*";
+            // 
+            // orderByBox
+            // 
+            orderByBox.AutoSize = true;
+            orderByBox.CheckedState.BorderColor = Color.Silver;
+            orderByBox.CheckedState.BorderRadius = 5;
+            orderByBox.CheckedState.BorderThickness = 1;
+            orderByBox.CheckedState.FillColor = Color.FromArgb(94, 148, 255);
+            orderByBox.Font = new Font("Segoe UI", 14F);
+            orderByBox.Location = new Point(630, 91);
+            orderByBox.Name = "orderByBox";
+            orderByBox.RightToLeft = RightToLeft.Yes;
+            orderByBox.Size = new Size(239, 29);
+            orderByBox.TabIndex = 55;
+            orderByBox.Text = "ترتيب القائمة حسب الإدخال";
+            orderByBox.UncheckedState.BorderColor = Color.Silver;
+            orderByBox.UncheckedState.BorderRadius = 5;
+            orderByBox.UncheckedState.BorderThickness = 1;
+            orderByBox.UncheckedState.FillColor = Color.Gray;
             // 
             // Form1
             // 
@@ -2936,5 +2957,6 @@ namespace ElectronicServices
         private Guna2CircleButton custPayBtn;
         private Guna2GradientButton backupBtn;
         private Guna2GradientButton restoreBtn;
+        private Guna2CheckBox orderByBox;
     }
 }
