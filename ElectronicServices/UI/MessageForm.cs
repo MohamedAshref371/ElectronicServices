@@ -10,10 +10,10 @@ namespace ElectronicServices
             this.Text = caption == "" ? "رسالة" : caption;
 
             int lineCount = this.text.Text.Split('\n', StringSplitOptions.None).Length;
-            if (lineCount > 4)
+            if (lineCount > 5)
             {
-                this.text.Height += (lineCount - 4) * 40;
-                this.Height += (lineCount - 4) * 40;
+                this.text.Height += (lineCount - 5) * 40;
+                this.Height += (lineCount - 5) * 40;
             }
 
             switch (buttons)

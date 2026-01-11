@@ -110,17 +110,17 @@ namespace ElectronicServices
                     else
                         text4 = "صفر";
 
-                    Form1.MessageForm($"حسب ترتيب الإدخال\nالرصيد قبل المعاملة : {text}\nالرصيد بعد المعاملة : {text2}\n\nحسب التاريخ\nالرصيد قبل المعاملة : {text3}\nالرصيد بعد المعاملة : {text4}", "معلومات المعاملة", MessageBoxButtons.OK, MessageBoxIconV2.Information);
+                    Form1.MessageForm($"رقم المعاملة: {data.Id}\n\nحسب ترتيب الإدخال\nالرصيد قبل المعاملة : {text}\nالرصيد بعد المعاملة : {text2}\n\nحسب التاريخ\nالرصيد قبل المعاملة : {text3}\nالرصيد بعد المعاملة : {text4}", "معلومات المعاملة", MessageBoxButtons.OK, MessageBoxIconV2.Information);
 
 
                 }
             }
             else if (e.Button == MouseButtons.Left)
             {
-                string time = "";
+                string str = data.Date[..10] + "\n";
                 if (data.Date[11..] != "00:00:00")
-                    time = "\nوقت العملية : " + data.Date[11..];
-                Form1.MessageForm($"نتيجة المعاملة : {result}{time}\n{data.Note}", "ملاحظات", MessageBoxButtons.OK, MessageBoxIconV2.Information);
+                    str += "وقت العملية : " + data.Date[11..] + "\n";
+                Form1.MessageForm($"رقم المعاملة : {data.Id}\nنتيجة المعاملة : {result}\n{str}{data.Note}", "ملاحظات", MessageBoxButtons.OK, MessageBoxIconV2.Information);
             }
         }
 
