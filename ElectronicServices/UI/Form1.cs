@@ -161,6 +161,19 @@ namespace ElectronicServices
             walletData = new WalletRowData { Phone = "", Type = 0 };
             Timer1_Tick(null, null);
             timer1.Start();
+
+            if (File.Exists(calcFileName))
+            {
+                string[] commAndDeduct = File.ReadAllText(calcFileName).Split(";");
+                if (commAndDeduct.Length == 2)
+                {
+                    float.TryParse(commAndDeduct[0], out sumCommission);
+                    float.TryParse(commAndDeduct[1], out sumDeducted);
+                    calcSumCommission.Text = sumCommission.ToString();
+                    calcSumDeducted.Text = sumDeducted.ToString();
+                    calcDifference.Text = (sumCommission - sumDeducted).ToString();
+                }
+            }
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -257,6 +270,24 @@ namespace ElectronicServices
                     break;
                 }
             }
+        }
+
+        float sumCommission, sumDeducted;
+        string calcFileName = "العمولة والمخصوم.txt";
+        private void CalcBtn_Click(object sender, EventArgs e)
+        {
+            sumCommission += (float)calcCommission.Value;
+            sumDeducted += (float)calcDeducted.Value;
+
+            calcCommission.Value = 0;
+            calcDeducted.Value = 0;
+
+            calcSumCommission.Text = sumCommission.ToString();
+            calcSumDeducted.Text = sumDeducted.ToString();
+
+            calcDifference.Text = (sumCommission - sumDeducted).ToString();
+
+            File.WriteAllText(calcFileName, $"{sumCommission};{sumDeducted}");
         }
         #endregion
 
@@ -2212,6 +2243,7 @@ namespace ElectronicServices
         }
         #endregion
 
+        #region Backup & Restore
         private void BackupBtn_Click(object sender, EventArgs e)
         {
             if (DatabaseHelper.DatabaseBackup())
@@ -2248,5 +2280,7 @@ namespace ElectronicServices
             MessageForm("سيتم الخروج من البرنامج", "معلومة", MessageBoxButtons.OK, MessageBoxIconV2.Information);
             Application.Exit();
         }
+        #endregion
+
     }
 }

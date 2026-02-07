@@ -742,11 +742,7 @@ namespace ElectronicServices
         private static int ExecuteNonQuery(string sql)
         {
             if (!success || sql is null || sql.Trim() == "") return -1;
-            if (copyData)
-            {
-                copyData = false;
-                DatabaseBackup();
-            }
+            if (copyData) DatabaseBackup();
 
             try
             {
@@ -769,6 +765,7 @@ namespace ElectronicServices
         {
             if (!success) return false;
 
+            copyData = false;
             if (!Directory.Exists(DataBackupFolder))
                 Directory.CreateDirectory(DataBackupFolder);
 
