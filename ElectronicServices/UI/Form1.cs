@@ -289,6 +289,19 @@ namespace ElectronicServices
 
             File.WriteAllText(calcFileName, $"{sumCommission};{sumDeducted}");
         }
+
+        private void CalcZeroBtn_Click(object sender, EventArgs e)
+        {
+            sumCommission = 0;
+            sumDeducted = 0;
+
+            calcSumCommission.Text = sumCommission.ToString();
+            calcSumDeducted.Text = sumDeducted.ToString();
+
+            calcDifference.Text = 0.ToString();
+
+            File.WriteAllText(calcFileName, $"{sumCommission};{sumDeducted}");
+        }
         #endregion
 
         #region Footer Panel
