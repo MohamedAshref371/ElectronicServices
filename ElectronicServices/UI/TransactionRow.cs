@@ -31,6 +31,12 @@ namespace ElectronicServices
             if (data.Note != "") data.Note = "\nملاحظات : " + data.Note;
             SetTransactionRowData(data);
             this.Enabled = data.Id > 0;
+
+            payLabel.Visible = true;
+            takeLabel.Visible = true;
+            payEdit.Visible = false;
+            takeEdit.Visible = false;
+            editBtn.Image = Properties.Resources.editIcon;
         }
 
         public void SetPage(int current, int max)

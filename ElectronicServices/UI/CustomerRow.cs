@@ -1,4 +1,5 @@
 ﻿using System.Drawing.Drawing2D;
+using System.Xml;
 
 namespace ElectronicServices
 {
@@ -30,6 +31,10 @@ namespace ElectronicServices
             nameLabel.Text = data.Name;
             SetCustomerRowData(data.Pay, data.Take);
             this.Enabled = data.Id > 0;
+
+            nameLabel.Visible = true;
+            customerName.Visible = false;
+            editBtn.Image = Properties.Resources.editIcon;
         }
 
         public void SetPage(int current, int max)

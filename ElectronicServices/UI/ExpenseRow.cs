@@ -30,6 +30,10 @@ namespace ElectronicServices
             if (data.Attachment == "")
                 attachmentBtn.Image = null;
             this.Enabled = data.Id > 0;
+
+            amount.Visible = true;
+            amountEdit.Visible = false;
+            editBtn.Image = Properties.Resources.editIcon;
         }
 
         public void SetPage(int current, int max)
