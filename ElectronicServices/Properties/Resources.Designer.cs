@@ -73,6 +73,16 @@ namespace ElectronicServices.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cash {
+            get {
+                object obj = ResourceManager.GetObject("cash", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap check_mark_button {
             get {
                 object obj = ResourceManager.GetObject("check-mark-button", resourceCulture);
@@ -93,16 +103,6 @@ namespace ElectronicServices.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap confused_face {
-            get {
-                object obj = ResourceManager.GetObject("confused-face", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap correct {
             get {
                 object obj = ResourceManager.GetObject("correct", resourceCulture);
@@ -116,16 +116,6 @@ namespace ElectronicServices.Properties {
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap diagonal_mouth {
-            get {
-                object obj = ResourceManager.GetObject("diagonal-mouth", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,16 +183,6 @@ namespace ElectronicServices.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap head_bandage {
-            get {
-                object obj = ResourceManager.GetObject("head-bandage", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Icon64 {
             get {
                 object obj = ResourceManager.GetObject("Icon64", resourceCulture);
@@ -226,16 +206,6 @@ namespace ElectronicServices.Properties {
         internal static System.Drawing.Bitmap information {
             get {
                 object obj = ResourceManager.GetObject("information", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap neutral_face {
-            get {
-                object obj = ResourceManager.GetObject("neutral-face", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

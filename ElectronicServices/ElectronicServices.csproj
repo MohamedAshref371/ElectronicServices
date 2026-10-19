@@ -14,24 +14,21 @@
 
   <ItemGroup>
     <None Remove="Resources\board.png" />
+    <None Remove="Resources\cash.png" />
     <None Remove="Resources\check-mark-button.png" />
     <None Remove="Resources\Colors64.png" />
-    <None Remove="Resources\confused-face.png" />
     <None Remove="Resources\correct.png" />
     <None Remove="Resources\delete.png" />
-    <None Remove="Resources\diagonal-mouth.png" />
     <None Remove="Resources\editIcon.png" />
     <None Remove="Resources\error.png" />
     <None Remove="Resources\ExitToApp.png" />
     <None Remove="Resources\Folder Explorer.png" />
     <None Remove="Resources\Fullscreen.png" />
     <None Remove="Resources\FullscreenExit.png" />
-    <None Remove="Resources\head-bandage.png" />
     <None Remove="Resources\Icon64.png" />
     <None Remove="Resources\infoIcon.png" />
     <None Remove="Resources\information.png" />
     <None Remove="Resources\Logo.png" />
-    <None Remove="Resources\neutral-face.png" />
     <None Remove="Resources\no-entry.png" />
     <None Remove="Resources\Phone.png" />
     <None Remove="Resources\QrCode.png" />
@@ -53,23 +50,20 @@
 
   <ItemGroup>
     <Resource Include="Resources\board.png" />
+    <Resource Include="Resources\cash.png" />
     <Resource Include="Resources\check-mark-button.png" />
     <Resource Include="Resources\Colors64.png" />
-    <Resource Include="Resources\confused-face.png" />
     <Resource Include="Resources\correct.png" />
     <Resource Include="Resources\delete.png" />
-    <Resource Include="Resources\diagonal-mouth.png" />
     <Resource Include="Resources\editIcon.png" />
     <Resource Include="Resources\error.png" />
     <Resource Include="Resources\ExitToApp.png" />
     <Resource Include="Resources\Folder Explorer.png" />
     <Resource Include="Resources\Fullscreen.png" />
     <Resource Include="Resources\FullscreenExit.png" />
-    <Resource Include="Resources\head-bandage.png" />
     <Resource Include="Resources\Icon64.png" />
     <Resource Include="Resources\infoIcon.png" />
     <Resource Include="Resources\information.png" />
-    <Resource Include="Resources\neutral-face.png" />
     <Resource Include="Resources\no-entry.png" />
     <Resource Include="Resources\Phone.png" />
     <Resource Include="Resources\QrCode.png" />

@@ -84,29 +84,6 @@ namespace ElectronicServices
             formTitle.MouseDown += meh;
             CompanyPhone.MouseDown += meh;
 
-            /*System.Windows.Forms.Timer timer2 = new() { Interval = 200 };
-            timer2.Tick += (s, e1) =>
-            {
-                timer2.Stop();
-                panel?.Invalidate();
-            };
-
-            System.Windows.Forms.Timer timer3 = new() { Interval = 10 };
-            timer3.Tick += (s, e1) =>
-            {
-                timer3.Stop();
-                Panel_Scroll();
-            };
-
-            ScrollEventHandler scroll = (s, e1) => { timer2.Stop(); timer3.Stop(); timer2.Start(); timer3.Start(); };
-            MouseEventHandler wheel = (s, e1) => { timer2.Stop(); timer3.Stop(); timer2.Start(); timer3.Start(); };
-            
-            customersPanel.Scroll += scroll;
-            transactionsPanel.Scroll += scroll;
-            walletsPanel.Scroll += scroll;
-            recordsPanel.Scroll += scroll;
-            expensesPanel.Scroll += scroll;*/
-
             MouseEventHandler wheel = (s, e1) =>
             {
                 if (e1.Delta > 0)
@@ -160,7 +137,7 @@ namespace ElectronicServices
             expense.Text = DatabaseHelper.GetExpensesAmount(now.ToStandardString()).ToString();
             walletData = new WalletRowData { Phone = "", Type = 0 };
             Timer1_Tick(null, null);
-            timer1.Start();
+            //timer1.Start();
 
             if (File.Exists(calcFileName))
             {
@@ -309,7 +286,7 @@ namespace ElectronicServices
         {
             timer1.Stop();
             Timer1_Tick(null, null);
-            timer1.Start();
+            //timer1.Start();
             expense.Text = DatabaseHelper.GetExpensesAmount(DateTime.Now.ToStandardString()).ToString();
             UpdateCreditAndDept();
             panel = null;
@@ -1967,13 +1944,11 @@ namespace ElectronicServices
                 return;
             }
             isRunning = true;
-            extraExcelBtn.Image = Properties.Resources.head_bandage;
             Invalidate(); Update();
 
             if (dateChoose.Checked && dateFrom.Value > dateTo.Value)
             {
                 MessageForm("تاريخ البداية أكبر من تاريخ النهاية", "تحذير", MessageBoxButtons.OK, MessageBoxIconV2.Warning);
-                extraExcelBtn.Image = Properties.Resources.neutral_face;
                 isRunning = false;
                 return;
             }
@@ -1995,7 +1970,6 @@ namespace ElectronicServices
             if (saveExcelFileDialog.ShowDialog() == DialogResult.OK)
                 ExtractExtraExcel(saveExcelFileDialog.FileName, from, to);
 
-            extraExcelBtn.Image = Properties.Resources.neutral_face;
             isRunning = false;
         }
         bool isRunning = false;
@@ -2239,21 +2213,6 @@ namespace ElectronicServices
                 MessageForm("حدث خطأ أثناء حفظ الملف\n" + ex.Message, "خطأ", MessageBoxButtons.OK, MessageBoxIconV2.Error);
             }
         }
-
-        private void ExtraExcelBtn_MouseEnter(object sender, EventArgs e)
-        {
-            if (!isRunning) extraExcelBtn.Image = Properties.Resources.diagonal_mouth;
-        }
-
-        private void ExtraExcelBtn_MouseLeave(object sender, EventArgs e)
-        {
-            if (!isRunning) extraExcelBtn.Image = Properties.Resources.neutral_face;
-        }
-
-        private void ExtraExcelBtn_MouseDown(object sender, MouseEventArgs e)
-        {
-            extraExcelBtn.Image = Properties.Resources.confused_face;
-        }
         #endregion
 
         #region Backup & Restore
@@ -2294,6 +2253,145 @@ namespace ElectronicServices
             Application.Exit();
         }
         #endregion
+
+        private void CashDetailsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CashBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CashBtn_SizeChanged(object sender, EventArgs e)
+        {
+            int minSize = Math.Min(cashBtn.Width, cashBtn.Height);
+            cashBtn.ImageSize = new(minSize, minSize);
+        }
+
+        private void CompanyPhone_Click(object sender, EventArgs e)
+        {
+            #region استخراج بيانات من ملف اكسل برنامج غير الشافي
+            //string inputFile = @"C:\Users\Mohamed\Downloads\a.xlsx";
+            //string outputFile = @"C:\Users\Mohamed\Downloads\b-a.xlsx";
+
+            //using var sourceWb = new XLWorkbook(inputFile);
+            //var sourceWs = sourceWb.Worksheet(1);
+
+            //using var destWb = new XLWorkbook();
+            //var destWs = destWb.AddWorksheet("Products");
+
+            //// رؤوس الأعمدة
+            //destWs.Cell(1, 1).Value = "الباركود";
+            //destWs.Cell(1, 2).Value = "المنتج";
+            //destWs.Cell(1, 3).Value = "الشراء";
+            //destWs.Cell(1, 4).Value = "البيع";
+            //destWs.Cell(1, 5).Value = "البيع";
+
+            //var seenBarcodes = new HashSet<string>();
+            //var seenProducts = new HashSet<string>();
+
+            //int newRow = 2;
+
+            //foreach (var row in sourceWs.RowsUsed().Skip(1))
+            //{
+            //    string barcode = row.Cell(1).GetString().Trim();
+            //    string product = row.Cell(2).GetString().Trim();
+
+            //    // تجاهل الصفوف التي العمود الأول فيها ليس أرقاماً فقط
+            //    if (!Regex.IsMatch(barcode, @"^\d+$"))
+            //        continue;
+
+            //    // تجاهل التكرارات في العمود الأول أو الثاني
+            //    if (seenBarcodes.Contains(barcode) || seenProducts.Contains(product))
+            //        continue;
+
+            //    if (!row.Cell(3).GetString().Contains("حبه") && !row.Cell(3).GetString().Contains("حبة"))
+            //        continue;
+
+            //    seenBarcodes.Add(barcode);
+            //    seenProducts.Add(product);
+
+            //    destWs.Cell(newRow, 1).Value = barcode;                // الباركود
+            //    destWs.Cell(newRow, 2).Value = product.Replace("*","×");                // المنتج
+            //    destWs.Cell(newRow, 3).Value = Math.Round(row.Cell(4).GetValue<decimal>(), 4);
+            //    destWs.Cell(newRow, 4).Value = Math.Round(row.Cell(5).GetValue<decimal>(), 4);
+            //    destWs.Cell(newRow, 5).Value = Math.Round(row.Cell(5).GetValue<decimal>(), 4);
+            //    newRow++;
+            //}
+
+            //destWs.Columns().AdjustToContents();
+
+            //destWb.SaveAs(outputFile);
+
+            //Console.WriteLine("Done");
+            #endregion
+
+            #region تصفير اصناف الجرد لو سالبة
+            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+            //string inputPath = @"D:\a.csv";
+            //string outputPath = @"D:\b.csv";
+
+            //Encoding encoding = Encoding.GetEncoding(1256);
+
+            //string[][] data = File.ReadAllLines(inputPath, encoding)
+            //                      .Select(x => x.Split(';'))
+            //                      .ToArray();
+
+            //var result = new List<string[]>();
+
+            //// إضافة الهيدر كما هو
+            //result.Add(data[0]);
+
+            //for (int i = 1; i < data.Length; i++)
+            //{
+            //    if (data[i].Length < 4)
+            //        continue;
+
+            //    if (decimal.TryParse(data[i][2], out decimal value) && value < 0)
+            //    {
+            //        data[i][3] = "0"; // تعديل العمود الرابع
+            //        result.Add(data[i]); // إضافة السطر فقط لو سالب
+            //    }
+            //}
+
+            //File.WriteAllLines(
+            //    outputPath,
+            //    result.Select(x => string.Join(";", x)),
+            //    encoding
+            //);
+            #endregion
+
+            #region استعادة الجرد عمودين باركود وكمية
+            //string[] lines = File.ReadAllLines("C:\\Users\\Mohamed\\Desktop\\الجرد\\a.txt");
+
+            //Regex regex = new(@"^\d+\s+\d+$");
+
+            //Dictionary<string, string> lastRows = [];
+
+            //foreach (string line in lines)
+            //{
+            //    string text = line.Trim();
+
+            //    if (!regex.IsMatch(text))
+            //        continue;
+
+            //    string[] parts = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+            //    string id = parts[1];
+
+            //    text = $"{parts[1]};a;0;{parts[0]}" ;
+            //    // كل مرة يتم استبدال السطر السابق بنفس الـ ID
+            //    lastRows[id] = text;
+            //}
+
+            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            //Encoding encoding = Encoding.GetEncoding(1256);
+            //File.WriteAllLines("C:\\Users\\Mohamed\\Desktop\\الجرد\\b.csv", lastRows.Values, encoding);
+            #endregion
+        }
 
     }
 }
