@@ -2892,6 +2892,7 @@ namespace ElectronicServices
             cashDetailsBtn.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             cashDetailsBtn.Size = new Size(16, 16);
             cashDetailsBtn.TabIndex = 72;
+            cashDetailsBtn.Visible = false;
             cashDetailsBtn.Click += CashDetailsBtn_Click;
             // 
             // customersBtn
@@ -3085,7 +3086,7 @@ namespace ElectronicServices
             Icon = (Icon)resources.GetObject("$this.Icon");
             KeyPreview = true;
             Name = "Form1";
-            Text = "Form1";
+            Text = "ElecServ";
             Load += Form1_Load;
             KeyUp += Form1_KeyUp;
             headerPanel.ResumeLayout(false);

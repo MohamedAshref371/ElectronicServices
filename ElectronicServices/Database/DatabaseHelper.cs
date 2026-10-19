@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using System.Runtime.InteropServices;
 
 namespace ElectronicServices
 {
@@ -12,7 +13,7 @@ namespace ElectronicServices
         private static SQLiteDataReader reader;
         private static bool copyData;
 
-        private static string WalletsTableColumnsNames = "maximum_withdrawal, maximum_deposit, withdrawal_remaining, deposit_remaining, balance, type, comment";
+        private static readonly string WalletsTableColumnsNames = "maximum_withdrawal, maximum_deposit, withdrawal_remaining, deposit_remaining, balance, type, comment";
 
         public static int Version { get; private set; }
         public static DateTime CreateDate { get; private set; }
@@ -587,6 +588,15 @@ namespace ElectronicServices
         public static float GetSumDailyClosure(string date)
             => SelectRow($"SELECT total_wallets + total_cash + total_electronic + credit - debit FROM daily_closures WHERE date = '{date}'", () => reader.GetFloat(0));
 
+        public static (string Date, float Cash) GetLastDailyClosureCash()
+            => SelectRow($"SELECT date, total_cash FROM daily_closures WHERE date = (SELECT MAX(date) FROM daily_closures)", () => (reader.GetString(0), reader.GetFloat(1)));
+
+        public static float GetCashAfterLastDailyClosure(string date)
+        {
+            float trans = SelectRow($"SELECT COALESCE(SUM(CASE WHEN t.credit_payapp = 0 THEN t.credit ELSE 0 END), 0) - COALESCE(SUM(CASE WHEN t.debit_payapp = 0 THEN t.debit ELSE 0 END), 0) FROM transactions t WHERE t.date > '{date}'", () => reader.GetFloat(0));
+            float records = SelectRow($"SELECT COALESCE(SUM(r.withdrawal_amount), 0) - COALESCE(SUM(r.deposit_amount), 0) FROM records r WHERE date > '{date}'", () => reader.GetFloat(0));
+            return trans + records;
+        }
 
         public static (string Date, float[] Balances)[] GetPayappClosureDetails(bool isDated, string from, string to)
         {

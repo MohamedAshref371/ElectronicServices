@@ -151,6 +151,8 @@ namespace ElectronicServices
                     calcDifference.Text = (sumCommission - sumDeducted).ToString();
                 }
             }
+
+            CalculateCash();
         }
 
         private void ExitBtn_Click(object sender, EventArgs e)
@@ -282,6 +284,19 @@ namespace ElectronicServices
         #endregion
 
         #region Footer Panel
+        private void CalculateCash()
+        {
+            (string Date, float Cash) = DatabaseHelper.GetLastDailyClosureCash();
+            cashClose.Text = Cash.ToString();
+
+            float diff = DatabaseHelper.GetCashAfterLastDailyClosure(Date);
+            cashDiffLbl.Text = diff < 0 ? "-" : "+";
+            cashDiff.Text = Math.Abs(diff).ToString();
+
+            float sum = Cash + diff;
+            cashAmount.Text = sum.ToString();
+        }
+
         private void MainBtn_Click(object sender, EventArgs e)
         {
             timer1.Stop();
@@ -289,6 +304,7 @@ namespace ElectronicServices
             //timer1.Start();
             expense.Text = DatabaseHelper.GetExpensesAmount(DateTime.Now.ToStandardString()).ToString();
             UpdateCreditAndDept();
+            CalculateCash();
             panel = null;
             addCustomersPanel.Visible = false;
             customersPanel.Visible = false;
@@ -397,6 +413,7 @@ namespace ElectronicServices
         {
             DailyListViewDialog dlvd = new(null, true, false);
             dlvd.ShowDialog();
+            CalculateCash();
         }
         #endregion
 
@@ -2261,7 +2278,8 @@ namespace ElectronicServices
 
         private void CashBtn_Click(object sender, EventArgs e)
         {
-
+            CashCalculatorForm form = new();
+            form.Show();
         }
 
         private void CashBtn_SizeChanged(object sender, EventArgs e)
