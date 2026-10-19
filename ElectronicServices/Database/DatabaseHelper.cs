@@ -593,8 +593,17 @@ namespace ElectronicServices
 
         public static float GetCashAfterLastDailyClosure(string date)
         {
-            float trans = SelectRow($"SELECT COALESCE(SUM(CASE WHEN t.credit_payapp = 0 THEN t.credit ELSE 0 END), 0) - COALESCE(SUM(CASE WHEN t.debit_payapp = 0 THEN t.debit ELSE 0 END), 0) FROM transactions t WHERE t.date > '{date}'", () => reader.GetFloat(0));
-            float records = SelectRow($"SELECT COALESCE(SUM(r.withdrawal_amount), 0) - COALESCE(SUM(r.deposit_amount), 0) FROM records r WHERE date > '{date}'", () => reader.GetFloat(0));
+            float trans, records;
+            if (date is null)
+            {
+                trans = SelectRow($"SELECT COALESCE(SUM(CASE WHEN t.credit_payapp = 0 THEN t.credit ELSE 0 END), 0) - COALESCE(SUM(CASE WHEN t.debit_payapp = 0 THEN t.debit ELSE 0 END), 0) FROM transactions t", () => reader.GetFloat(0));
+                records = SelectRow($"SELECT COALESCE(SUM(r.withdrawal_amount), 0) - COALESCE(SUM(r.deposit_amount), 0) FROM records r", () => reader.GetFloat(0));
+            }
+            else
+            {
+                trans = SelectRow($"SELECT COALESCE(SUM(CASE WHEN t.credit_payapp = 0 THEN t.credit ELSE 0 END), 0) - COALESCE(SUM(CASE WHEN t.debit_payapp = 0 THEN t.debit ELSE 0 END), 0) FROM transactions t WHERE t.date > '{date}'", () => reader.GetFloat(0));
+                records = SelectRow($"SELECT COALESCE(SUM(r.withdrawal_amount), 0) - COALESCE(SUM(r.deposit_amount), 0) FROM records r WHERE date > '{date}'", () => reader.GetFloat(0));
+            }
             return trans + records;
         }
 
